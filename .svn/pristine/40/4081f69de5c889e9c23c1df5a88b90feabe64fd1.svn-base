@@ -1,7 +1,0 @@
-﻿
-@{
-    ViewBag.Title = "DanhMucQuocGia";
-}
-
-<h2>DanhMucQuocGia</h2>
-
