@@ -1,10 +1,12 @@
-﻿@{
-    ViewBag.Title = "DanhMucLoaiXe";
+﻿
+@{
+    ViewBag.Title = "DanhMucThietBiLinhKien";
 }
+
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Danh mục loại xe</h2>
+        <h2>Danh mục thiết bị linh kiện</h2>
     </div>
 </div>
 
@@ -17,64 +19,26 @@
                     <div class="ibox-title"><h3>Phần nhập liệu</h3></div>
                     <div class="ibox-content">
                         <div class="form-group" id="pIn">
-                            <label class="col-sm-2 control-label">Tên loại xe:</label>
+                            <label class="col-sm-2 control-label">Tên thiết bị linh kiện:</label>
                             <div class="col-sm-4">
-                                <input type="text" id="Ten" class="form-control" placeholder="Nhập tên loại xe">
+                                <input type="text" id="Ten" class="form-control" placeholder="Nhập thiết bị linh kiện">
                                 <span />
                             </div>
-                            <label class="col-sm-2 control-label">Mô tả:</label>
-                            <div class="col-sm-4">
-                                <input type="text" id="MoTa" class="form-control" placeholder="Nhập mô tả loại xe">
-                                <span />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             <label class="col-sm-2 control-label">Hãng sản xuất:</label>
                             <div class="col-sm-4">
-                                <input type="text" id="HangSanXuat" class="form-control" placeholder="Nhập hãng sản xuất xe">
-                                <span />
-                            </div>
-                            <label class="col-sm-2 control-label">Model:</label>
-                            <div class="col-sm-4">
-                                <input type="text" id="Model" class="form-control" placeholder="Nhập Model xe">
+                                <input type="text" id="HangSanXuat" class="form-control" placeholder="Nhập hãng sản xuất">
                                 <span />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Máy chạy dầu:</label>
+                            <label class="col-sm-2 control-label">Diễn giải:</label>
                             <div class="col-sm-4">
-                                <input type="radio" id="MayChayDau" name="LoaiDongCo" class="i-checks" checked>
+                                <input type="text" id="DienGiai" class="form-control" placeholder="Nhập diễn giải">
                                 <span />
                             </div>
-                            <label class="col-sm-2 control-label">Máy chạy xăng:</label>
-                            <div class="col-sm-4">
-                                <input type="radio" id="MayChayXang" name="LoaiDongCo" class="i-checks">
-                                <span />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Tổng số ghế:</label>
-                            <div class="col-sm-4">
-                                <input type="text" id="SoGhe" class="form-control" placeholder="Nhập tổng số ghế của xe">
-                                <span />
-                            </div>
-                            <label class="col-sm-2 control-label">Loại ghế:</label>
-                            <div class="col-sm-4">
-                                @*<input type="text" id="LoaiGhe" class="form-control" placeholder="Nhập loại ghế của xe">*@
-                                <select class="form-control m-b" id="LoaiGhe">
-                                    <option>Ghế ngồi</option>
-                                    <option>Ghế ngả</option>
-                                </select>
-                                <span />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             <label class="col-sm-2 control-label">Ghi chú:</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-4">
                                 <input type="text" id="GhiChu" class="form-control" placeholder="Nhập ghi chú">
                                 <span />
                             </div>
@@ -107,14 +71,9 @@
                                     <tr>
                                         <th width="50">Thứ tự</th>
                                         <th></th>
-                                        <th>Tên loại xe</th>
-                                        <th>Mô tả</th>
+                                        <th>Tên thiết bị linh kiện</th>
                                         <th>Hãng sản xuất</th>
-                                        <th>Model</th>
-                                        <th>Máy chạy dầu</th>
-                                        <th>Máy chạy xăng</th>
-                                        <th>Số ghế</th>
-                                        <th>Loại ghế</th>
+                                        <th>Diễn giải</th>
                                         <th>Ghi chú</th>
                                         <th width="50">Sửa</th>
                                         <th width="50">Xóa</th>
@@ -125,14 +84,9 @@
                                     <tr>
                                         <th></th>
                                         <th></th>
-                                        <th>Tên loại xe</th>
-                                        <th>Mô tả</th>
+                                        <th>Tên thiết bị linh kiện</th>
                                         <th>Hãng sản xuất</th>
-                                        <th>Model</th>
-                                        <th>Máy chạy dầu</th>
-                                        <th>Máy chạy xăng</th>
-                                        <th>Số ghế</th>
-                                        <th>Loại ghế</th>
+                                        <th>Diễn giải</th>
                                         <th>Ghi chú</th>
                                         <th width="30"></th>
                                         <th width="30"></th>
@@ -147,11 +101,6 @@
     </form>
 </div>
 
-@*<style type="text/css">
-        tr.selected {
-            background-color: greenyellow !important;
-        }
-    </style>*@
 
 @section Styles {
     @Styles.Render("~/plugins/awesomeCheckboxStyles")
@@ -199,10 +148,9 @@
         $(document).ready(function () {
             var table = $('#dtSource').DataTable({
                 ajax: {
-                    url: '@Url.Action("GetDataDanhMucLoaiXe", "QuanLyXe")'
+                    url: '@Url.Action("GetDataDanhMucThietBiLinhKien", "QuanLyXe")'
                     , dataSrc: ''
                 }
-                //data: [{ "Key": 8, "Ten": "Tên hợp đồng 8 u123", "DienGiai": "Diễn giải 8 u1", "GhiChu": "Ghi chú 8 u1" }, { "Key": 9, "Ten": "Tên hợp đồng 9 u1", "DienGiai": "Diễn giải 9 u1", "GhiChu": "Ghi chú 9 u12" }, { "Key": 18, "Ten": "Tên hợp đồng 18", "DienGiai": "Diễn giải 18", "GhiChu": "Ghi chú 18" }, { "Key": 22, "Ten": "Tên hợp đồng 22", "DienGiai": "Diễn giải 22", "GhiChu": "Ghi chú 22" }, { "Key": 23, "Ten": "Tên hợp đồng 23", "DienGiai": "Diễn giải 23", "GhiChu": "Ghi chú 23" }, { "Key": 24, "Ten": "Tên hợp đồng 24", "DienGiai": "Diễn giải 24", "GhiChu": "Ghi chú 24" }, { "Key": 25, "Ten": "Tên hợp đồng 25", "DienGiai": "Diễn giải 25", "GhiChu": "Ghi chú 25" }, { "Key": 27, "Ten": "Tên hợp đồng 1", "DienGiai": "Diễn giải 1", "GhiChu": "Ghi chú 1" }, { "Key": 33, "Ten": "Tên hợp đồng 2", "DienGiai": "Diễn giải 2", "GhiChu": "Ghi chú 2" }, { "Key": 34, "Ten": "Tên hợp đồng 3", "DienGiai": "Diễn giải 3", "GhiChu": "Ghi chú 3" }, { "Key": 36, "Ten": "Tên hợp đồng 4", "DienGiai": "Diễn giải 4", "GhiChu": "Ghi chú 4" }]
                 , columns: [
                     {
                         data: null,
@@ -212,13 +160,8 @@
                     },
                     { data: 'Key', visible: false },
                     { data: 'Ten' },
-                    { data: 'MoTa' },
                     { data: 'HangSanXuat' },
-                    { data: 'Model' },
-                    { data: 'MayChayDau' },
-                    { data: 'MayChayXang' },
-                    { data: 'SoGhe' },
-                    { data: 'LoaiGhe' },
+                    { data: 'DienGiai' },
                     { data: 'GhiChu' },
                     {
                         data: null,
@@ -266,13 +209,8 @@
                 var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
                 $('#Key').val(row.Key);
                 $('#Ten').val(row.Ten);
-                $('#MoTa').val(row.MoTa);
                 $('#HangSanXuat').val(row.HangSanXuat);
-                $('#Model').val(row.Model);
-                $('#MayChayDau').val(row.MayChayDau);
-                $('#MayChayXang').val(row.MgayChayXang);
-                $('#SoGhe').val(row.SoGhe);
-                $('#LoaiGhe').val(row.LoaiGhe);
+                $('#DienGiai').val(row.DienGiai);
                 $('#GhiChu').val(row.GhiChu);
             });//EndFunction
 
@@ -280,7 +218,7 @@
                 var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("DeleteDanhMucLoaiXe", "QuanLyXe")',
+                    url: '@Url.Action("DeleteDanhMucThietBiLinhKien", "QuanLyXe")',
                     data: "{ \"Key\" : \"" + row.Key + "\" }",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -300,23 +238,15 @@
         function onNewClick() {
             $('#Key').val("-1");
             $('#Ten').val("");
-            $('#MoTa').val("");
             $('#HangSanXuat').val("");
-            $('#Model').val("");
-            $('#MayChayDau').val("");
-            $('#MayChayXang').val("");
-            $('#SoGhe').val("");
-            $('#LoaiGhe').val("");
+            $('#DienGiai').val("");
             $('#GhiChu').val("");
-
-            //$('#myModal4').modal('show');
         }//EndFunction
 
         function onSaveClick() {
             if (($('#Key').val() == -1 || $('#Key').val() == "")
-                && ($('#Ten').val() == "" || $('#MoTa').val() == "" || 
-                $('#HangSanXuat').val() == "" || $('#Model').val() == "" ||
-                 $('#SoGhe').val() == "" || $('#LoaiGhe').val() == ""))
+                && ($('#Ten').val() == "" || $('#DienGiai').val() == "" ||
+                $('#HangSanXuat').val() == ""))
             {
                 toastr.error("Vui lòng nhập đủ thông tin !", "Thông báo !");
                 return;
@@ -327,16 +257,11 @@
 
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("SaveDanhMucLoaiXe", "QuanLyXe")',
+                url: '@Url.Action("SaveDanhMucThietBiLinhKien", "QuanLyXe")',
                 data: "{ \"Key\" : \"" + $('#Key').val()
                     + "\",\"Ten\" : \"" + $('#Ten').val()
-                    + "\",\"MoTa\" : \"" + $('#MoTa').val()
                     + "\",\"HangSanXuat\" : \"" + $('#HangSanXuat').val()
-                    + "\",\"Model\" : \"" + $('#Model').val()
-                    + "\",\"MayChayDau\" : \"" + document.getElementById('MayChayDau').checked
-                    + "\",\"MayChayXang\" : \"" + document.getElementById('MayChayXang').checked
-                    + "\",\"SoGhe\" : \"" + $('#SoGhe').val()
-                    + "\",\"LoaiGhe\" : \"" + document.getElementById("LoaiGhe").value 
+                    + "\",\"DienGiai\" : \"" + $('#DienGiai').val()
                     + "\",\"GhiChu\" : \"" + $('#GhiChu').val()
                     + "\" }",
                 contentType: "application/json; charset=utf-8",
