@@ -155,6 +155,7 @@
     <Compile Include="Models\LichBaoTriXe.cs" />
     <Compile Include="Models\LichBaoTriXeChiTiet.cs" />
     <Compile Include="Models\LoaiDiaChi.cs" />
+    <Compile Include="Models\LoaiGhe.cs" />
     <Compile Include="Models\LoaiHopDong.cs" />
     <Compile Include="Models\LoaiTroCap.cs" />
     <Compile Include="Models\LoaiXe.cs" />
