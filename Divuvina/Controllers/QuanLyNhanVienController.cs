@@ -7,6 +7,7 @@ using Divuvina.Business;
 
 namespace Divuvina.Controllers
 {
+    //Test github
     public class QuanLyNhanVienController : Controller
     {
         Models.dbContext _db = new Models.dbContext();
