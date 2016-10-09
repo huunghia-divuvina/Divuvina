@@ -118,7 +118,7 @@ namespace Divuvina.Controllers
             , bool MayChayDau
             , bool MayChayXang
             , short SoGhe
-            , string LoaiGhe
+            , short LoaiGheKey
             , string GhiChu)
         {
             try
@@ -137,7 +137,7 @@ namespace Divuvina.Controllers
                 row.MayChayDau = MayChayDau;
                 row.MayChayXang = MayChayXang;
                 row.SoGhe = SoGhe;
-                row.LoaiGhe = LoaiGhe;
+                row.LoaiGheKey = LoaiGheKey;
                 row.GhiChu = GhiChu;
 
                 _db.SaveChanges();
