@@ -179,10 +179,6 @@ namespace Divuvina.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<LoaiXe>()
-                .Property(e => e.LoaiGhe)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<LoaiXe>()
                 .HasMany(e => e.Xes)
                 .WithRequired(e => e.LoaiXe)
                 .WillCascadeOnDelete(false);
