@@ -71,3 +71,6 @@ D:\GitHub\Divuvina\Divuvina\bin\pl\System.Web.WebPages.Razor.resources.dll
 D:\GitHub\Divuvina\Divuvina\obj\Debug\Divuvina.csprojResolveAssemblyReference.cache
 D:\GitHub\Divuvina\Divuvina\obj\Debug\Divuvina.dll
 D:\GitHub\Divuvina\Divuvina\obj\Debug\Divuvina.pdb
+f:\2.Projects\2.Divuvina\3.Code\DivuvinaGitHub\Divuvina\obj\Debug\Divuvina.csprojResolveAssemblyReference.cache
+f:\2.Projects\2.Divuvina\3.Code\DivuvinaGitHub\Divuvina\obj\Debug\Divuvina.dll
+f:\2.Projects\2.Divuvina\3.Code\DivuvinaGitHub\Divuvina\obj\Debug\Divuvina.pdb
