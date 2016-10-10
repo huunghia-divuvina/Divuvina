@@ -135,7 +135,7 @@
     <Compile Include="Controllers\QuanLyHeThongController.cs" />
     <Compile Include="Controllers\QuanLyNhanVienController.cs" />
     <Compile Include="Controllers\QuanLySapLichBanVeController.cs" />
-    <Compile Include="Controllers\QuanLyXeController.cs" />
+    <Compile Include="Controllers\DanhMucXeController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1680,7 +1680,7 @@
     <Content Include="Views\Home\Minor.cshtml" />
     <Content Include="Views\QuanLyHeThong\Index.cshtml" />
     <Content Include="Views\QuanLySapLichBanVe\Index.cshtml" />
-    <Content Include="Views\QuanLyXe\Index.cshtml" />
+    <Content Include="Views\DanhMucXe\Index.cshtml" />
     <Content Include="Views\QuanLyNhanVien\DanhMucLoaiHopDong.cshtml" />
     <Content Include="Views\Forms\Advanced.cshtml" />
     <Content Include="Views\Forms\BasicFroms.cshtml" />
@@ -1698,12 +1698,12 @@
     <Content Include="Views\QuanLyDiaChi\DanhMucQuanHuyen.cshtml" />
     <Content Include="Views\QuanLyDiaChi\DanhMucQuocGia.cshtml" />
     <Content Include="Views\QuanLyDiaChi\DanhMucTinhThanh.cshtml" />
-    <Content Include="Views\QuanLyXe\DanhMucLoaiXe.cshtml" />
+    <Content Include="Views\DanhMucXe\DanhMucLoaiXe.cshtml" />
     <Content Include="Views\QuanLyNhanVien\DanhMucLoaiTroCap.cshtml" />
     <Content Include="Views\QuanLyNhanVien\DanhMucPhongBan.cshtml" />
     <Content Include="Views\QuanLyNhanVien\DanhMucViTri.cshtml" />
-    <Content Include="Views\QuanLyXe\DanhMucNoiSuaChuaXe.cshtml" />
-    <Content Include="Views\QuanLyXe\DanhMucThietBiLinhKien.cshtml" />
+    <Content Include="Views\DanhMucXe\DanhMucNoiSuaChuaXe.cshtml" />
+    <Content Include="Views\DanhMucXe\DanhMucThietBiLinhKien.cshtml" />
     <Content Include="Views\DanhMucXepLichXe\DanhMucChiPhi.cshtml" />
   </ItemGroup>
   <ItemGroup />

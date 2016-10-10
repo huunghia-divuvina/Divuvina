@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace Divuvina.Controllers
 {
-    public class QuanLyXeController : Controller
+    public class DanhMucXeController : Controller
     {
         Models.dbContext _db = new Models.dbContext();
 

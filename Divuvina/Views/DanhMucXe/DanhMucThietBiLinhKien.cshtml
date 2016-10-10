@@ -1,11 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "DanhMucNoiSuaChuaXe";
+    ViewBag.Title = "DanhMucThietBiLinhKien";
 }
+
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Danh mục nơi sửa chữa xe</h2>
+        <h2>Danh mục thiết bị linh kiện</h2>
     </div>
 </div>
 
@@ -18,21 +19,26 @@
                     <div class="ibox-title"><h3>Phần nhập liệu</h3></div>
                     <div class="ibox-content">
                         <div class="form-group" id="pIn">
-                            <label class="col-sm-2 control-label">Tên nơi sửa chữa:</label>
+                            <label class="col-sm-2 control-label">Tên thiết bị linh kiện:</label>
                             <div class="col-sm-4">
-                                <input type="text" id="Ten" class="form-control" placeholder="Nhập tên nơi sửa chữa xe">
+                                <input type="text" id="Ten" class="form-control" placeholder="Nhập thiết bị linh kiện">
                                 <span />
                             </div>
-                            <label class="col-sm-2 control-label">Địa chỉ:</label>
+                            <label class="col-sm-2 control-label">Hãng sản xuất:</label>
                             <div class="col-sm-4">
-                                <input type="text" id="DiaChi" class="form-control" placeholder="Nhập địa chỉ">
+                                <input type="text" id="HangSanXuat" class="form-control" placeholder="Nhập hãng sản xuất">
                                 <span />
                             </div>
                         </div>
 
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Diễn giải:</label>
+                            <div class="col-sm-4">
+                                <input type="text" id="DienGiai" class="form-control" placeholder="Nhập diễn giải">
+                                <span />
+                            </div>
                             <label class="col-sm-2 control-label">Ghi chú:</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-4">
                                 <input type="text" id="GhiChu" class="form-control" placeholder="Nhập ghi chú">
                                 <span />
                             </div>
@@ -65,8 +71,9 @@
                                     <tr>
                                         <th width="50">Thứ tự</th>
                                         <th></th>
-                                        <th>Tên nơi sửa chữa</th>
-                                        <th>Địa chỉ</th>
+                                        <th>Tên thiết bị linh kiện</th>
+                                        <th>Hãng sản xuất</th>
+                                        <th>Diễn giải</th>
                                         <th>Ghi chú</th>
                                         <th width="50">Sửa</th>
                                         <th width="50">Xóa</th>
@@ -77,8 +84,9 @@
                                     <tr>
                                         <th></th>
                                         <th></th>
-                                        <th>Tên nơi sửa chữa</th>
-                                        <th>Địa chỉ</th>
+                                        <th>Tên thiết bị linh kiện</th>
+                                        <th>Hãng sản xuất</th>
+                                        <th>Diễn giải</th>
                                         <th>Ghi chú</th>
                                         <th width="30"></th>
                                         <th width="30"></th>
@@ -140,7 +148,7 @@
         $(document).ready(function () {
             var table = $('#dtSource').DataTable({
                 ajax: {
-                    url: '@Url.Action("GetDataDanhMucNoiSuaChuaXe", "QuanLyXe")'
+                    url: '@Url.Action("GetDataDanhMucThietBiLinhKien", "DanhMucXe")'
                     , dataSrc: ''
                 }
                 , columns: [
@@ -152,7 +160,8 @@
                     },
                     { data: 'Key', visible: false },
                     { data: 'Ten' },
-                    { data: 'DiaChi' },
+                    { data: 'HangSanXuat' },
+                    { data: 'DienGiai' },
                     { data: 'GhiChu' },
                     {
                         data: null,
@@ -200,7 +209,8 @@
                 var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
                 $('#Key').val(row.Key);
                 $('#Ten').val(row.Ten);
-                $('#DiaChi').val(row.DiaChi);
+                $('#HangSanXuat').val(row.HangSanXuat);
+                $('#DienGiai').val(row.DienGiai);
                 $('#GhiChu').val(row.GhiChu);
             });//EndFunction
 
@@ -208,7 +218,7 @@
                 var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("DeleteDanhMucNoiSuaChuaXe", "QuanLyXe")',
+                    url: '@Url.Action("DeleteDanhMucThietBiLinhKien", "DanhMucXe")',
                     data: "{ \"Key\" : \"" + row.Key + "\" }",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -228,15 +238,15 @@
         function onNewClick() {
             $('#Key').val("-1");
             $('#Ten').val("");
-            $('#DiaChi').val("");
+            $('#HangSanXuat').val("");
+            $('#DienGiai').val("");
             $('#GhiChu').val("");
-
-            //$('#myModal4').modal('show');
         }//EndFunction
 
         function onSaveClick() {
             if (($('#Key').val() == -1 || $('#Key').val() == "")
-                && ($('#Ten').val() == "" || $('#DiaChi').val() == ""))
+                && ($('#Ten').val() == "" || $('#DienGiai').val() == "" ||
+                $('#HangSanXuat').val() == ""))
             {
                 toastr.error("Vui lòng nhập đủ thông tin !", "Thông báo !");
                 return;
@@ -247,10 +257,11 @@
 
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("SaveDanhMucNoiSuaChuaXe", "QuanLyXe")',
+                url: '@Url.Action("SaveDanhMucThietBiLinhKien", "DanhMucXe")',
                 data: "{ \"Key\" : \"" + $('#Key').val()
                     + "\",\"Ten\" : \"" + $('#Ten').val()
-                    + "\",\"DiaChi\" : \"" + $('#DiaChi').val()
+                    + "\",\"HangSanXuat\" : \"" + $('#HangSanXuat').val()
+                    + "\",\"DienGiai\" : \"" + $('#DienGiai').val()
                     + "\",\"GhiChu\" : \"" + $('#GhiChu').val()
                     + "\" }",
                 contentType: "application/json; charset=utf-8",
