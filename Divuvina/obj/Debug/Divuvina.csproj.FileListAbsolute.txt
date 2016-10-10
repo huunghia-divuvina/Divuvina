@@ -107,4 +107,3 @@ F:\2.Projects\2.Divuvina\3.Code\DivuvinaGitHub\Divuvina\bin\pl\System.Web.Razor.
 F:\2.Projects\2.Divuvina\3.Code\DivuvinaGitHub\Divuvina\bin\pl\System.Web.WebPages.resources.dll
 F:\2.Projects\2.Divuvina\3.Code\DivuvinaGitHub\Divuvina\bin\pl\System.Web.WebPages.Deployment.resources.dll
 F:\2.Projects\2.Divuvina\3.Code\DivuvinaGitHub\Divuvina\bin\pl\System.Web.WebPages.Razor.resources.dll
-f:\2.Projects\2.Divuvina\3.Code\DivuvinaGitHub\Divuvina\obj\Debug\Divuvina.csprojResolveAssemblyReference.cache

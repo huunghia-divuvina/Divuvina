@@ -45,7 +45,7 @@ namespace Inspinia_MVC5.Controllers
                         file.SaveAs(path);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return Json(new { Message = "Error in saving file" });
                 }
