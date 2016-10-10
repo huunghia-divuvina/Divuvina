@@ -1,5 +1,4 @@
-﻿@*@model Divuvina.Business.Transporter*@
-@{
+﻿@{
     ViewBag.Title = "Bảo trì sửa chữa xe";
 }
 
@@ -168,7 +167,7 @@
             //Load dữ liệu cho Combobox Xe
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("GetDanhMucXe", "QuanLyXe")',
+                url: '@Url.Action("GetDanhMucXe", "DanhMucXe")',
                 contentType: "application/json; charset=utf-8",
                 dataType: "JSON",
                 success: function (response) {
@@ -188,7 +187,7 @@
 
             var dtLbt = $('#dtLbt').DataTable({
                 ajax: {
-                    url: '@Url.Action("GetLichBaoTri", "QuanLyXe")'
+                    url: '@Url.Action("GetLichBaoTri", "DanhMucXe")'
                     , dataSrc: ''
                 }
                 , columns: [
@@ -243,7 +242,7 @@
 
             var dtTblk = $('#dtTblk').DataTable({
                 ajax: {
-                    url: '@Url.Action("GetLichBaoTriChiTiet", "QuanLyXe")'
+                    url: '@Url.Action("GetLichBaoTriChiTiet", "DanhMucXe")'
                     , dataSrc: ''
                 }
                 , columns: [
@@ -294,7 +293,7 @@
             //Load dữ liệu cho Thiết bị, linh kiện
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("GetThietBiLinhKien", "QuanLyXe")',
+                url: '@Url.Action("GetThietBiLinhKien", "DanhMucXe")',
                 contentType: "application/json; charset=utf-8",
                 dataType: "JSON",
                 success: function (response) {
@@ -312,18 +311,18 @@
 
         function onLbtClick() {
             _XeKey = $('#SoXeKey').val();
-            $('#dtLbt').DataTable().ajax.url('@Url.Action("GetLichBaoTri", "QuanLyXe")' + '?XeKey=' + _XeKey).load();
+            $('#dtLbt').DataTable().ajax.url('@Url.Action("GetLichBaoTri", "DanhMucXe")' + '?XeKey=' + _XeKey).load();
         }
 
         function dtLbtRowSelected() {
             var row = $('#dtLbt').DataTable().data()[$('#dtLbt').DataTable().row('.selected')[0][0]];
             _LscbtKey = row.Key;
 
-            $('#dtTblk').DataTable().ajax.url('@Url.Action("GetLichBaoTriChiTiet", "QuanLyXe")' + '?LbtctKey=' + _LscbtKey).load();
+            $('#dtTblk').DataTable().ajax.url('@Url.Action("GetLichBaoTriChiTiet", "DanhMucXe")' + '?LbtctKey=' + _LscbtKey).load();
         }
         function dtLbtRowDeSelected() {
             _LscbtKey = "-1";
-            $('#dtTblk').DataTable().ajax.url('@Url.Action("GetLichBaoTriChiTiet", "QuanLyXe")' + '?LbtctKey=' + _LscbtKey).load();
+            $('#dtTblk').DataTable().ajax.url('@Url.Action("GetLichBaoTriChiTiet", "DanhMucXe")' + '?LbtctKey=' + _LscbtKey).load();
         }
 
         function onLbtctAddClick() {
@@ -350,7 +349,7 @@
                         //Load dữ liệu cho Thiết bị, linh kiện
                         $.ajax({
                             type: "POST",
-                            url: '@Url.Action("AddLbtscct", "QuanLyXe")',
+                            url: '@Url.Action("AddLbtscct", "DanhMucXe")',
                             contentType: "application/json; charset=utf-8",
                             dataType: "JSON",
                             data: "{ \"LscbtKey\" : \"" + _LscbtKey
@@ -359,7 +358,7 @@
                                             + "\",\"TongTien\" : \"" + $('#TongTien').val()
                                             + "\" }",
                             success: function (response) {
-                                $('#dtTblk').DataTable().ajax.url('@Url.Action("GetLichBaoTriChiTiet", "QuanLyXe")' + '?LbtctKey=' + _LscbtKey).load();
+                                $('#dtTblk').DataTable().ajax.url('@Url.Action("GetLichBaoTriChiTiet", "DanhMucXe")' + '?LbtctKey=' + _LscbtKey).load();
 
                                 $('#waitModal').modal('hide');
                                 ShowMessage(response);
