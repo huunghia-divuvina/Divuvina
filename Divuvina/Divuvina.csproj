@@ -190,6 +190,8 @@
     <Compile Include="Models\ViTriNhanVien.cs" />
     <Compile Include="Models\Xe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Public\Message.cs" />
+    <Compile Include="Public\TitleMessageBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />

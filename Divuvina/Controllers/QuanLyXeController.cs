@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Divuvina.Public;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Divuvina.Controllers
@@ -72,11 +71,11 @@ namespace Divuvina.Controllers
 
                 _db.SaveChanges();
 
-                return Json(new { Result = true, Title = "Thông báo!", Message = "Thao tác dữ liệu thành công!" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = true, Title = TitleMessageBox.Notification, Message = Message.SuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
-                return Json(new { Result = false, Title = "Thông báo!", Message = "Thao tác dữ liệu không thành công!" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = false, Title = TitleMessageBox.Notification, Message = Message.UnsuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
         }
         #endregion
@@ -105,11 +104,11 @@ namespace Divuvina.Controllers
                     _db.SaveChanges();
                 }
 
-                return Json(new { Result = true, Title = "Thông báo!", Message = "Thao tác dữ liệu thành công!" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = true, Title = TitleMessageBox.Notification, Message = Message.SuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
-                return Json(new { Result = false, Title = "Thông báo!", Message = "Thao tác dữ liệu không thành công!"}, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = false, Title = TitleMessageBox.Notification, Message = Message.UnsuccessfulDataAction}, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -142,11 +141,11 @@ namespace Divuvina.Controllers
 
                 _db.SaveChanges();
 
-                return Json(new { Result = true, Title = "Thông báo!", Message = "Thao tác dữ liệu thành công!" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = true, Title = TitleMessageBox.Notification, Message = Message.SuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
-                return Json(new { Result = false, Title = "Thông báo!", Message = "Thao tác dữ liệu không thành công!" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = false, Title = TitleMessageBox.Notification, Message = Message.UnsuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
         }
         #endregion DanhMucLoaiXe
@@ -201,11 +200,11 @@ namespace Divuvina.Controllers
 
                 _db.SaveChanges();
 
-                return Json(new { Result = true, Title = "Thông báo !", Message = "Thao tác dữ liệu thành công !" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = true, Title = TitleMessageBox.Notification, Message = Message.SuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Json(new { Result = false, Title = "Thông báo !", Message = "Thao tác dữ liệu không thành công !" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = false, Title = TitleMessageBox.Notification, Message = Message.UnsuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
         }
         #endregion DanhMucNoiSuaChuaXe
@@ -261,11 +260,11 @@ namespace Divuvina.Controllers
 
                 _db.SaveChanges();
 
-                return Json(new { Result = true, Title = "Thông báo!", Message = "Thao tác dữ liệu thành công!" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = true, Title = TitleMessageBox.Notification, Message = Message.SuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
-                return Json(new { Result = false, Title = "Thông báo!", Message = "Thao tác dữ liệu không thành công!" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = false, Title = TitleMessageBox.Notification, Message = Message.UnsuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
         }
         #endregion DanhMucThietBiLinhKiend
@@ -294,11 +293,11 @@ namespace Divuvina.Controllers
                     _db.SaveChanges();
                 }
 
-                return Json(new { Result = true, Title = "Thông báo!", Message = "Thao tác dữ liệu thành công!" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = true, Title = TitleMessageBox.Notification, Message = Message.SuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
-                return Json(new { Result = false, Title = "Thông báo!", Message = "Thao tác dữ liệu không thành công!" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = false, Title = TitleMessageBox.Notification, Message = Message.UnsuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -319,11 +318,11 @@ namespace Divuvina.Controllers
 
                 _db.SaveChanges();
 
-                return Json(new { Result = true, Title = "Thông báo!", Message = "Thao tác dữ liệu thành công!" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = true, Title = TitleMessageBox.Notification, Message = Message.SuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
-                return Json(new { Result = false, Title = "Thông báo!", Message = "Thao tác dữ liệu không thành công!" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = false, Title = TitleMessageBox.Notification, Message = Message.UnsuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
         }
         #endregion DanhMucChiPhi
