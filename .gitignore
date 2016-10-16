@@ -49,3 +49,4 @@ Temporary Items
 Divuvina/bin/
 Divuvina/obj/
 Divuvina/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+*.cache
