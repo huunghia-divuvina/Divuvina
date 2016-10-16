@@ -277,7 +277,7 @@
                     table.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
                 }
-            
+            });
 
             $('#dtSource').on('click', 'a.edit', function (e) {
                 var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
