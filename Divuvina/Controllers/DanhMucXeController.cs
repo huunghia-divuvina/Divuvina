@@ -86,9 +86,17 @@ namespace Divuvina.Controllers
             return View();
         }
 
-        public JsonResult GetDataDanhMucLoaiXe()
+        public JsonResult GetDataDanhMucLoaiXe()//(string LoaiXeKey)
         {
-            var rs = _db.LoaiXes.Select(r => new { Key = r.LoaiXeKey, r.Ten, r.MoTa, r.HangSanXuat, r.Model, r.MayChayDau, r.MayChayXang, r.SoGhe, r.LoaiGhe, r.GhiChu });
+            //if (LoaiXeKey == null)
+            //    LoaiXeKey = "-1";
+            var rs = _db.LoaiXes
+                //.Where(r => r.LoaiXeKey.ToString() == LoaiXeKey)
+                .Select(r => new { Key = r.LoaiXeKey, r.Ten, r.MoTa, r.HangSanXuat, r.Model,
+                    r.MayChayDau, r.MayChayXang, r.SoGhe,
+                    LoaiGhe = r.LoaiGhe.Ten ,
+                    r.GhiChu });
+
             return Json(rs, JsonRequestBehavior.AllowGet);
         }
 
@@ -143,11 +151,18 @@ namespace Divuvina.Controllers
 
                 return Json(new { Result = true, Title = TitleMessageBox.Notification, Message = Message.SuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Json(new { Result = false, Title = TitleMessageBox.Notification, Message = Message.UnsuccessfulDataAction }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public JsonResult GetDanhMucLoaiGhe()
+        {
+            var listLoaiGhes = _db.LoaiGhes.Select(r => new { id = r.LoaiGheKey, text = r.Ten });
+            return Json(listLoaiGhes, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion DanhMucLoaiXe
 
         #region DanhMucNoiSuaChuaXe

@@ -45,7 +45,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Máy chạy dầu:</label>
                             <div class="col-sm-4">
-                                <div class="radio radio-info radio-inline">
+                                <div class="radio radio-info">
                                     <input type="radio" id="MayChayDau" name="LoaiDongCo" value="MayChayDau" checked>
                                     @*<label for="MayChayDau">Máy chạy dầu:</label>*@
                                     <span />
@@ -53,7 +53,7 @@
                             </div>
                             <label class="col-sm-2 control-label">Máy chạy xăng:</label>
                             <div class="col-sm-4">
-                                <div class="radio radio-info radio-inline">
+                                <div class="radio radio-info">
                                     <input type="radio" id="MayChayXang" name="LoaiDongCo" value="MayChayXang">
                                     @*<label for="MayChayXang">Máy chạy xăng:</label>*@
                                     <span />
@@ -75,14 +75,17 @@
                                     <option>Ghế ngả</option>
                                 </select>*@
                                 @*<span />*@
-                                <div class="chosen-container chosen-container-single" title="">
+
+                                @*<div class="chosen-container chosen-container-single" title="">
                                     <a class="chosen-single" tabindex="-1">
                                         <span>Chọn loại ghế</span>
                                         <div>
                                             <b></b>
                                         </div>
                                     </a>
-                                </div>
+                                </div>*@
+                                <select class="form-control" id="LoaiGheKey"></select>
+                                <span />
                             </div>
                         </div>
 
@@ -274,7 +277,7 @@
                     table.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
                 }
-            });
+            
 
             $('#dtSource').on('click', 'a.edit', function (e) {
                 var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
@@ -286,7 +289,7 @@
                 $('#MayChayDau').val(row.MayChayDau);
                 $('#MayChayXang').val(row.MgayChayXang);
                 $('#SoGhe').val(row.SoGhe);
-                $('#LoaiGhe').val(row.LoaiGhe);
+                $('#LoaiGheKey').val(row.LoaiGhe).trigger("change");
                 $('#GhiChu').val(row.GhiChu);
             });//EndFunction
 
@@ -309,7 +312,25 @@
                     }
                 });
             });//EndFunction
-        });
+
+            //Load dữ liệu Danh Mục Loai Ghế
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetDanhMucLoaiGhe", "DanhMucXe")',
+                contentType: "application/json; charset=utf-8",
+                dataType: "JSON",
+                success: function (response) {
+                    $("#LoaiGheKey").select2({
+                        data: response
+                        , placeholder: "Chọn loại ghế"
+                        , allowClear: true
+                    });
+                    $("#LoaiGheKey").val(null).trigger("change");
+                },
+                failure: function (msg) {
+                }
+            });
+        });//EndFunction-DocumentReady
 
         function onNewClick() {
             $('#Key').val("-1");
@@ -320,7 +341,7 @@
             $('#MayChayDau').val("");
             $('#MayChayXang').val("");
             $('#SoGhe').val("");
-            $('#LoaiGhe').val("");
+            $('#LoaiGheKey').val("");
             $('#GhiChu').val("");
 
             //$('#myModal4').modal('show');
@@ -328,9 +349,9 @@
 
         function onSaveClick() {
             if (($('#Key').val() == -1 || $('#Key').val() == "")
-                && ($('#Ten').val() == "" || $('#MoTa').val() == "" || 
+                && ($('#Ten').val() == "" || $('#MoTa').val() == "" ||
                 $('#HangSanXuat').val() == "" || $('#Model').val() == "" ||
-                 $('#SoGhe').val() == "" || $('#LoaiGhe').val() == ""))
+                 $('#SoGhe').val() == "" || $('#LoaiGheKey').val() == ""))
             {
                 toastr.error("Vui lòng nhập đủ thông tin !", "Thông báo !");
                 return;
@@ -350,7 +371,7 @@
                     + "\",\"MayChayDau\" : \"" + document.getElementById('MayChayDau').checked
                     + "\",\"MayChayXang\" : \"" + document.getElementById('MayChayXang').checked
                     + "\",\"SoGhe\" : \"" + $('#SoGhe').val()
-                    + "\",\"LoaiGhe\" : \"" + document.getElementById("LoaiGhe").value 
+                    + "\",\"LoaiGheKey\" : \"" + $('#LoaiGheKey').val()
                     + "\",\"GhiChu\" : \"" + $('#GhiChu').val()
                     + "\" }",
                 contentType: "application/json; charset=utf-8",

@@ -1650,6 +1650,7 @@
     <Content Include="Scripts\plugins\velocity\velocity.min.js" />
     <Content Include="Scripts\plugins\velocity\velocity.ui.min.js" />
     <Content Include="Scripts\plugins\video\responsible-video.js" />
+    <Content Include="Views\DanhMucXe\BaoTriSuaChuaXe.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
