@@ -43,20 +43,34 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Máy chạy dầu:</label>
+                            @*<label class="col-sm-2 control-label">Máy chạy dầu:</label>
                             <div class="col-sm-4">
-                                <div class="radio radio-info">
-                                    <input type="radio" id="MayChayDau" name="LoaiDongCo" value="MayChayDau" checked>
+                                <div class="radio radio-info radioInline">
+                                    <input type="radio" id="MayChayDau" name="LoaiDongCo" value="MayChayDau" checked>*@
                                     @*<label for="MayChayDau">Máy chạy dầu:</label>*@
-                                    <span />
+                                    @*<span />
                                 </div>
                             </div>
                             <label class="col-sm-2 control-label">Máy chạy xăng:</label>
                             <div class="col-sm-4">
-                                <div class="radio radio-info">
-                                    <input type="radio" id="MayChayXang" name="LoaiDongCo" value="MayChayXang">
+                                <div class="radio radio-info radioInline">
+                                    <input type="radio" id="MayChayXang" name="LoaiDongCo" value="MayChayXang">*@
                                     @*<label for="MayChayXang">Máy chạy xăng:</label>*@
-                                    <span />
+                                    @*<span />
+                                </div>
+                            </div>*@
+                            <label class="col-sm-2 control-label">Máy chạy dầu:</label>
+                            <div class="col-sm-4">
+                                <div class="radio radio-info radioInline">
+                                    <input type="radio" id="MayChayDau" value="MayChayDau" checked="" name="LoaiDongCo">
+                                    <label for="MayChayDau"></label>
+                                </div>
+                            </div>
+                            <label class="col-sm-2 control-label">Máy chạy xăng:</label>
+                            <div class="col-sm-4">
+                                <div class="radio radioInline">
+                                    <input type="radio" id="MayChayXang" value="MayChayXang" name="LoaiDongCo">
+                                    <label for="MayChayXang"></label>
                                 </div>
                             </div>
                         </div>
@@ -84,6 +98,7 @@
                                         </div>
                                     </a>
                                 </div>*@
+                                
                                 <select class="form-control" id="LoaiGheKey"></select>
                                 <span />
                             </div>
@@ -286,10 +301,10 @@
                 $('#MoTa').val(row.MoTa);
                 $('#HangSanXuat').val(row.HangSanXuat);
                 $('#Model').val(row.Model);
-                $('#MayChayDau').val(row.MayChayDau);
-                $('#MayChayXang').val(row.MgayChayXang);
+                $('#MayChayDau').prop('checked', row.MayChayDau);
+                $('#MayChayXang').prop('checked', row.MayChayXang);
                 $('#SoGhe').val(row.SoGhe);
-                $('#LoaiGheKey').val(row.LoaiGhe).trigger("change");
+                $('#LoaiGheKey').val(row.LoaiGheKey).change();
                 $('#GhiChu').val(row.GhiChu);
             });//EndFunction
 
@@ -338,13 +353,11 @@
             $('#MoTa').val("");
             $('#HangSanXuat').val("");
             $('#Model').val("");
-            $('#MayChayDau').val("");
-            $('#MayChayXang').val("");
+            $('#MayChayDau').prop('checked', false);
+            $('#MayChayXang').prop('checked',true);
             $('#SoGhe').val("");
             $('#LoaiGheKey').val("");
             $('#GhiChu').val("");
-
-            //$('#myModal4').modal('show');
         }//EndFunction
 
         function onSaveClick() {
