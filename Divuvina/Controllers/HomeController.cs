@@ -15,13 +15,5 @@ namespace Divuvina.Controllers
 
             return View();
         }
-
-        public ActionResult Minor()
-        {
-            ViewData["SubTitle"] = "Simple example of second view";
-            ViewData["Message"] = "Data are passing to view by ViewData from controller";
-
-            return View();
-        }
     }
 }

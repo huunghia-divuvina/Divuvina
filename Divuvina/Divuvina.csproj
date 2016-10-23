@@ -1678,7 +1678,6 @@
     <Content Include="Views\Shared\_NavigationOffCanvas.cshtml" />
     <Content Include="Scripts\plugins\chartist\chartist.min.js.map" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Minor.cshtml" />
     <Content Include="Views\QuanLyHeThong\Index.cshtml" />
     <Content Include="Views\QuanLySapLichBanVe\Index.cshtml" />
     <Content Include="Views\DanhMucXe\Index.cshtml" />
