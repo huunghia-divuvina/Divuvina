@@ -94,7 +94,7 @@ namespace Divuvina.Controllers
                 //.Where(r => r.LoaiXeKey.ToString() == LoaiXeKey)
                 .Select(r => new { Key = r.LoaiXeKey, r.Ten, r.MoTa, r.HangSanXuat, r.Model,
                     r.MayChayDau, r.MayChayXang, r.SoGhe,
-                    LoaiGhe = r.LoaiGhe.Ten ,
+                    LoaiGhe = r.LoaiGhe.Ten , r.LoaiGhe.LoaiGheKey,
                     r.GhiChu });
 
             return Json(rs, JsonRequestBehavior.AllowGet);
