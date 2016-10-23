@@ -24,7 +24,7 @@ namespace Divuvina.Controllers
 
         public JsonResult GetDataDanhMucChiPhi()
         {
-            var listDanhMucChiPhis = _db.DanhMucChiPhis.Select(r => new { id = r.DanhMucChiPhiKey, r.DienGiai, r.GhiChu });
+            var listDanhMucChiPhis = _db.DanhMucChiPhis.Select(r => new { Key = r.DanhMucChiPhiKey, r.DienGiai, r.GhiChu });
             return Json(listDanhMucChiPhis, JsonRequestBehavior.AllowGet);
         }
 
