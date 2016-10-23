@@ -131,11 +131,12 @@
     <Compile Include="Controllers\DanhMucXepLichXeController.cs" />
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\QuanLyDiaChiController.cs" />
+    <Compile Include="Controllers\DanhMucDiaChiController.cs" />
     <Compile Include="Controllers\QuanLyHeThongController.cs" />
     <Compile Include="Controllers\QuanLyNhanVienController.cs" />
     <Compile Include="Controllers\QuanLySapLichBanVeController.cs" />
     <Compile Include="Controllers\DanhMucXeController.cs" />
+    <Compile Include="Controllers\QuanLyXeController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1650,7 +1651,7 @@
     <Content Include="Scripts\plugins\velocity\velocity.min.js" />
     <Content Include="Scripts\plugins\velocity\velocity.ui.min.js" />
     <Content Include="Scripts\plugins\video\responsible-video.js" />
-    <Content Include="Views\DanhMucXe\BaoTriSuaChuaXe.cshtml" />
+    <Content Include="Views\QuanLyXe\BaoTriSuaChuaXe.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1692,12 +1693,12 @@
     <Content Include="Views\Tables\FooTables.cshtml" />
     <Content Include="Views\Tables\jqGrid.cshtml" />
     <Content Include="Views\Tables\StaticTables.cshtml" />
-    <Content Include="Views\QuanLyDiaChi\DanhMucDuong.cshtml" />
-    <Content Include="Views\QuanLyDiaChi\DanhMucLoaiDiaChi.cshtml" />
-    <Content Include="Views\QuanLyDiaChi\DanhMucPhuongXa.cshtml" />
-    <Content Include="Views\QuanLyDiaChi\DanhMucQuanHuyen.cshtml" />
-    <Content Include="Views\QuanLyDiaChi\DanhMucQuocGia.cshtml" />
-    <Content Include="Views\QuanLyDiaChi\DanhMucTinhThanh.cshtml" />
+    <Content Include="Views\DanhMucDiaChi\DanhMucDuong.cshtml" />
+    <Content Include="Views\DanhMucDiaChi\DanhMucLoaiDiaChi.cshtml" />
+    <Content Include="Views\DanhMucDiaChi\DanhMucPhuongXa.cshtml" />
+    <Content Include="Views\DanhMucDiaChi\DanhMucQuanHuyen.cshtml" />
+    <Content Include="Views\DanhMucDiaChi\DanhMucQuocGia.cshtml" />
+    <Content Include="Views\DanhMucDiaChi\DanhMucTinhThanh.cshtml" />
     <Content Include="Views\DanhMucXe\DanhMucLoaiXe.cshtml" />
     <Content Include="Views\QuanLyNhanVien\DanhMucLoaiTroCap.cshtml" />
     <Content Include="Views\QuanLyNhanVien\DanhMucPhongBan.cshtml" />
