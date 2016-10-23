@@ -3,5 +3,256 @@
     ViewBag.Title = "DanhMucChiPhi";
 }
 
-<h2>DanhMucChiPhi</h2>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Danh mục chi phí</h2>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <form class="form-horizontal m-t-md" id="formData" role="form">
+        <input type="hidden" id="Key" />
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title"><h3>Phần nhập liệu</h3></div>
+                    <div class="ibox-content">
+                        <div class="form-group" id="pIn">
+                            <label class="col-sm-2 control-label">Tên loại chi phí:</label>
+                            <div class="col-sm-4">
+                                <input type="text" id="DienGiai" class="form-control" placeholder="Nhập loại chi phí">
+                                <span />
+                            </div>
+                            <label class="col-sm-2 control-label">Ghi chú:</label>
+                            <div class="col-sm-4">
+                                <input type="text" id="GhiChu" class="form-control" placeholder="Nhập ghi chú">
+                                <span />
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-sm-2 col-md-offset-2">
+                                <button type="button" class="btn btn-w-m btn-success" id="btNew" onclick="onNewClick()"><i class="fa fa-file" aria-hidden="true"></i> Tạo mới</button>
+                                <span />
+                            </div>
+
+                            <div class="col-sm-2">
+                                <button type="button" class="btn btn-w-m btn-success" id="btSave" onclick="onSaveClick()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</button>
+                                <span />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title"><h3>Phần hiển thị</h3></div>
+                    <div class="ibox-content">
+                        <div class="table-responsive">
+                            <table id="dtSource" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="50">Thứ tự</th>
+                                        <th></th>
+                                        <th>Loại chi phí</th>
+                                        <th>Ghi chú</th>
+                                        <th width="50">Sửa</th>
+                                        <th width="50">Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section Styles {
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/switcheryStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/nouiSliderStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+
+    @Styles.Render("~/plugins/toastrStyles")
+
+    <link href="~/Content/Divuvina/DivuvinaTable.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/jeditable")
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/plugins/toastr")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var table = $('#dtSource').DataTable({
+                ajax: {
+                    url: '@Url.Action("GetDataDanhMucChiPhi", "DanhMucXepLichXe")'
+                    , dataSrc: ''
+                }
+                , columns: [
+                    {
+                        data: null,
+                        searchable: false
+                        , orderable: false
+                        , targets: 0
+                    },
+                    { data: 'Key', visible: false },
+                    { data: 'DienGiai' },
+                    { data: 'GhiChu' },
+                    {
+                        data: null,
+                        defaultContent: '<a class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa</a>',
+                        orderable: false
+                    }
+                    , {
+                        data: null,
+                        defaultContent: '<a class="delete"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>',
+                        orderable: false
+                    }
+                ]
+                , order: [1, 'asc']
+                , language: {
+                    lengthMenu: 'Hiển thị _MENU_ dòng mỗi trang'
+                    , info: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
+                    , infoEmpty: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
+                    , search: 'Tìm kiếm'
+                    , paginate: {
+                        first: "Trang đầu",
+                        last: "Trang cuối",
+                        next: "Sau",
+                        previous: "Trước"
+                    }
+                }
+            });
+
+            table.on('order.dt search.dt', function () {
+                table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+
+            $('#dtSource tbody').on('click', 'tr', function () {
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                }
+                else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+            });
+
+            $('#dtSource').on('click', 'a.edit', function (e) {
+                var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
+                $('#Key').val(row.Key);
+                $('#DienGiai').val(row.DienGiai);
+                $('#GhiChu').val(row.GhiChu);
+            });//EndFunction
+
+            $('#dtSource').on('click', 'a.delete', function (e) {
+                var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("DeleteDanhMucChiPhi", "DanhMucXepLichXe")',
+                    data: "{ \"Key\" : \"" + row.Key + "\" }",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        $('#dtSource').DataTable().ajax.reload();
+                        onNewClick();
+
+                        ShowMessage(response);
+                    },
+                    failure: function (msg) {
+                        $('#output').text(msg);
+                    }
+                });
+            });//EndFunction
+        });
+
+        function onNewClick() {
+            $('#Key').val("-1");
+            $('#DienGiai').val("");
+            $('#GhiChu').val("");
+
+            //$('#myModal4').modal('show');
+        }//EndFunction
+
+        function onSaveClick() {
+            if (($('#Key').val() == -1 || $('#Key').val() == "")
+                && ($('#DienGiai').val() == "" || $('#DiaChi').val() == ""))
+            {
+                toastr.error("Vui lòng nhập đủ thông tin !", "Thông báo !");
+                return;
+            }
+
+            if ($('#Key').val() == "")
+                $('#Key').val(-1);
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveDanhMucChiPhi", "DanhMucXepLichXe")',
+                data: "{ \"Key\" : \"" + $('#Key').val()
+                    + "\",\"dienGiai\" : \"" + $('#DienGiai').val()
+                    + "\",\"ghiChu\" : \"" + $('#GhiChu').val()
+                    + "\" }",
+                contentType: "application/json; charset=utf-8",
+                dataType: "JSON",
+                success: function (response) {
+                    $('#dtSource').DataTable().ajax.reload();
+                    onNewClick();
+                    ShowMessage(response);
+                },
+                failure: function (msg) {
+                    $('#output').text(msg);
+                }
+            });
+        }//EndFunction
+
+        function ShowMessage(response) {
+            toastr.options = {
+                closeButton: true
+                , timeOut: 7000
+            };
+            if (response.Result == true)
+                toastr.success(response.Message, response.Title);
+            else
+                toastr.error(response.Message, response.Title);
+        }//EndFunction
+    </script>
+
+}
 
