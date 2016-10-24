@@ -1,10 +1,11 @@
-﻿@{
-    ViewBag.Title = "DanhMucLoaiXe";
+﻿
+@{
+    ViewBag.Title = "HangSanXuatXe";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Danh mục loại xe</h2>
+        <h2>Danh mục hãng sản xuất xe</h2>
     </div>
 </div>
 
@@ -17,65 +18,13 @@
                     <div class="ibox-title"><h3>Phần nhập liệu</h3></div>
                     <div class="ibox-content">
                         <div class="form-group" id="pIn">
-                            <label class="col-sm-2 control-label">Hãng sản xuất:</label>
+                            <label class="col-sm-2 control-label">Tên hãng sản xuất:</label>
                             <div class="col-sm-4">
-                                @*<input type="text" id="HangSanXuat" class="form-control" placeholder="Nhập hãng sản xuất xe">*@
-                                <select class="form-control" id="HangSanXuatXeKey"></select>
+                                <input type="text" id="Ten" class="form-control" placeholder="Nhập tên hãng sản xuất xe">
                                 <span />
                             </div>
-                            <label class="col-sm-2 control-label">Tên loại xe:</label>
-                            <div class="col-sm-4">
-                                <input type="text" id="Ten" class="form-control" placeholder="Nhập tên loại xe">
-                                <span />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Mô tả:</label>
-                            <div class="col-sm-4">
-                                <input type="text" id="MoTa" class="form-control" placeholder="Nhập mô tả loại xe">
-                                <span />
-                            </div>
-                            <label class="col-sm-2 control-label">Model:</label>
-                            <div class="col-sm-4">
-                                <input type="text" id="Model" class="form-control" placeholder="Nhập Model xe">
-                                <span />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Máy chạy dầu:</label>
-                            <div class="col-sm-4">
-                                <div class="radio radio-info radioInline">
-                                    <input type="radio" id="MayChayDau" value="MayChayDau" checked="" name="LoaiDongCo">
-                                    <label for="MayChayDau"></label>
-                                </div>
-                            </div>
-                            <label class="col-sm-2 control-label">Máy chạy xăng:</label>
-                            <div class="col-sm-4">
-                                <div class="radio radioInline">
-                                    <input type="radio" id="MayChayXang" value="MayChayXang" name="LoaiDongCo">
-                                    <label for="MayChayXang"></label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Tổng số ghế:</label>
-                            <div class="col-sm-4">
-                                <input type="text" id="SoGhe" class="form-control" placeholder="Nhập tổng số ghế của xe">
-                                <span />
-                            </div>
-                            <label class="col-sm-2 control-label">Loại ghế:</label>
-                            <div class="col-sm-4">
-                                <select class="form-control" id="LoaiGheKey"></select>
-                                <span />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             <label class="col-sm-2 control-label">Ghi chú:</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-4">
                                 <input type="text" id="GhiChu" class="form-control" placeholder="Nhập ghi chú">
                                 <span />
                             </div>
@@ -108,14 +57,7 @@
                                     <tr>
                                         <th width="50">Thứ tự</th>
                                         <th></th>
-                                        <th>Tên loại xe</th>
-                                        <th>Mô tả</th>
-                                        <th>Hãng sản xuất</th>
-                                        <th>Model</th>
-                                        <th>Máy chạy dầu</th>
-                                        <th>Máy chạy xăng</th>
-                                        <th>Số ghế</th>
-                                        <th>Loại ghế</th>
+                                        <th>Tên hãng sản xuất</th>
                                         <th>Ghi chú</th>
                                         <th width="50">Sửa</th>
                                         <th width="50">Xóa</th>
@@ -131,11 +73,6 @@
     </form>
 </div>
 
-@*<style type="text/css">
-        tr.selected {
-            background-color: greenyellow !important;
-        }
-    </style>*@
 
 @section Styles {
     @Styles.Render("~/plugins/awesomeCheckboxStyles")
@@ -183,10 +120,9 @@
         $(document).ready(function () {
             var table = $('#dtSource').DataTable({
                 ajax: {
-                    url: '@Url.Action("GetDataDanhMucLoaiXe", "DanhMucXe")'
+                    url: '@Url.Action("GetDataHangSanXuatXe", "DanhMucXe")'
                     , dataSrc: ''
                 }
-                //data: [{ "Key": 8, "Ten": "Tên hợp đồng 8 u123", "DienGiai": "Diễn giải 8 u1", "GhiChu": "Ghi chú 8 u1" }, { "Key": 9, "Ten": "Tên hợp đồng 9 u1", "DienGiai": "Diễn giải 9 u1", "GhiChu": "Ghi chú 9 u12" }, { "Key": 18, "Ten": "Tên hợp đồng 18", "DienGiai": "Diễn giải 18", "GhiChu": "Ghi chú 18" }, { "Key": 22, "Ten": "Tên hợp đồng 22", "DienGiai": "Diễn giải 22", "GhiChu": "Ghi chú 22" }, { "Key": 23, "Ten": "Tên hợp đồng 23", "DienGiai": "Diễn giải 23", "GhiChu": "Ghi chú 23" }, { "Key": 24, "Ten": "Tên hợp đồng 24", "DienGiai": "Diễn giải 24", "GhiChu": "Ghi chú 24" }, { "Key": 25, "Ten": "Tên hợp đồng 25", "DienGiai": "Diễn giải 25", "GhiChu": "Ghi chú 25" }, { "Key": 27, "Ten": "Tên hợp đồng 1", "DienGiai": "Diễn giải 1", "GhiChu": "Ghi chú 1" }, { "Key": 33, "Ten": "Tên hợp đồng 2", "DienGiai": "Diễn giải 2", "GhiChu": "Ghi chú 2" }, { "Key": 34, "Ten": "Tên hợp đồng 3", "DienGiai": "Diễn giải 3", "GhiChu": "Ghi chú 3" }, { "Key": 36, "Ten": "Tên hợp đồng 4", "DienGiai": "Diễn giải 4", "GhiChu": "Ghi chú 4" }]
                 , columns: [
                     {
                         data: null,
@@ -196,13 +132,6 @@
                     },
                     { data: 'Key', visible: false },
                     { data: 'Ten' },
-                    { data: 'MoTa' },
-                    { data: 'HangSanXuatXe' },
-                    { data: 'Model' },
-                    { data: 'MayChayDau' },
-                    { data: 'MayChayXang' },
-                    { data: 'SoGhe' },
-                    { data: 'LoaiGhe' },
                     { data: 'GhiChu' },
                     {
                         data: null,
@@ -250,13 +179,6 @@
                 var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
                 $('#Key').val(row.Key);
                 $('#Ten').val(row.Ten);
-                $('#MoTa').val(row.MoTa);
-                $('#HangSanXuatXeKey').val(row.HangSanXuatXeKey).change();
-                $('#Model').val(row.Model);
-                $('#MayChayDau').prop('checked', row.MayChayDau);
-                $('#MayChayXang').prop('checked', row.MayChayXang);
-                $('#SoGhe').val(row.SoGhe);
-                $('#LoaiGheKey').val(row.LoaiGheKey).change();
                 $('#GhiChu').val(row.GhiChu);
             });//EndFunction
 
@@ -264,7 +186,7 @@
                 var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("DeleteDanhMucLoaiXe", "DanhMucXe")',
+                    url: '@Url.Action("DeleteHangSanXuatXe", "DanhMucXe")',
                     data: "{ \"Key\" : \"" + row.Key + "\" }",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -279,63 +201,19 @@
                     }
                 });
             });//EndFunction
-
-            //Load dữ liệu Danh Mục Hãng Sản Xuất Xe
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("GetHangSanXuatXe", "DanhMucXe")',
-                contentType: "application/json; charset=utf-8",
-                dataType: "JSON",
-                success: function (response) {
-                    $("#HangSanXuatXeKey").select2({
-                        data: response
-                        , placeholder: "Chọn hãng sản xuất xe"
-                        , allowClear: true
-                    });
-                    $("#HangSanXuatXeKey").val(null).trigger("change");
-                },
-                failure: function (msg) {
-                }
-            });//EndLoadDataForHangSanXuatXeSelector
-
-            //Load dữ liệu Danh Mục Loai Ghế
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("GetDanhMucLoaiGhe", "DanhMucXe")',
-                contentType: "application/json; charset=utf-8",
-                dataType: "JSON",
-                success: function (response) {
-                    $("#LoaiGheKey").select2({
-                        data: response
-                        , placeholder: "Chọn loại ghế"
-                        , allowClear: true
-                    });
-                    $("#LoaiGheKey").val(null).trigger("change");
-                },
-                failure: function (msg) {
-                }
-            });//EndLoadDataForLoaiGheSelector
-
-        });//EndFunction-DocumentReady
+        });
 
         function onNewClick() {
             $('#Key').val("-1");
             $('#Ten').val("");
-            $('#MoTa').val("");
-            $('#HangSanXuatXeKey').val("");
-            $('#Model').val("");
-            $('#MayChayDau').prop('checked', false);
-            $('#MayChayXang').prop('checked',true);
-            $('#SoGhe').val("");
-            $('#LoaiGheKey').val("");
             $('#GhiChu').val("");
+
+            //$('#myModal4').modal('show');
         }//EndFunction
 
         function onSaveClick() {
             if (($('#Key').val() == -1 || $('#Key').val() == "")
-                && ($('#Ten').val() == "" || $('#MoTa').val() == "" ||
-                $('#HangSanXuatXeKey').val() == "" || $('#Model').val() == "" ||
-                 $('#SoGhe').val() == "" || $('#LoaiGheKey').val() == ""))
+                && ($('#Ten').val() == ""))
             {
                 toastr.error("Vui lòng nhập đủ thông tin !", "Thông báo !");
                 return;
@@ -346,16 +224,9 @@
 
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("SaveDanhMucLoaiXe", "DanhMucXe")',
+                url: '@Url.Action("SaveHangSanXuatXe", "DanhMucXe")',
                 data: "{ \"Key\" : \"" + $('#Key').val()
                     + "\",\"ten\" : \"" + $('#Ten').val()
-                    + "\",\"moTa\" : \"" + $('#MoTa').val()
-                    + "\",\"hangSanXuatXeKey\" : \"" + $('#HangSanXuatXeKey').val()
-                    + "\",\"model\" : \"" + $('#Model').val()
-                    + "\",\"mayChayDau\" : \"" + document.getElementById('MayChayDau').checked
-                    + "\",\"mayChayXang\" : \"" + document.getElementById('MayChayXang').checked
-                    + "\",\"soGhe\" : \"" + $('#SoGhe').val()
-                    + "\",\"loaiGheKey\" : \"" + $('#LoaiGheKey').val()
                     + "\",\"ghiChu\" : \"" + $('#GhiChu').val()
                     + "\" }",
                 contentType: "application/json; charset=utf-8",

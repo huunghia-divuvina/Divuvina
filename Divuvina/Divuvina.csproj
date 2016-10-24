@@ -1707,6 +1707,7 @@
     <Content Include="Views\DanhMucXe\DanhMucNoiSuaChuaXe.cshtml" />
     <Content Include="Views\DanhMucXe\DanhMucThietBiLinhKien.cshtml" />
     <Content Include="Views\DanhMucXepLichXe\DanhMucChiPhi.cshtml" />
+    <Content Include="Views\DanhMucXe\HangSanXuatXe.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -15,20 +15,76 @@ namespace Divuvina.Controllers
             return View();
         }
 
+        #region HangSanXuatXe
+        public ActionResult HangSanXuatXe()
+        {
+            return View();
+        }
+
+        public JsonResult GetDataHangSanXuatXe()
+        {
+            var listHangSanXuatXes = _db.HangSanXuatXes.Select(r => new { Key = r.HangSanXuatXeKey, r.Ten, GhiChu = ""/*, r.GhiChu*/});
+            return Json(listHangSanXuatXes, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteHangSanXuatXe(int Key)
+        {
+            try
+            {
+                var row = _db.HangSanXuatXes.FirstOrDefault(r => r.HangSanXuatXeKey == Key);
+                if (row != null)
+                {
+                    _db.HangSanXuatXes.Remove(row);
+                    _db.SaveChanges();
+                }
+
+                return Json(new { Result = true, Title = TitleMessageBox.Notification, Message = Message.SuccessfulDataAction }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { Result = false, Title = TitleMessageBox.Notification, Message = Message.UnsuccessfulDataAction }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SaveHangSanXuatXe(int Key, string ten, string ghiChu)
+        {
+            try
+            {
+                var row = _db.HangSanXuatXes.FirstOrDefault(r => r.HangSanXuatXeKey == Key);
+                if (row == null)
+                {
+                    row = new Models.HangSanXuatXe();
+                    _db.HangSanXuatXes.Add(row);
+                }
+                row.Ten = ten;
+                //row.GhiChu = ghiChu;
+
+                _db.SaveChanges();
+
+                return Json(new { Result = true, Title = TitleMessageBox.Notification, Message = Message.SuccessfulDataAction }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { Result = false, Title = TitleMessageBox.Notification, Message = Message.UnsuccessfulDataAction }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        #endregion HangSanXuatXe
+
         #region DanhMucLoaiXe
         public ActionResult DanhMucLoaiXe()
         {
             return View();
         }
 
-        public JsonResult GetDataDanhMucLoaiXe()//(string LoaiXeKey)
+        public JsonResult GetDataDanhMucLoaiXe()
         {
-            //if (LoaiXeKey == null)
-            //    LoaiXeKey = "-1";
             var rs = _db.LoaiXes
-                //.Where(r => r.LoaiXeKey.ToString() == LoaiXeKey)
-                .Select(r => new { Key = r.LoaiXeKey, r.Ten, r.MoTa, r.HangSanXuat, r.Model,
-                    r.MayChayDau, r.MayChayXang, r.SoGhe,
+                .Select(r => new { Key = r.LoaiXeKey, r.Ten, r.MoTa,
+                    HangSanXuatXe = r.HangSanXuatXe.Ten, r.HangSanXuatXe.HangSanXuatXeKey,
+                    r.Model, r.MayChayDau, r.MayChayXang, r.SoGhe,
                     LoaiGhe = r.LoaiGhe.Ten , r.LoaiGhe.LoaiGheKey,
                     r.GhiChu });
 
@@ -56,12 +112,12 @@ namespace Divuvina.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveDanhMucLoaiXe(int Key, string Ten, string MoTa, string HangSanXuat, string Model
-            , bool MayChayDau
-            , bool MayChayXang
-            , short SoGhe
-            , short LoaiGheKey
-            , string GhiChu)
+        public ActionResult SaveDanhMucLoaiXe(int Key, string ten, string moTa, short hangSanXuatXeKey, string model
+            , bool mayChayDau
+            , bool mayChayXang
+            , short soGhe
+            , short loaiGheKey
+            , string ghiChu)
         {
             try
             {
@@ -72,15 +128,15 @@ namespace Divuvina.Controllers
                     row.LoaiXeAlternateKey = Key.ToString();
                     _db.LoaiXes.Add(row);
                 }
-                row.Ten = Ten;
-                row.MoTa = MoTa;
-                row.HangSanXuat = HangSanXuat;
-                row.Model = Model;
-                row.MayChayDau = MayChayDau;
-                row.MayChayXang = MayChayXang;
-                row.SoGhe = SoGhe;
-                row.LoaiGheKey = LoaiGheKey;
-                row.GhiChu = GhiChu;
+                row.Ten = ten;
+                row.MoTa = moTa;
+                row.HangSanXuatXeKey = hangSanXuatXeKey;
+                row.Model = model;
+                row.MayChayDau = mayChayDau;
+                row.MayChayXang = mayChayXang;
+                row.SoGhe = soGhe;
+                row.LoaiGheKey = loaiGheKey;
+                row.GhiChu = ghiChu;
 
                 _db.SaveChanges();
 
@@ -96,6 +152,12 @@ namespace Divuvina.Controllers
         {
             var listLoaiGhes = _db.LoaiGhes.Select(r => new { id = r.LoaiGheKey, text = r.Ten });
             return Json(listLoaiGhes, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetHangSanXuatXe()
+        {
+            var listHangSanXuatXes = _db.HangSanXuatXes.Select(r => new { id = r.HangSanXuatXeKey, text = r.Ten });
+            return Json(listHangSanXuatXes, JsonRequestBehavior.AllowGet);
         }
 
         #endregion DanhMucLoaiXe
@@ -133,7 +195,7 @@ namespace Divuvina.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveDanhMucNoiSuaChuaXe(int Key, string Ten, string DiaChi, string GhiChu)
+        public ActionResult SaveDanhMucNoiSuaChuaXe(int Key, string ten, string diaChi, string ghiChu)
         {
             try
             {
@@ -144,9 +206,9 @@ namespace Divuvina.Controllers
                     row.NoiSuaChuaXeAlternateKey = Key.ToString();
                     _db.NoiSuaChuaXes.Add(row);
                 }
-                row.Ten = Ten;
-                row.DiaChi = DiaChi;
-                row.GhiChu = GhiChu;
+                row.Ten = ten;
+                row.DiaChi = diaChi;
+                row.GhiChu = ghiChu;
 
                 _db.SaveChanges();
 
@@ -192,7 +254,7 @@ namespace Divuvina.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveDanhMucThietBiLinhKien(int Key, string Ten, string HangSanXuat, string DienGiai, string GhiChu)
+        public ActionResult SaveDanhMucThietBiLinhKien(int Key, string ten, string hangSanXuat, string dienGiai, string ghiChu)
         {
             try
             {
@@ -203,10 +265,10 @@ namespace Divuvina.Controllers
                     row.ThietBiLinhKienAlternateKey = Key.ToString();
                     _db.ThietBiLinhKiens.Add(row);
                 }
-                row.Ten = Ten;
-                row.HangSanXuat = HangSanXuat;
-                row.DienGiai = DienGiai;
-                row.GhiChu = GhiChu;
+                row.Ten = ten;
+                row.HangSanXuat = hangSanXuat;
+                row.DienGiai = dienGiai;
+                row.GhiChu = ghiChu;
 
                 _db.SaveChanges();
 
@@ -219,62 +281,5 @@ namespace Divuvina.Controllers
         }
         #endregion DanhMucThietBiLinhKiend
 
-        #region DanhMucChiPhi
-        public ActionResult DanhMucChiPhi()
-        {
-            return View();
-        }
-
-        public JsonResult GetDataDanhMucChiPhi()
-        {
-            var rs = _db.DanhMucChiPhis.Select(r => new { Key = r.DanhMucChiPhiKey, r.DienGiai, r.GhiChu });
-            return Json(rs, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult DeleteDanhMucChiPhi(int Key)
-        {
-            try
-            {
-                var row = _db.DanhMucChiPhis.FirstOrDefault(r => r.DanhMucChiPhiKey == Key);
-                if (row != null)
-                {
-                    _db.DanhMucChiPhis.Remove(row);
-                    _db.SaveChanges();
-                }
-
-                return Json(new { Result = true, Title = TitleMessageBox.Notification, Message = Message.SuccessfulDataAction }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception)
-            {
-                return Json(new { Result = false, Title = TitleMessageBox.Notification, Message = Message.UnsuccessfulDataAction }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        [HttpPost]
-        public ActionResult SaveDanhMucChiPhi(int Key, string DienGiai, string GhiChu)
-        {
-            try
-            {
-                var row = _db.DanhMucChiPhis.FirstOrDefault(r => r.DanhMucChiPhiKey == Key);
-                if (row == null)
-                {
-                    row = new Models.DanhMucChiPhi();
-                    row.DanhMucChiPhiAlternateKey = Key.ToString();
-                    _db.DanhMucChiPhis.Add(row);
-                }
-                row.DienGiai = DienGiai;
-                row.GhiChu = GhiChu;
-
-                _db.SaveChanges();
-
-                return Json(new { Result = true, Title = TitleMessageBox.Notification, Message = Message.SuccessfulDataAction }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception)
-            {
-                return Json(new { Result = false, Title = TitleMessageBox.Notification, Message = Message.UnsuccessfulDataAction }, JsonRequestBehavior.AllowGet);
-            }
-        }
-        #endregion DanhMucChiPhi
     }//EndClass
 }//EndNamespace
