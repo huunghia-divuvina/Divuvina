@@ -127,6 +127,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Business\DanhMuc\DanhMucHangSanXuatXeBll.cs" />
+    <Compile Include="Business\DanhMuc\DanhMucLoaiXeBll.cs" />
     <Compile Include="Business\Transporter.cs" />
     <Compile Include="Controllers\DanhMucXepLichXeController.cs" />
     <Compile Include="Controllers\FormsController.cs" />
@@ -178,6 +180,7 @@
     <Compile Include="Models\PhongBan.cs" />
     <Compile Include="Models\PhuongXa.cs" />
     <Compile Include="Models\QuanHuyen.cs" />
+    <Compile Include="Models\QuanLyXe\ThongTinXeVaKhauHaoModel.cs" />
     <Compile Include="Models\QuocGia.cs" />
     <Compile Include="Models\SapLichNhanVienTheoXe.cs" />
     <Compile Include="Models\SapLichXe.cs" />
@@ -192,6 +195,7 @@
     <Compile Include="Models\ViTriNhanVien.cs" />
     <Compile Include="Models\Xe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Public\FormatString.cs" />
     <Compile Include="Public\Message.cs" />
     <Compile Include="Public\TitleMessageBox.cs" />
   </ItemGroup>
@@ -1708,6 +1712,7 @@
     <Content Include="Views\DanhMucXe\DanhMucThietBiLinhKien.cshtml" />
     <Content Include="Views\DanhMucXepLichXe\DanhMucChiPhi.cshtml" />
     <Content Include="Views\DanhMucXe\HangSanXuatXe.cshtml" />
+    <Content Include="Views\QuanLyXe\NhapThongTinXe.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using Divuvina.Business.DanhMuc;
 
 namespace Divuvina.Controllers
 {
@@ -21,14 +22,14 @@ namespace Divuvina.Controllers
             return View();
         }
 
-        public JsonResult GetDataHangSanXuatXe()
+        public JsonResult LayHangSanXuatXe()
         {
             var listHangSanXuatXes = _db.HangSanXuatXes.Select(r => new { Key = r.HangSanXuatXeKey, r.Ten, GhiChu = ""/*, r.GhiChu*/});
             return Json(listHangSanXuatXes, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult DeleteHangSanXuatXe(int Key)
+        public JsonResult XoaHangSanXuatXe(int Key)
         {
             try
             {
@@ -48,7 +49,7 @@ namespace Divuvina.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveHangSanXuatXe(int Key, string ten, string ghiChu)
+        public ActionResult LuuHangSanXuatXe(int Key, string ten, string ghiChu)
         {
             try
             {
@@ -79,7 +80,7 @@ namespace Divuvina.Controllers
             return View();
         }
 
-        public JsonResult GetDataDanhMucLoaiXe()
+        public JsonResult LayDanhMucLoaiXe()
         {
             var rs = _db.LoaiXes
                 .Select(r => new { Key = r.LoaiXeKey, r.Ten, r.MoTa,
@@ -92,7 +93,7 @@ namespace Divuvina.Controllers
         }
 
         [HttpPost]
-        public JsonResult DeleteDanhMucLoaiXe(int Key)
+        public JsonResult XoaDanhMucLoaiXe(int Key)
         {
             try
             {
@@ -112,7 +113,7 @@ namespace Divuvina.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveDanhMucLoaiXe(int Key, string ten, string moTa, short hangSanXuatXeKey, string model
+        public ActionResult LuuDanhMucLoaiXe(int Key, string ten, string moTa, short hangSanXuatXeKey, string model
             , bool mayChayDau
             , bool mayChayXang
             , short soGhe
@@ -148,16 +149,17 @@ namespace Divuvina.Controllers
             }
         }
 
-        public JsonResult GetDanhMucLoaiGhe()
+        public JsonResult LayDanhMucLoaiGhe()
         {
             var listLoaiGhes = _db.LoaiGhes.Select(r => new { id = r.LoaiGheKey, text = r.Ten });
             return Json(listLoaiGhes, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetHangSanXuatXe()
+        public JsonResult LayHangSanXuatXeChoSelect()
         {
-            var listHangSanXuatXes = _db.HangSanXuatXes.Select(r => new { id = r.HangSanXuatXeKey, text = r.Ten });
-            return Json(listHangSanXuatXes, JsonRequestBehavior.AllowGet);
+            //var listHangSanXuatXes = _db.HangSanXuatXes.Select(r => new { id = r.HangSanXuatXeKey, text = r.Ten });
+            //return Json(listHangSanXuatXes, JsonRequestBehavior.AllowGet);
+            return Json(new DanhMucHangSanXuatXeBll().LayDanhMucHangSanXuatXe(), JsonRequestBehavior.AllowGet);
         }
 
         #endregion DanhMucLoaiXe
@@ -168,14 +170,14 @@ namespace Divuvina.Controllers
             return View();
         }
 
-        public JsonResult GetDataDanhMucNoiSuaChuaXe()
+        public JsonResult LayDanhMucNoiSuaChuaXe()
         {
             var rs = _db.NoiSuaChuaXes.Select(r => new { Key = r.NoiSuaChuaXeKey, r.Ten, r.DiaChi, r.GhiChu });
             return Json(rs, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult DeleteDanhMucNoiSuaChuaXe(int Key)
+        public JsonResult XoaDanhMucNoiSuaChuaXe(int Key)
         {
             try
             {
@@ -195,7 +197,7 @@ namespace Divuvina.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveDanhMucNoiSuaChuaXe(int Key, string ten, string diaChi, string ghiChu)
+        public ActionResult LuuDanhMucNoiSuaChuaXe(int Key, string ten, string diaChi, string ghiChu)
         {
             try
             {
@@ -227,14 +229,14 @@ namespace Divuvina.Controllers
             return View();
         }
 
-        public JsonResult GetDataDanhMucThietBiLinhKien()
+        public JsonResult LayDanhMucThietBiLinhKien()
         {
             var rs = _db.ThietBiLinhKiens.Select(r => new { Key = r.ThietBiLinhKienKey, r.Ten, r.HangSanXuat, r.DienGiai, r.GhiChu });
             return Json(rs, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult DeleteDanhMucThietBiLinhKien(int Key)
+        public JsonResult XoaDanhMucThietBiLinhKien(int Key)
         {
             try
             {
@@ -254,7 +256,7 @@ namespace Divuvina.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveDanhMucThietBiLinhKien(int Key, string ten, string hangSanXuat, string dienGiai, string ghiChu)
+        public ActionResult LuuDanhMucThietBiLinhKien(int Key, string ten, string hangSanXuat, string dienGiai, string ghiChu)
         {
             try
             {

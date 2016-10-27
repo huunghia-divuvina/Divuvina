@@ -148,7 +148,7 @@
         $(document).ready(function () {
             var table = $('#dtSource').DataTable({
                 ajax: {
-                    url: '@Url.Action("GetDataDanhMucThietBiLinhKien", "DanhMucXe")'
+                    url: '@Url.Action("LayDanhMucThietBiLinhKien", "DanhMucXe")'
                     , dataSrc: ''
                 }
                 , columns: [
@@ -218,7 +218,7 @@
                 var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("DeleteDanhMucThietBiLinhKien", "DanhMucXe")',
+                    url: '@Url.Action("XoaDanhMucThietBiLinhKien", "DanhMucXe")',
                     data: "{ \"Key\" : \"" + row.Key + "\" }",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -257,7 +257,7 @@
 
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("SaveDanhMucThietBiLinhKien", "DanhMucXe")',
+                url: '@Url.Action("LuuDanhMucThietBiLinhKien", "DanhMucXe")',
                 data: "{ \"Key\" : \"" + $('#Key').val()
                     + "\",\"ten\" : \"" + $('#Ten').val()
                     + "\",\"hangSanXuat\" : \"" + $('#HangSanXuat').val()

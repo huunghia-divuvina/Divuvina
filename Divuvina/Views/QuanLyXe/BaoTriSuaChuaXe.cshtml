@@ -24,7 +24,7 @@
                             </div>
 
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-w-m btn-success" id="btGedtLbt" onclick="onLbtClick()"><i class="fa fa-search" aria-hidden="true"></i> Lấy lịch sửa chữa bảo trì</button>
+                                <button type="button" class="btn btn-w-m btn-success" id="btLayLichBaoTriSuaChua" onclick="ButtonLayLichBaoTriSuaChuaClick()"><i class="fa fa-search" aria-hidden="true"></i> Lấy lịch sửa chữa bảo trì</button>
                                 <span />
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                     <div class="ibox-title"><h3>Lịch sửa chữa bảo trì</h3></div>
                     <div class="ibox-content">
                         <div class="table-responsive">
-                            <table id="dtLbt" class="table table-striped table-bordered table-hover">
+                            <table id="tableLichBaoTri" class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th width="50" align="center" valign="middle">Thứ tự</th>
@@ -96,7 +96,7 @@
                         </div>
 
                         <div class="table-responsive">
-                            <table id="dtTblk" class="table table-striped table-bordered table-hover">
+                            <table id="tableThietBiLinhKien" class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th width="50" align="center" valign="middle">Thứ tự</th>
@@ -167,7 +167,7 @@
             //Load dữ liệu cho Combobox Xe
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("GetDanhMucXe", "QuanLyXe")',
+                url: '@Url.Action("LayDanhMucXe", "QuanLyXe")',
                 contentType: "application/json; charset=utf-8",
                 dataType: "JSON",
                 success: function (response) {
@@ -182,12 +182,12 @@
                 },
                 failure: function (msg) {
                 }
-            });
+            });//EndFunction
 
-
-            var dtLbt = $('#dtLbt').DataTable({
+            // Load dữ liệu cho Lưới Lịch bảo trì.
+            var tableLichBaoTri = $('#tableLichBaoTri').DataTable({
                 ajax: {
-                    url: '@Url.Action("GetLichBaoTri", "QuanLyXe")'
+                    url: '@Url.Action("LayLichBaoTri", "QuanLyXe")'
                     , dataSrc: ''
                 }
                 , columns: [
@@ -218,31 +218,33 @@
                     }
                 }
                 //, lengthMenu: [[5,10, 25, 50, -1], [5,10, 25, 50, "All"]]
-            });
+            });//EndFunction
 
-            dtLbt.on('order.dt search.dt', function () {
-                dtLbt.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+            tableLichBaoTri.on('order.dt search.dt', function () {
+                tableLichBaoTri.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
                     cell.innerHTML = i + 1;
                 });
             }).draw();
 
-            $('#dtLbt tbody').on('click', 'tr', function () {
+            // Sự kiện Click chọn một dòng trên TableLichBaoTri
+            $('#tableLichBaoTri tbody').on('click', 'tr', function () {
                 if ($(this).hasClass('selected')) {
                     $(this).removeClass('selected');
 
                     dtLbtRowDeSelected()
                 }
                 else {
-                    dtLbt.$('tr.selected').removeClass('selected');
+                    tableLichBaoTri.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
 
                     dtLbtRowSelected();
                 }
-            });
+            });//EndFunction
 
-            var dtTblk = $('#dtTblk').DataTable({
+            //Load dữ liệu tableThietBiLinhKien.
+            var tableThietBiLinhKien = $('#tableThietBiLinhKien').DataTable({
                 ajax: {
-                    url: '@Url.Action("GetLichBaoTriChiTiet", "QuanLyXe")'
+                    url: '@Url.Action("LayLichBaoTriChiTiet", "QuanLyXe")'
                     , dataSrc: ''
                 }
                 , columns: [
@@ -272,20 +274,21 @@
                         previous: "Trước"
                     }
                 }
-            });
+            });//EndFunction
 
-            dtTblk.on('order.dt search.dt', function () {
-                dtTblk.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+            tableThietBiLinhKien.on('order.dt search.dt', function () {
+                tableThietBiLinhKien.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
                     cell.innerHTML = i + 1;
                 });
             }).draw();
 
-            $('#dtTblk tbody').on('click', 'tr', function () {
+            //Sự kiện Click chọn một dòng tableThietBiLinhKien.
+            $('#tableThietBiLinhKien tbody').on('click', 'tr', function () {
                 if ($(this).hasClass('selected')) {
                     $(this).removeClass('selected');
                 }
                 else {
-                    dtTblk.$('tr.selected').removeClass('selected');
+                    tableThietBiLinhKien.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
                 }
             });
@@ -293,7 +296,7 @@
             //Load dữ liệu cho Thiết bị, linh kiện
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("GetThietBiLinhKien", "QuanLyXe")',
+                url: '@Url.Action("LayThietBiLinhKien", "QuanLyXe")',
                 contentType: "application/json; charset=utf-8",
                 dataType: "JSON",
                 success: function (response) {
@@ -309,20 +312,20 @@
             });
         });
 
-        function onLbtClick() {
+        function ButtonLayLichBaoTriSuaChuaClick() {
             _XeKey = $('#SoXeKey').val();
-            $('#dtLbt').DataTable().ajax.url('@Url.Action("GetLichBaoTri", "QuanLyXe")' + '?XeKey=' + _XeKey).load();
+            $('#tableLichBaoTri').DataTable().ajax.url('@Url.Action("LayLichBaoTri", "QuanLyXe")' + '?XeKey=' + _XeKey).load();
         }
 
         function dtLbtRowSelected() {
-            var row = $('#dtLbt').DataTable().data()[$('#dtLbt').DataTable().row('.selected')[0][0]];
+            var row = $('#tableLichBaoTri').DataTable().data()[$('#tableLichBaoTri').DataTable().row('.selected')[0][0]];
             _LscbtKey = row.Key;
 
-            $('#dtTblk').DataTable().ajax.url('@Url.Action("GetLichBaoTriChiTiet", "QuanLyXe")' + '?LbtctKey=' + _LscbtKey).load();
+            $('#tableThietBiLinhKien').DataTable().ajax.url('@Url.Action("LayLichBaoTriChiTiet", "QuanLyXe")' + '?LbtctKey=' + _LscbtKey).load();
         }
         function dtLbtRowDeSelected() {
             _LscbtKey = "-1";
-            $('#dtTblk').DataTable().ajax.url('@Url.Action("GetLichBaoTriChiTiet", "QuanLyXe")' + '?LbtctKey=' + _LscbtKey).load();
+            $('#tableThietBiLinhKien').DataTable().ajax.url('@Url.Action("LayLichBaoTriChiTiet", "QuanLyXe")' + '?LbtctKey=' + _LscbtKey).load();
         }
 
         function onLbtctAddClick() {
@@ -349,7 +352,7 @@
                         //Load dữ liệu cho Thiết bị, linh kiện
                         $.ajax({
                             type: "POST",
-                            url: '@Url.Action("AddLbtscct", "QuanLyXe")',
+                            url: '@Url.Action("ThemLichBaoTriSuaChuaChiTiet", "QuanLyXe")',
                             contentType: "application/json; charset=utf-8",
                             dataType: "JSON",
                             data: "{ \"LscbtKey\" : \"" + _LscbtKey
@@ -358,7 +361,7 @@
                                             + "\",\"TongTien\" : \"" + $('#TongTien').val()
                                             + "\" }",
                             success: function (response) {
-                                $('#dtTblk').DataTable().ajax.url('@Url.Action("GetLichBaoTriChiTiet", "QuanLyXe")' + '?LbtctKey=' + _LscbtKey).load();
+                                $('#tableThietBiLinhKien').DataTable().ajax.url('@Url.Action("LayLichBaoTriChiTiet", "QuanLyXe")' + '?LbtctKey=' + _LscbtKey).load();
 
                                 $('#waitModal').modal('hide');
                                 ShowMessage(response);

@@ -1,0 +1,189 @@
+﻿@using Divuvina.Models.QuanLyXe
+@model ThongTinXeVaKhauHaoModel
+@*@{
+    ViewBag.Title = "NhapThongTinXe";
+}*@
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Thông tin xe</h2>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <form class="form-horizontal m-t-md" id="formData" role="form">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title"><h3>Phần thông tin xe</h3></div>
+                    <div class="ibox-content">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Hãng sản xuất xe:</label>
+                            <div class="col-md-4">
+                                <select class="form-control" id="HangSanXuatXeKey"></select>
+                                <span />
+                            </div>
+                            <label class="col-sm-2 control-label">Loại xe:</label>
+                            <div class="col-md-4">
+                                <select class="form-control" id="LoaiXeKey"></select>
+                                <span />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Bảng số xe:</label>
+                            <div class="col-md-4">
+                                <input type="text" id="BangSoXe" class="form-control" placeholder="Nhập bảng số xe">
+                                @*<input type="text" id="BangSoXe" value="@Model.BangSoXe" class="form-control" placeholder="Nhập bảng số xe">*@
+                                <span />
+                            </div>
+                            <label class="col-sm-2 control-label">Số sàn:</label>
+                            <div class="col-md-4">
+                                <input type="text" id="SoSan" class="form-control" placeholder="Nhập số sàn">
+                                @*<input type="text" id="SoSan" value="@Model.SoSan" class="form-control" placeholder="Nhập số sàn">*@
+                                <span />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Màu:</label>
+                            <div class="col-md-4">
+                                <input type="text" id="Mau" class="form-control" placeholder="Nhập màu xe">
+                                @*<input type="text" id="Mau" value="@Model.Mau" class="form-control" placeholder="Nhập màu xe">*@
+                                <span />
+                            </div>
+                            <label class="col-sm-2 control-label">Ngày cấp phép:</label>
+                            <div class="col-md-4">
+                                <div class="input-group date">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                    <input type="text" id="NgayCapPhep" class="form-control">
+                                    @*<input type="text" id="NgayCapPhep" value="@Model.NgayCapPhep.ToString("dd-MM-yyyy")" class="form-control">*@
+                                    <span />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Có Wifi:</label>
+                            <div class="col-md-4">
+                                <div class="checkbox">
+                                    <input type="checkbox" id="CoWifi">
+                                    @*<input type="checkbox" id="CoWifi" value="@Model.CoWifi" class="form-control">*@
+                                    <span />
+                                </div>
+                            </div>
+                            <label class="col-sm-2 control-label">Có Tivi:</label>
+                            <div class="col-md-4">
+                                <div class="checkbox">
+                                    <input type="checkbox" id="CoTivi" aria-label="Single checkbox One">
+                                    @*<input type="checkbox" id="CoTivi" value="@Model.CoTivi" class="form-control">*@
+                                    <span />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Có camera hành trình:</label>
+                            <div class="col-md-4">
+                                <div class="checkbox">
+                                    <input type="checkbox" id="CoCameraHanhTrinh">
+                                    @*<input type="checkbox" id="CoCameraHanhTrinh" value="@Model.CoCameraHanhTrinh" class="form-control">*@
+                                    <span />
+                                </div>
+                            </div>
+                            <label class="col-sm-2 control-label">Có Tivi:</label>
+                            <div class="col-md-4">
+                                <input type="text" id="GhiChuThongTinXe" class="form-control" placeholder="Nhập thông tin ghi chú về xe">
+                                @*<input type="text" id="GhiChuThongTinXe" value="@Model.GhiChuThongTinXe" class="form-control" placeholder="Nhập thông tin ghi chú về xe">*@
+                                <span />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+        
+</div>
+
+@section Styles {
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/switcheryStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/nouiSliderStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/toastrStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
+
+    @Styles.Render("~/plugins/datapicker")
+    @Styles.Render("~/plugins/daterangepicker")
+    <link href="~/Content/Divuvina/DivuvinaTable.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/jeditable")
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/plugins/toastr")
+    @Scripts.Render("~/plugins/sweetAlert")
+
+    <script type="text/javascript">
+        var _XeKey = "-1";
+        var _LscbtKey = "-1";
+        $(document).ready(function () {
+
+            //Load dữ liệu cho Hãng sản xuất xe
+            @*$.ajax({
+                type: "POST",
+                url: '@Url.Action("GetDanhMucXe", "QuanLyXe")',
+                contentType: "application/json; charset=utf-8",
+                dataType: "JSON",
+                success: function (response) {
+                    $("#SoXeKey").select2({
+                        data: response
+                        , placeholder: "Chọn số xe"
+                        , allowClear: true
+                    });
+                    $("#SoXeKey").val(null).trigger("change");
+                    //$("#SoXeKey").on("change", function (e) {
+                    //});
+                },
+                failure: function (msg) {
+                }
+            });*@
+
+
+            
+        }
+
+    </script>
+
+}
+
+

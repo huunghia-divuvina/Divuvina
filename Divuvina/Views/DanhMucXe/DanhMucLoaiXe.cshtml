@@ -183,7 +183,7 @@
         $(document).ready(function () {
             var table = $('#dtSource').DataTable({
                 ajax: {
-                    url: '@Url.Action("GetDataDanhMucLoaiXe", "DanhMucXe")'
+                    url: '@Url.Action("LayDanhMucLoaiXe", "DanhMucXe")'
                     , dataSrc: ''
                 }
                 //data: [{ "Key": 8, "Ten": "Tên hợp đồng 8 u123", "DienGiai": "Diễn giải 8 u1", "GhiChu": "Ghi chú 8 u1" }, { "Key": 9, "Ten": "Tên hợp đồng 9 u1", "DienGiai": "Diễn giải 9 u1", "GhiChu": "Ghi chú 9 u12" }, { "Key": 18, "Ten": "Tên hợp đồng 18", "DienGiai": "Diễn giải 18", "GhiChu": "Ghi chú 18" }, { "Key": 22, "Ten": "Tên hợp đồng 22", "DienGiai": "Diễn giải 22", "GhiChu": "Ghi chú 22" }, { "Key": 23, "Ten": "Tên hợp đồng 23", "DienGiai": "Diễn giải 23", "GhiChu": "Ghi chú 23" }, { "Key": 24, "Ten": "Tên hợp đồng 24", "DienGiai": "Diễn giải 24", "GhiChu": "Ghi chú 24" }, { "Key": 25, "Ten": "Tên hợp đồng 25", "DienGiai": "Diễn giải 25", "GhiChu": "Ghi chú 25" }, { "Key": 27, "Ten": "Tên hợp đồng 1", "DienGiai": "Diễn giải 1", "GhiChu": "Ghi chú 1" }, { "Key": 33, "Ten": "Tên hợp đồng 2", "DienGiai": "Diễn giải 2", "GhiChu": "Ghi chú 2" }, { "Key": 34, "Ten": "Tên hợp đồng 3", "DienGiai": "Diễn giải 3", "GhiChu": "Ghi chú 3" }, { "Key": 36, "Ten": "Tên hợp đồng 4", "DienGiai": "Diễn giải 4", "GhiChu": "Ghi chú 4" }]
@@ -264,7 +264,7 @@
                 var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("DeleteDanhMucLoaiXe", "DanhMucXe")',
+                    url: '@Url.Action("XoaDanhMucLoaiXe", "DanhMucXe")',
                     data: "{ \"Key\" : \"" + row.Key + "\" }",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -283,7 +283,7 @@
             //Load dữ liệu Danh Mục Hãng Sản Xuất Xe
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("GetHangSanXuatXe", "DanhMucXe")',
+                url: '@Url.Action("LayHangSanXuatXeChoSelect", "DanhMucXe")',
                 contentType: "application/json; charset=utf-8",
                 dataType: "JSON",
                 success: function (response) {
@@ -301,7 +301,7 @@
             //Load dữ liệu Danh Mục Loai Ghế
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("GetDanhMucLoaiGhe", "DanhMucXe")',
+                url: '@Url.Action("LayDanhMucLoaiGhe", "DanhMucXe")',
                 contentType: "application/json; charset=utf-8",
                 dataType: "JSON",
                 success: function (response) {
@@ -346,7 +346,7 @@
 
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("SaveDanhMucLoaiXe", "DanhMucXe")',
+                url: '@Url.Action("LuuDanhMucLoaiXe", "DanhMucXe")',
                 data: "{ \"Key\" : \"" + $('#Key').val()
                     + "\",\"ten\" : \"" + $('#Ten').val()
                     + "\",\"moTa\" : \"" + $('#MoTa').val()
