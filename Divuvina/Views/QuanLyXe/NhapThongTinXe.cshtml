@@ -46,6 +46,12 @@
                             </div>
                         </div>
 
+                        <div class="form-group" id="data_1">
+                            <label class="font-noraml">Simple data input format</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="03/04/2014">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Màu:</label>
                             <div class="col-md-4">
@@ -128,9 +134,24 @@
     @Styles.Render("~/plugins/toastrStyles")
     @Styles.Render("~/plugins/sweetAlertStyles")
 
-    @Styles.Render("~/plugins/datapicker")
-    @Styles.Render("~/plugins/daterangepicker")
+    @*@Styles.Render("~/plugins/datapicker")
+    @Styles.Render("~/plugins/daterangepicker")*@
     <link href="~/Content/Divuvina/DivuvinaTable.css" rel="stylesheet" />
+
+@Styles.Render("~/plugins/awesomeCheckboxStyles")
+@Styles.Render("~/plugins/clockpickerStyles")
+@Styles.Render("~/plugins/dateRangeStyles")
+@Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+@Styles.Render("~/Content/plugins/chosen/chosenStyles")
+@Styles.Render("~/plugins/switcheryStyles")
+@Styles.Render("~/plugins/jasnyBootstrapStyles")
+@Styles.Render("~/plugins/nouiSliderStyles")
+@Styles.Render("~/plugins/dataPickerStyles")
+@Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+@Styles.Render("~/plugins/imagecropperStyles")
+@Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+@Styles.Render("~/plugins/select2Styles")
+@Styles.Render("~/plugins/touchSpinStyles")
 }
 
 @section Scripts {
@@ -153,6 +174,21 @@
     @Scripts.Render("~/plugins/toastr")
     @Scripts.Render("~/plugins/sweetAlert")
     @Scripts.Render("~/plugins/fullcalendar")
+
+@Scripts.Render("~/plugins/iCheck")
+@Scripts.Render("~/plugins/dataPicker")
+@Scripts.Render("~/plugins/ionRange")
+@Scripts.Render("~/plugins/nouiSlider")
+@Scripts.Render("~/plugins/jasnyBootstrap")
+@Scripts.Render("~/plugins/switchery")
+@Scripts.Render("~/plugins/chosen")
+@Scripts.Render("~/plugins/knob")
+@Scripts.Render("~/plugins/imagecropper")
+@Scripts.Render("~/plugins/colorpicker")
+@Scripts.Render("~/plugins/clockpicker")
+@Scripts.Render("~/plugins/dateRange")
+@Scripts.Render("~/plugins/select2")
+@Scripts.Render("~/plugins/touchSpin")
 
     <script type="text/javascript">
         var _XeKey = "-1";
@@ -180,8 +216,16 @@
             });*@
 
 
+
+            $('#data_1 .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
             
-        }
+        })
 
     </script>
 
