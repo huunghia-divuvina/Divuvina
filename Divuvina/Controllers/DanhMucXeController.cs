@@ -60,7 +60,7 @@ namespace Divuvina.Controllers
                     _db.HangSanXuatXes.Add(row);
                 }
                 row.Ten = ten;
-                //row.GhiChu = ghiChu;
+                row.GhiChu = ghiChu;
 
                 _db.SaveChanges();
 
