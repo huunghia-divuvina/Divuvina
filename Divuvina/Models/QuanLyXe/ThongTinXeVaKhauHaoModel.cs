@@ -5,7 +5,13 @@ namespace Divuvina.Models.QuanLyXe
 {
     public class ThongTinXeVaKhauHaoModel
     {
-        [Required, Display(Name = "Key tham chiếu bảng loại xe")]
+        [Required, Display(Name = "Xe key")]
+        public int XeKey { get; set; }
+
+        [Required, Display(Name = "Key tham chiếu bảng Hãng sản xuất xe")]
+        public int HangSanXuatXeKey { get; set; }
+
+        [Required, Display(Name = "Key tham chiếu bảng Loại xe")]
         public int LoaiXeKey { get; set; }
 
         [Required, Display(Name = "Bảng số xe"), MaxLength(15)]
@@ -22,7 +28,7 @@ namespace Divuvina.Models.QuanLyXe
         public string Mau { get; set; }
 
         [Required, Display(Name = "Tổng giá xe")]
-        public double GiaMua { get; set; }
+        public decimal GiaMua { get; set; }
 
         [Required, Display(Name = "Có Wifi")]
         public bool CoWifi { get; set; }
@@ -40,10 +46,10 @@ namespace Divuvina.Models.QuanLyXe
         public short SoThangKhauHao { get; set; }
 
         [Required, Display(Name = "Tổng tiền khấu hao xe")]
-        public double TongTienKhauHao { get; set; }
+        public decimal TongTienKhauHao { get; set; }
 
         [Required, Display(Name = "Tiền khấu hao xe hàng tháng")]
-        public double TienKhauHaoHangThang { get; set; }
+        public decimal TienKhauHaoHangThang { get; set; }
 
         [Required, Display(Name = "Ngày bắt đầu khấu hao"), DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd-MM-yyyy}")]
@@ -55,6 +61,12 @@ namespace Divuvina.Models.QuanLyXe
 
         [Required, Display(Name = "Ghi chú khấu hao xe"), MaxLength(250)]
         public string GhiChuKhauHaoXe { get; set; }
+
+        //[Required]
+        //[DataType(DataType.EmailAddress)]
+        //[RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Incorrect email")]
+        //public string EmailTo;
+
 
     }//EndClass
 }//EndNamespace

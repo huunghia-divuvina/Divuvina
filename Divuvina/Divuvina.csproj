@@ -179,6 +179,7 @@
     <Compile Include="Models\PhanQuyen.cs" />
     <Compile Include="Models\PhongBan.cs" />
     <Compile Include="Models\PhuongXa.cs" />
+    <Compile Include="Models\Public\RMessage.cs" />
     <Compile Include="Models\QuanHuyen.cs" />
     <Compile Include="Models\QuanLyXe\ThongTinXeVaKhauHaoModel.cs" />
     <Compile Include="Models\QuocGia.cs" />
@@ -1656,6 +1657,9 @@
     <Content Include="Scripts\plugins\velocity\velocity.min.js" />
     <Content Include="Scripts\plugins\velocity\velocity.ui.min.js" />
     <Content Include="Scripts\plugins\video\responsible-video.js" />
+    <Content Include="Scripts\Public\SettingControls.js" />
+    <Content Include="Scripts\Public\ShowMessage.js" />
+    <Content Include="Scripts\QuanLyXe\ThongTinXe.js" />
     <Content Include="Views\QuanLyXe\BaoTriSuaChuaXe.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

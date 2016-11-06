@@ -3,6 +3,8 @@ using Divuvina.Models.QuanLyXe;
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using Divuvina.Business.DanhMuc;
+using Divuvina.Models.Public;
 
 namespace Divuvina.Controllers
 {
@@ -14,15 +16,23 @@ namespace Divuvina.Controllers
         // GET: QuanLyXe
         public ActionResult Index()
         {
+            return View();
+        }
+
+        #region Nhập thông tin xe.
+        public ActionResult NhapThongTinXe()
+        {
             _ThongTinXeVaKhauHaoModel = new ThongTinXeVaKhauHaoModel();
+            _ThongTinXeVaKhauHaoModel.XeKey = 0;
             _ThongTinXeVaKhauHaoModel.BangSoXe = string.Empty;
-            _ThongTinXeVaKhauHaoModel.CoCameraHanhTrinh = false;
-            _ThongTinXeVaKhauHaoModel.CoTivi = false;
-            _ThongTinXeVaKhauHaoModel.CoWifi = false;
+            _ThongTinXeVaKhauHaoModel.CoCameraHanhTrinh = true;
+            _ThongTinXeVaKhauHaoModel.CoTivi = true;
+            _ThongTinXeVaKhauHaoModel.CoWifi = true;
             _ThongTinXeVaKhauHaoModel.GhiChuKhauHaoXe = string.Empty;
             _ThongTinXeVaKhauHaoModel.GhiChuThongTinXe = string.Empty;
             _ThongTinXeVaKhauHaoModel.GiaMua = 0;
             _ThongTinXeVaKhauHaoModel.LoaiXeKey = 0;
+            _ThongTinXeVaKhauHaoModel.HangSanXuatXeKey = 0;
             _ThongTinXeVaKhauHaoModel.Mau = string.Empty;
             _ThongTinXeVaKhauHaoModel.NgayBatDauKhauHao = DateTime.Today;
             _ThongTinXeVaKhauHaoModel.NgayCapPhep = DateTime.Today;
@@ -34,13 +44,92 @@ namespace Divuvina.Controllers
             return View(_ThongTinXeVaKhauHaoModel);
         }
 
-        #region Nhập thông tin xe.
-        public ActionResult NhapThongTinXe()
+        public JsonResult LayHangSanXuatXeChoSelect()
         {
-
-            return View();
+            return Json(new DanhMucHangSanXuatXeBll().LayDanhMucHangSanXuatXe(), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult LayLoaiXeChoSelect(short hangSanXuatXeKey)
+        {
+            return Json(new DanhMucLoaiXeBll().LayDanhMucLoaiXe(hangSanXuatXeKey), JsonRequestBehavior.AllowGet);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult LuuThongTinXe(ThongTinXeVaKhauHaoModel thongTinXeVaKhauHaoModel)
+        {
+            //Kiểm tra thông tin đầu vào.
+            var keyHangSanXuatXe = Request.Form["KeyHangSanXuatXe"];
+            var keyLoaiXe = Request.Form["KeyLoaiXe"];
+            var xeKey = Request.Form["XeKey"];
+            if (String.IsNullOrEmpty(keyHangSanXuatXe) || String.IsNullOrEmpty(keyLoaiXe)
+                || String.IsNullOrEmpty(thongTinXeVaKhauHaoModel.BangSoXe) || String.IsNullOrEmpty(thongTinXeVaKhauHaoModel.SoSan))
+            {
+                return Json(new { Result = false, Message = Message.DataIsNullOrEmpty, Title = TitleMessageBox.ErrorTitle });
+            }
+            if (String.IsNullOrEmpty(xeKey)) xeKey = "0";
+            thongTinXeVaKhauHaoModel.HangSanXuatXeKey = int.Parse(keyHangSanXuatXe);
+            thongTinXeVaKhauHaoModel.LoaiXeKey = int.Parse(keyLoaiXe);
+            thongTinXeVaKhauHaoModel.XeKey = int.Parse(xeKey);
+
+            if (thongTinXeVaKhauHaoModel.NgayBatDauKhauHao < thongTinXeVaKhauHaoModel.NgayCapPhep)
+            {
+                return Json(new { Result = false, Message = "Ngày bắt đầu khấu hao phải lớn hơn ngày cấp phép.", Title = TitleMessageBox.ErrorTitle });
+            }
+
+            if (thongTinXeVaKhauHaoModel.NgayBatDauKhauHao > thongTinXeVaKhauHaoModel.NgayKetThucKhauHao)
+            {
+                return Json(new { Result = false, Message = "Ngày kết thúc khấu hao phải lớn hơn ngày bắt đầu khấu hao.", Title = TitleMessageBox.ErrorTitle });
+            }
+
+            //Kiểm tra xe có tồn tại trong hệ thống hay chưa?
+            var xeTonTai = _db.Xes.FirstOrDefault(r => r.BangSoXe == thongTinXeVaKhauHaoModel.BangSoXe && r.SoSan == thongTinXeVaKhauHaoModel.SoSan);
+            if(xeTonTai != null && xeTonTai.XeKey > 0)
+            {
+                return Json(new { Result = false, Message = "Xe này đã tồn tại trong hệ thống.", Title = TitleMessageBox.ErrorTitle });
+            }
+
+            //Kiểm tra thêm mới hay chỉnh sửa.
+            var row = _db.Xes.FirstOrDefault(r => r.XeKey == thongTinXeVaKhauHaoModel.XeKey);
+            if (row == null)
+            {
+                row = new Models.Xe();
+                row.XeAlternateKey = thongTinXeVaKhauHaoModel.XeKey.ToString();
+                _db.Xes.Add(row);
+            }
+            row.BangSoXe = thongTinXeVaKhauHaoModel.BangSoXe;
+            row.CoCameraHanhTrinh = thongTinXeVaKhauHaoModel.CoCameraHanhTrinh;
+            row.CoTivi = thongTinXeVaKhauHaoModel.CoTivi;
+            row.CoWifi = thongTinXeVaKhauHaoModel.CoWifi;
+            row.GhiChu = thongTinXeVaKhauHaoModel.GhiChuThongTinXe;
+            row.GiaMua = thongTinXeVaKhauHaoModel.GiaMua;
+            row.LoaiXeKey = thongTinXeVaKhauHaoModel.LoaiXeKey;
+            row.Mau = thongTinXeVaKhauHaoModel.Mau;
+            row.NgayCapPhep = thongTinXeVaKhauHaoModel.NgayCapPhep;
+            row.SoSan = thongTinXeVaKhauHaoModel.SoSan;
+            _db.SaveChanges();
+
+            var dongMoiThem = _db.Xes.FirstOrDefault(r => r.BangSoXe == thongTinXeVaKhauHaoModel.BangSoXe && r.SoSan == thongTinXeVaKhauHaoModel.SoSan);
+            if(dongMoiThem != null && dongMoiThem.XeKey > 0)
+            {
+                var dongKhauHao = _db.KhauHaos.FirstOrDefault(r => r.XeKey == dongMoiThem.XeKey );
+                if(dongKhauHao == null)
+                {
+                    dongKhauHao = new Models.KhauHao();
+                    dongKhauHao.KhauHaoAlternateKey = dongKhauHao.KhauHaoKey.ToString();
+                    _db.KhauHaos.Add(dongKhauHao);
+                }
+                dongKhauHao.GhiChu = thongTinXeVaKhauHaoModel.GhiChuKhauHaoXe;
+                dongKhauHao.NgayBatDauKhauHao = thongTinXeVaKhauHaoModel.NgayBatDauKhauHao;
+                dongKhauHao.NgayKetThucKhauHao = thongTinXeVaKhauHaoModel.NgayKetThucKhauHao;
+                dongKhauHao.SoThangKhauHao = thongTinXeVaKhauHaoModel.SoThangKhauHao;
+                dongKhauHao.TienKhauHaoHangThang = thongTinXeVaKhauHaoModel.TienKhauHaoHangThang;
+                dongKhauHao.TongTienKhauHoa = thongTinXeVaKhauHaoModel.TongTienKhauHao;
+                dongKhauHao.XeKey = dongMoiThem.XeKey;
+                _db.SaveChanges();
+            }
+
+            return Json(new { Result = true, Message = Message.SuccessDataAction, Title = TitleMessageBox.CompleteTitle });
+        }
         #endregion Nhập thông tin xe.
 
         #region Bảo trì sửa chữa xe
@@ -99,11 +188,11 @@ namespace Divuvina.Controllers
 
                 _db.SaveChanges();
 
-                return Json(new { Result = true, Title = TitleMessageBox.Notification, Message = Message.SuccessfulDataAction }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = true, Title = TitleMessageBox.SuccessTitle, Message = Message.SuccessDataAction }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
-                return Json(new { Result = false, Title = TitleMessageBox.Notification, Message = Message.UnsuccessfulDataAction }, JsonRequestBehavior.AllowGet);
+                return Json(new { Result = false, Title = TitleMessageBox.FailureTitle, Message = Message.FailureDataAction }, JsonRequestBehavior.AllowGet);
             }
         }
         #endregion

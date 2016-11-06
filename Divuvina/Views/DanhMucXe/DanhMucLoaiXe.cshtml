@@ -178,6 +178,8 @@
     @Scripts.Render("~/plugins/dataTables")
     @Scripts.Render("~/plugins/toastr")
 
+    @Scripts.Render("~/Public/ShowMessage.js")
+
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -371,16 +373,16 @@
             });
         }//EndFunction
 
-        function ShowMessage(response) {
-            toastr.options = {
-                closeButton: true
-                , timeOut: 7000
-            };
-            if (response.Result == true)
-                toastr.success(response.Message, response.Title);
-            else
-                toastr.error(response.Message, response.Title);
-        }//EndFunction
+        //function ShowMessage(response) {
+        //    toastr.options = {
+        //        closeButton: true
+        //        , timeOut: 7000
+        //    };
+        //    if (response.Result == true)
+        //        toastr.success(response.Message, response.Title);
+        //    else
+        //        toastr.error(response.Message, response.Title);
+        //}//EndFunction
     </script>
 
 }
