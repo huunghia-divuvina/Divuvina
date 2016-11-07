@@ -123,7 +123,7 @@ namespace Divuvina.Controllers
                 dongKhauHao.NgayKetThucKhauHao = thongTinXeVaKhauHaoModel.NgayKetThucKhauHao;
                 dongKhauHao.SoThangKhauHao = thongTinXeVaKhauHaoModel.SoThangKhauHao;
                 dongKhauHao.TienKhauHaoHangThang = thongTinXeVaKhauHaoModel.TienKhauHaoHangThang;
-                dongKhauHao.TongTienKhauHoa = thongTinXeVaKhauHaoModel.TongTienKhauHao;
+                dongKhauHao.TongTienKhauHao = thongTinXeVaKhauHaoModel.TongTienKhauHao;
                 dongKhauHao.XeKey = dongMoiThem.XeKey;
                 _db.SaveChanges();
             }
