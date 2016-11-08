@@ -20,7 +20,7 @@ namespace Divuvina.Models
 
         public decimal? SoThangKhauHao { get; set; }
 
-        public decimal? TongTienKhauHoa { get; set; }
+        public decimal? TongTienKhauHao { get; set; }
 
         public decimal? TienKhauHaoHangThang { get; set; }
 
