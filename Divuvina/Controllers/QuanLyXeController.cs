@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Divuvina.Business.DanhMuc;
 using Divuvina.Models.Public;
+using Divuvina.Business.QuanLyXe;
 
 namespace Divuvina.Controllers
 {
@@ -67,7 +68,7 @@ namespace Divuvina.Controllers
                 return Json(new { Result = false, Message = Message.DataIsNullOrEmpty, Title = TitleMessageBox.ErrorTitle });
             }
             if (String.IsNullOrEmpty(xeKey)) xeKey = "0";
-            thongTinXeVaKhauHaoModel.HangSanXuatXeKey = int.Parse(keyHangSanXuatXe);
+            thongTinXeVaKhauHaoModel.HangSanXuatXeKey = DefaultValueWhenNull.ConvertShort(keyHangSanXuatXe);
             thongTinXeVaKhauHaoModel.LoaiXeKey = int.Parse(keyLoaiXe);
             thongTinXeVaKhauHaoModel.XeKey = int.Parse(xeKey);
 
@@ -129,6 +130,12 @@ namespace Divuvina.Controllers
             }
 
             return Json(new { Result = true, Message = Message.SuccessDataAction, Title = TitleMessageBox.CompleteTitle });
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public JsonResult LayThongTinXe()
+        {
+            return Json(new ThongTinXeVaKhauHaoBll().LayThongTinXeVaKhauHao(), JsonRequestBehavior.AllowGet);
         }
         #endregion Nhập thông tin xe.
 

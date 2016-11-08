@@ -1,4 +1,5 @@
 ﻿@using Divuvina.Models.QuanLyXe
+@using Divuvina.Public
 @model ThongTinXeVaKhauHaoModel
 @*@{
     ViewBag.Title = "NhapThongTinXe";
@@ -142,7 +143,7 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </span>
-                                    <input type="text" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="@Model.NgayBatDauKhauHao.ToString("dd-MM-yyyy")" class="form-control">
+                                    <input type="text" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="@(DefaultValueWhenNull.ConvertDatetime(Model.NgayBatDauKhauHao).ToString("dd-MM-yyyy"))" class="form-control">
                                     <span />
                                 </div>
                             </div>
@@ -153,7 +154,7 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </span>
-                                    <input type="text" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="@Model.NgayKetThucKhauHao.ToString("dd-MM-yyyy")" class="form-control">
+                                    <input type="text" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayKetThucKhauHao).ToString("dd-MM-yyyy"))" class="form-control">
                                     <span />
                                 </div>
                             </div>
@@ -194,14 +195,15 @@
                                 <thead>
                                     <tr>
                                         <th width="50" align="center" valign="middle">Thứ tự</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
                                         <th>Bảng số xe</th>
                                         <th>Số sàn</th>
                                         <th>Loại xe</th>
                                         <th>Hãng sản xuất</th>
                                         <th>Ngày cấp phép</th>
                                         <th>Màu</th>
-                                        <th>Hãng sản xuất</th>
-                                        <th>Bảng số xe</th>
                                         <th>Tổng giá</th>
                                         <th>Tổng tiền khấu hao</th>
                                         <th>Số tháng khấu hao</th>
@@ -403,103 +405,6 @@
         //        -moz-appearance: number-input;
             //    }
 
-            @*var table = $('#tableThongTinXe').DataTable({
-                ajax: {
-                    url: '@Url.Action("LayDanhMucLoaiXe", "QuanLyXe")'
-                    , dataSrc: ''
-                }
-                , columns: [
-                    {
-                        data: null,
-                        searchable: false
-                        , orderable: false
-                        , targets: 0
-                    },
-                    { data: 'Key', visible: false },
-                    { data: 'Ten' },
-                    { data: 'MoTa' },
-                    { data: 'HangSanXuatXe' },
-                    { data: 'Model' },
-                    { data: 'MayChayDau' },
-                    { data: 'MayChayXang' },
-                    { data: 'SoGhe' },
-                    { data: 'LoaiGhe' },
-                    { data: 'GhiChu' },
-                    {
-                        data: null,
-                        defaultContent: '<a class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa</a>',
-                        orderable: false
-                    }
-                    , {
-                        data: null,
-                        defaultContent: '<a class="delete"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>',
-                        orderable: false
-                    }
-                ]
-                , order: [1, 'asc']
-                , language: {
-                    lengthMenu: 'Hiển thị _MENU_ dòng mỗi trang'
-                    , info: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
-                    , infoEmpty: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
-                    , search: 'Tìm kiếm'
-                    , paginate: {
-                        first: "Trang đầu",
-                        last: "Trang cuối",
-                        next: "Sau",
-                        previous: "Trước"
-                    }
-                }
-            });*@
-
-            @*table.on('order.dt search.dt', function () {
-                table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
-                    cell.innerHTML = i + 1;
-                });
-            }).draw();
-
-            $('#tableThongTinXe tbody').on('click', 'tr', function () {
-                if ($(this).hasClass('selected')) {
-                    $(this).removeClass('selected');
-                }
-                else {
-                    table.$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-                }
-            });
-
-            $('#tableThongTinXe').on('click', 'a.edit', function (e) {
-                var row = $('#tableThongTinXe').DataTable().data()[$('#tableThongTinXe').DataTable().row('.selected')[0][0]];
-                $('#Key').val(row.Key);
-                $('#Ten').val(row.Ten);
-                $('#MoTa').val(row.MoTa);
-                $('#HangSanXuatXeKey').val(row.HangSanXuatXeKey).change();
-                $('#Model').val(row.Model);
-                $('#MayChayDau').prop('checked', row.MayChayDau);
-                $('#MayChayXang').prop('checked', row.MayChayXang);
-                $('#SoGhe').val(row.SoGhe);
-                $('#LoaiGheKey').val(row.LoaiGheKey).change();
-                $('#GhiChu').val(row.GhiChu);
-            });//EndFunction
-
-            $('#tableThongTinXe').on('click', 'a.delete', function (e) {
-                var row = $('#tableThongTinXe').DataTable().data()[$('#tableThongTinXe').DataTable().row('.selected')[0][0]];
-                $.ajax({
-                    type: "POST",
-                    url: '@Url.Action("XoaThongTinXe", "QuanLyXe")',
-                    data: "{ \"Key\" : \"" + row.Key + "\" }",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        $('#dtSource').DataTable().ajax.reload();
-                        onNewClick();
-
-                        ShowMessage(response);
-                    },
-                    failure: function (msg) {
-                        $('#output').text(msg);
-                    }
-                });
-            });//EndFunction*@
         })//EndFunction-DocumentReady
 
     </script>
