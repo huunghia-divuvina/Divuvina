@@ -216,6 +216,9 @@
                         next: "Sau",
                         previous: "Trước"
                     }
+                },
+                fnRowCallback: function (nRow, aData, iDisplayIndex) {
+                    $('td:eq(3)', nRow).html(formatDateToString(aData.NgaySapLich, 'DD/MM/YYYY HH:mm:ss'));
                 }
                 //, lengthMenu: [[5,10, 25, 50, -1], [5,10, 25, 50, "All"]]
             });//EndFunction

@@ -78,6 +78,16 @@
             else
                 toastr.error(response.Message, response.Title);
         }
+
+        function formatDateToString(inDate, inFormat) {
+            if (!isNullOrUndefined(inDate) && inDate != '')
+                return moment.utc(inDate, 'x').format(inFormat);
+            else return '';
+        }
+
+        function isNullOrUndefined(value) {
+            return (typeof (value) === 'undefined' || value === null);
+        }
     </script>
 
     <div class="modal inmodal" id="waitModal" tabindex="-1" role="dialog" aria-hidden="true">
