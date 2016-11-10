@@ -70,21 +70,24 @@
                             <label class="col-sm-2 control-label"></label>
                             <div class="col-md-3">
                                 <div class="checkbox checkbox-primary checkbox-inline">
-                                    <input type="checkbox" id="CoWifi" name="CoWifi" checked="@Model.CoWifi" class="form-control">
+                                    <input type="checkbox" id="CoWifi" name="CoWifi" class="form-control">
                                     <label for="CoWifi"><b>Có Wifi</b></label>
+                                    <input type="hidden" id="hdCoWifi" name="hdCoWifi" value="@Model.CoWifi"/>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="checkbox checkbox-success checkbox-inline">
-                                    <input type="checkbox" id="CoTivi" name="CoTivi" checked="@Model.CoTivi" class="form-control">
+                                    <input type="checkbox" id="CoTivi" name="CoTivi" class="form-control">
                                     <label for="CoTivi"><b>Có Tivi</b></label>
+                                    <input type="hidden" id="hdCoTivi" name="hdCoTivi" value="@Model.CoTivi" />
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="checkbox checkbox-info checkbox-inline">
-                                    <input type="checkbox" id="CoCameraHanhTrinh" name="CoCameraHanhTrinh" checked="@Model.CoCameraHanhTrinh" class="form-control">
+                                    <input type="checkbox" id="CoCameraHanhTrinh" name="CoCameraHanhTrinh" class="form-control">
                                     <label for="CoCameraHanhTrinh"><b>Có camera hành trình</b></label>
                                     <span />
+                                    <input type="hidden" id="hdCoCameraHanhTrinh" name="hdCoCameraHanhTrinh"  value="@Model.CoCameraHanhTrinh"/>
                                 </div>
                             </div>
                             <label class="col-sm-1 control-label"></label>
@@ -143,7 +146,8 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </span>
-                                    <input type="text" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="@(DefaultValueWhenNull.ConvertDatetime(Model.NgayBatDauKhauHao).ToString("dd-MM-yyyy"))" class="form-control">
+                                    <input type="text" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayBatDauKhauHao).ToString("dd-MM-yyyy")" class="form-control">
+                                    @*<input type="text" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="@Model.NgayBatDauKhauHao.ToString("dd-MM-yyyy")" class="form-control">*@
                                     <span />
                                 </div>
                             </div>
@@ -154,7 +158,8 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </span>
-                                    <input type="text" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayKetThucKhauHao).ToString("dd-MM-yyyy"))" class="form-control">
+                                    <input type="text" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayKetThucKhauHao).ToString("dd-MM-yyyy")" class="form-control">
+                                    @*<input type="text" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="@Model.NgayKetThucKhauHao.ToString("dd-MM-yyyy")" class="form-control">*@
                                     <span />
                                 </div>
                             </div>
@@ -318,52 +323,45 @@
             if (String("@(Model.CoTivi)") == "False") { coTivi = false };
             var coCameraHanhTrinh = true;
             if (String("@(Model.CoCameraHanhTrinh)") == "False") { coCameraHanhTrinh = false };
-            $('#CoWifi').val(coWifi);
-            $('#CoTivi').val(coTivi);
-            $('#CoCameraHanhTrinh').val(coCameraHanhTrinh);
+            $('#CoWifi').attr("checked", coWifi);
+            $('#CoTivi').attr("checked", coTivi);
+            $('#CoCameraHanhTrinh').attr("checked", coCameraHanhTrinh);
+            $('#hdCoWifi').val(coWifi);
+            $('#hdCoTivi').val(coTivi);
+            $('#hdCoCameraHanhTrinh').val(coCameraHanhTrinh);
+            
             //===================================================
-            //Load dữ liệu Danh Mục Loai Ghế
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("LayHangSanXuatXeChoSelect", "QuanLyXe")',
-                contentType: "application/json; charset=utf-8",
-                dataType: "JSON",
-                success: function (response) {
-                    $("#HangSanXuatXeKey").select2({
-                        data: response
-                        , placeholder: "Chọn hãng sản xuất xe"
-                        , allowClear: true
-                    });
-                    $("#HangSanXuatXeKey").val(null).trigger("change");
-                },
-                failure: function (msg) {
-                }
-            });//EndLoadDataForLoaiGheSelector
-
-            $('#HangSanXuatXeKey').change(function () {
-                var id = $(this).val();
-                //Load dữ liệu Danh mục loai xe
-                if (id != null) {
-                    var url = '@Url.Action("LayLoaiXeChoSelect", "QuanLyXe")';
-                    $.getJSON(url, { hangSanXuatXeKey: id }, function (data) {
-                        $('#LoaiXeKey').empty();
-                        $("#LoaiXeKey").select2({
-                            data: data
-                        , placeholder: "Chọn loại xe"
-                        , allowClear: true
-                        });
-                        $("#LoaiXeKey").val(null).trigger("change");
-                    });
-                }
-            });
             $('#CoWifi').change(function () {
-                $('#CoWifi').val(this.checked);
+                if (this.checked)
+                {
+                    $(this).attr("checked", true);
+                    $('#hdCoWifi').attr("value", true);
+                }
+                else
+                {
+                    $(this).attr("checked", false);
+                    $('#hdCoWifi').attr("value", false);
+                }
             });
             $('#CoTivi').change(function () {
-                $('#CoTivi').val(this.checked);
+                if (this.checked) {
+                    $(this).attr("checked", true);
+                    $('#hdCoTivi').attr("value", true);
+                }
+                else {
+                    $(this).attr("checked", false);
+                    $('#hdCoTivi').attr("value", false);
+                }
             });
             $('#CoCameraHanhTrinh').change(function () {
-                $('#CoCameraHanhTrinh').val(this.checked);
+                if (this.checked) {
+                    $(this).attr("checked", true);
+                    $('#hdCoCameraHanhTrinh').attr("value", true);
+                }
+                else {
+                    $(this).attr("checked", false);
+                    $('#hdCoCameraHanhTrinh').attr("value", false);
+                }
             });
             //===================================================
             SettingDatepicker('divNgayCapPhep');
@@ -371,8 +369,8 @@
 
             $(".touchspin3").TouchSpin({
                 verticalbuttons: true,
-                verticalupclass: 'glyphicon glyphicon-plus',
-                verticaldownclass: 'glyphicon glyphicon-minus'
+                //verticalupclass: 'glyphicon glyphicon-plus',
+                //verticaldownclass: 'glyphicon glyphicon-minus'
             });
             //===================================================
             $('#GiaMua').change(function () {
@@ -384,6 +382,7 @@
                     $('#TienKhauHaoHangThang').val((tongTienKhauHao / soThangKhauHao).toFixed(2));
                 }
             });
+            //===================================================
             $('#SoThangKhauHao').change(function () {
                 var soThangKhauHao = $('#SoThangKhauHao').val();
                 var tongTienKhauHao = $('#TongTienKhauHao').val();
@@ -391,7 +390,6 @@
                 {
                     $('#TienKhauHaoHangThang').val((tongTienKhauHao / soThangKhauHao).toFixed(2));
                     var ngayBatDauKhauHao = new Date($('#NgayBatDauKhauHao').val());
-                    //var ngayKetThucKhauHao = new Date(ngayBatDauKhauHao.setMonth(soThangKhauHao));
                     $('#NgayKetThucKhauHao').val((new Date(ngayBatDauKhauHao.setMonth(soThangKhauHao))).toString("DD-MM-YYYY"));
                 }
             });
