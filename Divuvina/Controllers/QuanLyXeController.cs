@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Divuvina.Business.DanhMuc;
 using Divuvina.Models.Public;
+using Divuvina.Business.QuanLyXe;
 
 namespace Divuvina.Controllers
 {
@@ -57,78 +58,76 @@ namespace Divuvina.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult LuuThongTinXe(ThongTinXeVaKhauHaoModel thongTinXeVaKhauHaoModel)
         {
-            //Kiểm tra thông tin đầu vào.
-            var keyHangSanXuatXe = Request.Form["KeyHangSanXuatXe"];
-            var keyLoaiXe = Request.Form["KeyLoaiXe"];
-            var xeKey = Request.Form["XeKey"];
-            if (String.IsNullOrEmpty(keyHangSanXuatXe) || String.IsNullOrEmpty(keyLoaiXe)
-                || String.IsNullOrEmpty(thongTinXeVaKhauHaoModel.BangSoXe) || String.IsNullOrEmpty(thongTinXeVaKhauHaoModel.SoSan))
+            try
             {
-                return Json(new { Result = false, Message = Message.DataIsNullOrEmpty, Title = TitleMessageBox.ErrorTitle });
-            }
-            if (String.IsNullOrEmpty(xeKey)) xeKey = "0";
-            thongTinXeVaKhauHaoModel.HangSanXuatXeKey = int.Parse(keyHangSanXuatXe);
-            thongTinXeVaKhauHaoModel.LoaiXeKey = int.Parse(keyLoaiXe);
-            thongTinXeVaKhauHaoModel.XeKey = int.Parse(xeKey);
-
-            if (thongTinXeVaKhauHaoModel.NgayBatDauKhauHao < thongTinXeVaKhauHaoModel.NgayCapPhep)
-            {
-                return Json(new { Result = false, Message = "Ngày bắt đầu khấu hao phải lớn hơn ngày cấp phép.", Title = TitleMessageBox.ErrorTitle });
-            }
-
-            if (thongTinXeVaKhauHaoModel.NgayBatDauKhauHao > thongTinXeVaKhauHaoModel.NgayKetThucKhauHao)
-            {
-                return Json(new { Result = false, Message = "Ngày kết thúc khấu hao phải lớn hơn ngày bắt đầu khấu hao.", Title = TitleMessageBox.ErrorTitle });
-            }
-
-            //Kiểm tra xe có tồn tại trong hệ thống hay chưa?
-            var xeTonTai = _db.Xes.FirstOrDefault(r => r.BangSoXe == thongTinXeVaKhauHaoModel.BangSoXe && r.SoSan == thongTinXeVaKhauHaoModel.SoSan);
-            if(xeTonTai != null && xeTonTai.XeKey > 0)
-            {
-                return Json(new { Result = false, Message = "Xe này đã tồn tại trong hệ thống.", Title = TitleMessageBox.ErrorTitle });
-            }
-
-            //Kiểm tra thêm mới hay chỉnh sửa.
-            var row = _db.Xes.FirstOrDefault(r => r.XeKey == thongTinXeVaKhauHaoModel.XeKey);
-            if (row == null)
-            {
-                row = new Models.Xe();
-                row.XeAlternateKey = thongTinXeVaKhauHaoModel.XeKey.ToString();
-                _db.Xes.Add(row);
-            }
-            row.BangSoXe = thongTinXeVaKhauHaoModel.BangSoXe;
-            row.CoCameraHanhTrinh = thongTinXeVaKhauHaoModel.CoCameraHanhTrinh;
-            row.CoTivi = thongTinXeVaKhauHaoModel.CoTivi;
-            row.CoWifi = thongTinXeVaKhauHaoModel.CoWifi;
-            row.GhiChu = thongTinXeVaKhauHaoModel.GhiChuThongTinXe;
-            row.GiaMua = thongTinXeVaKhauHaoModel.GiaMua;
-            row.LoaiXeKey = thongTinXeVaKhauHaoModel.LoaiXeKey;
-            row.Mau = thongTinXeVaKhauHaoModel.Mau;
-            row.NgayCapPhep = thongTinXeVaKhauHaoModel.NgayCapPhep;
-            row.SoSan = thongTinXeVaKhauHaoModel.SoSan;
-            _db.SaveChanges();
-
-            var dongMoiThem = _db.Xes.FirstOrDefault(r => r.BangSoXe == thongTinXeVaKhauHaoModel.BangSoXe && r.SoSan == thongTinXeVaKhauHaoModel.SoSan);
-            if(dongMoiThem != null && dongMoiThem.XeKey > 0)
-            {
-                var dongKhauHao = _db.KhauHaos.FirstOrDefault(r => r.XeKey == dongMoiThem.XeKey );
-                if(dongKhauHao == null)
+                //Kiểm tra thông tin đầu vào.
+                var keyHangSanXuatXe = Request.Form["KeyHangSanXuatXe"];
+                var keyLoaiXe = Request.Form["KeyLoaiXe"];
+                var xeKey = Request.Form["XeKey"];
+                var coWifi = Request.Form["hdCoWifi"];
+                var coTivi = Request.Form["hdCoTivi"];
+                var coCameraHanhTrinh = Request.Form["hdCoCameraHanhTrinh"];
+                if (String.IsNullOrEmpty(keyHangSanXuatXe) || String.IsNullOrEmpty(keyLoaiXe)
+                    || String.IsNullOrEmpty(thongTinXeVaKhauHaoModel.BangSoXe) || String.IsNullOrEmpty(thongTinXeVaKhauHaoModel.SoSan))
                 {
-                    dongKhauHao = new Models.KhauHao();
-                    dongKhauHao.KhauHaoAlternateKey = dongKhauHao.KhauHaoKey.ToString();
-                    _db.KhauHaos.Add(dongKhauHao);
+                    return Json(new { Result = false, Message = Message.DataIsNullOrEmpty, Title = TitleMessageBox.ErrorTitle });
                 }
-                dongKhauHao.GhiChu = thongTinXeVaKhauHaoModel.GhiChuKhauHaoXe;
-                dongKhauHao.NgayBatDauKhauHao = thongTinXeVaKhauHaoModel.NgayBatDauKhauHao;
-                dongKhauHao.NgayKetThucKhauHao = thongTinXeVaKhauHaoModel.NgayKetThucKhauHao;
-                dongKhauHao.SoThangKhauHao = thongTinXeVaKhauHaoModel.SoThangKhauHao;
-                dongKhauHao.TienKhauHaoHangThang = thongTinXeVaKhauHaoModel.TienKhauHaoHangThang;
-                dongKhauHao.TongTienKhauHao = thongTinXeVaKhauHaoModel.TongTienKhauHao;
-                dongKhauHao.XeKey = dongMoiThem.XeKey;
-                _db.SaveChanges();
-            }
+                if (String.IsNullOrEmpty(xeKey)) xeKey = "0";
+                thongTinXeVaKhauHaoModel.HangSanXuatXeKey = DefaultValueWhenNull.ConvertShort(keyHangSanXuatXe);
+                thongTinXeVaKhauHaoModel.LoaiXeKey = int.Parse(keyLoaiXe);
+                thongTinXeVaKhauHaoModel.XeKey = int.Parse(xeKey);
+                if (coWifi.ToUpper().Equals("TRUE")) thongTinXeVaKhauHaoModel.CoWifi = true;
+                else thongTinXeVaKhauHaoModel.CoWifi = false;
+                if (coTivi.ToUpper().Equals("TRUE")) thongTinXeVaKhauHaoModel.CoTivi = true;
+                else thongTinXeVaKhauHaoModel.CoTivi = false;
+                if (coCameraHanhTrinh.ToUpper().Equals("TRUE")) thongTinXeVaKhauHaoModel.CoCameraHanhTrinh = true;
+                else thongTinXeVaKhauHaoModel.CoCameraHanhTrinh = false;
 
-            return Json(new { Result = true, Message = Message.SuccessDataAction, Title = TitleMessageBox.CompleteTitle });
+                //Kiểm tra xe có tồn tại trong hệ thống hay chưa?
+                if (thongTinXeVaKhauHaoModel.XeKey <= 0)
+                {
+                    var xeTonTai = _db.Xes.FirstOrDefault(r => r.BangSoXe == thongTinXeVaKhauHaoModel.BangSoXe && r.SoSan == thongTinXeVaKhauHaoModel.SoSan);
+                    if (xeTonTai != null && xeTonTai.XeKey > 0)
+                    {
+                        return Json(new { Result = false, Message = "Xe này đã tồn tại trong hệ thống.", Title = TitleMessageBox.ErrorTitle });
+                    }
+                }
+
+                if (thongTinXeVaKhauHaoModel.NgayBatDauKhauHao < thongTinXeVaKhauHaoModel.NgayCapPhep)
+                {
+                    return Json(new { Result = false, Message = "Ngày bắt đầu khấu hao phải lớn hơn ngày cấp phép.", Title = TitleMessageBox.ErrorTitle });
+                }
+
+                if (thongTinXeVaKhauHaoModel.NgayBatDauKhauHao > thongTinXeVaKhauHaoModel.NgayKetThucKhauHao)
+                {
+                    return Json(new { Result = false, Message = "Ngày kết thúc khấu hao phải lớn hơn ngày bắt đầu khấu hao.", Title = TitleMessageBox.ErrorTitle });
+                }
+
+                if (new ThongTinXeVaKhauHaoBll().LuuThongTinXeVaKhauHao(thongTinXeVaKhauHaoModel))
+                    return Json(new { Result = true, Message = Message.SuccessDataAction, Title = TitleMessageBox.CompleteTitle });
+                return Json(new { Result = false, Message = Message.FailureDataAction, Title = TitleMessageBox.FailureTitle });
+            }
+            catch (Exception) { return Json(new { Result = false, Title = TitleMessageBox.FailureTitle, Message = Message.FailureDataAction }, JsonRequestBehavior.AllowGet); }
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult XoaThongTinXeVaKhauHao(int xeKey)
+        {
+            try
+            {
+                new ThongTinXeVaKhauHaoBll().XoaThongTinXeVaKhauHao(xeKey);
+                return Json(new { Result = true, Title = TitleMessageBox.SuccessTitle, Message = Message.SuccessDataAction }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { Result = false, Title = TitleMessageBox.FailureTitle, Message = Message.FailureDataAction }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public JsonResult LayThongTinXe()
+        {
+            return Json(new ThongTinXeVaKhauHaoBll().LayThongTinXeVaKhauHao(), JsonRequestBehavior.AllowGet);
         }
         #endregion Nhập thông tin xe.
 
