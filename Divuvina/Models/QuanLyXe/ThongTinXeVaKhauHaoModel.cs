@@ -30,8 +30,6 @@ namespace Divuvina.Models.QuanLyXe
         [Required, Display(Name = "Ngày cấp phép"), DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd-MM-yyyy}")]
         public DateTime NgayCapPhep { get; set; }
-        //[Required, Display(Name = "Ngày cấp phép")]
-        //public string NgayCapPhep { get; set; }
 
         [Required, Display(Name = "Màu"), MaxLength(50)]
         public string Mau { get; set; }
@@ -63,14 +61,10 @@ namespace Divuvina.Models.QuanLyXe
         [Required, Display(Name = "Ngày bắt đầu khấu hao"), DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd-MM-yyyy}")]
         public DateTime? NgayBatDauKhauHao { get; set; }
-        //[Required, Display(Name = "Ngày bắt đầu khấu hao")]
-        //public string NgayBatDauKhauHao { get; set; }
 
         [Required, Display(Name = "Ngày kết thúc khấu hao"), DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd-MM-yyyy}")]
         public DateTime? NgayKetThucKhauHao { get; set; }
-        //[Required, Display(Name = "Ngày kết thúc khấu hao")]
-        //public string NgayKetThucKhauHao { get; set; }
 
         [Required, Display(Name = "Ghi chú khấu hao xe"), MaxLength(250)]
         public string GhiChuKhauHaoXe { get; set; }
@@ -83,11 +77,9 @@ namespace Divuvina.Models.QuanLyXe
         public ThongTinXeVaKhauHaoModel(int xeKey, short? hangSanXuatXeKey, string hangSanXuatXe, int loaiXeKey, string loaiXe
             , string bangSoXe, string soSan
             , DateTime ngayCapPhep
-            //, string ngayCapPhep
             , string mau, decimal giaMua, bool coWifi, bool coTivi, bool coCameraHanhTrinh, string ghiChuThongTinXe
             , decimal? soThangKhauHao, decimal? tongTienKhauHao, decimal? tienKhauHaoHangThang
             , DateTime? ngayBatDauKhauHao, DateTime? ngayKetThucKhauHao
-            //, string ngayBatDauKhauHao, string ngayKetThucKhauHao
             , string ghiChuKhauHaoXe)
         {
             XeKey = xeKey;
@@ -122,7 +114,6 @@ namespace Divuvina.Models.QuanLyXe
             BangSoXe = string.Empty;
             SoSan = string.Empty;
             NgayCapPhep = DefaultValueWhenNull.DefaultDate;
-            //NgayCapPhep = string.Empty;
             Mau = string.Empty;
             GiaMua = 0;
             CoWifi = true;
@@ -134,8 +125,6 @@ namespace Divuvina.Models.QuanLyXe
             TienKhauHaoHangThang = 0;
             NgayBatDauKhauHao = DefaultValueWhenNull.DefaultDate;
             NgayKetThucKhauHao = DefaultValueWhenNull.DefaultDate;
-            //NgayBatDauKhauHao = string.Empty;
-            //NgayKetThucKhauHao = string.Empty;
             GhiChuKhauHaoXe = string.Empty;
         }//EndFunction
     }//EndClass

@@ -132,8 +132,7 @@
                 data: 'NgayCapPhep'
                 , render: function (data, type, full, meta) {
                     if (full != null && full.NgayCapPhep != null) {
-                        var date = eval(("new " + full.NgayCapPhep).replace(/\//g, ""));
-                        return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+                        return formatDateToString(full.NgayCapPhep, 'DD/MM/YYYY');
                     }
                     return '';
                 }//EndRender
@@ -148,8 +147,7 @@
                 , render: function (data, type, full, meta) {
                     if (full != null && full.NgayBatDauKhauHao != null)
                     {
-                        var date = eval(("new " + full.NgayBatDauKhauHao).replace(/\//g, ""));
-                        return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+                        return formatDateToString(full.NgayBatDauKhauHao, 'DD/MM/YYYY');
                     }
                     return '';
                 }//EndRender
@@ -158,8 +156,9 @@
                 data: 'NgayKetThucKhauHao'
                 , render: function (data, type, full, meta) {
                     if (full != null && full.NgayKetThucKhauHao != null) {
-                        var date = eval(("new " + full.NgayKetThucKhauHao).replace(/\//g, ""));
-                        return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+                        return formatDateToString(full.NgayKetThucKhauHao, 'DD/MM/YYYY');
+                        //var date = eval(("new " + full.NgayKetThucKhauHao).replace(/\//g, ""));
+                        //return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
                     }
                     return '';
                 }//EndRender
