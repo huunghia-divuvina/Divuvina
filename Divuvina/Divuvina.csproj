@@ -153,6 +153,21 @@
     <Compile Include="Models\DanhMucModule.cs" />
     <Compile Include="Models\DanhMucViTri.cs" />
     <Compile Include="Models\dbContext.cs" />
+    <Compile Include="Models\dbStoredProcedure.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbStoredProcedure.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dbStoredProcedure.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbStoredProcedure.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dbStoredProcedure.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbStoredProcedure.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Duong.cs" />
     <Compile Include="Models\HangSanXuatXe.cs" />
     <Compile Include="Models\HopDongLaoDong.cs" />
@@ -381,6 +396,18 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="locales\en.json" />
     <Content Include="locales\es.json" />
+    <EntityDeploy Include="Models\dbStoredProcedure.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbStoredProcedure.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\dbStoredProcedure.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>dbStoredProcedure.Context.cs</LastGenOutput>
+      <DependentUpon>dbStoredProcedure.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\dbStoredProcedure.edmx.diagram">
+      <DependentUpon>dbStoredProcedure.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Inspinia.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="locales\Images\a1.jpg" />
@@ -1235,6 +1262,11 @@
     <Content Include="locales\Images\p_big2.jpg" />
     <Content Include="locales\Images\p_big3.jpg" />
     <Content Include="locales\Images\zender_logo.png" />
+    <Content Include="Models\dbStoredProcedure.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>dbStoredProcedure.cs</LastGenOutput>
+      <DependentUpon>dbStoredProcedure.edmx</DependentUpon>
+    </Content>
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\skin.config.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1720,7 +1752,9 @@
     <Content Include="Views\DanhMucXe\HangSanXuatXe.cshtml" />
     <Content Include="Views\QuanLyXe\NhapThongTinXe.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
