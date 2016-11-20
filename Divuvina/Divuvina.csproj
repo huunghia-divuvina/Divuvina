@@ -1721,7 +1721,9 @@
     <Content Include="Views\QuanLyXe\NhapThongTinXe.cshtml" />
     <Content Include="Views\QuanLyXe\SapLichBaoTriXe.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

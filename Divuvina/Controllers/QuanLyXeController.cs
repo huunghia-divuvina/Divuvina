@@ -6,12 +6,14 @@ using System.Web.Mvc;
 using Divuvina.Business.DanhMuc;
 using Divuvina.Models.Public;
 using Divuvina.Business.QuanLyXe;
+using System.Data.Entity.Core.Objects;
 
 namespace Divuvina.Controllers
 {
     public class QuanLyXeController : Controller
     {
         Models.dbContext _db = new Models.dbContext();
+        //Models.dbStoredProcedure _dbSp = new Models.dbStoredProcedure();
         public ThongTinXeVaKhauHaoModel _ThongTinXeVaKhauHaoModel;
         //==================================================================Starts Defining View Functions.
         // GET: QuanLyXe
@@ -144,6 +146,10 @@ namespace Divuvina.Controllers
 
         public JsonResult LayLichBaoTri(string XeKey)
         {
+            //var ss = _dbSp.spTest(22);
+            //var rsSp = _dbSp.sp_LayThongTinXe("");
+
+
             if (XeKey == null)
                 XeKey = "-1";
             var rs = _db.LichBaoTriXes
