@@ -1719,6 +1719,7 @@
     <Content Include="Views\DanhMucXepLichXe\DanhMucChiPhi.cshtml" />
     <Content Include="Views\DanhMucXe\HangSanXuatXe.cshtml" />
     <Content Include="Views\QuanLyXe\NhapThongTinXe.cshtml" />
+    <Content Include="Views\QuanLyXe\SapLichBaoTriXe.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

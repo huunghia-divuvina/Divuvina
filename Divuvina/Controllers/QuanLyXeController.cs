@@ -103,9 +103,8 @@ namespace Divuvina.Controllers
                     return Json(new { Result = false, Message = "Ngày kết thúc khấu hao phải lớn hơn ngày bắt đầu khấu hao.", Title = TitleMessageBox.ErrorTitle });
                 }
 
-                if (new ThongTinXeVaKhauHaoBll().LuuThongTinXeVaKhauHao(thongTinXeVaKhauHaoModel))
-                    return Json(new { Result = true, Message = Message.SuccessDataAction, Title = TitleMessageBox.CompleteTitle });
-                return Json(new { Result = false, Message = Message.FailureDataAction, Title = TitleMessageBox.FailureTitle });
+                new ThongTinXeVaKhauHaoBll().LuuThongTinXeVaKhauHao(thongTinXeVaKhauHaoModel);
+                return Json(new { Result = true, Message = Message.SuccessDataAction, Title = TitleMessageBox.CompleteTitle });
             }
             catch (Exception) { return Json(new { Result = false, Title = TitleMessageBox.FailureTitle, Message = Message.FailureDataAction }, JsonRequestBehavior.AllowGet); }
         }
@@ -196,6 +195,11 @@ namespace Divuvina.Controllers
         }
         #endregion
 
-
+        #region Sắp lịch bảo trì xe.
+        public ActionResult SapLichBaoTriXe()
+        {
+            return View();
+        }
+        #endregion Sắp lịch bảo trì xe.
     }//EndClass
 }//EndNamespace

@@ -276,7 +276,7 @@
             type: "POST",
             dataType: "JSON",
             contentType: "application/json; charset=utf-8",
-            url: '/QuanLyXe/XoaThongTinXeVaKhauHao)',
+            url: '/QuanLyXe/XoaThongTinXeVaKhauHao',
             data: { xeKey : row.XeKey},
             success: function (response) {
                 $('#tableThongTinXe').DataTable().ajax.reload();

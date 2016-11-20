@@ -1,0 +1,353 @@
+﻿
+@{
+    //Layout = null;
+}
+
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Thông tin xe</h2>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <form class="form-horizontal m-t-md" id="formSapLichBaoTriXe" role="form" autocomplete="off">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title"><h3>Phần thông tin xe</h3></div>
+                    <div class="ibox-content">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Tìm thông tin xe:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="TimThongTinXe" name="TimThongTinXe"> <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary">
+                                        Tìm thông tin xe
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="ibox-title"><h3>Danh sách xe và khấu hao</h3></div>
+                            <div class="ibox-content">
+                                <div class="table-responsive">
+                                    <table id="tableThongTinXe" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th width="50" align="center" valign="middle">Thứ tự</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th>Bảng số xe</th>
+                                                <th>Số sàn</th>
+                                                <th>Loại xe</th>
+                                                <th>Hãng sản xuất</th>
+                                                <th>Ngày cấp phép</th>
+                                                <th>Màu</th>
+                                                <th>Tổng giá</th>
+                                                <th>Tổng tiền khấu hao</th>
+                                                <th>Số tháng khấu hao</th>
+                                                <th>Tiền khấu hao hàng tháng</th>
+                                                <th>Ngày bắt đầu khấu hao</th>
+                                                <th>Ngày kết thúc khấu hao</th>
+                                                <th>Có Wifi</th>
+                                                <th>Có Tivi</th>
+                                                <th>Có Camera hành trình</th>
+                                                <th>Ghi chú xe</th>
+                                                <th>Ghi chú khấu hao</th>
+                                                <th width="50">Sửa</th>
+                                                <th width="50">Xóa</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Bảng số xe:</label>
+                            <div class="col-md-4">
+                                <input type="text" id="BangSoXe" name="BangSoXe" value="" class="form-control" placeholder="Nhập bảng số xe">
+                                <span />
+                            </div>
+                            <label class="col-sm-2 control-label">Số sàn:</label>
+                            <div class="col-md-4">
+                                <input type="text" id="SoSan" name="SoSan" value="" class="form-control" placeholder="Nhập số sàn">
+                                <span />
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="divNgayCapPhep">
+                            <label class="col-sm-2 control-label">Màu:</label>
+                            <div class="col-md-4">
+                                <input type="text" id="Mau" name="Mau" value="" class="form-control" placeholder="Nhập màu xe">
+                                <span />
+                            </div>
+                            <label class="col-sm-2 control-label">Ngày cấp phép:</label>
+                            <div class="col-md-4">
+                                <div class="input-group date">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                    <input type="text" id="NgayCapPhep" name="NgayCapPhep" value="" class="form-control">
+                                    <span />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-primary checkbox-inline">
+                                    <input type="checkbox" id="CoWifi" name="CoWifi" class="form-control">
+                                    <label for="CoWifi"><b>Có Wifi</b></label>
+                                    <input type="hidden" id="hdCoWifi" name="hdCoWifi" value="" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-success checkbox-inline">
+                                    <input type="checkbox" id="CoTivi" name="CoTivi" class="form-control">
+                                    <label for="CoTivi"><b>Có Tivi</b></label>
+                                    <input type="hidden" id="hdCoTivi" name="hdCoTivi" value="" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-info checkbox-inline">
+                                    <input type="checkbox" id="CoCameraHanhTrinh" name="CoCameraHanhTrinh" class="form-control">
+                                    <label for="CoCameraHanhTrinh"><b>Có camera hành trình</b></label>
+                                    <span />
+                                    <input type="hidden" id="hdCoCameraHanhTrinh" name="hdCoCameraHanhTrinh" value="" />
+                                </div>
+                            </div>
+                            <label class="col-sm-1 control-label"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Ghi chú thông tin xe:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="GhiChuThongTinXe" name="GhiChuThongTinXe" value="" class="form-control" placeholder="Nhập thông tin ghi chú về xe">
+                                <span />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title"><h3>Thông tin chi phí mua xe và khấu hao</h3></div>
+                    <div class="ibox-content">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Giá mua:</label>
+                            <div class="col-md-4">
+                                <input class="touchspin3" id="GiaMua" name="GiaMua" value="" type="text">
+                                <span />
+                            </div>
+
+                            <label class="col-sm-2 control-label">Tổng tiền khấu hao:</label>
+                            <div class="col-md-4">
+                                <input class="touchspin3" id="TongTienKhauHao" name="TongTienKhauHao" value="" type="text">
+                                <span />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Số tháng khấu hao:</label>
+                            <div class="col-md-4">
+                                <input class="touchspin3" id="SoThangKhauHao" name="SoThangKhauHao" value="" type="text">
+                                <span />
+                            </div>
+
+                            <label class="col-sm-2 control-label">Tiền khấu hao hàng tháng:</label>
+                            <div class="col-md-4">
+                                <input class="touchspin3" id="TienKhauHaoHangThang" name="TienKhauHaoHangThang" value="" type="text">
+                                <span />
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="divNgayKhauHao">
+                            <label class="col-sm-2 control-label">Ngày bắt đầu khấu hao:</label>
+                            <div class="col-md-4">
+                                <div class="input-group date">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                    <input type="text" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="" class="form-control">
+                                    <span />
+                                </div>
+                            </div>
+
+                            <label class="col-sm-2 control-label">Ngày kết thúc khấu hao:</label>
+                            <div class="col-md-4">
+                                <div class="input-group date">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                    <input type="text" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="" class="form-control">
+                                    <span />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Ghi chú khấu hao:</label>
+                            <div class="col-md-10">
+                                <input type="text" id="GhiChuKhauHaoXe" name="GhiChuKhauHaoXe" value="" class="form-control" placeholder="Nhập thông tin ghi chú khấu hao xe">
+                                <span />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2 col-md-offset-2">
+                                <button type="button" class="btn btn-w-m btn-success" id="btNew"><i class="fa fa-file" aria-hidden="true"></i> Tạo mới</button>
+                                <span />
+                            </div>
+
+                            <div class="col-sm-2">
+                                <button type="button" class="btn btn-w-m btn-success" id="btSave"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</button>
+                                <span />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title"><h3>Danh sách xe và khấu hao</h3></div>
+                    <div class="ibox-content">
+                        <div class="table-responsive">
+                            <table id="tableThongTinXe" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="50" align="center" valign="middle">Thứ tự</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>Bảng số xe</th>
+                                        <th>Số sàn</th>
+                                        <th>Loại xe</th>
+                                        <th>Hãng sản xuất</th>
+                                        <th>Ngày cấp phép</th>
+                                        <th>Màu</th>
+                                        <th>Tổng giá</th>
+                                        <th>Tổng tiền khấu hao</th>
+                                        <th>Số tháng khấu hao</th>
+                                        <th>Tiền khấu hao hàng tháng</th>
+                                        <th>Ngày bắt đầu khấu hao</th>
+                                        <th>Ngày kết thúc khấu hao</th>
+                                        <th>Có Wifi</th>
+                                        <th>Có Tivi</th>
+                                        <th>Có Camera hành trình</th>
+                                        <th>Ghi chú xe</th>
+                                        <th>Ghi chú khấu hao</th>
+                                        <th width="50">Sửa</th>
+                                        <th width="50">Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="XeKey" name="XeKey" value="" />
+    </form>
+
+</div>
+
+@section Styles {
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/switcheryStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/nouiSliderStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/toastrStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
+
+    <link href="~/Content/Divuvina/DivuvinaTable.css" rel="stylesheet" />
+
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/switcheryStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/nouiSliderStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/jeditable")
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/plugins/toastr")
+    @Scripts.Render("~/plugins/sweetAlert")
+    @Scripts.Render("~/plugins/fullcalendar")
+
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/touchSpin")
+
+    @Scripts.Render("~/Scripts/Public/ShowMessage.js")
+    @Scripts.Render("~/Scripts/Public/SettingControls.js")
+
+
+<script type="text/javascript">
+        $(document).ready(function () {
+
+        })//EndFunction-DocumentReady
+
+</script>
+
+}
