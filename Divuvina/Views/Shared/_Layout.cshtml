@@ -25,21 +25,23 @@
     @Styles.Render("~/plugins/awesomeCheckboxStyles")
     @Styles.Render("~/plugins/clockpickerStyles")
     @Styles.Render("~/plugins/dateRangeStyles")
-    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
-    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
     @Styles.Render("~/plugins/switcheryStyles")
     @Styles.Render("~/plugins/jasnyBootstrapStyles")
     @Styles.Render("~/plugins/nouiSliderStyles")
     @Styles.Render("~/plugins/dataPickerStyles")
-    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
     @Styles.Render("~/plugins/imagecropperStyles")
-    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
     @Styles.Render("~/plugins/select2Styles")
     @Styles.Render("~/plugins/touchSpinStyles")
-    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
     @Styles.Render("~/plugins/toastrStyles")
     @Styles.Render("~/plugins/sweetAlertStyles")
-    @*@Styles.Render("~/plugins/steps")*@
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/plugins/wizardStepsStyles")
+
+    @Styles.Render("~/Content/animate.css")
 
     <link href="~/Content/Divuvina/DivuvinaTable.css" rel="stylesheet" />
     
@@ -89,6 +91,13 @@
     <!-- Handler for local scripts -->
     @RenderSection("scripts", required: false)
 
+    <!-- Handler for local scripts -->
+    @Scripts.Render("~/plugins/wizardSteps")
+    @Scripts.Render("~/plugins/iCheck")
+    <!-- Jquery Validate -->
+    @Scripts.Render("~/plugins/validate")
+    <!-- Steps -->
+    @Scripts.Render("~/plugins/staps")
 
     <script type="text/javascript">
         function ShowMessage(response) {

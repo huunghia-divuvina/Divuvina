@@ -410,8 +410,9 @@ namespace Divuvina
                       "~/Scripts/plugins/bootstrap-markdown/bootstrap-markdown.js",
                       "~/Scripts/plugins/bootstrap-markdown/markdown.js"));
 
-
-
+            // Steps
+            bundles.Add(new StyleBundle("~/plugins/staps").Include(
+                      "~/Content/plugins/staps/jquery.steps.min.js"));
         }
     }
 }

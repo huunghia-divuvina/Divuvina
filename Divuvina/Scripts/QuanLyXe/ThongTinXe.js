@@ -19,24 +19,24 @@
         }
     });//EndLoadDataForLoaiGheSelector
 
-    $('#HangSanXuatXeKey').change(function () {
-        var id = $(this).val();
-        //Load dữ liệu Danh mục loai xe
-        if (id != null) {
-            //var url = '@Url.Action("LayLoaiXeChoSelect", "QuanLyXe")';
-            var url = '/QuanLyXe/LayLoaiXeChoSelect';
-            $.getJSON(url, { hangSanXuatXeKey: id }, function (data) {
-                $('#LoaiXeKey').empty();
-                $("#LoaiXeKey").select2({
-                    data: data
-                , placeholder: "Chọn loại xe"
-                , allowClear: true
-                });
-                $("#LoaiXeKey").val(null).trigger("change");
-                $('#LoaiXeKey').val($('#KeyLoaiXe').val()).change();
-            });
-        }
-    });
+    //$('#HangSanXuatXeKey').change(function () {
+    //    var id = $(this).val();
+    //    //Load dữ liệu Danh mục loai xe
+    //    if (id != null) {
+    //        //var url = '@Url.Action("LayLoaiXeChoSelect", "QuanLyXe")';
+    //        var url = '/QuanLyXe/LayLoaiXeChoSelect';
+    //        $.getJSON(url, { hangSanXuatXeKey: id }, function (data) {
+    //            $('#LoaiXeKey').empty();
+    //            $("#LoaiXeKey").select2({
+    //                data: data
+    //            , placeholder: "Chọn loại xe"
+    //            , allowClear: true
+    //            });
+    //            $("#LoaiXeKey").val(null).trigger("change");
+    //            $('#LoaiXeKey').val($('#KeyLoaiXe').val()).change();
+    //        });
+    //    }
+    //});
     //===================================================
     $("#btSave").on('click', function (e) {
         e.preventDefault();
@@ -120,81 +120,8 @@
                 searchable: false
                 , orderable: false
                 , targets: 0
-            },
-            { data: 'XeKey', visible: false },
-            { data: 'HangSanXuatXeKey', visible: false },
-            { data: 'LoaiXeKey', visible: false },
-            { data: 'BangSoXe' },
-            { data: 'SoSan' },
-            { data: 'LoaiXe' },
-            { data: 'HangSanXuatXe' },
-            {
-                data: 'NgayCapPhep'
-                , render: function (data, type, full, meta) {
-                    if (full != null && full.NgayCapPhep != null) {
-                        return formatDateToString(full.NgayCapPhep, 'DD/MM/YYYY');
-                    }
-                    return '';
-                }//EndRender
-            },
-            { data: 'Mau' },
-            { data: 'GiaMua', render: $.fn.dataTable.render.number(',', '.', 0, '', ' VNĐ') },
-            { data: 'TongTienKhauHao', render: $.fn.dataTable.render.number(',', '.', 0, '',' VNĐ') },
-            { data: 'SoThangKhauHao' },
-            { data: 'TienKhauHaoHangThang', render: $.fn.dataTable.render.number(',', '.', 0, '', ' VNĐ') },
-            {
-                data: 'NgayBatDauKhauHao'
-                , render: function (data, type, full, meta) {
-                    if (full != null && full.NgayBatDauKhauHao != null)
-                    {
-                        return formatDateToString(full.NgayBatDauKhauHao, 'DD/MM/YYYY');
-                    }
-                    return '';
-                }//EndRender
-            },
-            {
-                data: 'NgayKetThucKhauHao'
-                , render: function (data, type, full, meta) {
-                    if (full != null && full.NgayKetThucKhauHao != null) {
-                        return formatDateToString(full.NgayKetThucKhauHao, 'DD/MM/YYYY');
-                        //var date = eval(("new " + full.NgayKetThucKhauHao).replace(/\//g, ""));
-                        //return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-                    }
-                    return '';
-                }//EndRender
-            },
-            {
-                data: 'CoWifi'
-                , render: function (data, type, full, meta) {
-                    if (full != null && full.CoWifi != null) {
-                        if (full.CoWifi) return "Có";
-                        return "Không";
-                    }
-                    return 'Không';
-                }//EndRender
-            },
-            { data: 'CoTivi'
-                , render: function (data, type, full, meta) 
-                {
-                    if (full != null && full.CoTivi != null) {
-                        if (full.CoTivi) return "Có";
-                        return "Không";
-                    }
-                    return 'Không';
-                }//EndRender 
-            },
-            { data: 'CoCameraHanhTrinh'
-                , render: function (data, type, full, meta) {
-                    if (full != null && full.CoCameraHanhTrinh != null) {
-                        if (full.CoCameraHanhTrinh) return "Có";
-                    return "Không";
-                    }
-                return 'Không';
-                }//EndRender 
-            },
-            { data: 'GhiChuThongTinXe' },
-            { data: 'GhiChuKhauHaoXe' },
-            {
+            }
+            , {
                 data: null,
                 defaultContent: '<a class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa</a>',
                 orderable: false
@@ -204,6 +131,81 @@
                 defaultContent: '<a class="delete"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>',
                 orderable: false
             }
+            , { data: 'XeKey', visible: false }
+            , { data: 'HangSanXuatXeKey', visible: false }
+            , { data: 'LoaiXeKey', visible: false }
+            , { data: 'BangSoXe' }
+            , { data: 'SoSan' }
+            , { data: 'LoaiXe' }
+            , { data: 'HangSanXuatXe' }
+            , {
+                data: 'NgayCapPhep'
+                , render: function (data, type, full, meta) {
+                    if (full != null && full.NgayCapPhep != null) {
+                        return formatDateToString(full.NgayCapPhep, 'DD/MM/YYYY');
+                    }
+                    return '';
+                }//EndRender
+            }
+            , { data: 'Mau' }
+            , { data: 'GiaMua', render: $.fn.dataTable.render.number(',', '.', 0, '', ' VNĐ') }
+            , { data: 'TongTienKhauHao', render: $.fn.dataTable.render.number(',', '.', 0, '', ' VNĐ') }
+            , { data: 'SoThangKhauHao' }
+            , { data: 'TienKhauHaoHangThang', render: $.fn.dataTable.render.number(',', '.', 0, '', ' VNĐ') }
+            , {
+                data: 'NgayBatDauKhauHao'
+                , render: function (data, type, full, meta) {
+                    if (full != null && full.NgayBatDauKhauHao != null)
+                    {
+                        return formatDateToString(full.NgayBatDauKhauHao, 'DD/MM/YYYY');
+                    }
+                    return '';
+                }//EndRender
+            }
+            , {
+                data: 'NgayKetThucKhauHao'
+                , render: function (data, type, full, meta) {
+                    if (full != null && full.NgayKetThucKhauHao != null) {
+                        return formatDateToString(full.NgayKetThucKhauHao, 'DD/MM/YYYY');
+                        //var date = eval(("new " + full.NgayKetThucKhauHao).replace(/\//g, ""));
+                        //return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+                    }
+                    return '';
+                }//EndRender
+            }
+            , {
+                data: 'CoWifi'
+                , render: function (data, type, full, meta) {
+                    if (full != null && full.CoWifi != null) {
+                        if (full.CoWifi) return "Có";
+                        return "Không";
+                    }
+                    return 'Không';
+                }//EndRender
+            }
+            , {
+                data: 'CoTivi'
+                , render: function (data, type, full, meta) 
+                {
+                    if (full != null && full.CoTivi != null) {
+                        if (full.CoTivi) return "Có";
+                        return "Không";
+                    }
+                    return 'Không';
+                }//EndRender 
+            }
+            , { data: 'CoCameraHanhTrinh'
+                , render: function (data, type, full, meta) {
+                    if (full != null && full.CoCameraHanhTrinh != null) {
+                        if (full.CoCameraHanhTrinh) return "Có";
+                    return "Không";
+                    }
+                return 'Không';
+                }//EndRender 
+            }
+            , { data: 'GhiChuThongTinXe' }
+            , { data: 'GhiChuKhauHaoXe' }
+            
         ]//EndColumns
         , order: [1, 'asc']
         , language: {
