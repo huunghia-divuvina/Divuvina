@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbSpModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="sp_LayThongTinXe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ThongTinXe" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spTest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="key" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="dbSpModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbSpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbSp" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="sp_LayThongTinXe" ReturnType="Collection(dbSpModel.sp_LayThongTinXe_Result)">
+            <Parameter Name="ThongTinXe" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spTest" ReturnType="Collection(Int32)">
+            <Parameter Name="key" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_LayThongTinXe_Result">
+          <Property Type="Int32" Name="XeKey" Nullable="false" />
+          <Property Type="String" Name="BangSoXe" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="SoSan" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="NgayCapPhep" Nullable="false" />
+          <Property Type="Decimal" Name="GiaMua" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="MAU" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="CoWifi" Nullable="false" />
+          <Property Type="Boolean" Name="CoTivi" Nullable="false" />
+          <Property Type="Boolean" Name="CoCameraHanhTrinh" Nullable="false" />
+          <Property Type="String" Name="GhiChu" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="TenLoaiXe" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TenHangSanXuatXe" Nullable="true" MaxLength="250" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbSpModelStoreContainer" CdmEntityContainer="dbSp" >
+          <FunctionImportMapping FunctionImportName="sp_LayThongTinXe" FunctionName="dbSpModel.Store.sp_LayThongTinXe">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbSpModel.sp_LayThongTinXe_Result">
+                <ScalarProperty Name="XeKey" ColumnName="XeKey" />
+                <ScalarProperty Name="BangSoXe" ColumnName="BangSoXe" />
+                <ScalarProperty Name="SoSan" ColumnName="SoSan" />
+                <ScalarProperty Name="NgayCapPhep" ColumnName="NgayCapPhep" />
+                <ScalarProperty Name="GiaMua" ColumnName="GiaMua" />
+                <ScalarProperty Name="MAU" ColumnName="MAU" />
+                <ScalarProperty Name="CoWifi" ColumnName="CoWifi" />
+                <ScalarProperty Name="CoTivi" ColumnName="CoTivi" />
+                <ScalarProperty Name="CoCameraHanhTrinh" ColumnName="CoCameraHanhTrinh" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="TenLoaiXe" ColumnName="TenLoaiXe" />
+                <ScalarProperty Name="TenHangSanXuatXe" ColumnName="TenHangSanXuatXe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spTest" FunctionName="dbSpModel.Store.spTest" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

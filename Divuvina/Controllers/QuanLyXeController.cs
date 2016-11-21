@@ -7,6 +7,7 @@ using Divuvina.Business.DanhMuc;
 using Divuvina.Models.Public;
 using Divuvina.Business.QuanLyXe;
 using System.Data.Entity.Core.Objects;
+using System.Data.SqlClient;
 
 namespace Divuvina.Controllers
 {
@@ -140,6 +141,9 @@ namespace Divuvina.Controllers
 
         public JsonResult LayDanhMucXe()
         {
+            //SqlParameter param1 = new SqlParameter("@ThongTinXe", "");
+            //var employee = _db.Database.SqlQuery<Models.sp_LayThongTinXe_Result>("[sp_LayThongTinXe] @ThongTinXe", new SqlParameter[] { param1 }).ToList();
+
             var rs = _db.Xes.Select(r => new { id = r.XeKey, text = r.BangSoXe });
             return Json(rs, JsonRequestBehavior.AllowGet);
         }
