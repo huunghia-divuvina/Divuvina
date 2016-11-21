@@ -14,263 +14,113 @@
 </div>
 
 <div class="wrapper wrapper-content animated fadeInRight">
-    <form class="form-horizontal m-t-md" id="formThongTinXe" role="form" autocomplete="off">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title"><h3>Phần thông tin xe</h3></div>
-                    <div class="ibox-content">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Hãng sản xuất xe:</label>
-                            <div class="col-md-4">
-                                <input type="hidden" id="KeyHangSanXuatXe" name="KeyHangSanXuatXe" />
-                                <select class="form-control" id="HangSanXuatXeKey"></select>
-                                <span />
-                            </div>
-                            <label class="col-sm-2 control-label">Loại xe:</label>
-                            <div class="col-md-4">
-                                <input type="hidden" id="KeyLoaiXe" name="KeyLoaiXe" />
-                                <select class="form-control" id="LoaiXeKey"></select>
-                                <span />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Bảng số xe:</label>
-                            <div class="col-md-4">
-                                <input type="text" id="BangSoXe" name="BangSoXe" value="@Model.BangSoXe" class="form-control" placeholder="Nhập bảng số xe">
-                                <span />
-                            </div>
-                            <label class="col-sm-2 control-label">Số sàn:</label>
-                            <div class="col-md-4">
-                                <input type="text" id="SoSan" name="SoSan" value="@Model.SoSan" class="form-control" placeholder="Nhập số sàn">
-                                <span />
-                            </div>
-                        </div>
-
-                        <div class="form-group" id="divNgayCapPhep">
-                            <label class="col-sm-2 control-label">Màu:</label>
-                            <div class="col-md-4">
-                                <input type="text" id="Mau" name="Mau" value="@Model.Mau" class="form-control" placeholder="Nhập màu xe">
-                                <span />
-                            </div>
-                            <label class="col-sm-2 control-label">Ngày cấp phép:</label>
-                            <div class="col-md-4">
-                                <div class="input-group date">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </span>
-                                    <input type="text" id="NgayCapPhep" name="NgayCapPhep" value="@Model.NgayCapPhep.ToString("dd-MM-yyyy")" class="form-control">
-                                    <span />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label"></label>
-                            <div class="col-md-3">
-                                <div class="checkbox checkbox-primary checkbox-inline">
-                                    <input type="checkbox" id="CoWifi" name="CoWifi" class="form-control">
-                                    <label for="CoWifi"><b>Có Wifi</b></label>
-                                    <input type="hidden" id="hdCoWifi" name="hdCoWifi" value="@Model.CoWifi"/>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="checkbox checkbox-success checkbox-inline">
-                                    <input type="checkbox" id="CoTivi" name="CoTivi" class="form-control">
-                                    <label for="CoTivi"><b>Có Tivi</b></label>
-                                    <input type="hidden" id="hdCoTivi" name="hdCoTivi" value="@Model.CoTivi" />
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="checkbox checkbox-info checkbox-inline">
-                                    <input type="checkbox" id="CoCameraHanhTrinh" name="CoCameraHanhTrinh" class="form-control">
-                                    <label for="CoCameraHanhTrinh"><b>Có camera hành trình</b></label>
-                                    <span />
-                                    <input type="hidden" id="hdCoCameraHanhTrinh" name="hdCoCameraHanhTrinh"  value="@Model.CoCameraHanhTrinh"/>
-                                </div>
-                            </div>
-                            <label class="col-sm-1 control-label"></label>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Ghi chú thông tin xe:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="GhiChuThongTinXe" name="GhiChuThongTinXe" value="@Model.GhiChuThongTinXe" class="form-control" placeholder="Nhập thông tin ghi chú về xe">
-                                <span />
-                            </div>
-                        </div>
-
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Thông tin xe và khấu hao</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            @*<li>
+                                <a href="#">Config option 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Config option 2</a>
+                            </li>*@
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
                     </div>
+                </div>
+
+                <div class="ibox-content">
+                    <h2>
+                        Validation Wizard Form
+                    </h2>
+                    <p>
+                        This example show how to use Steps with jQuery Validation plugin.
+                    </p>
+                    <form id="form" action="#" class="wizard-big">
+                        <h1>Account</h1>
+                        <fieldset>
+                            <h2>Account Information</h2>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label>Username *</label>
+                                        <input id="userName" name="userName" type="text" class="form-control required">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Password *</label>
+                                        <input id="password" name="password" type="text" class="form-control required">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Confirm Password *</label>
+                                        <input id="confirm" name="confirm" type="text" class="form-control required">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="text-center">
+                                        <div style="margin-top: 20px">
+                                            <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <h1>Profile</h1>
+                        <fieldset>
+                            <h2>Profile Information</h2>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>First name *</label>
+                                        <input id="name" name="name" type="text" class="form-control required">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Last name *</label>
+                                        <input id="surname" name="surname" type="text" class="form-control required">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Email *</label>
+                                        <input id="email" name="email" type="text" class="form-control required email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Address *</label>
+                                        <input id="address" name="address" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <h1>Warning</h1>
+                        <fieldset>
+                            <div class="text-center" style="margin-top: 120px">
+                                <h2>You did it Man :-)</h2>
+                            </div>
+                        </fieldset>
+                        <h1>Finish</h1>
+                        <fieldset>
+                            <h2>Terms and Conditions</h2>
+                            <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title"><h3>Thông tin chi phí mua xe và khấu hao</h3></div>
-                    <div class="ibox-content">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Giá mua:</label>
-                            <div class="col-md-4">
-                                <input class="touchspin3" id="GiaMua" name="GiaMua" value="@Model.GiaMua" type="text">
-                                <span />
-                            </div>
-
-                            <label class="col-sm-2 control-label">Tổng tiền khấu hao:</label>
-                            <div class="col-md-4">
-                                <input class="touchspin3" id="TongTienKhauHao" name="TongTienKhauHao" value="@Model.TongTienKhauHao" type="text">
-                                <span />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Số tháng khấu hao:</label>
-                            <div class="col-md-4">
-                                <input class="touchspin3" id="SoThangKhauHao" name="SoThangKhauHao" value="@Model.SoThangKhauHao" type="text">
-                                <span />
-                            </div>
-
-                            <label class="col-sm-2 control-label">Tiền khấu hao hàng tháng:</label>
-                            <div class="col-md-4">
-                                <input class="touchspin3" id="TienKhauHaoHangThang" name="TienKhauHaoHangThang" value="@Model.TienKhauHaoHangThang" type="text">
-                                <span />
-                            </div>
-                        </div>
-
-                        <div class="form-group" id="divNgayKhauHao">
-                            <label class="col-sm-2 control-label">Ngày bắt đầu khấu hao:</label>
-                            <div class="col-md-4">
-                                <div class="input-group date">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </span>
-                                    <input type="text" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayBatDauKhauHao).ToString("dd-MM-yyyy")" class="form-control">
-                                    @*<input type="text" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="@Model.NgayBatDauKhauHao.ToString("dd-MM-yyyy")" class="form-control">*@
-                                    <span />
-                                </div>
-                            </div>
-
-                            <label class="col-sm-2 control-label">Ngày kết thúc khấu hao:</label>
-                            <div class="col-md-4">
-                                <div class="input-group date">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </span>
-                                    <input type="text" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayKetThucKhauHao).ToString("dd-MM-yyyy")" class="form-control">
-                                    @*<input type="text" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="@Model.NgayKetThucKhauHao.ToString("dd-MM-yyyy")" class="form-control">*@
-                                    <span />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Ghi chú khấu hao:</label>
-                            <div class="col-md-10">
-                                <input type="text" id="GhiChuKhauHaoXe" name="GhiChuKhauHaoXe" value="@Model.GhiChuKhauHaoXe" class="form-control" placeholder="Nhập thông tin ghi chú khấu hao xe">
-                                <span />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-2 col-md-offset-2">
-                                <button type="button" class="btn btn-w-m btn-success" id="btNew"><i class="fa fa-file" aria-hidden="true"></i> Tạo mới</button>
-                                <span />
-                            </div>
-
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-w-m btn-success" id="btSave"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</button>
-                                <span />
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title"><h3>Danh sách xe và khấu hao</h3></div>
-                    <div class="ibox-content">
-                        <div class="table-responsive">
-                            <table id="tableThongTinXe" class="table table-striped table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th width="50" align="center" valign="middle">Thứ tự</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th>Bảng số xe</th>
-                                        <th>Số sàn</th>
-                                        <th>Loại xe</th>
-                                        <th>Hãng sản xuất</th>
-                                        <th>Ngày cấp phép</th>
-                                        <th>Màu</th>
-                                        <th>Tổng giá</th>
-                                        <th>Tổng tiền khấu hao</th>
-                                        <th>Số tháng khấu hao</th>
-                                        <th>Tiền khấu hao hàng tháng</th>
-                                        <th>Ngày bắt đầu khấu hao</th>
-                                        <th>Ngày kết thúc khấu hao</th>
-                                        <th>Có Wifi</th>
-                                        <th>Có Tivi</th>
-                                        <th>Có Camera hành trình</th>
-                                        <th>Ghi chú xe</th>
-                                        <th>Ghi chú khấu hao</th>
-                                        <th width="50">Sửa</th>
-                                        <th width="50">Xóa</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <input type="hidden" id="XeKey" name="XeKey" value="@Model.XeKey" />
-    </form>
-        
+    </div>
 </div>
 
 @section Styles {
-    @Styles.Render("~/plugins/awesomeCheckboxStyles")
-    @Styles.Render("~/plugins/clockpickerStyles")
-    @Styles.Render("~/plugins/dateRangeStyles")
-    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
-    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
-    @Styles.Render("~/plugins/switcheryStyles")
-    @Styles.Render("~/plugins/jasnyBootstrapStyles")
-    @Styles.Render("~/plugins/nouiSliderStyles")
-    @Styles.Render("~/plugins/dataPickerStyles")
-    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
-    @Styles.Render("~/plugins/imagecropperStyles")
-    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
-    @Styles.Render("~/plugins/select2Styles")
-    @Styles.Render("~/plugins/touchSpinStyles")
-    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
-    @Styles.Render("~/plugins/toastrStyles")
-    @Styles.Render("~/plugins/sweetAlertStyles")
-
-    <link href="~/Content/Divuvina/DivuvinaTable.css" rel="stylesheet" />
-
-@Styles.Render("~/plugins/awesomeCheckboxStyles")
-@Styles.Render("~/plugins/clockpickerStyles")
-@Styles.Render("~/plugins/dateRangeStyles")
-@Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
-@Styles.Render("~/Content/plugins/chosen/chosenStyles")
-@Styles.Render("~/plugins/switcheryStyles")
-@Styles.Render("~/plugins/jasnyBootstrapStyles")
-@Styles.Render("~/plugins/nouiSliderStyles")
-@Styles.Render("~/plugins/dataPickerStyles")
-@Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
-@Styles.Render("~/plugins/imagecropperStyles")
-@Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
-@Styles.Render("~/plugins/select2Styles")
-@Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/plugins/animate.css")
 }
 
 @section Scripts {
@@ -309,6 +159,11 @@
     @Scripts.Render("~/plugins/select2")
     @Scripts.Render("~/plugins/touchSpin")
 
+    <!-- Steps -->
+    @*@Scripts.Render("~/plugins/staps")*@
+    <!-- Jquery Validate -->
+    @*@Scripts.Render("~/plugins/validate")*@
+
     @Scripts.Render("~/Scripts/Public/ShowMessage.js")
     @Scripts.Render("~/Scripts/Public/SettingControls.js")
     @Scripts.Render("~/Scripts/QuanLyXe/ThongTinXe.js")
@@ -317,7 +172,7 @@
         $(document).ready(function () {
 
             //===================================================
-            var coWifi = true;
+            @*var coWifi = true;
             if (String("@(Model.CoWifi)") == "False") { coWifi = false };
             var coTivi = true;
             if (String("@(Model.CoTivi)") == "False") { coTivi = false };
@@ -328,81 +183,144 @@
             $('#CoCameraHanhTrinh').attr("checked", coCameraHanhTrinh);
             $('#hdCoWifi').val(coWifi);
             $('#hdCoTivi').val(coTivi);
-            $('#hdCoCameraHanhTrinh').val(coCameraHanhTrinh);
-            
-            //===================================================
-            $('#CoWifi').change(function () {
-                if (this.checked)
-                {
-                    $(this).attr("checked", true);
-                    $('#hdCoWifi').attr("value", true);
-                }
-                else
-                {
-                    $(this).attr("checked", false);
-                    $('#hdCoWifi').attr("value", false);
-                }
-            });
-            $('#CoTivi').change(function () {
-                if (this.checked) {
-                    $(this).attr("checked", true);
-                    $('#hdCoTivi').attr("value", true);
-                }
-                else {
-                    $(this).attr("checked", false);
-                    $('#hdCoTivi').attr("value", false);
-                }
-            });
-            $('#CoCameraHanhTrinh').change(function () {
-                if (this.checked) {
-                    $(this).attr("checked", true);
-                    $('#hdCoCameraHanhTrinh').attr("value", true);
-                }
-                else {
-                    $(this).attr("checked", false);
-                    $('#hdCoCameraHanhTrinh').attr("value", false);
-                }
-            });
-            //===================================================
-            SettingDatepicker('divNgayCapPhep');
-            SettingDatepicker('divNgayKhauHao');
+            $('#hdCoCameraHanhTrinh').val(coCameraHanhTrinh);*@
 
-            $(".touchspin3").TouchSpin({
-                verticalbuttons: true,
-                //verticalupclass: 'glyphicon glyphicon-plus',
-                //verticaldownclass: 'glyphicon glyphicon-minus'
-            });
             //===================================================
-            $('#GiaMua').change(function () {
-                $('#TongTienKhauHao').val($('#GiaMua').val());
-
-                var soThangKhauHao = $('#SoThangKhauHao').val();
-                var tongTienKhauHao = $('#TongTienKhauHao').val();
-                if (soThangKhauHao > 0) {
-                    $('#TienKhauHaoHangThang').val((tongTienKhauHao / soThangKhauHao).toFixed(2));
-                }
-            });
-            //===================================================
-            $('#SoThangKhauHao').change(function () {
-                var soThangKhauHao = $('#SoThangKhauHao').val();
-                var tongTienKhauHao = $('#TongTienKhauHao').val();
-                if (soThangKhauHao > 0)
-                {
-                    $('#TienKhauHaoHangThang').val((tongTienKhauHao / soThangKhauHao).toFixed(2));
-                    var ngayBatDauKhauHao = new Date($('#NgayBatDauKhauHao').val());
-                    $('#NgayKetThucKhauHao').val((new Date(ngayBatDauKhauHao.setMonth(soThangKhauHao))).toString("DD-MM-YYYY"));
-                }
-            });
-            //===================================================
-
-        //    $("input[type='number']").({
-        //        -moz-appearance: textfield;
-        //});
-        //    input[type="number"]:hover,
-        //    input[type="number"]:focus {
-        //        -moz-appearance: number-input;
+            //$('#CoWifi').change(function () {
+            //    if (this.checked) {
+            //        $(this).attr("checked", true);
+            //        $('#hdCoWifi').attr("value", true);
             //    }
+            //    else {
+            //        $(this).attr("checked", false);
+            //        $('#hdCoWifi').attr("value", false);
+            //    }
+            //});
+            //$('#CoTivi').change(function () {
+            //    if (this.checked) {
+            //        $(this).attr("checked", true);
+            //        $('#hdCoTivi').attr("value", true);
+            //    }
+            //    else {
+            //        $(this).attr("checked", false);
+            //        $('#hdCoTivi').attr("value", false);
+            //    }
+            //});
+            //$('#CoCameraHanhTrinh').change(function () {
+            //    if (this.checked) {
+            //        $(this).attr("checked", true);
+            //        $('#hdCoCameraHanhTrinh').attr("value", true);
+            //    }
+            //    else {
+            //        $(this).attr("checked", false);
+            //        $('#hdCoCameraHanhTrinh').attr("value", false);
+            //    }
+            //});
+            //===================================================
+            //SettingDatepicker('divNgayCapPhep');
+            //SettingDatepicker('divNgayKhauHao');
 
+            //$(".touchspin3").TouchSpin({
+            //    verticalbuttons: true,
+            //    //verticalupclass: 'glyphicon glyphicon-plus',
+            //    //verticaldownclass: 'glyphicon glyphicon-minus'
+            //});
+            //===================================================
+            //$('#GiaMua').change(function () {
+            //    $('#TongTienKhauHao').val($('#GiaMua').val());
+
+            //    var soThangKhauHao = $('#SoThangKhauHao').val();
+            //    var tongTienKhauHao = $('#TongTienKhauHao').val();
+            //    if (soThangKhauHao > 0) {
+            //        $('#TienKhauHaoHangThang').val((tongTienKhauHao / soThangKhauHao).toFixed(2));
+            //    }
+            //});
+            //===================================================
+            //$('#SoThangKhauHao').change(function () {
+            //    var soThangKhauHao = $('#SoThangKhauHao').val();
+            //    var tongTienKhauHao = $('#TongTienKhauHao').val();
+            //    if (soThangKhauHao > 0) {
+            //        $('#TienKhauHaoHangThang').val((tongTienKhauHao / soThangKhauHao).toFixed(2));
+            //        var ngayBatDauKhauHao = new Date($('#NgayBatDauKhauHao').val());
+            //        $('#NgayKetThucKhauHao').val((new Date(ngayBatDauKhauHao.setMonth(soThangKhauHao))).toString("DD-MM-YYYY"));
+            //    }
+            //});
+            //===================================================
+
+            //    $("input[type='number']").({
+            //        -moz-appearance: textfield;
+            //});
+            //    input[type="number"]:hover,
+            //    input[type="number"]:focus {
+            //        -moz-appearance: number-input;
+            //    }
+            //===================================================
+            $("#wizard").steps();
+            //$("#form").steps({
+            //    bodyTag: "fieldset",
+            //    onStepChanging: function (event, currentIndex, newIndex) {
+            //        // Always allow going backward even if the current step contains invalid fields!
+            //        if (currentIndex > newIndex) {
+            //            return true;
+            //        }
+
+            //        // Forbid suppressing "Warning" step if the user is to young
+            //        //if (newIndex === 3 && Number($("#age").val()) < 18) {
+            //        //    return false;
+            //        //}
+
+            //        var form = $(this);
+
+            //        // Clean up if user went backward before
+            //        if (currentIndex < newIndex) {
+            //            // To remove error styles
+            //            $(".body:eq(" + newIndex + ") label.error", form).remove();
+            //            $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+            //        }
+
+            //        // Disable validation on fields that are disabled or hidden.
+            //        form.validate().settings.ignore = ":disabled,:hidden";
+
+            //        // Start validation; Prevent going forward if false
+            //        return form.valid();
+            //    },
+            //    onStepChanged: function (event, currentIndex, priorIndex) {
+            //        // Suppress (skip) "Warning" step if the user is old enough.
+            //        //if (currentIndex === 2 && Number($("#age").val()) >= 18) {
+            //        //    $(this).steps("next");
+            //        //}
+
+            //        // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+            //        if (currentIndex === 2 && priorIndex === 3) {
+            //            $(this).steps("previous");
+            //        }
+            //    },
+            //    onFinishing: function (event, currentIndex) {
+            //        var form = $(this);
+
+            //        // Disable validation on fields that are disabled.
+            //        // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+            //        form.validate().settings.ignore = ":disabled";
+
+            //        // Start validation; Prevent form submission if false
+            //        return form.valid();
+            //    },
+            //    onFinished: function (event, currentIndex) {
+            //        var form = $(this);
+
+            //        // Submit form input
+            //        form.submit();
+            //    }
+            //}).validate({
+            //    errorPlacement: function (error, element) {
+            //        element.before(error);
+            //    },
+            //    rules: {
+            //        confirm: {
+            //            equalTo: "#password"
+            //        }
+            //    }
+            //});
         })//EndFunction-DocumentReady
 
     </script>

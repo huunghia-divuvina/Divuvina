@@ -313,6 +313,7 @@
     <Content Include="Content\plugins\slick\slick-theme.css" />
     <Content Include="Content\plugins\slick\slick.css" />
     <Content Include="Content\plugins\social-buttons\social-buttons.css" />
+    <Content Include="Content\plugins\staps\jquery.steps.min.js" />
     <Content Include="Content\plugins\steps\jquery.steps.css" />
     <Content Include="Content\plugins\summernote\summernote-bs3.css" />
     <Content Include="Content\plugins\summernote\summernote.css" />
@@ -320,6 +321,7 @@
     <Content Include="Content\plugins\switchery\switchery.css" />
     <Content Include="Content\plugins\toastr\toastr.min.css" />
     <Content Include="Content\plugins\touchspin\jquery.bootstrap-touchspin.min.css" />
+    <Content Include="Content\plugins\validate\jquery.validate.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome\css\font-awesome.css" />
     <Content Include="fonts\font-awesome\css\font-awesome.min.css" />
