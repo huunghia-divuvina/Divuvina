@@ -5,8 +5,6 @@
     ViewBag.Title = "NhapThongTinXe";
 }*@
 
-
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>Thông tin xe</h2>
@@ -41,15 +39,15 @@
                 </div>
 
                 <div class="ibox-content">
-                    @*<h2>
-                            Validation Wizard Form
-                        </h2>
-                        <p>
-                            This example show how to use Steps with jQuery Validation plugin.
-                        </p>*@
-                    <form id="formThongTinXe" action="#" class="wizard-big form-horizontal m-t-md" role="form" autocomplete="off">
+                    <form id="formThongTinXe" action="#" class="wizard-big form-horizontal m-t-md" role="form" autocomplete="off"  data-toggle="validator">
                         <h1>Thông tin xe</h1>
                         <fieldset>
+                            @*<div class="form-top">
+                                <div class="form-top-left">
+                                    <h3><span><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>Thông tin xe</h3>
+                                    <span />
+                                </div>
+                            </div>*@
                             @*<h2>Account Information</h2>*@
                             <div class="row">
                                 <div class="col-lg-12">
@@ -57,13 +55,13 @@
                                         <label class="col-lg-2 control-label">Hãng sản xuất xe:</label>
                                         <div class="col-lg-4">
                                             <input type="hidden" id="KeyHangSanXuatXe" name="KeyHangSanXuatXe" />
-                                            <select class="form-control" id="HangSanXuatXeKey"></select>
+                                            <select class="form-control" id="HangSanXuatXeKey" name="HangSanXuatXeKey"></select>
                                             <span />
                                         </div>
                                         <label class="col-lg-2 control-label">Loại xe:</label>
                                         <div class="col-lg-4">
                                             <input type="hidden" id="KeyLoaiXe" name="KeyLoaiXe" />
-                                            <select class="form-control" id="LoaiXeKey"></select>
+                                            <select class="form-control" id="LoaiXeKey" name="LoaiXeKey"></select>
                                             <span />
                                         </div>
                                     </div>
@@ -71,12 +69,12 @@
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">Bảng số xe*:</label>
                                         <div class="col-lg-4">
-                                            <input type="text" id="BangSoXe" name="BangSoXe" value="@Model.BangSoXe" class="form-control required" placeholder="Nhập bảng số xe">
+                                            <input type="text" id="BangSoXe" name="BangSoXe" value="@Model.BangSoXe" class="form-control" required="required" placeholder="Nhập bảng số xe">
                                             <span />
                                         </div>
                                         <label class="col-lg-2 control-label">Số sàn*:</label>
                                         <div class="col-lg-4">
-                                            <input type="text" id="SoSan" name="SoSan" value="@Model.SoSan" class="form-control required" placeholder="Nhập số sàn">
+                                            <input type="text" id="SoSan" name="SoSan" value="@Model.SoSan" class="form-control" required="required" placeholder="Nhập số sàn">
                                             <span />
                                         </div>
                                     </div>
@@ -146,19 +144,26 @@
                         </fieldset>
                         <h1>Thông tin chi phí mua xe và khấu hao</h1>
                         <fieldset>
+                            @*<div class="form-top">
+                                <div class="form-top-left">
+                                    <h3><span><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>Thông tin chi phí mua xe và khấu hao</h3>
+                                    <span/>
+                                </div>
+                            </div>*@
+
                             @*<h2>Profile Information</h2>*@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">Giá mua*:</label>
                                         <div class="col-lg-4">
-                                            <input class="touchspin3 required" id="GiaMua" name="GiaMua" value="@Model.GiaMua" type="text">
+                                            <input class="touchspin3" id="GiaMua" name="GiaMua" value="@Model.GiaMua" type="text" required="required">
                                             <span />
                                         </div>
 
                                         <label class="col-lg-2 control-label">Tổng tiền khấu hao*:</label>
                                         <div class="col-lg-4">
-                                            <input class="touchspin3 required" id="TongTienKhauHao" name="TongTienKhauHao" value="@Model.TongTienKhauHao" type="text">
+                                            <input class="touchspin3" id="TongTienKhauHao" name="TongTienKhauHao" value="@Model.TongTienKhauHao" type="text" required="required">
                                             <span />
                                         </div>
                                     </div>
@@ -166,13 +171,13 @@
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">Số tháng khấu hao*:</label>
                                         <div class="col-lg-4">
-                                            <input class="touchspin3 required" id="SoThangKhauHao" name="SoThangKhauHao" value="@Model.SoThangKhauHao" type="text">
+                                            <input class="touchspin3" id="SoThangKhauHao" name="SoThangKhauHao" value="@Model.SoThangKhauHao" type="text" required="required">
                                             <span />
                                         </div>
 
                                         <label class="col-lg-2 control-label">Tiền khấu hao hàng tháng*:</label>
                                         <div class="col-lg-4">
-                                            <input class="touchspin3 required" id="TienKhauHaoHangThang" name="TienKhauHaoHangThang" value="@Model.TienKhauHaoHangThang" type="text">
+                                            <input class="touchspin3" id="TienKhauHaoHangThang" name="TienKhauHaoHangThang" value="@Model.TienKhauHaoHangThang" type="text" required="required">
                                             <span />
                                         </div>
                                     </div>
@@ -221,17 +226,6 @@
                                     </div>*@
                             </div>
                         </fieldset>
-                        @*<h1>Warning</h1>
-                            <fieldset>
-                                <div class="text-center" style="margin-top: 120px">
-                                    <h2>You did it Man :-)</h2>
-                                </div>
-                            </fieldset>
-                            <h1>Finish</h1>
-                            <fieldset>
-                                <h2>Terms and Conditions</h2>
-                                <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
-                            </fieldset>*@
                     </form>
                 </div>
             </div>
@@ -302,10 +296,6 @@
         </div>
     </div>
 </div>
-
-@section Styles {
-    @*@Styles.Render("~/Content/animate.css")*@
-}
 
 @section Scripts {
     @Scripts.Render("~/plugins/iCheck")
@@ -453,10 +443,21 @@
                 }
             });
             //===================================================
-            $("#wizard").steps();
-            $("#formThongTinXe").steps({
-                bodyTag: "fieldset",
-                onStepChanging: function (event, currentIndex, newIndex) {
+            //$("#wizard").steps();
+            var formName = '#formThongTinXe';
+            //$(formName).content.body{
+            //    width: 100%
+            //    ,height: auto
+            //    , padding: 10px
+            //    , position: relative
+            //};
+            $(formName).steps({
+                /* Appearance */
+                headerTag: "h1"
+                , bodyTag: "fieldset"
+                , transitionEffect: "slideLeft"
+                /* Events */
+                , onStepChanging: function (event, currentIndex, newIndex) {
                     // Always allow going backward even if the current step contains invalid fields!
                     if (currentIndex > newIndex) {
                         return true;
@@ -481,8 +482,8 @@
 
                     // Start validation; Prevent going forward if false
                     return form.valid();
-                },
-                onStepChanged: function (event, currentIndex, priorIndex) {
+                }
+                , onStepChanged: function (event, currentIndex, priorIndex) {
                     // Suppress (skip) "Warning" step if the user is old enough.
                     //if (currentIndex === 2 && Number($("#age").val()) >= 18) {
                     //    $(this).steps("next");
@@ -492,8 +493,8 @@
                     //if (currentIndex === 2 && priorIndex === 3) {
                     //    $(this).steps("Quay lại");
                     //}
-                },
-                onFinishing: function (event, currentIndex) {
+                }
+                , onFinishing: function (event, currentIndex) {
                     var form = $(this);
 
                     // Disable validation on fields that are disabled.
@@ -502,21 +503,104 @@
 
                     // Start validation; Prevent form submission if false
                     return form.valid();
-                },
-                onFinished: function (event, currentIndex) {
-                    var form = $(this);
+                }
+                , onFinished: function (event, currentIndex) {
+                    //var form = $(this);
 
                     // Submit form input
-                    form.submit();
-                }
-            }).validate({
-                errorPlacement: function (error, element) {
-                    element.before(error);
-                },
-                rules: {
-                    //confirm: {
-                    //    equalTo: "#password"
+                    //form.submit();
+                    @*$.ajax({
+                        type: "POST"
+                        , datatype: "JSON"
+                        , url: '@Url.Action("LuuThongTinXe", "QuanLyXe")'
+                        , data: $(this).serialize()
+                        , success: function (response) {
+                            if (response != null) {
+                                //XoaDuLieuForm();
+                                $('#tableThongTinXe').DataTable().ajax.reload();
+                                ShowMessage(response);
+                            }//End If
+                            else {
+                                $('#output').text(msg);
+                            }
+                        }*@
+                    //success: function (data)
+                    //{
+                    //    var messageAlert = 'alert-' + data.type;
+                    //    var messageText = data.message;
+
+                    //    var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
+                    //    if (messageAlert && messageText) {
+                    //        $('#contact-form').find('.messages').html(alertBox);
+                    //        $('#contact-form')[0].reset();
+                    //    }
                     //}
+                    //});
+                }
+                /* Labels */
+                , labels: {
+                    cancel: "Hủy",
+                    current: "Bước hiện tại:",
+                    pagination: "Số trang",
+                    finish: "Lưu",
+                    next: "Tiếp theo",
+                    previous: "Trước",
+                    loading: "Tải dữ liệu ..."
+                }
+                /* Behaviour */
+                , enablePagination: true
+                , enableCancelButton: false
+                /* Templates */
+                , titleTemplate: '<span class="number">#index#.</span> #title#'
+                , loadingTemplate: '<span class="spinner"></span> #text#'
+            })
+            .validate({
+                //errorplacement: function (error, element) {
+                //    element.before(error);
+                //    //element.before('giá trị không hợp lệ.');
+                //},
+                rules: {
+                    HangSanXuatXeKey: {
+                        required: true
+                    },
+                    //LoaiXeKey: {
+                    //    required: true
+                    //},
+                    BangSoXe: {
+                        required: true
+                        , minlength: 9
+                    }
+                    , SoSan: {
+                        required: true
+                        , minlength: 9
+                    }
+                } ,
+                messages: {
+                    HangSanXuatXeKey: {
+                        //required: "Dữ liệu không hợp lệ<h5 class='text-danger'>Vui lòng chọn hãng sản xuất xe.</h5>"
+                        required: "Vui lòng chọn hãng sản xuất xe."
+                    },
+                    //LoaiXeKey: {
+                    //    required: "Vui lòng chọn loại xe."
+                    //},
+                    BangSoXe: {
+                        required: "Vui lòng nhập bảng số xe."
+                        , minlength: "Bảng số xe không được ngắn hớn 9 ký tự."
+                    }
+                    , SoSan: {
+                        required: "Vui lòng nhập số sàn của xe."
+                        , minlength: "Số sàn không được ngắn hớn 9 ký tự."
+                    }
+                },
+                //tooltip_options: {
+                //    HangSanXuatXeKey: { placement: 'right', html: true },
+                //    BangSoXe: { trigger: 'focus' },
+                //    SoSan: { placement: 'right', html: true }
+                //}
+                settings: {
+                    field: 'field', // class for each input wrapper
+                    alert: 'alert', // call on the alert tooltip
+                    bad: 'bad'    // classes for bad input
                 }
             });
             //===================================================
