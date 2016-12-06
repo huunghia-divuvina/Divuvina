@@ -8,6 +8,11 @@
 
     <title>INSPINIA | @ViewBag.Title</title>
 
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Optional Bootstrap theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <!-- Add local styles, mostly for plugins css file -->
     @if (IsSectionDefined("Styles"))
@@ -40,6 +45,7 @@
     @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
     @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
     @Styles.Render("~/plugins/wizardStepsStyles")
+    @Styles.Render("~/plugins/SmartWizard-master")
 
     @Styles.Render("~/Content/animate.css")
 
@@ -96,8 +102,6 @@
     @Scripts.Render("~/plugins/iCheck")
     <!-- Jquery Validate -->
     @Scripts.Render("~/plugins/validate")
-    <!-- Steps -->
-    @Scripts.Render("~/plugins/staps")
 
     <script type="text/javascript">
         function ShowMessage(response) {

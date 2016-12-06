@@ -330,8 +330,15 @@
     <Content Include="Content\plugins\slick\fonts\slick.svg" />
     <Content Include="Content\plugins\slick\slick-theme.css" />
     <Content Include="Content\plugins\slick\slick.css" />
+    <Content Include="Content\plugins\SmartWizard-master\smart_wizard.css" />
+    <Content Include="Content\plugins\SmartWizard-master\smart_wizard.min.css" />
+    <Content Include="Content\plugins\SmartWizard-master\smart_wizard_theme_arrows.css" />
+    <Content Include="Content\plugins\SmartWizard-master\smart_wizard_theme_arrows.min.css" />
+    <Content Include="Content\plugins\SmartWizard-master\smart_wizard_theme_circles.css" />
+    <Content Include="Content\plugins\SmartWizard-master\smart_wizard_theme_circles.min.css" />
+    <Content Include="Content\plugins\SmartWizard-master\smart_wizard_theme_dots.css" />
+    <Content Include="Content\plugins\SmartWizard-master\smart_wizard_theme_dots.min.css" />
     <Content Include="Content\plugins\social-buttons\social-buttons.css" />
-    <Content Include="Content\plugins\staps\jquery.steps.min.js" />
     <Content Include="Content\plugins\steps\jquery.steps.css" />
     <Content Include="Content\plugins\summernote\summernote-bs3.css" />
     <Content Include="Content\plugins\summernote\summernote.css" />
@@ -1684,6 +1691,8 @@
     <Content Include="Scripts\plugins\select2\select2.full.min.js" />
     <Content Include="Scripts\plugins\slick\slick.min.js" />
     <Content Include="Scripts\plugins\slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\plugins\SmartWizard-master\jquery.smartWizard.js" />
+    <Content Include="Scripts\plugins\SmartWizard-master\jquery.smartWizard.min.js" />
     <Content Include="Scripts\plugins\sparkline\jquery.sparkline.min.js" />
     <Content Include="Scripts\plugins\staps\jquery.steps.min.js" />
     <Content Include="Scripts\plugins\summernote\summernote.min.js" />

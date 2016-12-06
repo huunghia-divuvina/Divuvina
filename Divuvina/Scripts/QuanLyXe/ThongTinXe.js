@@ -19,24 +19,24 @@
         }
     });//EndLoadDataForLoaiGheSelector
 
-    //$('#HangSanXuatXeKey').change(function () {
-    //    var id = $(this).val();
-    //    //Load dữ liệu Danh mục loai xe
-    //    if (id != null) {
-    //        //var url = '@Url.Action("LayLoaiXeChoSelect", "QuanLyXe")';
-    //        var url = '/QuanLyXe/LayLoaiXeChoSelect';
-    //        $.getJSON(url, { hangSanXuatXeKey: id }, function (data) {
-    //            $('#LoaiXeKey').empty();
-    //            $("#LoaiXeKey").select2({
-    //                data: data
-    //            , placeholder: "Chọn loại xe"
-    //            , allowClear: true
-    //            });
-    //            $("#LoaiXeKey").val(null).trigger("change");
-    //            $('#LoaiXeKey').val($('#KeyLoaiXe').val()).change();
-    //        });
-    //    }
-    //});
+    $('#HangSanXuatXeKey').change(function () {
+        var id = $(this).val();
+        //Load dữ liệu Danh mục loai xe
+        if (id != null) {
+            //var url = '@Url.Action("LayLoaiXeChoSelect", "QuanLyXe")';
+            var url = '/QuanLyXe/LayLoaiXeChoSelect';
+            $.getJSON(url, { hangSanXuatXeKey: id }, function (data) {
+                $('#LoaiXeKey').empty();
+                $("#LoaiXeKey").select2({
+                    data: data
+                , placeholder: "Chọn loại xe"
+                , allowClear: true
+                });
+                $("#LoaiXeKey").val(null).trigger("change");
+                $('#LoaiXeKey').val($('#KeyLoaiXe').val()).change();
+            });
+        }
+    });
     //===================================================
     $("#btSave").on('click', function (e) {
         e.preventDefault();

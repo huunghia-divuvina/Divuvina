@@ -12,9 +12,13 @@
 </div>
 
 <div class="wrapper wrapper-content animated fadeInRight">
+    @*<div class="row">
+        <div class="col-lg-12">
+        </div>
+    </div>*@
     <div class="row">
         <div class="col-lg-12">
-            <div class="ibox">
+            <div class="ibox ibox-full">
                 <div class="ibox-title">
                     <h5>Thông tin xe và khấu hao</h5>
                     <div class="ibox-tools">
@@ -38,199 +42,176 @@
                     </div>
                 </div>
 
-                <div class="ibox-content">
-                    <form id="formThongTinXe" action="#" class="wizard-big form-horizontal m-t-md" role="form" autocomplete="off"  data-toggle="validator">
-                        <h1>Thông tin xe</h1>
-                        <fieldset>
-                            @*<div class="form-top">
-                                <div class="form-top-left">
-                                    <h3><span><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>Thông tin xe</h3>
-                                    <span />
-                                </div>
-                            </div>*@
-                            @*<h2>Account Information</h2>*@
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Hãng sản xuất xe:</label>
-                                        <div class="col-lg-4">
-                                            <input type="hidden" id="KeyHangSanXuatXe" name="KeyHangSanXuatXe" />
-                                            <select class="form-control" id="HangSanXuatXeKey" name="HangSanXuatXeKey"></select>
-                                            <span />
-                                        </div>
-                                        <label class="col-lg-2 control-label">Loại xe:</label>
-                                        <div class="col-lg-4">
-                                            <input type="hidden" id="KeyLoaiXe" name="KeyLoaiXe" />
-                                            <select class="form-control" id="LoaiXeKey" name="LoaiXeKey"></select>
-                                            <span />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Bảng số xe*:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" id="BangSoXe" name="BangSoXe" value="@Model.BangSoXe" class="form-control" required="required" placeholder="Nhập bảng số xe">
-                                            <span />
-                                        </div>
-                                        <label class="col-lg-2 control-label">Số sàn*:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" id="SoSan" name="SoSan" value="@Model.SoSan" class="form-control" required="required" placeholder="Nhập số sàn">
-                                            <span />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group" id="divNgayCapPhep">
-                                        <label class="col-lg-2 control-label">Màu:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" id="Mau" name="Mau" value="@Model.Mau" class="form-control" placeholder="Nhập màu xe">
-                                            <span />
-                                        </div>
-                                        <label class="col-lg-2 control-label">Ngày cấp phép:</label>
-                                        <div class="col-lg-4">
-                                            <div class="input-group date">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </span>
-                                                <input type="text" id="NgayCapPhep" name="NgayCapPhep" value="@Model.NgayCapPhep.ToString("dd-MM-yyyy")" class="form-control">
-                                                <span />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label"></label>
-                                        <div class="col-lg-3">
-                                            <div class="checkbox checkbox-primary checkbox-inline">
-                                                <input type="checkbox" id="CoWifi" name="CoWifi" class="form-control">
-                                                <label for="CoWifi"><b>Có Wifi</b></label>
-                                                <input type="hidden" id="hdCoWifi" name="hdCoWifi" value="@Model.CoWifi" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="checkbox checkbox-success checkbox-inline">
-                                                <input type="checkbox" id="CoTivi" name="CoTivi" class="form-control">
-                                                <label for="CoTivi"><b>Có Tivi</b></label>
-                                                <input type="hidden" id="hdCoTivi" name="hdCoTivi" value="@Model.CoTivi" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="checkbox checkbox-info checkbox-inline">
-                                                <input type="checkbox" id="CoCameraHanhTrinh" name="CoCameraHanhTrinh" class="form-control">
-                                                <label for="CoCameraHanhTrinh"><b>Có camera hành trình</b></label>
-                                                <span />
-                                                <input type="hidden" id="hdCoCameraHanhTrinh" name="hdCoCameraHanhTrinh" value="@Model.CoCameraHanhTrinh" />
-                                            </div>
-                                        </div>
-                                        <label class="col-lg-1 control-label"></label>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Ghi chú thông tin xe:</label>
-                                        <div class="col-lg-10">
-                                            <input type="text" id="GhiChuThongTinXe" name="GhiChuThongTinXe" value="@Model.GhiChuThongTinXe" class="form-control" placeholder="Nhập thông tin ghi chú về xe">
-                                            <span />
-                                        </div>
-                                    </div>
-
-                                </div>
-                                @*<div class="col-lg-4">
-                                        <div class="text-center">
-                                            <div style="margin-top: 20px">
-                                                <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
-                                            </div>
-                                        </div>
-                                    </div>*@
-                            </div>
-                        </fieldset>
-                        <h1>Thông tin chi phí mua xe và khấu hao</h1>
-                        <fieldset>
-                            @*<div class="form-top">
-                                <div class="form-top-left">
-                                    <h3><span><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>Thông tin chi phí mua xe và khấu hao</h3>
-                                    <span/>
-                                </div>
-                            </div>*@
-
-                            @*<h2>Profile Information</h2>*@
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Giá mua*:</label>
-                                        <div class="col-lg-4">
-                                            <input class="touchspin3" id="GiaMua" name="GiaMua" value="@Model.GiaMua" type="text" required="required">
-                                            <span />
-                                        </div>
-
-                                        <label class="col-lg-2 control-label">Tổng tiền khấu hao*:</label>
-                                        <div class="col-lg-4">
-                                            <input class="touchspin3" id="TongTienKhauHao" name="TongTienKhauHao" value="@Model.TongTienKhauHao" type="text" required="required">
-                                            <span />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Số tháng khấu hao*:</label>
-                                        <div class="col-lg-4">
-                                            <input class="touchspin3" id="SoThangKhauHao" name="SoThangKhauHao" value="@Model.SoThangKhauHao" type="text" required="required">
-                                            <span />
-                                        </div>
-
-                                        <label class="col-lg-2 control-label">Tiền khấu hao hàng tháng*:</label>
-                                        <div class="col-lg-4">
-                                            <input class="touchspin3" id="TienKhauHaoHangThang" name="TienKhauHaoHangThang" value="@Model.TienKhauHaoHangThang" type="text" required="required">
-                                            <span />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group" id="divNgayKhauHao">
-                                        <label class="col-lg-2 control-label">Ngày bắt đầu khấu hao:</label>
-                                        <div class="col-lg-4">
-                                            <div class="input-group date">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </span>
-                                                <input type="text" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayBatDauKhauHao).ToString("dd-MM-yyyy")" class="form-control">
-                                                <span />
-                                            </div>
-                                        </div>
-
-                                        <label class="col-lg-2 control-label">Ngày kết thúc khấu hao:</label>
-                                        <div class="col-lg-4">
-                                            <div class="input-group date">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </span>
-                                                <input type="text" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayKetThucKhauHao).ToString("dd-MM-yyyy")" class="form-control">
-                                                <span />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Ghi chú khấu hao:</label>
-                                        <div class="col-lg-10">
-                                            <input type="text" id="GhiChuKhauHaoXe" name="GhiChuKhauHaoXe" value="@Model.GhiChuKhauHaoXe" class="form-control" placeholder="Nhập thông tin ghi chú khấu hao xe">
-                                            <span />
-                                        </div>
-                                    </div>
-                                </div>
-                                @*<div class="col-lg-6">
+                <div class="ibox-content  ibox-full">
+                    <form id="formThongTinXe" action="#" class="wizard-big form-horizontal m-t-md form-step" role="form" autocomplete="off" data-toggle="validator" accept-charset="utf-8">
+                        <div class="col-lg-12" id="smartwizard">
+                            <ul>
+                                <li><a href="#step-1">Bước 1<br /><small>Thông tin xe</small></a></li>
+                                <li><a href="#step-2">Bước 2<br /><small>Thông tin chi phí mua xe và khấu hao</small></a></li>
+                            </ul>
+                            <div>
+                                <div id="step-1" class="">
+                                    <div id="form-step-0" role="form" data-toggle="validator">
                                         <div class="form-group">
-                                            <label>Email *</label>
-                                            <input id="email" name="email" type="text" class="form-control required email">
+                                            <label class="col-lg-2 control-label">Hãng sản xuất xe:</label>
+                                            <div class="col-lg-4">
+                                                <input type="hidden" id="KeyHangSanXuatXe" name="KeyHangSanXuatXe" />
+                                                <select class="form-control" id="HangSanXuatXeKey" name="HangSanXuatXeKey"></select>
+                                                <span />
+                                            </div>
+                                            <label class="col-lg-2 control-label">Loại xe:</label>
+                                            <div class="col-lg-4">
+                                                <input type="hidden" id="KeyLoaiXe" name="KeyLoaiXe" />
+                                                <select class="form-control" id="LoaiXeKey" name="LoaiXeKey"></select>
+                                                <span />
+                                            </div>
+                                            <div class="help-block with-errors"></div>
                                         </div>
+
                                         <div class="form-group">
-                                            <label>Address *</label>
-                                            <input id="address" name="address" type="text" class="form-control">
+                                            <label class="col-lg-2 control-label">Bảng số xe*:</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" id="BangSoXe" name="BangSoXe" value="@Model.BangSoXe" class="form-control" required="required" placeholder="Nhập bảng số xe">
+                                                <span />
+                                            </div>
+                                            <label class="col-lg-2 control-label">Số sàn*:</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" id="SoSan" name="SoSan" value="@Model.SoSan" class="form-control" required="required" placeholder="Nhập số sàn">
+                                                <span />
+                                            </div>
+                                            <div class="help-block with-errors"></div>
                                         </div>
-                                    </div>*@
+
+                                        <div class="form-group" id="divNgayCapPhep">
+                                            <label class="col-lg-2 control-label">Màu:</label>
+                                            <div class="col-lg-4">
+                                                <input type="text" id="Mau" name="Mau" value="@Model.Mau" class="form-control" placeholder="Nhập màu xe">
+                                                <span />
+                                            </div>
+                                            <label class="col-lg-2 control-label">Ngày cấp phép:</label>
+                                            <div class="col-lg-4">
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                    <input type="text" id="NgayCapPhep" name="NgayCapPhep" value="@Model.NgayCapPhep.ToString("dd-MM-yyyy")" class="form-control">
+                                                    <span />
+                                                </div>
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label"></label>
+                                            <div class="col-lg-3">
+                                                <div class="checkbox checkbox-primary checkbox-inline">
+                                                    <input type="checkbox" id="CoWifi" name="CoWifi" class="form-control">
+                                                    <label for="CoWifi"><b>Có Wifi</b></label>
+                                                    <input type="hidden" id="hdCoWifi" name="hdCoWifi" value="@Model.CoWifi" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="checkbox checkbox-success checkbox-inline">
+                                                    <input type="checkbox" id="CoTivi" name="CoTivi" class="form-control">
+                                                    <label for="CoTivi"><b>Có Tivi</b></label>
+                                                    <input type="hidden" id="hdCoTivi" name="hdCoTivi" value="@Model.CoTivi" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="checkbox checkbox-info checkbox-inline">
+                                                    <input type="checkbox" id="CoCameraHanhTrinh" name="CoCameraHanhTrinh" class="form-control">
+                                                    <label for="CoCameraHanhTrinh"><b>Có camera hành trình</b></label>
+                                                    <span />
+                                                    <input type="hidden" id="hdCoCameraHanhTrinh" name="hdCoCameraHanhTrinh" value="@Model.CoCameraHanhTrinh" />
+                                                </div>
+                                            </div>
+                                            <label class="col-lg-1 control-label"></label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">Ghi chú thông tin xe:</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" id="GhiChuThongTinXe" name="GhiChuThongTinXe" value="@Model.GhiChuThongTinXe" class="form-control" placeholder="Nhập thông tin ghi chú về xe">
+                                                <span />
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="step-2" class="">
+                                    <div id="form-step-1" role="form" data-toggle="validator">
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">Giá mua*:</label>
+                                            <div class="col-lg-4">
+                                                <input class="touchspin3" id="GiaMua" name="GiaMua" value="@Model.GiaMua" type="text" required="required">
+                                                <span />
+                                            </div>
+
+                                            <label class="col-lg-2 control-label">Tổng tiền khấu hao*:</label>
+                                            <div class="col-lg-4">
+                                                <input class="touchspin3" id="TongTienKhauHao" name="TongTienKhauHao" value="@Model.TongTienKhauHao" type="text" required="required">
+                                                <span />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">Số tháng khấu hao*:</label>
+                                            <div class="col-lg-4">
+                                                <input class="touchspin3" id="SoThangKhauHao" name="SoThangKhauHao" value="@Model.SoThangKhauHao" type="text" required="required">
+                                                <span />
+                                            </div>
+
+                                            <label class="col-lg-2 control-label">Tiền khấu hao hàng tháng*:</label>
+                                            <div class="col-lg-4">
+                                                <input class="touchspin3" id="TienKhauHaoHangThang" name="TienKhauHaoHangThang" value="@Model.TienKhauHaoHangThang" type="text" required="required">
+                                                <span />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" id="divNgayKhauHao">
+                                            <label class="col-lg-2 control-label">Ngày bắt đầu khấu hao:</label>
+                                            <div class="col-lg-4">
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                    <input type="text" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayBatDauKhauHao).ToString("dd-MM-yyyy")" class="form-control">
+                                                    <span />
+                                                </div>
+                                            </div>
+
+                                            <label class="col-lg-2 control-label">Ngày kết thúc khấu hao:</label>
+                                            <div class="col-lg-4">
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                    <input type="text" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayKetThucKhauHao).ToString("dd-MM-yyyy")" class="form-control">
+                                                    <span />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">Ghi chú khấu hao:</label>
+                                            <div class="col-lg-10">
+                                                <input type="text" id="GhiChuKhauHaoXe" name="GhiChuKhauHaoXe" value="@Model.GhiChuKhauHaoXe" class="form-control" placeholder="Nhập thông tin ghi chú khấu hao xe">
+                                                <span />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                        </fieldset>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="row">
         <div class="col-lg-12">
@@ -296,7 +277,17 @@
         </div>
     </div>
 </div>
-
+<style>
+    .ibox-full{
+        width: auto !important;
+        padding: 0px 0px 0px 0px !important;
+        margin: 0px 0px 0px 0px !important;
+        /*background-color: transparent !important;*/
+    }
+    .form-step{
+        background-color: transparent !important;
+    }
+</style>
 @section Scripts {
     @Scripts.Render("~/plugins/iCheck")
     @Scripts.Render("~/plugins/dataPicker")
@@ -332,6 +323,8 @@
     @Scripts.Render("~/plugins/dateRange")
     @Scripts.Render("~/plugins/select2")
     @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/wizardSteps")
+    @Scripts.Render("~/plugins/SmartWizard-master")
 
     @Scripts.Render("~/Scripts/Public/ShowMessage.js")
     @Scripts.Render("~/Scripts/Public/SettingControls.js")
@@ -424,186 +417,116 @@
             //        -moz-appearance: number-input;
             //    }
             //===================================================
-            $('#HangSanXuatXeKey').change(function () {
-                var id = $(this).val();
-                //Load dữ liệu Danh mục loai xe
-                if (id != null) {
-                    var url = '@Url.Action("LayLoaiXeChoSelect", "QuanLyXe")';
-                    //var url = '/QuanLyXe/LayLoaiXeChoSelect';
-                    $.getJSON(url, { hangSanXuatXeKey: id }, function (data) {
-                        $('#LoaiXeKey').empty();
-                        $("#LoaiXeKey").select2({
-                            data: data
-                        , placeholder: "Chọn loại xe"
-                        , allowClear: true
-                        });
-                        $("#LoaiXeKey").val(null).trigger("change");
-                        $('#LoaiXeKey').val($('#KeyLoaiXe').val()).change();
-                    });
-                }
-            });
             //===================================================
-            //$("#wizard").steps();
-            var formName = '#formThongTinXe';
-            //$(formName).content.body{
-            //    width: 100%
-            //    ,height: auto
-            //    , padding: 10px
-            //    , position: relative
-            //};
-            $(formName).steps({
-                /* Appearance */
-                headerTag: "h1"
-                , bodyTag: "fieldset"
-                , transitionEffect: "slideLeft"
-                /* Events */
-                , onStepChanging: function (event, currentIndex, newIndex) {
-                    // Always allow going backward even if the current step contains invalid fields!
-                    if (currentIndex > newIndex) {
-                        return true;
-                    }
+            //===================================================
+            // Smart Wizard
+            $('#smartwizard').smartWizard({
+                selected: 0, //Specify the selected step on the first load.
+                //keyNavigation: true, //Enable or disable key navigation.
+                //autoAdjustHeight: true, //Automatically adjust content height.
+                //cycleSteps: true, //Allows to cycle the navigation of steps.
+                //backButtonSupport: true, //Enable the back button support.
+                //contentURL: null, //Content url, Enables Ajax content loading. can set as data data-content-url on anchor.
+                //disableSteps: [], //Array Steps disable.
+                //errorSteps: [0], //Highlight step with errors.
+                theme: 'dots',
+                transitionEffect: 'slide', //none/slide/fade
+                transitionSpeed: 400,
+                toolbarSettings: {
+                    toolbarPosition: 'bottom',//none/top/bottom/both
+                    //toolbarPosition: 'right', //left/right
+                    //showNextButton: true,
+                    //showPreviousButton: true,
+                    toolbarExtraButtons: [
+                            {
+                                label: 'Lưu', css: 'btn-info disabled btn-finish', onClick: function () {
+                                    //alert('Finish Clicked');
+                                    if (!$(this).hasClass('disabled')) {
 
-                    // Forbid suppressing "Warning" step if the user is to young
-                    //if (newIndex === 3 && Number($("#age").val()) < 18) {
-                    //    return false;
-                    //}
+                                        //var elmForm = $("#formThongTinXe");
+                                        //if (elmForm) {
+                                        //    //elmForm.validator('validate');
+                                        //    elmForm.validator();
+                                        //    var elmErr = elmForm.find('.has-error');
+                                        //    if (elmErr && elmErr.length > 0) {
+                                        //        alert('Oops we still have error in the form');
+                                        //        return false;
+                                        //    } else {
+                                        //        alert('Great! we are ready to submit form');
+                                        //        elmForm.submit();
+                                        //        return false;
+                                        //    }
+                                        //}
+                                    }
+                                }
+                            },
+                            {
+                                label: 'Tạo mới', css: 'btn-danger', onClick: function () {
+                                    //$('#smartwizard').smartWizard("reset");
+                                    $('#XeKey').val('');
+                                    $('#HangSanXuatXeKey').change();
+                                    $('#LoaiXeKey').change();
+                                    $('#KeyLoaiXe').val('');
+                                    $('#BangSoXe').val('');
+                                    $('#SoSan').val('');
+                                    $('#Mau').val('');
+                                    $('#NgayCapPhep').val(Date);
+                                    $('#CoWifi').prop('checked', true);
+                                    $('#CoTivi').prop('checked', true);
+                                    $('#CoCameraHanhTrinh').prop('CoCameraHanhTrinh', true);
+                                    $('#hdCoWifi').attr("value", true);
+                                    $('#hdCoTivi').attr("value", true);
+                                    $('#hdCoCameraHanhTrinh').attr("value", true);
 
-                    var form = $(this);
-
-                    // Clean up if user went backward before
-                    if (currentIndex < newIndex) {
-                        // To remove error styles
-                        $(".body:eq(" + newIndex + ") label.error", form).remove();
-                        $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
-                    }
-
-                    // Disable validation on fields that are disabled or hidden.
-                    form.validate().settings.ignore = ":disabled,:hidden";
-
-                    // Start validation; Prevent going forward if false
-                    return form.valid();
-                }
-                , onStepChanged: function (event, currentIndex, priorIndex) {
-                    // Suppress (skip) "Warning" step if the user is old enough.
-                    //if (currentIndex === 2 && Number($("#age").val()) >= 18) {
-                    //    $(this).steps("next");
-                    //}
-
-                    // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
-                    //if (currentIndex === 2 && priorIndex === 3) {
-                    //    $(this).steps("Quay lại");
-                    //}
-                }
-                , onFinishing: function (event, currentIndex) {
-                    var form = $(this);
-
-                    // Disable validation on fields that are disabled.
-                    // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
-                    form.validate().settings.ignore = ":disabled";
-
-                    // Start validation; Prevent form submission if false
-                    return form.valid();
-                }
-                , onFinished: function (event, currentIndex) {
-                    //var form = $(this);
-
-                    // Submit form input
-                    //form.submit();
-                    @*$.ajax({
-                        type: "POST"
-                        , datatype: "JSON"
-                        , url: '@Url.Action("LuuThongTinXe", "QuanLyXe")'
-                        , data: $(this).serialize()
-                        , success: function (response) {
-                            if (response != null) {
-                                //XoaDuLieuForm();
-                                $('#tableThongTinXe').DataTable().ajax.reload();
-                                ShowMessage(response);
-                            }//End If
-                            else {
-                                $('#output').text(msg);
+                                    $('#GhiChuThongTinXe').val('');
+                                    $('#GiaMua').val(0);
+                                    $('#TongTienKhauHao').val(0);
+                                    $('#SoThangKhauHao').val(12);
+                                    $('#TienKhauHaoHangThang').val(0);
+                                    $('#NgayBatDauKhauHao').val(Date);
+                                    $('#NgayKetThucKhauHao').val(Date);
+                                    $('#GhiChuKhauHaoXe').val('');
+                                }
                             }
-                        }*@
-                    //success: function (data)
-                    //{
-                    //    var messageAlert = 'alert-' + data.type;
-                    //    var messageText = data.message;
-
-                    //    var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
-                    //    if (messageAlert && messageText) {
-                    //        $('#contact-form').find('.messages').html(alertBox);
-                    //        $('#contact-form')[0].reset();
-                    //    }
-                    //}
-                    //});
-                }
-                /* Labels */
-                , labels: {
-                    cancel: "Hủy",
-                    current: "Bước hiện tại:",
-                    pagination: "Số trang",
-                    finish: "Lưu",
-                    next: "Tiếp theo",
-                    previous: "Trước",
-                    loading: "Tải dữ liệu ..."
-                }
-                /* Behaviour */
-                , enablePagination: true
-                , enableCancelButton: false
-                /* Templates */
-                , titleTemplate: '<span class="number">#index#.</span> #title#'
-                , loadingTemplate: '<span class="spinner"></span> #text#'
-            })
-            .validate({
-                //errorplacement: function (error, element) {
-                //    element.before(error);
-                //    //element.before('giá trị không hợp lệ.');
-                //},
-                rules: {
-                    HangSanXuatXeKey: {
-                        required: true
-                    },
-                    //LoaiXeKey: {
-                    //    required: true
-                    //},
-                    BangSoXe: {
-                        required: true
-                        , minlength: 9
-                    }
-                    , SoSan: {
-                        required: true
-                        , minlength: 9
-                    }
-                } ,
-                messages: {
-                    HangSanXuatXeKey: {
-                        //required: "Dữ liệu không hợp lệ<h5 class='text-danger'>Vui lòng chọn hãng sản xuất xe.</h5>"
-                        required: "Vui lòng chọn hãng sản xuất xe."
-                    },
-                    //LoaiXeKey: {
-                    //    required: "Vui lòng chọn loại xe."
-                    //},
-                    BangSoXe: {
-                        required: "Vui lòng nhập bảng số xe."
-                        , minlength: "Bảng số xe không được ngắn hớn 9 ký tự."
-                    }
-                    , SoSan: {
-                        required: "Vui lòng nhập số sàn của xe."
-                        , minlength: "Số sàn không được ngắn hớn 9 ký tự."
-                    }
-                },
-                //tooltip_options: {
-                //    HangSanXuatXeKey: { placement: 'right', html: true },
-                //    BangSoXe: { trigger: 'focus' },
-                //    SoSan: { placement: 'right', html: true }
-                //}
-                settings: {
-                    field: 'field', // class for each input wrapper
-                    alert: 'alert', // call on the alert tooltip
-                    bad: 'bad'    // classes for bad input
+                    ]
+                },//End-toolbarSettings
+                //anchorSettings: {
+                //    anchorClickable: false, //Enable or disable the click option on the step header anchors.
+                //    enableAllAnchors: false, //Enable all anchors on load
+                //    markDoneStepp: true, //Make already visited steps as done.
+                //    enableAnchorOnDoneStep: true //Enable or disable the done steps navigation.
+                //},//End-anchorSettings
+                lang: {
+                    next: 'Tiếp theo',
+                    previous: 'Quay lại'
                 }
             });
-            //===================================================
+
+
+            //$("#smartwizard").on("leaveStep", function (e, anchorObject, stepNumber, stepDirection) {
+            //    var elmForm = $("#form-step-" + stepNumber);
+            //    // stepDirection === 'forward' :- this condition allows to do the form validation 
+            //    // only on forward navigation, that makes easy navigation on backwards still do the validation when going next
+            //    if (stepDirection === 'forward' && elmForm) {
+            //        elmForm.validator('validate');
+            //        var elmErr = elmForm.children('.has-error');
+            //        if (elmErr && elmErr.length > 0) {
+            //            // Form validation failed
+            //            return false;
+            //        }
+            //    }
+            //    return true;
+            //});
+
+            $("#smartwizard").on("showStep", function (e, anchorObject, stepNumber, stepDirection) {
+                // Enable finish button only on last step
+                if (stepNumber == 1) {
+                    $('.btn-finish').removeClass('disabled');
+                } else {
+                    $('.btn-finish').addClass('disabled');
+                }
+            });
+        
         })//EndFunction-DocumentReady
 
     </script>

@@ -410,9 +410,23 @@ namespace Divuvina
                       "~/Scripts/plugins/bootstrap-markdown/bootstrap-markdown.js",
                       "~/Scripts/plugins/bootstrap-markdown/markdown.js"));
 
-            // Steps
-            bundles.Add(new StyleBundle("~/plugins/staps").Include(
-                      "~/Content/plugins/staps/jquery.steps.min.js"));
+            // SmartWizard-master  Styless
+            bundles.Add(new StyleBundle("~/plugins/SmartWizard-master").Include(
+                      "~/Content/plugins/SmartWizard-master/smart_wizard.css",
+                      "~/Content/plugins/SmartWizard-master/smart_wizard.min.css",
+                      "~/Content/plugins/SmartWizard-master/smart_wizard_theme_arrows.css",
+                      "~/Content/plugins/SmartWizard-master/smart_wizard_theme_arrows.min.css",
+                      "~/Content/plugins/SmartWizard-master/smart_wizard_theme_circles.css",
+                      "~/Content/plugins/SmartWizard-master/smart_wizard_theme_circles.min.css",
+                      "~/Content/plugins/SmartWizard-master/smart_wizard_theme_dots.css",
+                      "~/Content/plugins/SmartWizard-master/smart_wizard_theme_dots.min.css"));
+
+            // SmartWizard-master Spin
+            bundles.Add(new ScriptBundle("~/plugins/SmartWizard-master").Include(
+                      "~/Scripts/plugins/SmartWizard-master/jquery.smartWizard.js",
+                      "~/Scripts/plugins/SmartWizard-master/jquery.smartWizard.min.js"));
+
+
         }
     }
 }
