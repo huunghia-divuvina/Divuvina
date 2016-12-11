@@ -36,16 +36,16 @@
                                     <a href="#">Config option 2</a>
                                 </li>
                             </ul>*@
-                        <a class="close-link">
+                        @*<a class="close-link">
                             <i class="fa fa-times"></i>
-                        </a>
+                        </a>*@
                     </div>
                 </div>
 
                 <div class="ibox-content  ibox-full">
-                    <form id="formThongTinXe" action="#" class="wizard-big form-horizontal m-t-md form-step" role="form" autocomplete="off" data-toggle="validator" accept-charset="utf-8">
+                    <form id="formThongTinXe" action="#" class="wizard-big form-horizontal m-t-md" role="form" autocomplete="off" data-toggle="validator" accept-charset="utf-8">
                         <div class="col-lg-12" id="smartwizard">
-                            <ul>
+                            <ul class="step-anchor-small">
                                 <li><a href="#step-1">Bước 1<br /><small>Thông tin xe</small></a></li>
                                 <li><a href="#step-2">Bước 2<br /><small>Thông tin chi phí mua xe và khấu hao</small></a></li>
                             </ul>
@@ -206,12 +206,18 @@
 
                             </div>
                         </div>
+                        <input type="hidden" id="XeKey" name="XeKey" value="@Model.XeKey" />
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-lg-12">
+            <span/>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-lg-12">
@@ -233,9 +239,9 @@
                                     <a href="#">Config option 2</a>
                                 </li>
                             </ul>*@
-                        <a class="close-link">
+                        @*<a class="close-link">
                             <i class="fa fa-times"></i>
-                        </a>
+                        </a>*@
                     </div>
                 </div>
 
@@ -280,12 +286,17 @@
 <style>
     .ibox-full{
         width: auto !important;
-        padding: 0px 0px 0px 0px !important;
-        margin: 0px 0px 0px 0px !important;
-        /*background-color: transparent !important;*/
+        /*margin: 0px 0px 0px 0px !important;*/
+        padding: 0px 5px 0px 5px !important;
+        height: auto;
+        background: white !important;
     }
-    .form-step{
-        background-color: transparent !important;
+    /*.form-step{
+        background-color: white !important;
+    }*/
+    .step-anchor-small{
+        margin-top: 0px !important;
+        background: white !important;
     }
 </style>
 @section Scripts {
@@ -384,8 +395,8 @@
 
             $(".touchspin3").TouchSpin({
                 verticalbuttons: true,
-                //verticalupclass: 'glyphicon glyphicon-plus',
-                //verticaldownclass: 'glyphicon glyphicon-minus'
+                verticalupclass: 'glyphicon glyphicon-plus',
+                verticaldownclass: 'glyphicon glyphicon-minus'
             });
             //===================================================
             $('#GiaMua').change(function () {
@@ -422,21 +433,21 @@
             // Smart Wizard
             $('#smartwizard').smartWizard({
                 selected: 0, //Specify the selected step on the first load.
-                //keyNavigation: true, //Enable or disable key navigation.
-                //autoAdjustHeight: true, //Automatically adjust content height.
-                //cycleSteps: true, //Allows to cycle the navigation of steps.
-                //backButtonSupport: true, //Enable the back button support.
-                //contentURL: null, //Content url, Enables Ajax content loading. can set as data data-content-url on anchor.
-                //disableSteps: [], //Array Steps disable.
-                //errorSteps: [0], //Highlight step with errors.
-                theme: 'dots',
+                keyNavigation: true, //Enable or disable key navigation.
+                autoAdjustHeight: false, //Automatically adjust content height.
+                cycleSteps: false, //Allows to cycle the navigation of steps.
+                backButtonSupport: true, //Enable the back button support.
+                contentURL: null, //Content url, Enables Ajax content loading. can set as data data-content-url on anchor.
+                disableSteps: [], //Array Steps disable.
+                errorSteps: [0], //Highlight step with errors.
+                theme: 'arrows',
                 transitionEffect: 'slide', //none/slide/fade
                 transitionSpeed: 400,
                 toolbarSettings: {
                     toolbarPosition: 'bottom',//none/top/bottom/both
-                    //toolbarPosition: 'right', //left/right
-                    //showNextButton: true,
-                    //showPreviousButton: true,
+                    toolbarPosition: 'right', //left/right
+                    showNextButton: true,
+                    showPreviousButton: true,
                     toolbarExtraButtons: [
                             {
                                 label: 'Lưu', css: 'btn-info disabled btn-finish', onClick: function () {
@@ -457,12 +468,48 @@
                                         //        return false;
                                         //    }
                                         //}
+
+                                        //LuuThongTinXe();
+                                        $('#KeyHangSanXuatXe').val($('#HangSanXuatXeKey').val());
+                                        $('#KeyLoaiXe').val($('#LoaiXeKey').val());
+
+                                        //Save
+                                        //==================================
+                                        $.ajax({
+                                            type: "POST",
+                                            datatype: "JSON",
+                                            url: '@Url.Action("LuuThongTinXe", "QuanLyXe")',
+                                            data: $('#formThongTinXe').serialize(),
+                                            //----------------------------------
+                                            success: function (response) {
+                                                if (response != null) {
+                                                    //XoaDuLieuForm();
+                                                    $('#tableThongTinXe').DataTable().ajax.reload();
+                                                    ShowMessage(response);
+                                                }//End If
+                                                else {
+                                                    $('#output').text(msg);
+                                                }
+                                            },
+                                            //----------------------------------
+                                            //complete: function () {
+
+                                            //},
+                                            //----------------------------------
+                                            failure: function (msg) {
+                                                $('#output').text(msg);
+                                            },
+                                            //----------------------------------
+                                            //error: function (jqXhr, exception) {
+                                            //    ShowMessage(response);
+                                            //    //if (jqXhr.status != 0) ShowMessage(response); //alert('Thực hiện không thành công');
+                                            //}
+                                        });//End ajax
                                     }
                                 }
                             },
                             {
                                 label: 'Tạo mới', css: 'btn-danger', onClick: function () {
-                                    //$('#smartwizard').smartWizard("reset");
                                     $('#XeKey').val('');
                                     $('#HangSanXuatXeKey').change();
                                     $('#LoaiXeKey').change();
@@ -505,7 +552,7 @@
 
             //$("#smartwizard").on("leaveStep", function (e, anchorObject, stepNumber, stepDirection) {
             //    var elmForm = $("#form-step-" + stepNumber);
-            //    // stepDirection === 'forward' :- this condition allows to do the form validation 
+            //    // stepDirection === 'forward' :- this condition allows to do the form validation
             //    // only on forward navigation, that makes easy navigation on backwards still do the validation when going next
             //    if (stepDirection === 'forward' && elmForm) {
             //        elmForm.validator('validate');
@@ -518,15 +565,15 @@
             //    return true;
             //});
 
-            $("#smartwizard").on("showStep", function (e, anchorObject, stepNumber, stepDirection) {
-                // Enable finish button only on last step
-                if (stepNumber == 1) {
-                    $('.btn-finish').removeClass('disabled');
-                } else {
-                    $('.btn-finish').addClass('disabled');
-                }
-            });
-        
+            //$("#smartwizard").on("showStep", function (e, anchorObject, stepNumber, stepDirection) {
+            //    // Enable finish button only on last step
+            //    if (stepNumber == 1) {
+            //        $('.btn-finish').removeClass('disabled');
+            //    } else {
+            //        $('.btn-finish').addClass('disabled');
+            //    }
+            //});
+
         })//EndFunction-DocumentReady
 
     </script>

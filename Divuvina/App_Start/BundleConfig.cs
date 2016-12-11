@@ -411,7 +411,7 @@ namespace Divuvina
                       "~/Scripts/plugins/bootstrap-markdown/markdown.js"));
 
             // SmartWizard-master  Styless
-            bundles.Add(new StyleBundle("~/plugins/SmartWizard-master").Include(
+            bundles.Add(new StyleBundle("~/Content/plugins/SmartWizard-master").Include(
                       "~/Content/plugins/SmartWizard-master/smart_wizard.css",
                       "~/Content/plugins/SmartWizard-master/smart_wizard.min.css",
                       "~/Content/plugins/SmartWizard-master/smart_wizard_theme_arrows.css",
