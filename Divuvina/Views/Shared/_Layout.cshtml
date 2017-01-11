@@ -49,7 +49,7 @@
 
     @Styles.Render("~/Content/animate.css")
 
-    <link href="~/Content/Divuvina/DivuvinaTable.css" rel="stylesheet" />
+    @Styles.Render("~/Divuvina")
     
 </head>
 <body>
@@ -103,27 +103,32 @@
     <!-- Jquery Validate -->
     @Scripts.Render("~/plugins/validate")
 
+
+    <!-- Hàm dùng chung tự viết -->
+    @Scripts.Render("~/Public/HamDungChung")
+
+
     <script type="text/javascript">
-        function ShowMessage(response) {
-            toastr.options = {
-                closeButton: true
-                , timeOut: 7000
-            };
-            if (response.Result == true)
-                toastr.success(response.Message, response.Title);
-            else
-                toastr.error(response.Message, response.Title);
-        }
+        //function ShowMessage(response) {
+        //    toastr.options = {
+        //        closeButton: true
+        //        , timeOut: 7000
+        //    };
+        //    if (response.Result == true)
+        //        toastr.success(response.Message, response.Title);
+        //    else
+        //        toastr.error(response.Message, response.Title);
+        //}
 
-        function formatDateToString(inDate, inFormat) {
-            if (!isNullOrUndefined(inDate) && inDate != '')
-                return moment.utc(inDate, 'x').format(inFormat);
-            else return '';
-        }
+        //function formatDateToString(inDate, inFormat) {
+        //    if (!isNullOrUndefined(inDate) && inDate != '')
+        //        return moment.utc(inDate, 'x').format(inFormat);
+        //    else return '';
+        //}
 
-        function isNullOrUndefined(value) {
-            return (typeof (value) === 'undefined' || value === null);
-        }
+        //function isNullOrUndefined(value) {
+        //    return (typeof (value) === 'undefined' || value === null);
+        //}
     </script>
 
     <div class="modal inmodal" id="waitModal" tabindex="-1" role="dialog" aria-hidden="true">

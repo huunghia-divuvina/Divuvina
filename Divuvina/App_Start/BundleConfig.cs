@@ -427,6 +427,20 @@ namespace Divuvina
                       "~/Scripts/plugins/SmartWizard-master/jquery.smartWizard.min.js"));
 
 
+            #region Divuvina.
+
+            bundles.Add(new StyleBundle("~/Divuvina").Include(
+                      "~/Content/Divuvina/divuvina.css"));
+
+            bundles.Add(new ScriptBundle("~/Public/HamDungChung").Include(
+                "~/Scripts/Public/ClientGlobalVars.js",
+                "~/Scripts/Public/ConvertingFunctions.js",
+                "~/Scripts/Public/ValidationFunctions.js",
+                "~/Scripts/Public/ShowMessage.js",
+                "~/Scripts/Public/SettingControls.js"
+                ));
+
+            #endregion
         }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbSpModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbSpModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <Function Name="sp_LayThongTinXe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ThongTinXe" Type="nvarchar" Mode="In" />
         </Function>
@@ -12,17 +12,16 @@
           <Parameter Name="key" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="dbSpModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbSpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="dbSp" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="spTest" ReturnType="Collection(Int32)">
+          <Parameter Name="key" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_LayThongTinXe" ReturnType="Collection(dbSpModel.sp_LayThongTinXe_Result)">
             <Parameter Name="ThongTinXe" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="spTest" ReturnType="Collection(Int32)">
-            <Parameter Name="key" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_LayThongTinXe_Result">
@@ -38,6 +37,7 @@
           <Property Type="String" Name="GhiChu" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="TenLoaiXe" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="TenHangSanXuatXe" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="NgayThucHien" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -45,6 +45,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="dbSpModelStoreContainer" CdmEntityContainer="dbSp" >
+          <FunctionImportMapping FunctionImportName="spTest" FunctionName="dbSpModel.Store.spTest" />
           <FunctionImportMapping FunctionImportName="sp_LayThongTinXe" FunctionName="dbSpModel.Store.sp_LayThongTinXe">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dbSpModel.sp_LayThongTinXe_Result">
@@ -60,10 +61,10 @@
                 <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
                 <ScalarProperty Name="TenLoaiXe" ColumnName="TenLoaiXe" />
                 <ScalarProperty Name="TenHangSanXuatXe" ColumnName="TenHangSanXuatXe" />
+                <ScalarProperty Name="NgayThucHien" ColumnName="NgayThucHien" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spTest" FunctionName="dbSpModel.Store.spTest" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

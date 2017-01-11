@@ -1,0 +1,405 @@
+﻿/* @group define values 
+-------------------------------------------------------------------------------------------------*/ 
+/* Color Variables 
+@colordef #1ABC9C; TURQUOISE Xanh Cyan nhạt
+@colordef #16A085; GREEN SEA Xanh Cyan đậm
+     
+@colordef #2ECC71; EMERALD Xanh lá nhạt
+@colordef #27AE60; NEPHRITIS Xanh lá đậm
+
+@colordef #3498DB; PETER RIVER Xanh dương nhạt
+@colordef #2980B9; BELIZE HOLE Xanh dương đậm
+
+@colordef #9B59B6; AMETHYST Tím nhạt
+@colordef #8E44AD; WISTERIA Tím đậm
+
+@colordef #34495E; WET ASPHALT Xanh đen nhạt
+@colordef #2C3E50; MIDNIGHT BLUE Xanh đen đậm
+
+@colordef #F1C40F; SUN FLOWER Vàng hướng dương nhạt
+@colordef #F39C12; ORANGE Cam
+
+@colordef #E67E22; CARROT
+@colordef #D35400; PUMPKIN Carot đậm
+
+@colordef #E74C3C; ALIZARIN Đỏ nhạt
+@colordef #C0392B; POMEGRANATE Đỏ đậm
+
+@colordef #ECF0F1; CLOUDS Xám nhạt
+@colordef #BDC3C7; SILVER Xám đậm
+
+@colordef #95A5A6; CONCRETE Xám đen nhạt
+@colordef #7F8C8D; ASBESTOS Xám đen đậm
+
+@colordef #; 
+@colordef #; 
+*/
+/*______ @ ______*/
+/*______End ______*/
+/* @group general styles 
+-------------------------------------------------------------------------------------------------*/ 
+/*______ @padding - @margin ______*/
+.no-padding {
+    padding: 0 !important;
+}
+
+.no-padding-bottom {
+    padding-bottom: 0 !important;
+}
+
+.no-padding-top {
+    padding-top: 0 !important;
+}
+
+.no-padding-left {
+    padding-left: 0 !important;
+}
+
+.no-padding-right {
+    padding-right: 0 !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0 !important;
+}
+
+.no-margin-top {
+    margin-top: 0 !important;
+}
+
+.no-margin-left {
+    margin-left: 0 !important;
+}
+
+.no-margin-right {
+    margin-right: 0 !important;
+}
+/*______End Padding - Margin______*/
+
+/*______ @border ______*/
+.no-border {
+    border-width: 0;
+}
+
+.no-border-bottom {
+    border-bottom-width: 0 !important;
+}
+
+.no-border-top {
+    border-top-width: 0 !important;
+}
+
+.no-border-left {
+    border-left-width: 0 !important;
+}
+
+.no-border-right {
+    border-right-width: 0 !important;
+}
+
+.my-form-dot-line{
+    margin-bottom: 0px !important;
+    padding-bottom: 3px !important;
+    padding-top: 3px !important;
+}
+
+.border-bottom-dot-line {
+    border-bottom: 1px dotted #D5E4F1 !important;
+}
+/*______End Border ______*/
+
+/*______ Horizontal @Align Text ______*/
+.align-text-left{
+    text-align:left !important;
+}
+.align-text-center{
+    text-align:center !important;
+}
+.align-text-end{
+    text-align:end !important;
+}
+.align-text-right{
+    text-align:right !important;
+}
+.align-text-inherit{
+    text-align:inherit !important;
+}
+.align-text-initial{
+    text-align:initial !important;
+}
+.align-text-justify{
+    text-align:justify !important;
+}
+.align-text-match-parent{
+    text-align:match-parent !important;
+}
+.align-text-start{
+    text-align:start !important;
+}
+.align-text-unset{
+    text-align:unset !important;
+}
+/*______End Horizontal Align Text ______*/
+
+/*______ Vertical @Align ______*/
+.valign-auto{
+    vertical-align:auto !important;
+}
+.valign-baseline{
+    vertical-align:baseline !important;
+}
+.valign-bottom{
+    vertical-align:bottom !important;
+}
+.valign-central{
+    vertical-align:central !important;
+}
+.valign-inherit{
+    vertical-align:inherit !important;
+}
+.valign-initial{
+    vertical-align:initial !important;
+}
+.valign-middle{
+    vertical-align:middle !important;
+}
+.valign-sub{
+    vertical-align:sub !important;
+}
+.valign-super{
+    vertical-align:super !important;
+}
+.valign-text-bottom{
+    vertical-align:text-bottom !important;
+}
+.valign-text-top{
+    vertical-align:text-top !important;
+}
+.valign-top{
+    vertical-align:top !important;
+}
+.valign-unset{
+    vertical-align:unset !important;
+}
+.valign-use-script{
+    vertical-align:use-script !important;
+}
+/*______End Vertical Align Text ______*/
+
+/*______ @ ______*/
+/*______End ______*/
+/* @group helper styles 
+-------------------------------------------------------------------------------------------------*/ 
+/*span.required {
+    color: red;
+}*/
+
+.required-signal{
+    color: red;
+}
+
+/*______ @ ______*/
+/*______End ______*/
+
+/* group page structure 
+-------------------------------------------------------------------------------------------------*/ 
+/*______ @ ______*/
+/*______End ______*/
+
+/* @group page components 
+-------------------------------------------------------------------------------------------------*/ 
+/*______ @ ______*/
+/*______End ______*/
+
+/*______ @table ______*/
+tr.selected {
+    background-color: greenyellow !important;
+    /*background-color: #0089b6 !important;
+    color: white !important;*/
+}
+.ColumnCenterClassName {
+    text-align: center;
+}
+thead tr th{
+    background-color: #5ce1f4 !important;
+    text-align: center !important;
+    /*color: white;*/
+}
+
+/*______End Table______*/
+
+/*______ Info @tooltip ______*/
+/* Tooltip */
+  .info-tooltip + .tooltip > .tooltip-inner {
+      background-color: dodgerblue; 
+      color: #FFFFFF; 
+      border: 1px solid dodgerblue; 
+      padding: 8px;
+      font-size: 14px;
+  }
+  /* Tooltip on top */
+  .info-tooltip + .tooltip.top > .tooltip-arrow {
+      border-top: 5px solid dodgerblue;
+  }
+  /* Tooltip on bottom */
+  .info-tooltip + .tooltip.bottom > .tooltip-arrow {
+      border-bottom: 5px solid dodgerblue;
+  }
+  /* Tooltip on left */
+  .info-tooltip + .tooltip.left > .tooltip-arrow {
+      border-left: 5px solid dodgerblue;
+  }
+  /* Tooltip on right */
+  .info-tooltip + .tooltip.right > .tooltip-arrow {
+      border-right: 5px solid dodgerblue;
+  }
+/*______End Info Tooltip______*/
+
+/*______ Success @tooltip ______*/
+  /* Tooltip */
+  .success-tooltip + .tooltip > .tooltip-inner {
+      background-color: #2ECC71; 
+      color: #FFFFFF; 
+      border: 1px solid #27AE60; 
+      padding: 8px;
+      font-size: 14px;
+  }
+  /* Tooltip on top */
+  .success-tooltip + .tooltip.top > .tooltip-arrow {
+      border-top: 5px solid green;
+  }
+  /* Tooltip on bottom */
+  .success-tooltip + .tooltip.bottom > .tooltip-arrow {
+      border-bottom: 5px solid blue;
+  }
+  /* Tooltip on left */
+  .success-tooltip + .tooltip.left > .tooltip-arrow {
+      border-left: 5px solid red;
+  }
+  /* Tooltip on right */
+  .success-tooltip + .tooltip.right > .tooltip-arrow {
+      border-right: 5px solid black;
+  }
+/*______End Success Tooltip______*/
+
+/*______ Warning @tooltip ______*/
+  /* Tooltip */
+  .warning-tooltip + .tooltip > .tooltip-inner {
+      background-color: #F39C12; 
+      color: #FFFFFF; 
+      border: 1px solid #F39C12; 
+      padding: 8px;
+      font-size: 14px;
+  }
+  /* Tooltip on top */
+  .warning-tooltip + .tooltip.top > .tooltip-arrow {
+      border-top: 5px solid #F39C12;
+  }
+  /* Tooltip on bottom */
+  .warning-tooltip + .tooltip.bottom > .tooltip-arrow {
+      border-bottom: 5px solid #F39C12;
+  }
+  /* Tooltip on left */
+  .warning-tooltip + .tooltip.left > .tooltip-arrow {
+      border-left: 5px solid #F39C12;
+  }
+  /* Tooltip on right */
+  .warning-tooltip + .tooltip.right > .tooltip-arrow {
+      border-right: 5px solid #F39C12;
+  }
+/*______End Warning Tooltip______*/
+
+/*______ Error @tooltip ______*/
+  /* Tooltip */
+  .error-tooltip + .tooltip > .tooltip-inner {
+      background-color: #E74C3C; 
+      color: #FFFFFF; 
+      border: 1px solid #E74C3C; 
+      padding: 8px;
+      font-size: 14px;
+  }
+  /* Tooltip on top */
+  .error-tooltip + .tooltip.top > .tooltip-arrow {
+      border-top: 5px solid #E74C3C;
+  }
+  /* Tooltip on bottom */
+  .error-tooltip + .tooltip.bottom > .tooltip-arrow {
+      border-bottom: 5px solid #E74C3C;
+  }
+  /* Tooltip on left */
+  .error-tooltip + .tooltip.left > .tooltip-arrow {
+      border-left: 5px solid #E74C3C;
+  }
+  /* Tooltip on right */
+  .error-tooltip + .tooltip.right > .tooltip-arrow {
+      border-right: 5px solid #E74C3C;
+  }
+/*______End Error Tooltip______*/
+
+/*______ Primary @tooltip ______*/
+  /* Tooltip */
+  .primary-tooltip + .tooltip > .tooltip-inner {
+      background-color: #2980B9; 
+      color: #FFFFFF; 
+      border: 1px solid #2980B9; 
+      padding: 8px;
+      font-size: 14px;
+  }
+  /* Tooltip on top */
+  .primary-tooltip + .tooltip.top > .tooltip-arrow {
+      border-top: 5px solid #2980B9;
+  }
+  /* Tooltip on bottom */
+  .primary-tooltip + .tooltip.bottom > .tooltip-arrow {
+      border-bottom: 5px solid #2980B9;
+  }
+  /* Tooltip on left */
+  .primary-tooltip + .tooltip.left > .tooltip-arrow {
+      border-left: 5px solid #2980B9;
+  }
+  /* Tooltip on right */
+  .primary-tooltip + .tooltip.right > .tooltip-arrow {
+      border-right: 5px solid #2980B9;
+  }
+/*______End Primary Tooltip______*/
+
+.input-group-addon.primary {
+    color: rgb(255, 255, 255);
+    background-color: rgb(50, 118, 177);
+    border-color: rgb(40, 94, 142);
+}
+.input-group-addon.success {
+    color: rgb(255, 255, 255);
+    background-color: rgb(92, 184, 92);
+    border-color: rgb(76, 174, 76);
+}
+.input-group-addon.info {
+    color: rgb(255, 255, 255);
+    background-color: rgb(57, 179, 215);
+    border-color: rgb(38, 154, 188);
+}
+.input-group-addon.warning {
+    color: rgb(255, 255, 255);
+    background-color: rgb(240, 173, 78);
+    border-color: rgb(238, 162, 54);
+}
+.input-group-addon.danger {
+    color: rgb(255, 255, 255);
+    background-color: rgb(217, 83, 79);
+    border-color: rgb(212, 63, 58);
+}
+/*______ @ ______*/
+/*______End ______*/
+/* @group overrides 
+-------------------------------------------------------------------------------------------------*/ 
+/*______ @ ______*/
+/*______End ______*/
+
+
+
+
+

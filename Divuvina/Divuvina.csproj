@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Business\DanhMuc\DanhMucHangSanXuatXeBll.cs" />
     <Compile Include="Business\DanhMuc\DanhMucLoaiXeBll.cs" />
+    <Compile Include="Business\QuanLyXe\SapLichBaoTriXeBll.cs" />
     <Compile Include="Business\QuanLyXe\ThongTinXeVaKhauHaoBll.cs" />
     <Compile Include="Business\Transporter.cs" />
     <Compile Include="Controllers\DanhMucXepLichXeController.cs" />
@@ -224,7 +225,7 @@
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Divuvina\DivuvinaTable.css" />
+    <Content Include="Content\Divuvina\divuvina.css" />
     <Content Include="Content\email.css" />
     <Content Include="Content\patterns\1.png" />
     <Content Include="Content\patterns\2.png" />
@@ -406,6 +407,8 @@
     <Content Include="Content\plugins\slick\fonts\slick.ttf" />
     <Content Include="Content\plugins\slick\fonts\slick.woff" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Images\icons\add.png" />
+    <Content Include="Images\icons\minus.png" />
     <Content Include="locales\en.json" />
     <Content Include="locales\es.json" />
     <EntityDeploy Include="Models\dbSp.edmx">
@@ -1705,8 +1708,11 @@
     <Content Include="Scripts\plugins\velocity\velocity.min.js" />
     <Content Include="Scripts\plugins\velocity\velocity.ui.min.js" />
     <Content Include="Scripts\plugins\video\responsible-video.js" />
+    <Content Include="Scripts\Public\ClientGlobalVars.js" />
+    <Content Include="Scripts\Public\ConvertingFunctions.js" />
     <Content Include="Scripts\Public\SettingControls.js" />
     <Content Include="Scripts\Public\ShowMessage.js" />
+    <Content Include="Scripts\Public\ValidationFunctions.js" />
     <Content Include="Scripts\QuanLyXe\ThongTinXe.js" />
     <Content Include="Views\QuanLyXe\BaoTriSuaChuaXe.cshtml" />
     <Content Include="Web.config">

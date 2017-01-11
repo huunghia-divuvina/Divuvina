@@ -5,222 +5,221 @@
     ViewBag.Title = "NhapThongTinXe";
 }*@
 
-<div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-10">
+<div class="row border-bottom white-bg page-heading">
+    <div class="col-sm-10">
         <h2>Thông tin xe</h2>
     </div>
 </div>
+@*<div class="breadcrumb">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="#">Quản lý xe</a>
+        </li>
+        <li>
+            <a href="#">Thông tin xe</a>
+        </li>
+    </ul>
+</div>*@
 
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="animated fadeInRight">
     @*<div class="row">
-        <div class="col-lg-12">
+        <div class="col-sm-12">
         </div>
     </div>*@
     <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox ibox-full">
-                <div class="ibox-title">
-                    <h5>Thông tin xe và khấu hao</h5>
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        @*<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li>
-                                    <a href="#">Config option 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Config option 2</a>
-                                </li>
-                            </ul>*@
-                        @*<a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>*@
-                    </div>
-                </div>
+        <div class="col-sm-12">
+            <form id="formThongTinXe" action="#" class="wizard-big form-horizontal m-t-md" role="form" autocomplete="off" data-toggle="validator" accept-charset="utf-8">
+                <div class="col-sm-12" id="smartwizard">
+                    <ul class="step-anchor-small">
+                        <li><a href="#step-1">Bước 1<br /><small>Thông tin xe</small></a></li>
+                        <li><a href="#step-2">Bước 2<br /><small>Thông tin chi phí mua xe và khấu hao</small></a></li>
+                    </ul>
+                    <div>
+                        <div id="step-1" class="">
+                            <div id="form-step-0" role="form" data-toggle="validator">
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpKeyHangSanXuatXe">
+                                    <label class="col-sm-2 control-label no-padding-right">Hãng sản xuất xe(<span class="required-signal">*</span>):</label>
+                                    <div class="col-sm-10">
+                                        <input type="hidden" id="KeyHangSanXuatXe" name="KeyHangSanXuatXe" />
+                                        <select class="chosen-select" style="width:100%;" id="HangSanXuatXeKey" name="HangSanXuatXeKey" required data-error-msg="Vui lòng chọn một hãng sản xuất."></select>
+                                        <div class="help-block with-errors"></div>
+                                        <span />
+                                    </div>
+                                </div>
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpLoaiXeKey">
+                                    <label class="col-sm-2 control-label no-padding-right">Loại xe(<span class="required-signal">*</span>):</label>
+                                    <div class="col-sm-10">
+                                        <input type="hidden" id="KeyLoaiXe" name="KeyLoaiXe" />
+                                        <select class="chosen-select" style="width:100%;" id="LoaiXeKey" name="LoaiXeKey" required></select>
+                                        <div class="help-block with-errors"></div>
+                                        <span />
+                                    </div>
+                                </div>
 
-                <div class="ibox-content  ibox-full">
-                    <form id="formThongTinXe" action="#" class="wizard-big form-horizontal m-t-md" role="form" autocomplete="off" data-toggle="validator" accept-charset="utf-8">
-                        <div class="col-lg-12" id="smartwizard">
-                            <ul class="step-anchor-small">
-                                <li><a href="#step-1">Bước 1<br /><small>Thông tin xe</small></a></li>
-                                <li><a href="#step-2">Bước 2<br /><small>Thông tin chi phí mua xe và khấu hao</small></a></li>
-                            </ul>
-                            <div>
-                                <div id="step-1" class="">
-                                    <div id="form-step-0" role="form" data-toggle="validator">
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Hãng sản xuất xe:</label>
-                                            <div class="col-lg-4">
-                                                <input type="hidden" id="KeyHangSanXuatXe" name="KeyHangSanXuatXe" />
-                                                <select class="form-control" id="HangSanXuatXeKey" name="HangSanXuatXeKey"></select>
-                                                <span />
-                                            </div>
-                                            <label class="col-lg-2 control-label">Loại xe:</label>
-                                            <div class="col-lg-4">
-                                                <input type="hidden" id="KeyLoaiXe" name="KeyLoaiXe" />
-                                                <select class="form-control" id="LoaiXeKey" name="LoaiXeKey"></select>
-                                                <span />
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpBangSoXe">
+                                    <label class="col-sm-2 control-label no-padding-right">Bảng số xe(<span class="required-signal">*</span>):</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="BangSoXe" name="BangSoXe" value="@Model.BangSoXe" class="form-control" placeholder="Nhập bảng số xe" required>
+                                        <div class="help-block with-errors"></div>
+                                        <span />
+                                    </div>
+                                </div>
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpSoSan">
+                                    <label class="col-sm-2 control-label no-padding-right">Số sàn(<span class="required-signal">*</span>):</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="SoSan" name="SoSan" value="@Model.SoSan" class="form-control" placeholder="Nhập số sàn" required>
+                                        <div class="help-block with-errors"></div>
+                                        <span />
+                                    </div>
+                                </div>
 
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Bảng số xe*:</label>
-                                            <div class="col-lg-4">
-                                                <input type="text" id="BangSoXe" name="BangSoXe" value="@Model.BangSoXe" class="form-control" required="required" placeholder="Nhập bảng số xe">
-                                                <span />
-                                            </div>
-                                            <label class="col-lg-2 control-label">Số sàn*:</label>
-                                            <div class="col-lg-4">
-                                                <input type="text" id="SoSan" name="SoSan" value="@Model.SoSan" class="form-control" required="required" placeholder="Nhập số sàn">
-                                                <span />
-                                            </div>
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpMau">
+                                    <label class="col-sm-2 control-label no-padding-right">Màu:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="Mau" name="Mau" value="@Model.Mau" class="form-control" placeholder="Nhập màu xe">
+                                        <span />
+                                    </div>
+                                </div>
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpNgayCapPhep">
+                                    <label class="col-sm-2 control-label no-padding-right">Ngày cấp giấy xe(<span class="required-signal">*</span>):</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group date">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                            <input type="text" id="NgayCapPhep" name="NgayCapPhep" value="@Model.NgayCapPhep.ToString("dd/MM/yyyy")" class="form-control" required>
                                             <div class="help-block with-errors"></div>
-                                        </div>
-
-                                        <div class="form-group" id="divNgayCapPhep">
-                                            <label class="col-lg-2 control-label">Màu:</label>
-                                            <div class="col-lg-4">
-                                                <input type="text" id="Mau" name="Mau" value="@Model.Mau" class="form-control" placeholder="Nhập màu xe">
-                                                <span />
-                                            </div>
-                                            <label class="col-lg-2 control-label">Ngày cấp phép:</label>
-                                            <div class="col-lg-4">
-                                                <div class="input-group date">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-calendar"></i>
-                                                    </span>
-                                                    <input type="text" id="NgayCapPhep" name="NgayCapPhep" value="@Model.NgayCapPhep.ToString("dd-MM-yyyy")" class="form-control">
-                                                    <span />
-                                                </div>
-                                            </div>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label"></label>
-                                            <div class="col-lg-3">
-                                                <div class="checkbox checkbox-primary checkbox-inline">
-                                                    <input type="checkbox" id="CoWifi" name="CoWifi" class="form-control">
-                                                    <label for="CoWifi"><b>Có Wifi</b></label>
-                                                    <input type="hidden" id="hdCoWifi" name="hdCoWifi" value="@Model.CoWifi" />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <div class="checkbox checkbox-success checkbox-inline">
-                                                    <input type="checkbox" id="CoTivi" name="CoTivi" class="form-control">
-                                                    <label for="CoTivi"><b>Có Tivi</b></label>
-                                                    <input type="hidden" id="hdCoTivi" name="hdCoTivi" value="@Model.CoTivi" />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <div class="checkbox checkbox-info checkbox-inline">
-                                                    <input type="checkbox" id="CoCameraHanhTrinh" name="CoCameraHanhTrinh" class="form-control">
-                                                    <label for="CoCameraHanhTrinh"><b>Có camera hành trình</b></label>
-                                                    <span />
-                                                    <input type="hidden" id="hdCoCameraHanhTrinh" name="hdCoCameraHanhTrinh" value="@Model.CoCameraHanhTrinh" />
-                                                </div>
-                                            </div>
-                                            <label class="col-lg-1 control-label"></label>
-                                            <div class="help-block with-errors"></div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Ghi chú thông tin xe:</label>
-                                            <div class="col-lg-10">
-                                                <input type="text" id="GhiChuThongTinXe" name="GhiChuThongTinXe" value="@Model.GhiChuThongTinXe" class="form-control" placeholder="Nhập thông tin ghi chú về xe">
-                                                <span />
-                                            </div>
-                                            <div class="help-block with-errors"></div>
+                                            <span />
                                         </div>
                                     </div>
                                 </div>
 
-                                <div id="step-2" class="">
-                                    <div id="form-step-1" role="form" data-toggle="validator">
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Giá mua*:</label>
-                                            <div class="col-lg-4">
-                                                <input class="touchspin3" id="GiaMua" name="GiaMua" value="@Model.GiaMua" type="text" required="required">
-                                                <span />
-                                            </div>
-
-                                            <label class="col-lg-2 control-label">Tổng tiền khấu hao*:</label>
-                                            <div class="col-lg-4">
-                                                <input class="touchspin3" id="TongTienKhauHao" name="TongTienKhauHao" value="@Model.TongTienKhauHao" type="text" required="required">
-                                                <span />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Số tháng khấu hao*:</label>
-                                            <div class="col-lg-4">
-                                                <input class="touchspin3" id="SoThangKhauHao" name="SoThangKhauHao" value="@Model.SoThangKhauHao" type="text" required="required">
-                                                <span />
-                                            </div>
-
-                                            <label class="col-lg-2 control-label">Tiền khấu hao hàng tháng*:</label>
-                                            <div class="col-lg-4">
-                                                <input class="touchspin3" id="TienKhauHaoHangThang" name="TienKhauHaoHangThang" value="@Model.TienKhauHaoHangThang" type="text" required="required">
-                                                <span />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group" id="divNgayKhauHao">
-                                            <label class="col-lg-2 control-label">Ngày bắt đầu khấu hao:</label>
-                                            <div class="col-lg-4">
-                                                <div class="input-group date">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-calendar"></i>
-                                                    </span>
-                                                    <input type="text" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayBatDauKhauHao).ToString("dd-MM-yyyy")" class="form-control">
-                                                    <span />
-                                                </div>
-                                            </div>
-
-                                            <label class="col-lg-2 control-label">Ngày kết thúc khấu hao:</label>
-                                            <div class="col-lg-4">
-                                                <div class="input-group date">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-calendar"></i>
-                                                    </span>
-                                                    <input type="text" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayKetThucKhauHao).ToString("dd-MM-yyyy")" class="form-control">
-                                                    <span />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Ghi chú khấu hao:</label>
-                                            <div class="col-lg-10">
-                                                <input type="text" id="GhiChuKhauHaoXe" name="GhiChuKhauHaoXe" value="@Model.GhiChuKhauHaoXe" class="form-control" placeholder="Nhập thông tin ghi chú khấu hao xe">
-                                                <span />
-                                            </div>
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpCheckboxOptions">
+                                    <label class="col-sm-2 control-label no-padding-right"></label>
+                                    <div class="col-sm-3">
+                                        <div class="checkbox checkbox-primary checkbox-inline">
+                                            <input type="checkbox" id="CoWifi" name="CoWifi" class="form-control">
+                                            <label for="CoWifi"><b>Có Wifi</b></label>
+                                            <input type="hidden" id="hdCoWifi" name="hdCoWifi" value="@Model.CoWifi" />
                                         </div>
                                     </div>
+                                    <div class="col-sm-3">
+                                        <div class="checkbox checkbox-success checkbox-inline">
+                                            <input type="checkbox" id="CoTivi" name="CoTivi" class="form-control">
+                                            <label for="CoTivi"><b>Có Tivi</b></label>
+                                            <input type="hidden" id="hdCoTivi" name="hdCoTivi" value="@Model.CoTivi" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="checkbox checkbox-info checkbox-inline">
+                                            <input type="checkbox" id="CoCameraHanhTrinh" name="CoCameraHanhTrinh" class="form-control">
+                                            <label for="CoCameraHanhTrinh"><b>Có camera hành trình</b></label>
+                                            <span />
+                                            <input type="hidden" id="hdCoCameraHanhTrinh" name="hdCoCameraHanhTrinh" value="@Model.CoCameraHanhTrinh" />
+                                        </div>
+                                    </div>
+                                    <label class="col-sm-1 control-label"></label>
                                 </div>
 
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpGhiChuThongTinXe">
+                                    <label class="col-sm-2 control-label no-padding-right">Ghi chú thông tin xe:</label>
+                                    <div class="col-sm-10">
+                                        <textarea cols="3" id="GhiChuThongTinXe" name="GhiChuThongTinXe" value="@Model.GhiChuThongTinXe" class="form-control" placeholder="Nhập thông tin ghi chú về xe"></textarea>
+                                        <span />
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <input type="hidden" id="XeKey" name="XeKey" value="@Model.XeKey" />
-                    </form>
+
+                        <div id="step-2" class="">
+                            <div id="form-step-1" role="form" data-toggle="validator">
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpGiaMua">
+                                    <label class="col-sm-2 control-label no-padding-right">Giá mua(<span class="required-signal">*</span>):</label>
+                                    <div class="col-sm-10">
+                                        <input id="GiaMua" name="GiaMua" value="@Model.GiaMua" type="text" class="form-control" required>
+                                        <div class="help-block with-errors"></div>
+                                        <span />
+                                    </div>
+                                </div>
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpTongTienKhauHao">
+                                    <label class="col-sm-2 control-label no-padding-right">Tổng tiền khấu hao(<span class="required-signal">*</span>):</label>
+                                    <div class="col-sm-10">
+                                        <input id="TongTienKhauHao" name="TongTienKhauHao" value="@Model.TongTienKhauHao" type="text" class="form-control" required>
+                                        <div class="help-block with-errors"></div>
+                                        <span />
+                                    </div>
+                                </div>
+
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpSoThangKhauHao">
+                                    <label class="col-sm-2 control-label no-padding-right">Số tháng khấu hao(<span class="required-signal">*</span>):</label>
+                                    <div class="col-sm-10">
+                                        <input class="touchspin3" id="SoThangKhauHao" name="SoThangKhauHao" value="@Model.SoThangKhauHao" type="text" required>
+                                        <div class="help-block with-errors"></div>
+                                        <span />
+                                    </div>
+                                </div>
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpTienKhauHaoHangThang">
+                                    <label class="col-sm-2 control-label no-padding-right">Tiền khấu hao hàng tháng(<span class="required-signal">*</span>):</label>
+                                    <div class="col-sm-10">
+                                        <input id="TienKhauHaoHangThang" name="TienKhauHaoHangThang" value="@Model.TienKhauHaoHangThang" type="text" class="form-control" required>
+                                        <div class="help-block with-errors"></div>
+                                        <span />
+                                    </div>
+                                </div>
+
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpNgayBatDauKhauHao">
+                                    <label class="col-sm-2 control-label no-padding-right">Ngày B.đầu khấu hao(<span class="required-signal">*</span>):</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group date">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                            <input type="text" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayBatDauKhauHao).ToString("dd-MM-yyyy")" class="form-control" required>
+                                            <div class="help-block with-errors"></div>
+                                            <span />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpNgayKetThucKhauHao">
+                                    <label class="col-sm-2 control-label no-padding-right">Ngày K.thúc khấu hao(<span class="required-signal">*</span>):</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group date">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                            <input type="text" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayKetThucKhauHao).ToString("dd-MM-yyyy")" class="form-control" required>
+                                            <div class="help-block with-errors"></div>
+                                            <span />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group border-bottom-dot-line" id="divFrmGrpGhiChuKhauHaoXe">
+                                    <label class="col-sm-2 control-label">Ghi chú khấu hao:</label>
+                                    <div class="col-sm-10">
+                                        <textarea cols="3" id="GhiChuKhauHaoXe" name="GhiChuKhauHaoXe" value="@Model.GhiChuKhauHaoXe" class="form-control" placeholder="Nhập thông tin ghi chú khấu hao xe"></textarea>
+                                        <span />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
+                <input type="hidden" id="XeKey" name="XeKey" value="@Model.XeKey" />
+            </form>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-sm-12">
             <span/>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-sm-12">
             <div class="ibox">
                 <div class="ibox-title">
                     <h5>Danh sách xe</h5>
@@ -228,20 +227,6 @@
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
                         </a>
-                        @*<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li>
-                                    <a href="#">Config option 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Config option 2</a>
-                                </li>
-                            </ul>*@
-                        @*<a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>*@
                     </div>
                 </div>
 
@@ -249,10 +234,15 @@
                     <div class="table-responsive">
                         <table id="tableThongTinXe" class="table table-striped table-bordered table-hover">
                             <thead>
+                                @*<tr>
+                                    <th rowspan="2" style="text-align:center"></th>
+                                    <th colspan="7" style="text-align:center; background-color:#b4f2ff !important">Thông tin xe</th>
+                                    <th colspan="10" style="text-align:center; background-color:#9afcff !important">Thông tin khấu hao</th>
+                                    <th colspan="2" style="text-align:center; background-color:#b4f2ff !important">Thao tác</th>
+                                </tr>*@
                                 <tr>
-                                    <th width="50" align="center" valign="middle">Thứ tự</th>
-                                    <th width="50">Sửa</th>
-                                    <th width="50">Xóa</th>
+                                    <th></th>
+                                    <th width="30px"></th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -263,16 +253,18 @@
                                     <th>Ngày cấp phép</th>
                                     <th>Màu</th>
                                     <th>Tổng giá</th>
-                                    <th>Tổng tiền khấu hao</th>
+                                    @*<th>Tổng tiền khấu hao</th>
                                     <th>Số tháng khấu hao</th>
                                     <th>Tiền khấu hao hàng tháng</th>
                                     <th>Ngày bắt đầu khấu hao</th>
-                                    <th>Ngày kết thúc khấu hao</th>
-                                    <th>Có Wifi</th>
-                                    <th>Có Tivi</th>
-                                    <th>Có Camera hành trình</th>
+                                    <th>Ngày kết thúc khấu hao</th>*@
+                                    <th>Wifi</th>
+                                    <th>Tivi</th>
+                                    <th>Camera</th>
                                     <th>Ghi chú xe</th>
-                                    <th>Ghi chú khấu hao</th>
+                                    @*<th>Ghi chú khấu hao</th>*@
+                                    <th>Sửa</th>
+                                    <th>Xóa</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -284,20 +276,29 @@
     </div>
 </div>
 <style>
-    .ibox-full{
-        width: auto !important;
+    /*.ibox-full{
+        width: auto !important;*/
         /*margin: 0px 0px 0px 0px !important;*/
-        padding: 0px 5px 0px 5px !important;
+        /*padding: 0px 5px 0px 5px !important;
         height: auto;
         background: white !important;
-    }
+    }*/
     /*.form-step{
         background-color: white !important;
     }*/
-    .step-anchor-small{
+    /*.step-anchor-small{
         margin-top: 0px !important;
         background: white !important;
-    }
+    }*/
+    td.details-control {
+    background: url('/Images/icons/add.png') no-repeat center center;
+    background-size: 18px 18px;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('/Images/icons/minus.png') no-repeat center center;
+    background-size: 18px 18px;
+}
 </style>
 @section Scripts {
     @Scripts.Render("~/plugins/iCheck")
@@ -314,38 +315,29 @@
     @Scripts.Render("~/plugins/dateRange")
     @Scripts.Render("~/plugins/select2")
     @Scripts.Render("~/plugins/touchSpin")
+    
+    <!--Render script for dataTable-->
     @Scripts.Render("~/plugins/jeditable")
     @Scripts.Render("~/plugins/dataTables")
+    
     @Scripts.Render("~/plugins/toastr")
     @Scripts.Render("~/plugins/sweetAlert")
     @Scripts.Render("~/plugins/fullcalendar")
 
-    @Scripts.Render("~/plugins/iCheck")
-    @Scripts.Render("~/plugins/dataPicker")
-    @Scripts.Render("~/plugins/ionRange")
-    @Scripts.Render("~/plugins/nouiSlider")
-    @Scripts.Render("~/plugins/jasnyBootstrap")
-    @Scripts.Render("~/plugins/switchery")
-    @Scripts.Render("~/plugins/chosen")
-    @Scripts.Render("~/plugins/knob")
-    @Scripts.Render("~/plugins/imagecropper")
-    @Scripts.Render("~/plugins/colorpicker")
-    @Scripts.Render("~/plugins/clockpicker")
-    @Scripts.Render("~/plugins/dateRange")
-    @Scripts.Render("~/plugins/select2")
-    @Scripts.Render("~/plugins/touchSpin")
     @Scripts.Render("~/plugins/wizardSteps")
     @Scripts.Render("~/plugins/SmartWizard-master")
 
-    @Scripts.Render("~/Scripts/Public/ShowMessage.js")
-    @Scripts.Render("~/Scripts/Public/SettingControls.js")
+    <!--Render script for Page-->
     @Scripts.Render("~/Scripts/QuanLyXe/ThongTinXe.js")
-
+    <!-- Include jQuery Validator plugin -->
     <script type="text/javascript">
         $(document).ready(function () {
 
+            //alert(addCommas("1234567.89"));
+            //alert(convertStringWithCommasToNumber("1,234,567.89"));
+            //alert(convertDateToString(new Date().getDate()));
             //===================================================
-            var coWifi = true;
+            @*var coWifi = true;
             if (String("@(Model.CoWifi)") == "False") { coWifi = false };
             var coTivi = true;
             if (String("@(Model.CoTivi)") == "False") { coTivi = false };
@@ -356,68 +348,69 @@
             $('#CoCameraHanhTrinh').attr("checked", coCameraHanhTrinh);
             $('#hdCoWifi').val(coWifi);
             $('#hdCoTivi').val(coTivi);
-            $('#hdCoCameraHanhTrinh').val(coCameraHanhTrinh);
+            $('#hdCoCameraHanhTrinh').val(coCameraHanhTrinh);*@
 
             //===================================================
-            $('#CoWifi').change(function () {
-                if (this.checked) {
-                    $(this).attr("checked", true);
-                    $('#hdCoWifi').attr("value", true);
-                }
-                else {
-                    $(this).attr("checked", false);
-                    $('#hdCoWifi').attr("value", false);
-                }
-            });
-            $('#CoTivi').change(function () {
-                if (this.checked) {
-                    $(this).attr("checked", true);
-                    $('#hdCoTivi').attr("value", true);
-                }
-                else {
-                    $(this).attr("checked", false);
-                    $('#hdCoTivi').attr("value", false);
-                }
-            });
-            $('#CoCameraHanhTrinh').change(function () {
-                if (this.checked) {
-                    $(this).attr("checked", true);
-                    $('#hdCoCameraHanhTrinh').attr("value", true);
-                }
-                else {
-                    $(this).attr("checked", false);
-                    $('#hdCoCameraHanhTrinh').attr("value", false);
-                }
-            });
+            //$('#CoWifi').change(function () {
+            //    if (this.checked) {
+            //        $(this).attr("checked", true);
+            //        $('#hdCoWifi').attr("value", true);
+            //    }
+            //    else {
+            //        $(this).attr("checked", false);
+            //        $('#hdCoWifi').attr("value", false);
+            //    }
+            //});
+            //$('#CoTivi').change(function () {
+            //    if (this.checked) {
+            //        $(this).attr("checked", true);
+            //        $('#hdCoTivi').attr("value", true);
+            //    }
+            //    else {
+            //        $(this).attr("checked", false);
+            //        $('#hdCoTivi').attr("value", false);
+            //    }
+            //});
+            //$('#CoCameraHanhTrinh').change(function () {
+            //    if (this.checked) {
+            //        $(this).attr("checked", true);
+            //        $('#hdCoCameraHanhTrinh').attr("value", true);
+            //    }
+            //    else {
+            //        $(this).attr("checked", false);
+            //        $('#hdCoCameraHanhTrinh').attr("value", false);
+            //    }
+            //});
             //===================================================
-            SettingDatepicker('divNgayCapPhep');
-            SettingDatepicker('divNgayKhauHao');
+            //SettingDatepicker('divFrmGrpNgayCapPhep');
+            //SettingDatepicker('divFrmGrpNgayBatDauKhauHao');
+            //SettingDatepicker('divFrmGrpNgayKetThucKhauHao');
 
-            $(".touchspin3").TouchSpin({
-                verticalbuttons: true,
-                verticalupclass: 'glyphicon glyphicon-plus',
-                verticaldownclass: 'glyphicon glyphicon-minus'
-            });
+            //$(".touchspin3").TouchSpin({
+            //    verticalbuttons: true,
+            //    verticalupclass: 'glyphicon glyphicon-plus',
+            //    verticaldownclass: 'glyphicon glyphicon-minus'
+            //});
             //===================================================
-            $('#GiaMua').change(function () {
-                $('#TongTienKhauHao').val($('#GiaMua').val());
+            //$('#GiaMua').change(function () {
+            //    $('#TongTienKhauHao').val($('#GiaMua').val());
 
-                var soThangKhauHao = $('#SoThangKhauHao').val();
-                var tongTienKhauHao = $('#TongTienKhauHao').val();
-                if (soThangKhauHao > 0) {
-                    $('#TienKhauHaoHangThang').val((tongTienKhauHao / soThangKhauHao).toFixed(2));
-                }
-            });
+            //    var soThangKhauHao = $('#SoThangKhauHao').val();
+            //    var tongTienKhauHao = $('#TongTienKhauHao').val();
+            //    if (soThangKhauHao > 0) {
+            //        $('#TienKhauHaoHangThang').val((tongTienKhauHao / soThangKhauHao).toFixed(2));
+            //    }
+            //});
             //===================================================
-            $('#SoThangKhauHao').change(function () {
-                var soThangKhauHao = $('#SoThangKhauHao').val();
-                var tongTienKhauHao = $('#TongTienKhauHao').val();
-                if (soThangKhauHao > 0) {
-                    $('#TienKhauHaoHangThang').val((tongTienKhauHao / soThangKhauHao).toFixed(2));
-                    var ngayBatDauKhauHao = new Date($('#NgayBatDauKhauHao').val());
-                    $('#NgayKetThucKhauHao').val((new Date(ngayBatDauKhauHao.setMonth(soThangKhauHao))).toString("DD-MM-YYYY"));
-                }
-            });
+            //$('#SoThangKhauHao').change(function () {
+            //    var soThangKhauHao = $('#SoThangKhauHao').val();
+            //    var tongTienKhauHao = $('#TongTienKhauHao').val();
+            //    if (soThangKhauHao > 0) {
+            //        $('#TienKhauHaoHangThang').val((tongTienKhauHao / soThangKhauHao).toFixed(2));
+            //        var ngayBatDauKhauHao = new Date($('#NgayBatDauKhauHao').val());
+            //        $('#NgayKetThucKhauHao').val((new Date(ngayBatDauKhauHao.setMonth(soThangKhauHao))).toString("DD-MM-YYYY"));
+            //    }
+            //});
             //===================================================
 
             //    $("input[type='number']").({
@@ -429,7 +422,7 @@
             //    }
             //===================================================
             //===================================================
-            //===================================================
+            @*//===================================================
             // Smart Wizard
             $('#smartwizard').smartWizard({
                 selected: 0, //Specify the selected step on the first load.
@@ -547,7 +540,7 @@
                     next: 'Tiếp theo',
                     previous: 'Quay lại'
                 }
-            });
+            });*@
 
 
             //$("#smartwizard").on("leaveStep", function (e, anchorObject, stepNumber, stepDirection) {
