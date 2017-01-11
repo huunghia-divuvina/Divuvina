@@ -619,9 +619,67 @@ function CauHinhSmartWizard()
 
         //---------------------------------------
         //$(idForm).validate();
+        ValidateForm();
     });
 }//EndFunction
 
+function ValidateForm() {
+    $('#formThongTinXe').formValidation({
+        framework: 'bootstrap',
+        err: {
+            container: 'help-block with-errors'
+        },
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            HangSanXuatXeKey: {
+                validators: {
+                    notEmpty: {
+                        message: 'Vui lòng chọn một hãng sản xuất.'
+                    }
+                }
+            }
+            , LoaiXeKey: {
+                validators: {
+                    notEmpty: {
+                        message: 'Vui lòng chọn một loại xe.'
+                    }
+                }
+            }
+            , BangSoXe: {
+                validators: {
+                    notEmpty: {
+                        message: 'Vui lòng nhập bảng số xe.'
+                    }
+                }
+            }
+            //email: {
+            //    validators: {
+            //        notEmpty: {
+            //            message: 'The email address is required and cannot be empty'
+            //        },
+            //        emailAddress: {
+            //            message: 'The email address is not valid'
+            //        }
+            //    }
+            //},
+            //title: {
+            //    validators: {
+            //        notEmpty: {
+            //            message: 'The title is required and cannot be empty'
+            //        },
+            //        stringLength: {
+            //            max: 100,
+            //            message: 'The title must be less than 100 characters long'
+            //        }
+            //    }
+            //},
+        }
+    });
+}
 //===================================================
 jQuery(function ($) {
 
