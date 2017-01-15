@@ -429,6 +429,18 @@ namespace Divuvina
 
             #region Divuvina.
 
+            bundles.Add(new StyleBundle("~/nghuuphuoc-bootstrapvalidator-v0.5.2").Include(
+                      "~/Content/plugins/nghuuphuoc-bootstrapvalidator-v0.5.2/bootstrapValidator.css"));
+
+            bundles.Add(new ScriptBundle("~/plugins/nghuuphuoc-bootstrapvalidator-v0.5.2").Include(
+                //"~/Scripts/plugins/nghuuphuoc-bootstrapvalidator-v0.5.2/language/vi_VN.js",
+                //"~/Scripts/plugins/nghuuphuoc-bootstrapvalidator-v0.5.2/validator/base64.js",
+                //"~/Scripts/plugins/nghuuphuoc-bootstrapvalidator-v0.5.2/validator/between.js",
+                //"~/Scripts/plugins/nghuuphuoc-bootstrapvalidator-v0.5.2/validator/.js",
+                "~/Scripts/plugins/nghuuphuoc-bootstrapvalidator-v0.5.2/bootstrapValidator.js"
+                ));
+
+
             bundles.Add(new StyleBundle("~/Divuvina").Include(
                       "~/Content/Divuvina/divuvina.css"));
 

@@ -445,19 +445,22 @@ function CauHinhSmartWizard()
         selected: 0, //Specify the selected step on the first load, 0 = first step
         keyNavigation: true, // Enable/Disable key navigation(left and right keys are used if enabled).
         enableAllSteps: false,  // Enable/Disable all steps on first load
-        disableSteps: [], //Array Steps disable.
         autoAdjustHeight: false, //Automatically adjust content height.
         contentURL: null, //Content url, Enables Ajax content loading. can set as data data-content-url on anchor.
         contentURLData: null, // override ajax query parameters
+        useURLhash: true, // Enable selection of the step based on url hash
+        showStepURLhash: true, // Show url hash based on step
         contentCache: true, // cache step contents, if false content is fetched always from ajax url
-        transitionEffect: 'slide', // Effect on navigation, none/fade/slide
         enableFinishButton: false, // makes finish button enabled always
         cycleSteps: false, //Allows to cycle the navigation of steps.
         hideButtonsOnDisabled: false, // when the previous/next/finish buttons are disabled, hide them instead
 
-        backButtonSupport: true, //Enable the back button support.
+        backButtonSupport: false, //Enable the back button support.
         errorSteps: [], // array of step numbers to highlighting as error steps
-        theme: 'arrows',
+        hiddenSteps: [], // Hidden steps
+        disableSteps: [], //Array Steps disable.
+        theme: 'arrows', // theme for the wizard, related css need to include for other than default theme
+        transitionEffect: 'slide', // Effect on navigation, none/fade/slide
         transitionSpeed: 400,
         //noForwardJumping: false,
         ajaxType: 'POST',
@@ -545,13 +548,15 @@ function CauHinhSmartWizard()
                     }
             ]
         },//End-toolbarSettings
-        //anchorSettings: {
-        //    anchorClickable: false, //Enable or disable the click option on the step header anchors.
-        //    enableAllAnchors: false, //Enable all anchors on load
-        //    markDoneStepp: true, //Make already visited steps as done.
-        //    enableAnchorOnDoneStep: true //Enable or disable the done steps navigation.
-        //},//End-anchorSettings
-        lang: {
+        anchorSettings: {
+            anchorClickable: false, //Enable/Disable the click option on the step header anchors.
+            enableAllAnchors: false, // Activates all anchors clickable all times
+            markDoneStepp: true, //Make already visited steps as done.
+            enableAnchorOnDoneStep: true, //Enable/Disable the done steps navigation.
+            markAllPreviousStepsAsDone: true, // When a step selected by url hash, all previous steps are marked done
+            removeDoneStepOnNavigateBack: false // While navigate back done step after active step will be cleared
+        },//End-anchorSettings
+        lang: { // Language variables for button
             next: 'Tiếp theo',
             previous: 'Quay lại'
         }
@@ -624,10 +629,11 @@ function CauHinhSmartWizard()
 }//EndFunction
 
 function ValidateForm() {
-    $('#formThongTinXe').formValidation({
+    var result = true;
+    $('#formThongTinXe').bootstrapValidator({
         framework: 'bootstrap',
         err: {
-            container: 'help-block with-errors'
+            container: 'tooltip'
         },
         icon: {
             valid: 'glyphicon glyphicon-ok',
@@ -636,6 +642,8 @@ function ValidateForm() {
         },
         fields: {
             HangSanXuatXeKey: {
+                // Show the message in a tooltip
+                //err: 'tooltip',
                 validators: {
                     notEmpty: {
                         message: 'Vui lòng chọn một hãng sản xuất.'
@@ -643,6 +651,8 @@ function ValidateForm() {
                 }
             }
             , LoaiXeKey: {
+                // Show the message in a tooltip
+                //err: 'tooltip',
                 validators: {
                     notEmpty: {
                         message: 'Vui lòng chọn một loại xe.'
@@ -650,6 +660,8 @@ function ValidateForm() {
                 }
             }
             , BangSoXe: {
+                // Show the message in a tooltip
+                //err: 'tooltip',
                 validators: {
                     notEmpty: {
                         message: 'Vui lòng nhập bảng số xe.'
@@ -679,6 +691,7 @@ function ValidateForm() {
             //},
         }
     });
+    return result;
 }
 //===================================================
 jQuery(function ($) {
