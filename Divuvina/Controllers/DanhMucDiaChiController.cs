@@ -16,6 +16,7 @@ namespace Divuvina.Controllers
             return View();
         }
 
+        #region Loại Địa Chỉ
         public JsonResult GetDataDanhMucLoaiDiaChi()
         {
             var rs = _db.LoaiDiaChis.Select(r => new { Key = r.LoaiDiaChiKey, r.TenCoDau, r.GhiChu });
@@ -68,6 +69,9 @@ namespace Divuvina.Controllers
             }
         }
 
+        #endregion Loại Địa Chỉ
+
+        #region Danh mục Đường
         public ActionResult DanhMucDuong()
         {
             return View();
@@ -124,7 +128,9 @@ namespace Divuvina.Controllers
                 return Json(new { Result = false, Title = TitleMessageBox.FailureTitle, Message = Message.FailureDataAction }, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion Danh mục Đường
 
+        #region Danh mục Phường Xã
         public ActionResult DanhMucPhuongXa()
         {
             return View();
@@ -181,7 +187,9 @@ namespace Divuvina.Controllers
                 return Json(new { Result = false, Title = TitleMessageBox.FailureTitle, Message = Message.FailureDataAction }, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion Danh mục Phường Xã
 
+        #region Danh mục Quận Huyện
         public ActionResult DanhMucQuanHuyen()
         {
             return View();
@@ -238,7 +246,9 @@ namespace Divuvina.Controllers
                 return Json(new { Result = false, Title = TitleMessageBox.FailureTitle, Message = Message.FailureDataAction }, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion Danh mục Quận Huyện
 
+        #region Danh mục Tỉnh Thành
         public ActionResult DanhMucTinhThanh()
         {
             return View();
@@ -295,7 +305,9 @@ namespace Divuvina.Controllers
                 return Json(new { Result = false, Title = TitleMessageBox.FailureTitle, Message = Message.FailureDataAction }, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion Danh mục Tỉnh Thành
 
+        #region Danh mục Quốc Gia
         public ActionResult DanhMucQuocGia()
         {
             return View();
@@ -303,7 +315,7 @@ namespace Divuvina.Controllers
 
         public JsonResult GetDataDanhMucQuocGia()
         {
-            var rs = _db.QuocGias.Select(r => new { Key = r.QuocGiaKey, r.TenCoDau, r.CountryCode, r.GhiChu });
+            var rs = _db.QuocGias.Select(r => new { Key = r.QuocGiaKey, r.TenCoDau, r.TenKhongDau, r.CountryCode, r.GhiChu });//, r.Culture
             return Json(rs, JsonRequestBehavior.AllowGet);
         }
 
@@ -328,7 +340,7 @@ namespace Divuvina.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveDanhMucQuocGia(int Key, string Ten, string CountryCode, string GhiChu)
+        public ActionResult SaveDanhMucQuocGia(int Key, string TenCoDau, string TenKhongDau, string CountryCode, string GhiChu)//, byte[] Culture
         {
             try
             {
@@ -339,9 +351,10 @@ namespace Divuvina.Controllers
                     row.QuocGiaAlternateKey = Key.ToString();
                     _db.QuocGias.Add(row);
                 }
-                row.TenCoDau = Ten;
-                row.TenKhongDau = Ten;
+                row.TenCoDau = TenCoDau;
+                row.TenKhongDau = TenKhongDau;
                 row.CountryCode = CountryCode;
+                //row.Culture = Culture;
                 row.GhiChu = GhiChu;
 
                 _db.SaveChanges();
@@ -353,5 +366,6 @@ namespace Divuvina.Controllers
                 return Json(new { Result = false, Title = TitleMessageBox.FailureTitle, Message = Message.FailureDataAction }, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion Danh mục Quốc Gia
     }
 }

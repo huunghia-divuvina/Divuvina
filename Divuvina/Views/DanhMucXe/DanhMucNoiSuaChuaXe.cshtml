@@ -96,29 +96,6 @@
     </form>
 </div>
 
-
-@section Styles {
-    @Styles.Render("~/plugins/awesomeCheckboxStyles")
-    @Styles.Render("~/plugins/clockpickerStyles")
-    @Styles.Render("~/plugins/dateRangeStyles")
-    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
-    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
-    @Styles.Render("~/plugins/switcheryStyles")
-    @Styles.Render("~/plugins/jasnyBootstrapStyles")
-    @Styles.Render("~/plugins/nouiSliderStyles")
-    @Styles.Render("~/plugins/dataPickerStyles")
-    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
-    @Styles.Render("~/plugins/imagecropperStyles")
-    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
-    @Styles.Render("~/plugins/select2Styles")
-    @Styles.Render("~/plugins/touchSpinStyles")
-    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
-
-    @Styles.Render("~/plugins/toastrStyles")
-
-    <link href="~/Content/Divuvina/DivuvinaTable.css" rel="stylesheet" />
-}
-
 @section Scripts {
     @Scripts.Render("~/plugins/iCheck")
     @Scripts.Render("~/plugins/dataPicker")
@@ -173,7 +150,10 @@
                     lengthMenu: 'Hiển thị _MENU_ dòng mỗi trang'
                     , info: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
                     , infoEmpty: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
+                    , zeroRecords: "Xin lỗi không có dữ liệu hiển thị"
                     , search: 'Tìm kiếm'
+                    , decimal: ","
+                    , thousands: "."
                     , paginate: {
                         first: "Trang đầu",
                         last: "Trang cuối",
