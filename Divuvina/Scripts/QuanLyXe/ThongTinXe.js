@@ -696,17 +696,17 @@ function ValidateForm() {
 //===================================================
 jQuery(function ($) {
 
-    //===================================================
-
+    //_______________________________________________
+    
     $('[data-toggle="tooltip"]').tooltip();
-    //===================================================
+    //_______________________________________________
     KhoiTaoDuLieuComboBox();
 
     KhoiTaoCheckBoxThietBiTheoXe();
 
     CauHinhBangDuLieu();
 
-    //===================================================
+    //_______________________________________________
     SettingDatepicker('divFrmGrpNgayCapPhep');
     SetDateForDatepicker('NgayCapPhep', new Date());
     SettingDatepicker('divFrmGrpNgayBatDauKhauHao');
@@ -723,7 +723,7 @@ jQuery(function ($) {
         initval: 0
     });
 
-    //===================================================
+    //_______________________________________________
     CauHinhSmartWizard();
 
     //===================================================
@@ -795,10 +795,10 @@ jQuery(function ($) {
     //});//EndFunction
 
     
-    //===================================================
+    //_______________________________________________
     validateValueControlsOnForm();
 
-    //===================================================
+    //_______________________________________________
     SuKienThayDoiGiaMua_TienChietKhau_SoThangKhauHao();
 
     //Sự kiện thay đổi số tháng khấu hao.

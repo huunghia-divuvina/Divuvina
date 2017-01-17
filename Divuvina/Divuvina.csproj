@@ -1287,6 +1287,10 @@
     <Content Include="Scripts\app\skin.config.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\DanhMucXe\HangSanXuatXe.js" />
+    <Content Include="Scripts\DanhMucXe\LoaiXe.js" />
+    <Content Include="Scripts\DanhMucXe\NoiSuaChuaXe.js" />
+    <Content Include="Scripts\DanhMucXe\ThietBiLinhKien.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\plugins\blueimp\jquery.blueimp-gallery.min.js" />
@@ -1826,7 +1830,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\QuanLyHeThong\Index.cshtml" />
     <Content Include="Views\QuanLySapLichBanVe\Index.cshtml" />
-    <Content Include="Views\DanhMucXe\Index.cshtml" />
     <Content Include="Views\QuanLyNhanVien\DanhMucLoaiHopDong.cshtml" />
     <Content Include="Views\Forms\Advanced.cshtml" />
     <Content Include="Views\Forms\BasicFroms.cshtml" />

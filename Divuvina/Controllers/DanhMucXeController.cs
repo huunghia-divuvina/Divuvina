@@ -11,11 +11,6 @@ namespace Divuvina.Controllers
         Models.dbContext _db = new Models.dbContext();
 
         // GET: QuanLyXe
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         #region HangSanXuatXe
         public ActionResult HangSanXuatXe()
         {
@@ -24,7 +19,7 @@ namespace Divuvina.Controllers
 
         public JsonResult LayHangSanXuatXe()
         {
-            var listHangSanXuatXes = _db.HangSanXuatXes.Select(r => new { Key = r.HangSanXuatXeKey, r.Ten, GhiChu = ""/*, r.GhiChu*/});
+            var listHangSanXuatXes = _db.HangSanXuatXes.Select(r => new { Key = r.HangSanXuatXeKey, r.Ten, r.GhiChu});
             return Json(listHangSanXuatXes, JsonRequestBehavior.AllowGet);
         }
 

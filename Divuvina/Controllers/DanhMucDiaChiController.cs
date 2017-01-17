@@ -11,11 +11,6 @@ namespace Divuvina.Controllers
     {
         Models.dbContext _db = new Models.dbContext();
 
-        public ActionResult DanhMucLoaiDiaChi()
-        {
-            return View();
-        }
-
         #region Loại Địa Chỉ
         public JsonResult GetDataDanhMucLoaiDiaChi()
         {

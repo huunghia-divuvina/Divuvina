@@ -13,9 +13,16 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title"><h3>Phần nhập liệu</h3></div>
+                    <div class="ibox-title">
+                        <h5>Phần nhập liệu</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
                     <div class="ibox-content">
-                        <div class="form-group" id="pIn">
+                        <div class="form-group border-bottom-dot-line" id="pIn">
                             <label class="col-sm-2 control-label">Tên loại hợp đồng:</label>
                             <div class="col-sm-4">
                                 <input type="hidden" id="Key" name="Key" />
@@ -30,7 +37,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group border-bottom-dot-line">
                             <label class="col-sm-2 control-label">Ghi chú:</label>
                             <div class="col-sm-10">
                                 <input type="text" id="GhiChu" class="form-control" placeholder="Nhập ghi chú">
@@ -40,12 +47,12 @@
 
                         <div class="form-group">
                             <div class="col-sm-2 col-md-offset-2">
-                                <button type="button" class="btn btn-w-m btn-success" id="btNew" onclick="onNewClick()"><i class="fa fa-file" aria-hidden="true"></i> Tạo mới</button>
+                                <button type="button" class="btn btn-w-m btn-primary" id="btNew" onclick="onNewClick()"><i class="fa fa-file" aria-hidden="true"></i> Tạo mới</button>
                                 <span />
                             </div>
 
                             <div class="col-sm-2">
-                                <button type="button" class="btn btn-w-m btn-success" id="btSave" onclick="onSaveClick()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</button>
+                                <button type="button" class="btn btn-w-m btn-danger" id="btSave" onclick="onSaveClick()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</button>
                                 <span />
                             </div>
                         </div>
@@ -57,33 +64,29 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title"><h3>Phần hiển thị</h3></div>
+                    <div class="ibox-title">
+                        <h5>Phần hiển thị</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
                     <div class="ibox-content">
                         <div class="table-responsive">
-                            <table id="dtSource" class="table table-striped table-bordered table-hover">
+                            <table id="dtSource" width="100%" class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th width="50" align="center" valign="middle">Thứ tự</th>
-                                        <th></th>
+                                        <th width="30px"></th>
+                                        <th width="1px"></th>
                                         <th>Tên loại hợp đồng</th>
                                         <th>Diễn giải</th>
                                         <th>Ghi chú</th>
-                                        <th width="50"></th>
-                                        <th width="50"></th>
+                                        <th width="30px">Sửa</th>
+                                        <th width="30px">Xóa</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th width="50" align="center" valign="middle">Thứ tự</th>
-                                        <th></th>
-                                        <th>Tên loại hợp đồng</th>
-                                        <th>Diễn giải</th>
-                                        <th>Ghi chú</th>
-                                        <th width="50"></th>
-                                        <th width="50"></th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -92,35 +95,6 @@
         </div>
     </form>
 </div>
-
-@*<style type="text/css">
-        tr.selected {
-            background-color: greenyellow !important;
-        }
-    </style>*@
-
-@section Styles {
-    @Styles.Render("~/plugins/awesomeCheckboxStyles")
-    @Styles.Render("~/plugins/clockpickerStyles")
-    @Styles.Render("~/plugins/dateRangeStyles")
-    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
-    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
-    @Styles.Render("~/plugins/switcheryStyles")
-    @Styles.Render("~/plugins/jasnyBootstrapStyles")
-    @Styles.Render("~/plugins/nouiSliderStyles")
-    @Styles.Render("~/plugins/dataPickerStyles")
-    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
-    @Styles.Render("~/plugins/imagecropperStyles")
-    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
-    @Styles.Render("~/plugins/select2Styles")
-    @Styles.Render("~/plugins/touchSpinStyles")
-    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
-    @Styles.Render("~/plugins/toastrStyles")
-    @Styles.Render("~/plugins/sweetAlertStyles")
-
-    <link href="~/Content/Divuvina/DivuvinaTable.css" rel="stylesheet" />
-}
-
 @section Scripts {
     @Scripts.Render("~/plugins/iCheck")
     @Scripts.Render("~/plugins/dataPicker")
@@ -164,22 +138,24 @@
                     { data: 'GhiChu' },
                     {
                         data: null,
-                        defaultContent: '<a class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa</a>',
+                        defaultContent: '<a class="edit"><center><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></center></a>',
                         orderable: false
                     }
                     , {
                         data: null,
-                        defaultContent: '<a class="delete"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>',
+                        defaultContent: '<a class="delete"><center><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></center></a>',
                         orderable: false
                     }
                 ]
                 , order: [2, 'asc']
                 , language: {
                     lengthMenu: 'Hiển thị _MENU_ dòng mỗi trang'
-                    , emptyTable: 'Không có dữ liệu'
                     , info: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
                     , infoEmpty: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
+                    , zeroRecords: "Xin lỗi không có dữ liệu hiển thị"
                     , search: 'Tìm kiếm'
+                    , decimal: ","
+                    , thousands: "."
                     , paginate: {
                         first: "Trang đầu",
                         last: "Trang cuối",
