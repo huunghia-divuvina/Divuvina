@@ -3,7 +3,7 @@ function CauHinhBangDuLieu() {
     //_______________________________________________
     var table = $('#dtSource').DataTable({
         ajax: {
-            url: '/DanhMucXe/LayDanhMucThietBiLinhKien'
+            url: '/DanhMucXepLichXe/GetDanhMucChiPhi'
             , dataSrc: ''
         }
         , columns: [
@@ -14,8 +14,6 @@ function CauHinhBangDuLieu() {
                         , targets: 0
                     },
                     { data: 'Key', visible: false },
-                    { data: 'Ten' },
-                    { data: 'HangSanXuat' },
                     { data: 'DienGiai' },
                     { data: 'GhiChu' },
                     {
@@ -29,22 +27,22 @@ function CauHinhBangDuLieu() {
                         orderable: false
                     }
         ]
-                , order: [1, 'asc']
-                , language: {
-                    lengthMenu: 'Hiển thị _MENU_ dòng mỗi trang'
-                    , info: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
-                    , infoEmpty: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
-                    , zeroRecords: "Xin lỗi không có dữ liệu hiển thị"
-                    , search: 'Tìm kiếm'
-                    , decimal: ","
-                    , thousands: "."
-                    , paginate: {
-                        first: "Trang đầu",
-                        last: "Trang cuối",
-                        next: "Sau",
-                        previous: "Trước"
-                    }
-                }
+        , order: [1, 'asc']
+        , language: {
+            lengthMenu: 'Hiển thị _MENU_ dòng mỗi trang'
+            , info: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
+            , infoEmpty: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
+            , zeroRecords: "Xin lỗi không có dữ liệu hiển thị"
+            , search: 'Tìm kiếm'
+            , decimal: ","
+            , thousands: "."
+            , paginate: {
+                first: "Trang đầu",
+                last: "Trang cuối",
+                next: "Sau",
+                previous: "Trước"
+            }
+        }
     });
 
     //_______________________________________________
@@ -70,8 +68,6 @@ function CauHinhBangDuLieu() {
         e.preventDefault();
         var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
         $('#Key').val(row.Key);
-        $('#Ten').val(row.Ten);
-        $('#HangSanXuat').val(row.HangSanXuat);
         $('#DienGiai').val(row.DienGiai);
         $('#GhiChu').val(row.GhiChu);
     });//EndFunction
@@ -82,7 +78,7 @@ function CauHinhBangDuLieu() {
         var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
         $.ajax({
             type: "POST",
-            url: "/DanhMucXe/XoaDanhMucThietBiLinhKien",
+            url: "/DanhMucXepLichXe/DeleteDanhMucChiPhi",
             data: "{ \"Key\" : \"" + row.Key + "\" }",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -110,8 +106,7 @@ jQuery(function ($) {
 //===================================================
 function onSaveClick() {
     if (($('#Key').val() == -1 || $('#Key').val() == "")
-                && ($('#Ten').val() == "" || $('#DienGiai').val() == "" ||
-                $('#HangSanXuat').val() == "")) {
+                && ($('#DienGiai').val() == "")) {
         toastr.error("Vui lòng nhập đủ thông tin !", "Thông báo !");
         return;
     }
@@ -121,10 +116,8 @@ function onSaveClick() {
 
     $.ajax({
         type: "POST",
-        url: "/DanhMucXe/LuuDanhMucThietBiLinhKien",
+        url: "/DanhMucXepLichXe/SaveDanhMucChiPhi",
         data: "{ \"Key\" : \"" + $('#Key').val()
-            + "\",\"ten\" : \"" + $('#Ten').val()
-            + "\",\"hangSanXuat\" : \"" + $('#HangSanXuat').val()
             + "\",\"dienGiai\" : \"" + $('#DienGiai').val()
             + "\",\"ghiChu\" : \"" + $('#GhiChu').val()
             + "\" }",
@@ -144,8 +137,6 @@ function onSaveClick() {
 //===================================================
 function onNewClick() {
     $('#Key').val("-1");
-    $('#Ten').val("");
-    $('#HangSanXuat').val("");
     $('#DienGiai').val("");
     $('#GhiChu').val("");
 }//EndFunction

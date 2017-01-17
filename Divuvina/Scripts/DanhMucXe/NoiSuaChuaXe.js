@@ -66,6 +66,7 @@ function CauHinhBangDuLieu() {
 
     //_______________________________________________
     $('#dtSource').on('click', 'a.edit', function (e) {
+        e.preventDefault();
         var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
         $('#Key').val(row.Key);
         $('#Ten').val(row.Ten);
@@ -75,6 +76,7 @@ function CauHinhBangDuLieu() {
 
     //_______________________________________________
     $('#dtSource').on('click', 'a.delete', function (e) {
+        e.preventDefault();
         var row = $('#dtSource').DataTable().data()[$('#dtSource').DataTable().row('.selected')[0][0]];
         $.ajax({
             type: "POST",

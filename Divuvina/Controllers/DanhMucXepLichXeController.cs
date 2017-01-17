@@ -22,7 +22,7 @@ namespace Divuvina.Controllers
             return View();
         }
 
-        public JsonResult GetDataDanhMucChiPhi()
+        public JsonResult GetDanhMucChiPhi()
         {
             var listDanhMucChiPhis = _db.DanhMucChiPhis.Select(r => new { Key = r.DanhMucChiPhiKey, r.DienGiai, r.GhiChu });
             return Json(listDanhMucChiPhis, JsonRequestBehavior.AllowGet);

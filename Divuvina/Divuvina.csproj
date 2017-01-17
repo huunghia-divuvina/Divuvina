@@ -1287,6 +1287,7 @@
     <Content Include="Scripts\app\skin.config.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\DanhMucXepLichXe\DanhMucChiPhi.js" />
     <Content Include="Scripts\DanhMucXe\HangSanXuatXe.js" />
     <Content Include="Scripts\DanhMucXe\LoaiXe.js" />
     <Content Include="Scripts\DanhMucXe\NoiSuaChuaXe.js" />
