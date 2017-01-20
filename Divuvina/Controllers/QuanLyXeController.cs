@@ -209,7 +209,7 @@ namespace Divuvina.Controllers
         #region Sắp lịch bảo trì xe.
         public ActionResult SapLichBaoTriXe()
         {
-            var result = GetThongTinXeChuaSapLich(3, 7, "", "", new DateTime(1900,1,1));
+            //var result = GetThongTinXeChuaSapLich(3, 7, "", "", new DateTime(1900,1,1));
             return View();
         }
 

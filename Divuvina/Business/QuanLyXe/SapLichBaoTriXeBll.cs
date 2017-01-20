@@ -15,7 +15,7 @@ namespace Divuvina.Business.QuanLyXe
             {
                 if (!String.IsNullOrEmpty(thongTinXe))
                 {
-                    var ss = _dbSp.sp_LayThongTinXe(thongTinXe);
+                    //var ss = _dbSp.sp_LayThongTinXe(thongTinXe);
 
                     //var listThongTinXe = _db.Xes
                     //    .Where(xe => xe.BangSoXe.Contains(thongTinXe) || xe.SoSan.Contains(thongTinXe)
