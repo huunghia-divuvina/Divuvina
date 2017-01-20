@@ -6,7 +6,7 @@ namespace Divuvina.Business.QuanLyXe
 {
     public class SapLichBaoTriXeBll
     {
-        Models.dbSp _dbSp = new Models.dbSp();
+        Models.Entities _dbSp = new Models.Entities();
 
         #region Sắp lịch bảo trì xe
         public List<object> LayThongTinXe(string thongTinXe)

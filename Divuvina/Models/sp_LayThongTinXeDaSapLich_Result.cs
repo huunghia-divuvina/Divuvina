@@ -11,7 +11,7 @@ namespace Divuvina.Models
 {
     using System;
     
-    public partial class sp_LayThongTinXeChuaSapLich_Result
+    public partial class sp_LayThongTinXeDaSapLich_Result
     {
         public int XeKey { get; set; }
         public string BangSoXe { get; set; }
@@ -24,5 +24,7 @@ namespace Divuvina.Models
         public bool CoTivi { get; set; }
         public bool CoCameraHanhTrinh { get; set; }
         public string GhiChu { get; set; }
+        public Nullable<System.DateTime> NgaySapLich { get; set; }
+        public Nullable<System.DateTime> NgayThucHien { get; set; }
     }
 }

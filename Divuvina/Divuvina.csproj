@@ -207,6 +207,9 @@
     <Compile Include="Models\sp_LayThongTinXeChuaSapLich_Result.cs">
       <DependentUpon>dbSp.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_LayThongTinXeDaSapLich_Result.cs">
+      <DependentUpon>dbSp.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ThietBiLinhKien.cs" />
     <Compile Include="Models\ThongTinDatVe.cs" />
     <Compile Include="Models\TinhThanh.cs" />

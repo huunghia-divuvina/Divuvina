@@ -15,10 +15,10 @@ namespace Divuvina.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class dbSp : DbContext
+    public partial class Entities : DbContext
     {
-        public dbSp()
-            : base("name=dbSp")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -27,15 +27,6 @@ namespace Divuvina.Models
             throw new UnintentionalCodeFirstException();
         }
     
-    
-        public virtual ObjectResult<Nullable<int>> spTest(Nullable<int> key)
-        {
-            var keyParameter = key.HasValue ?
-                new ObjectParameter("key", key) :
-                new ObjectParameter("key", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spTest", keyParameter);
-        }
     
         public virtual ObjectResult<sp_LayThongTinXeChuaSapLich_Result> sp_LayThongTinXeChuaSapLich(Nullable<int> hangSanXuatXeKey, Nullable<int> loaiXeKey, string bangSoXe, string soSan, Nullable<System.DateTime> ngayCapPhep)
         {
@@ -60,6 +51,20 @@ namespace Divuvina.Models
                 new ObjectParameter("NgayCapPhep", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_LayThongTinXeChuaSapLich_Result>("sp_LayThongTinXeChuaSapLich", hangSanXuatXeKeyParameter, loaiXeKeyParameter, bangSoXeParameter, soSanParameter, ngayCapPhepParameter);
+        }
+    
+        public virtual ObjectResult<sp_LayThongTinXeDaSapLich_Result> sp_LayThongTinXeDaSapLich()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_LayThongTinXeDaSapLich_Result>("sp_LayThongTinXeDaSapLich");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> spTest(Nullable<int> key)
+        {
+            var keyParameter = key.HasValue ?
+                new ObjectParameter("key", key) :
+                new ObjectParameter("key", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spTest", keyParameter);
         }
     }
 }
