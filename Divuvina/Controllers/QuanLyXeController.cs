@@ -151,10 +151,9 @@ namespace Divuvina.Controllers
 
         public JsonResult LayLichBaoTri(string XeKey)
         {
-            //var ss = _dbSp.spTest(22);
-            //var rsSp = _dbSp.sp_LayThongTinXe("");
-
-
+            var ff = _db.Database.SqlQuery<Models.sp_LayThongTinXeChuaSapLich_Result>
+                ("[dbo].[sp_LayThongTinXeChuaSapLich] @HangSanXuatXeKey = 3, @LoaiXeKey = 4, @BangSoXe = N'46564', @SoSan = N'76875', @NgayCapPhep = N'2016/06/11'").ToList();
+            
             if (XeKey == null)
                 XeKey = "-1";
             var rs = _db.LichBaoTriXes

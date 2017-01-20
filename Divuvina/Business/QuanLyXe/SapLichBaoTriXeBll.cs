@@ -6,7 +6,7 @@ namespace Divuvina.Business.QuanLyXe
 {
     public class SapLichBaoTriXeBll
     {
-        Models.dbSp _dbSp = new Models.dbSp();
+        Models.Entities _dbSp = new Models.Entities();
 
         #region Sắp lịch bảo trì xe
         public List<object> LayThongTinXe(string thongTinXe)
@@ -15,7 +15,7 @@ namespace Divuvina.Business.QuanLyXe
             {
                 if (!String.IsNullOrEmpty(thongTinXe))
                 {
-                    var ss = _dbSp.sp_LayThongTinXe(thongTinXe);
+                    //var ss = _dbSp.sp_LayThongTinXe(thongTinXe);
 
                     //var listThongTinXe = _db.Xes
                     //    .Where(xe => xe.BangSoXe.Contains(thongTinXe) || xe.SoSan.Contains(thongTinXe)
