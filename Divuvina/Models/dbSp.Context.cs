@@ -37,13 +37,29 @@ namespace Divuvina.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spTest", keyParameter);
         }
     
-        public virtual ObjectResult<sp_LayThongTinXe_Result> sp_LayThongTinXe(string thongTinXe)
+        public virtual ObjectResult<sp_LayThongTinXeChuaSapLich_Result> sp_LayThongTinXeChuaSapLich(Nullable<int> hangSanXuatXeKey, Nullable<int> loaiXeKey, string bangSoXe, string soSan, Nullable<System.DateTime> ngayCapPhep)
         {
-            var thongTinXeParameter = thongTinXe != null ?
-                new ObjectParameter("ThongTinXe", thongTinXe) :
-                new ObjectParameter("ThongTinXe", typeof(string));
+            var hangSanXuatXeKeyParameter = hangSanXuatXeKey.HasValue ?
+                new ObjectParameter("HangSanXuatXeKey", hangSanXuatXeKey) :
+                new ObjectParameter("HangSanXuatXeKey", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_LayThongTinXe_Result>("sp_LayThongTinXe", thongTinXeParameter);
+            var loaiXeKeyParameter = loaiXeKey.HasValue ?
+                new ObjectParameter("LoaiXeKey", loaiXeKey) :
+                new ObjectParameter("LoaiXeKey", typeof(int));
+    
+            var bangSoXeParameter = bangSoXe != null ?
+                new ObjectParameter("BangSoXe", bangSoXe) :
+                new ObjectParameter("BangSoXe", typeof(string));
+    
+            var soSanParameter = soSan != null ?
+                new ObjectParameter("SoSan", soSan) :
+                new ObjectParameter("SoSan", typeof(string));
+    
+            var ngayCapPhepParameter = ngayCapPhep.HasValue ?
+                new ObjectParameter("NgayCapPhep", ngayCapPhep) :
+                new ObjectParameter("NgayCapPhep", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_LayThongTinXeChuaSapLich_Result>("sp_LayThongTinXeChuaSapLich", hangSanXuatXeKeyParameter, loaiXeKeyParameter, bangSoXeParameter, soSanParameter, ngayCapPhepParameter);
         }
     }
 }

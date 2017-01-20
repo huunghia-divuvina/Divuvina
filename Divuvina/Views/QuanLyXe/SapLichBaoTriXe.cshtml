@@ -1,4 +1,6 @@
-﻿
+﻿@using Divuvina.Models.QuanLyXe
+@using Divuvina.Public
+@model SapLichBaoTriXeModel
 @{
     //Layout = null;
 }
@@ -11,7 +13,7 @@
 
 @*<div class="animated fadeInRight">*@
 <div class="wrapper wrapper-content animated fadeInRight">
-    <form class="form-horizontal m-t-md" id="formTimXeSapLich" role="form" autocomplete="off">
+    
         <div class="row">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
@@ -24,107 +26,152 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <div class="form-group border-bottom-dot-line" id="pIn">
-                            <label class="col-lg-2 control-label">Tìm thông tin xe:</label>
-                            <div class="col-lg-10 input-group">
-                                <input type="text" class="form-control" id="TimThongTinXe" name="TimThongTinXe"> <span class="input-group-btn">
-                                    <button type="button" class="btn btn-primary">
-                                        Tìm thông tin xe
-                                    </button>
-                                </span>
+                        <form class="form-horizontal m-t-md" id="formTimXeSapLich" role="form" autocomplete="off">
+                            <div class="form-group border-bottom-dot-line" id="divFrmGrpKeyHangSanXuatXe">
+                                <label class="col-sm-2 control-label no-padding-right">Hãng sản xuất xe:</label>
+                                <div class="col-sm-10">
+                                    <input type="hidden" id="KeyHangSanXuatXe" name="KeyHangSanXuatXe" />
+                                    <select class="chosen-select" style="width:100%;" id="HangSanXuatXeKey" name="HangSanXuatXeKey" data-error-msg="Vui lòng chọn một hãng sản xuất." autofocus></select>
+                                    <div class="help-block with-errors"></div>
+                                    <span />
+                                </div>
                             </div>
-                        </div>
+                            <div class="form-group border-bottom-dot-line" id="divFrmGrpLoaiXeKey">
+                                <label class="col-sm-2 control-label no-padding-right">Loại xe:</label>
+                                <div class="col-sm-10">
+                                    <input type="hidden" id="KeyLoaiXe" name="KeyLoaiXe" />
+                                    <select class="chosen-select" style="width:100%;" id="LoaiXeKey" name="LoaiXeKey" required></select>
+                                    <div class="help-block with-errors"></div>
+                                    <span />
+                                </div>
+                            </div>
+                            <div class="form-group border-bottom-dot-line" id="divFrmGrpBangSoXe">
+                                <label class="col-sm-2 control-label no-padding-right">Bảng số xe:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="BangSoXe" name="BangSoXe" class="form-control" placeholder="Nhập bảng số xe"> @*value="@Model.ThongTinXeTimKiem.BangSoXe"*@
+                                    <div class="help-block with-errors"></div>
+                                    <span />
+                                </div>
+                            </div>
+                            <div class="form-group border-bottom-dot-line" id="divFrmGrpSoSan">
+                                <label class="col-sm-2 control-label no-padding-right">Số sàn:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="SoSan" name="SoSan" class="form-control" placeholder="Nhập số sàn"> @*value="@Model.ThongTinXeTimKiem.SoSan"*@ 
+                                    <div class="help-block with-errors"></div>
+                                    <span />
+                                </div>
+                            </div>
+                            <div class="form-group border-bottom-dot-line" id="divFrmGrpNgayCapPhep">
+                                <label class="col-sm-2 control-label no-padding-right">Ngày cấp giấy xe:</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group date">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                        <input type="text" id="NgayCapPhep" name="NgayCapPhep" class="form-control">@*value="@Model.ThongTinXeTimKiem.NgayCapPhep.ToString("dd/MM/yyyy")"*@ 
+                                        <div class="help-block with-errors"></div>
+                                        <span />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group border-bottom-dot-line">
+                                <div class="col-sm-2 col-md-offset-2">
+                                    <button type="button" class="btn btn-w-m btn-primary" id="btTimThongTinXe" onclick="onTimThongTinXeClick()"><i class="glyphicon glyphicon-search" aria-hidden="true"></i> Tìm thông tin xe</button>
+                                    <span />
+                                </div>
+                            </div>
+                            <div class="form-group border-bottom-dot-line">
+                                <div class="col-sm-6">
+                                    <div class="table-responsive">
+                                        <table id="tableXeChuaSapLich" class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th width="50" align="center" valign="middle">Thứ tự</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th>Bảng số xe</th>
+                                                    <th>Số sàn</th>
+                                                    <th>Loại xe</th>
+                                                    <th>Hãng sản xuất</th>
+                                                    <th>Ngày cấp phép</th>
+                                                    <th>Màu</th>
+                                                    <th>Có Wifi</th>
+                                                    <th>Có Tivi</th>
+                                                    <th>Có Camera hành trình</th>
+                                                    <th>Ghi chú xe</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-w-m btn-success" id="btChuyenSapLich" onclick="onChuyenSapLichClick()"><i class="glyphicon glyphicon-forward" aria-hidden="true"></i></button>
+                                    <span />
+                                    <button type="button" class="btn btn-w-m btn-primary" id="btHuySapLich" onclick="onHuySapLichClick()"><i class="glyphicon glyphicon-backward" aria-hidden="true"></i></button>
+                                    <span />
+                                    <button type="button" class="btn btn-w-m btn-danger" id="btLuu" onclick="onLuuClick()"><i class="fa fa-floppy-o" aria-hidden="true"> Sắp lịch</i></button>
+                                    <span />
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="table-responsive">
+                                        <table id="tableXeChoSapLich" class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th width="50" align="center" valign="middle">Thứ tự</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th>Bảng số xe</th>
+                                                    <th>Số sàn</th>
+                                                    <th>Loại xe</th>
+                                                    <th>Hãng sản xuất</th>
+                                                    <th>Ngày cấp phép</th>
+                                                    <th>Màu</th>
+                                                    <th>Có Wifi</th>
+                                                    <th>Có Tivi</th>
+                                                    <th>Có Camera hành trình</th>
+                                                    <th>Ghi chú xe</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                            @*
+                            <div class="form-group border-bottom-dot-line">
+                            </div>
+                            *@
+                            @*<div class="form-group border-bottom-dot-line">
+                                <label class="col-lg-2 control-label">Tìm thông tin xe:</label>
+                                <div class="col-lg-10 input-group">
+                                    <input type="text" class="form-control" id="TimThongTinXe" name="TimThongTinXe"> <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary">
+                                            Tìm thông tin xe
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>*@
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title"><h3>Thông tin chi phí mua xe và khấu hao</h3></div>
-                <div class="ibox-content">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Giá mua:</label>
-                        <div class="col-md-4">
-                            <input class="touchspin3" id="GiaMua" name="GiaMua" value="" type="text">
-                            <span />
-                        </div>
-
-                        <label class="col-sm-2 control-label">Tổng tiền khấu hao:</label>
-                        <div class="col-md-4">
-                            <input class="touchspin3" id="TongTienKhauHao" name="TongTienKhauHao" value="" type="text">
-                            <span />
-                        </div>
+                <div class="ibox-title">
+                    <h5>Danh sách xe đã sắp lịch</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
                     </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Số tháng khấu hao:</label>
-                        <div class="col-md-4">
-                            <input class="touchspin3" id="SoThangKhauHao" name="SoThangKhauHao" value="" type="text">
-                            <span />
-                        </div>
-
-                        <label class="col-sm-2 control-label">Tiền khấu hao hàng tháng:</label>
-                        <div class="col-md-4">
-                            <input class="touchspin3" id="TienKhauHaoHangThang" name="TienKhauHaoHangThang" value="" type="text">
-                            <span />
-                        </div>
-                    </div>
-
-                    <div class="form-group" id="divNgayKhauHao">
-                        <label class="col-sm-2 control-label">Ngày bắt đầu khấu hao:</label>
-                        <div class="col-md-4">
-                            <div class="input-group date">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
-                                <input type="text" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="" class="form-control">
-                                <span />
-                            </div>
-                        </div>
-
-                        <label class="col-sm-2 control-label">Ngày kết thúc khấu hao:</label>
-                        <div class="col-md-4">
-                            <div class="input-group date">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
-                                <input type="text" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="" class="form-control">
-                                <span />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Ghi chú khấu hao:</label>
-                        <div class="col-md-10">
-                            <input type="text" id="GhiChuKhauHaoXe" name="GhiChuKhauHaoXe" value="" class="form-control" placeholder="Nhập thông tin ghi chú khấu hao xe">
-                            <span />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-2 col-md-offset-2">
-                            <button type="button" class="btn btn-w-m btn-success" id="btNew"><i class="fa fa-file" aria-hidden="true"></i> Tạo mới</button>
-                            <span />
-                        </div>
-
-                        <div class="col-sm-2">
-                            <button type="button" class="btn btn-w-m btn-success" id="btSave"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</button>
-                            <span />
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title"><h3>Danh sách xe và khấu hao</h3></div>
                 <div class="ibox-content">
                     <div class="table-responsive">
                         <table id="tableThongTinXe" class="table table-striped table-bordered table-hover">
@@ -208,12 +255,7 @@
     @Scripts.Render("~/Scripts/Public/ShowMessage.js")
     @Scripts.Render("~/Scripts/Public/SettingControls.js")
 
-
-<script type="text/javascript">
-        $(document).ready(function () {
-
-        })//EndFunction-DocumentReady
-
-</script>
+    <!--Render script for Page-->
+    @Scripts.Render("~/Scripts/QuanLyXe/SapLichBaoTriXe.js")
 
 }

@@ -11,14 +11,13 @@ namespace Divuvina.Models
 {
     using System;
     
-    public partial class sp_LayThongTinXe_Result
+    public partial class sp_LayThongTinXeChuaSapLich_Result
     {
         public int XeKey { get; set; }
         public string BangSoXe { get; set; }
         public string SoSan { get; set; }
         public System.DateTime NgayCapPhep { get; set; }
-        public decimal GiaMua { get; set; }
-        public string MAU { get; set; }
+        public string Mau { get; set; }
         public bool CoWifi { get; set; }
         public bool CoTivi { get; set; }
         public bool CoCameraHanhTrinh { get; set; }

@@ -5,7 +5,7 @@ function LuuThongTinXe() {
     $('#KeyLoaiXe').val($('#LoaiXeKey').val());
 
     //Save 
-    //==================================
+    //_______________________________________________
     $.ajax({
         type: "POST",
         datatype: "JSON",
@@ -43,7 +43,7 @@ function LuuThongTinXe() {
 //===================================================
 function KhoiTaoCheckBoxThietBiTheoXe()
 {
-    //===================================================
+    //---------------------------------------------------
     var coWifi = true;
     if (String("@(Model.CoWifi)") == "False") { coWifi = false };
     var coTivi = true;
@@ -57,7 +57,7 @@ function KhoiTaoCheckBoxThietBiTheoXe()
     $('#hdCoTivi').val(coTivi);
     $('#hdCoCameraHanhTrinh').val(coCameraHanhTrinh);
 
-    //===================================================
+    //---------------------------------------------------
     $('#CoWifi').change(function () {
         if (this.checked) {
             $(this).attr("checked", true);
@@ -95,11 +95,8 @@ function KhoiTaoCheckBoxThietBiTheoXe()
 function KhoiTaoDuLieuComboBox()
 {
     //Load dữ liệu Danh Mục Hãng sảng xuất xe
-    //===================================================
+    //_______________________________________________
     $.ajax({
-        //type: "POST",
-        //url: '@Url.Action("LayHangSanXuatXeChoSelect", "QuanLyXe")',
-        //contentType: "application/json; charset=utf-8",
         url: '/QuanLyXe/LayHangSanXuatXeChoSelect',
         dataType: "JSON",
         success: function (response) {
@@ -114,16 +111,16 @@ function KhoiTaoDuLieuComboBox()
         }
     });//EndLoadDataForLoaiGheSelector
 
+    //_______________________________________________
     $("#LoaiXeKey").select2({
         placeholder: "Chọn loại xe"
     });
 
-    //===================================================
+    //_______________________________________________
     $('#HangSanXuatXeKey').change(function () {
         var id = $(this).val();
         //Load dữ liệu Danh mục loai xe
         if (id != null) {
-            //var url = '@Url.Action("LayLoaiXeChoSelect", "QuanLyXe")';
             var url = '/QuanLyXe/LayLoaiXeChoSelect';
             $.getJSON(url, { hangSanXuatXeKey: id }, function (data) {
                 $('#LoaiXeKey').empty();
@@ -143,14 +140,11 @@ function KhoiTaoDuLieuComboBox()
 function CauHinhBangDuLieu()
 {
     var tableName = '#tableThongTinXe';
-    //===================================================
+    //_______________________________________________
     var table = $(tableName).DataTable({
 
         ajax: {
-            //type: "GET",
-            //datatype: "JSON",
             url: '/QuanLyXe/LayThongTinXe',
-            //contentType: "application/json; charset=utf-8",
             dataSrc: ''
         }
         , columns: [
@@ -166,6 +160,7 @@ function CauHinhBangDuLieu()
                 orderable: false,
                 data: null,
                 defaultContent: ''
+                //defaultContent: '<button class="btn btn-tini btn-primary btn-circle" type="button"><i class="glyphicon glyphicon-plus-sign"></i></button>'
             }
             , { data: 'XeKey', visible: false }
             , { data: 'HangSanXuatXeKey', visible: false }
@@ -216,7 +211,6 @@ function CauHinhBangDuLieu()
                 }//EndRender 
             }
             , { data: 'GhiChuThongTinXe' }
-            //, { data: 'GhiChuKhauHaoXe' }
             , {
                 //Button Edit
                 data: null,
@@ -251,14 +245,14 @@ function CauHinhBangDuLieu()
     });
 
     //Index columns.
-    //===================================================
+    //_______________________________________________
     table.on('order.dt search.dt', function () {
         table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
             cell.innerHTML = i + 1;
         });
     }).draw();
 
-    //===================================================
+    //_______________________________________________
     $(tableName+' tbody').on('click', 'tr', function () {
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
@@ -269,7 +263,7 @@ function CauHinhBangDuLieu()
         }
     });
 
-    //===================================================
+    //_______________________________________________
     $(tableName).on('click', 'a.edit', function (e) {
         e.preventDefault();
         var row = $(tableName).DataTable().data()[$(tableName).DataTable().row('.selected')[0][0]];
@@ -303,7 +297,7 @@ function CauHinhBangDuLieu()
         }
     });//EndFunction
 
-    //===================================================
+    //_______________________________________________
     $(tableName).on('click', 'a.delete', function (e) {
         e.preventDefault();
         var row = $(tableName).DataTable().data()[$(tableName).DataTable().row('.selected')[0][0]];
@@ -327,8 +321,32 @@ function CauHinhBangDuLieu()
         }
     });//EndFunction
 
+    //_______________________________________________
+    //$(tableName).on('click', 'button i', function (e) {
+    //    e.preventDefault();
+    //    var buttonCircle = $(this).closest('button');
+
+    //    var addSign = 'glyphicon glyphicon-plus-sign';
+    //    var minusSign = 'glyphicon glyphicon-minus-sign';
+    //    var buttonAdd = 'btn btn-tini btn-primary btn-circle';
+    //    var buttonMinus = 'btn btn-tini btn-danger btn-circle';
+
+    //    if ($(this).hasClass(minusSign))
+    //    {
+    //        $(this).removeClass(minusSign);
+    //        $(this).addClass(addSign);
+    //        buttonCircle.removeClass(buttonMinus);
+    //        buttonCircle.addClass(buttonAdd);
+    //    }
+    //    else if ($(this).hasClass(addSign)) {
+    //        $(this).removeClass(addSign);
+    //        $(this).addClass(minusSign);
+    //        buttonCircle.removeClass(buttonAdd);
+    //        buttonCircle.addClass(buttonMinus)
+    //    }
+    //});//EndFunction
     //Add Child Table.
-    //===================================================
+    //_______________________________________________
     function format(d) {
         // `d` is the original data object for the row
         return '<table class="table table-striped table-bordered"  cellpadding="5" cellspacing="0" border="0" style="padding-left:80px;"  width="100%">' +
@@ -360,7 +378,7 @@ function CauHinhBangDuLieu()
     };
 
     // Add event listener for opening and closing details
-    //===================================================
+    //_______________________________________________
     $(tableName + ' tbody').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
@@ -368,13 +386,13 @@ function CauHinhBangDuLieu()
         if (row.child.isShown()) {
             // This row is already open - close it
             row.child.hide();
-            if (!tr.hasClass('selected')) tr.removeClass('selected');
+            //if (!tr.hasClass('selected')) tr.removeClass('selected');
             tr.removeClass('shown');
         }
         else {
             // Open this row
             row.child(format(row.data())).show();
-            if (!tr.hasClass('selected')) tr.addClass('selected');
+            //if (!tr.hasClass('selected')) tr.addClass('selected');
             tr.addClass('shown');
         }
     });
@@ -384,7 +402,7 @@ function CauHinhBangDuLieu()
 function SuKienThayDoiGiaMua_TienChietKhau_SoThangKhauHao()
 {
     //Sự kiện thay đổi giá mua xe.
-    //===================================================
+    //_______________________________________________
     $('#GiaMua').change(function () {
 
         var stringGiaMua = $('#GiaMua').val();
@@ -402,7 +420,7 @@ function SuKienThayDoiGiaMua_TienChietKhau_SoThangKhauHao()
     });
 
     //Sự kiện thay đổi số tháng khấu hao.
-    //===================================================
+    //_______________________________________________
     $('#SoThangKhauHao').change(function () {
         var soThangKhauHao = $('#SoThangKhauHao').val();
         var tongTienKhauHao = convertStringWithCommasToNumber($('#TongTienKhauHao').val(),true);
@@ -416,23 +434,6 @@ function SuKienThayDoiGiaMua_TienChietKhau_SoThangKhauHao()
         }
     });
 }//EndFunction.
-
-//===================================================
-//function SuKienThayDoiGiaTriSoThangKhauHao() {
-//    $('#SoThangKhauHao').change(function () {
-//        var soThangKhauHao = $('#SoThangKhauHao').val();
-//        var tongTienKhauHao = convertStringWithCommasToNumber($('#TongTienKhauHao').val(), true);
-//        if (soThangKhauHao > 0) {
-//            //$('#TienKhauHaoHangThang').val((tongTienKhauHao / soThangKhauHao).toFixed(2));
-//            var tienKhauHaoHangThang = (tongTienKhauHao / soThangKhauHao);
-//            $('#TienKhauHaoHangThang').val(addThousandSeperator(tienKhauHaoHangThang));
-
-//            var ngayBatDauKhauHao = new Date($('#NgayBatDauKhauHao').val());
-//            //$('#NgayKetThucKhauHao').val(convertDateToString(new Date(ngayBatDauKhauHao.setMonth(soThangKhauHao))));
-//            SetDateForDatepicker('NgayKetThucKhauHao', new Date(ngayBatDauKhauHao.setMonth(soThangKhauHao)));
-//        }
-//    });
-//}//EndFunction.
 
 //===================================================
 function CauHinhSmartWizard()
@@ -627,7 +628,7 @@ function CauHinhSmartWizard()
         ValidateForm();
     });
 }//EndFunction
-
+//===================================================
 function ValidateForm() {
     var result = true;
     $('#formThongTinXe').bootstrapValidator({
@@ -726,94 +727,10 @@ jQuery(function ($) {
     //_______________________________________________
     CauHinhSmartWizard();
 
-    //===================================================
-    //$("#btSave").on('click', function (e) {
-    //    e.preventDefault();
-
-    //    $('#KeyHangSanXuatXe').val($('#HangSanXuatXeKey').val());
-    //    $('#KeyLoaiXe').val($('#LoaiXeKey').val());
-        
-    //    //Save 
-    //    //==================================
-    //    $.ajax({
-    //        type: "POST",
-    //        datatype: "JSON",
-    //        url: '/QuanLyXe/LuuThongTinXe',
-    //        data: $('#formThongTinXe').serialize(),
-    //        //----------------------------------
-    //        success: function (response) {
-    //            if (response != null) {
-    //                //XoaDuLieuForm();
-    //                $('#tableThongTinXe').DataTable().ajax.reload();
-    //                ShowMessage(response);
-    //            }//End If
-    //            else {
-    //                $('#output').text(msg);
-    //            }
-    //        },
-    //        //----------------------------------
-    //        //complete: function () {
-
-    //        //},
-    //        //----------------------------------
-    //        failure: function (msg) {
-    //            $('#output').text(msg);
-    //        },
-    //        //----------------------------------
-    //        //error: function (jqXhr, exception) {
-    //        //    ShowMessage(response);
-    //        //    //if (jqXhr.status != 0) ShowMessage(response); //alert('Thực hiện không thành công');
-    //        //}
-    //    });//End ajax
-    //});
-
-    //$('#btNew').on('click', function (e) {
-    //    e.preventDefault();
-    //    $('#XeKey').val('');
-    //    $('#HangSanXuatXeKey').change();
-    //    $('#LoaiXeKey').change();
-    //    $('#KeyLoaiXe').val('');
-    //    $('#BangSoXe').val('');
-    //    $('#SoSan').val('');
-    //    $('#Mau').val('');
-    //    $('#NgayCapPhep').val(Date);
-    //    $('#CoWifi').prop('checked', true);
-    //    $('#CoTivi').prop('checked', true);
-    //    $('#CoCameraHanhTrinh').prop('CoCameraHanhTrinh', true);
-    //    $('#hdCoWifi').attr("value", true);
-    //    $('#hdCoTivi').attr("value", true);
-    //    $('#hdCoCameraHanhTrinh').attr("value", true);
-
-    //    $('#GhiChuThongTinXe').val('');
-    //    $('#GiaMua').val(0);
-    //    $('#TongTienKhauHao').val(0);
-    //    $('#SoThangKhauHao').val(12);
-    //    $('#TienKhauHaoHangThang').val(0);
-    //    $('#NgayBatDauKhauHao').val(Date);
-    //    $('#NgayKetThucKhauHao').val(Date);
-    //    $('#GhiChuKhauHaoXe').val('');
-    //});//EndFunction
-
-    
     //_______________________________________________
     validateValueControlsOnForm();
 
     //_______________________________________________
     SuKienThayDoiGiaMua_TienChietKhau_SoThangKhauHao();
-
-    //Sự kiện thay đổi số tháng khấu hao.
-    //===================================================
-    //$('#SoThangKhauHao').change(function () {
-    //    var soThangKhauHao = $('#SoThangKhauHao').val();
-    //    var tongTienKhauHao = convertStringWithCommasToNumber($('#TongTienKhauHao').val(), true);
-    //    if (soThangKhauHao > 0) {
-    //        //$('#TienKhauHaoHangThang').val((tongTienKhauHao / soThangKhauHao).toFixed(2));
-    //        var tienKhauHaoHangThang = (tongTienKhauHao / soThangKhauHao);
-    //        $('#TienKhauHaoHangThang').val(addThousandSeperator(tienKhauHaoHangThang));
-
-    //        var ngayBatDauKhauHao = new Date($('#NgayBatDauKhauHao').val());
-    //        SetDateForDatepicker('NgayKetThucKhauHao', new Date(ngayBatDauKhauHao.setMonth(soThangKhauHao)));
-    //    }
-    //});
 
 });//EndFunction$

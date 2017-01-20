@@ -5,8 +5,12 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="dbSpModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <Function Name="sp_LayThongTinXe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ThongTinXe" Type="nvarchar" Mode="In" />
+        <Function Name="sp_LayThongTinXeChuaSapLich" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HangSanXuatXeKey" Type="int" Mode="In" />
+          <Parameter Name="LoaiXeKey" Type="int" Mode="In" />
+          <Parameter Name="BangSoXe" Type="varchar" Mode="In" />
+          <Parameter Name="SoSan" Type="varchar" Mode="In" />
+          <Parameter Name="NgayCapPhep" Type="datetime" Mode="In" />
         </Function>
         <Function Name="spTest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="key" Type="int" Mode="In" />
@@ -20,24 +24,26 @@
           <FunctionImport Name="spTest" ReturnType="Collection(Int32)">
           <Parameter Name="key" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_LayThongTinXe" ReturnType="Collection(dbSpModel.sp_LayThongTinXe_Result)">
-            <Parameter Name="ThongTinXe" Mode="In" Type="String" />
+          <FunctionImport Name="sp_LayThongTinXeChuaSapLich" ReturnType="Collection(dbSpModel.sp_LayThongTinXeChuaSapLich_Result)">
+            <Parameter Name="HangSanXuatXeKey" Mode="In" Type="Int32" />
+            <Parameter Name="LoaiXeKey" Mode="In" Type="Int32" />
+            <Parameter Name="BangSoXe" Mode="In" Type="String" />
+            <Parameter Name="SoSan" Mode="In" Type="String" />
+            <Parameter Name="NgayCapPhep" Mode="In" Type="DateTime" />
           </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="sp_LayThongTinXe_Result">
+        <ComplexType Name="sp_LayThongTinXeChuaSapLich_Result">
           <Property Type="Int32" Name="XeKey" Nullable="false" />
           <Property Type="String" Name="BangSoXe" Nullable="false" MaxLength="15" />
           <Property Type="String" Name="SoSan" Nullable="false" MaxLength="20" />
           <Property Type="DateTime" Name="NgayCapPhep" Nullable="false" />
-          <Property Type="Decimal" Name="GiaMua" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="String" Name="MAU" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Mau" Nullable="false" MaxLength="50" />
           <Property Type="Boolean" Name="CoWifi" Nullable="false" />
           <Property Type="Boolean" Name="CoTivi" Nullable="false" />
           <Property Type="Boolean" Name="CoCameraHanhTrinh" Nullable="false" />
           <Property Type="String" Name="GhiChu" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="TenLoaiXe" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="TenHangSanXuatXe" Nullable="true" MaxLength="250" />
-          <Property Type="DateTime" Name="NgayThucHien" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -46,22 +52,20 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="dbSpModelStoreContainer" CdmEntityContainer="dbSp" >
           <FunctionImportMapping FunctionImportName="spTest" FunctionName="dbSpModel.Store.spTest" />
-          <FunctionImportMapping FunctionImportName="sp_LayThongTinXe" FunctionName="dbSpModel.Store.sp_LayThongTinXe">
+          <FunctionImportMapping FunctionImportName="sp_LayThongTinXeChuaSapLich" FunctionName="dbSpModel.Store.sp_LayThongTinXeChuaSapLich">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="dbSpModel.sp_LayThongTinXe_Result">
+              <ComplexTypeMapping TypeName="dbSpModel.sp_LayThongTinXeChuaSapLich_Result">
                 <ScalarProperty Name="XeKey" ColumnName="XeKey" />
                 <ScalarProperty Name="BangSoXe" ColumnName="BangSoXe" />
                 <ScalarProperty Name="SoSan" ColumnName="SoSan" />
                 <ScalarProperty Name="NgayCapPhep" ColumnName="NgayCapPhep" />
-                <ScalarProperty Name="GiaMua" ColumnName="GiaMua" />
-                <ScalarProperty Name="MAU" ColumnName="MAU" />
+                <ScalarProperty Name="Mau" ColumnName="Mau" />
                 <ScalarProperty Name="CoWifi" ColumnName="CoWifi" />
                 <ScalarProperty Name="CoTivi" ColumnName="CoTivi" />
                 <ScalarProperty Name="CoCameraHanhTrinh" ColumnName="CoCameraHanhTrinh" />
                 <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
                 <ScalarProperty Name="TenLoaiXe" ColumnName="TenLoaiXe" />
                 <ScalarProperty Name="TenHangSanXuatXe" ColumnName="TenHangSanXuatXe" />
-                <ScalarProperty Name="NgayThucHien" ColumnName="NgayThucHien" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -7,6 +7,7 @@ using Divuvina.Business.DanhMuc;
 using Divuvina.Models.Public;
 using Divuvina.Business.QuanLyXe;
 using System.Data.Entity.Core.Objects;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Divuvina.Controllers
@@ -208,8 +209,22 @@ namespace Divuvina.Controllers
         #region Sắp lịch bảo trì xe.
         public ActionResult SapLichBaoTriXe()
         {
+            var result = GetThongTinXeChuaSapLich(3, 7, "", "", new DateTime(1900,1,1));
             return View();
+        }
+
+        public JsonResult GetThongTinXeChuaSapLich(int HangSanXuatXeKey, int LoaiXeKey, string BangSoXe, string SoSan, DateTime NgayCapPhep)
+        {
+            var listParams = new SqlParameter[] {
+                new SqlParameter("@HangSanXuatXeKey", SqlDbType.Int, HangSanXuatXeKey)
+                , new SqlParameter("@LoaiXeKey", SqlDbType.Int, LoaiXeKey)
+                , new SqlParameter("@BangSoXe", SqlDbType.VarChar, 15, BangSoXe)
+                , new SqlParameter("@SoSan", SqlDbType.VarChar, 20, SoSan)
+                , new SqlParameter("@NgayCapPhep", SqlDbType.DateTime) { Value = NgayCapPhep}
+            };
+            var thongTinXe = _db.Database.SqlQuery<Models.sp_LayThongTinXeChuaSapLich_Result>("[sp_LayThongTinXeChuaSapLich] @HangSanXuatXeKey, @LoaiXeKey, @BangSoXe, @SoSan, @NgayCapPhep", listParams).ToList();
+            return Json(thongTinXe, JsonRequestBehavior.AllowGet);
         }
         #endregion Sắp lịch bảo trì xe.
     }//EndClass
-}//EndNamespace
+}//EndNamespaced
