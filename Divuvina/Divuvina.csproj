@@ -130,6 +130,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Business\DanhMuc\DanhMucHangSanXuatXeBll.cs" />
     <Compile Include="Business\DanhMuc\DanhMucLoaiXeBll.cs" />
+    <Compile Include="Business\Exceptions\BaseRuntimeException.cs" />
+    <Compile Include="Business\Exceptions\BusinessException.cs" />
+    <Compile Include="Business\Exceptions\SystemException.cs" />
     <Compile Include="Business\QuanLyXe\SapLichBaoTriXeBll.cs" />
     <Compile Include="Business\QuanLyXe\ThongTinXeVaKhauHaoBll.cs" />
     <Compile Include="Business\Transporter.cs" />
@@ -353,6 +356,7 @@
     <Content Include="Content\plugins\switchery\switchery.css" />
     <Content Include="Content\plugins\toastr\toastr.min.css" />
     <Content Include="Content\plugins\touchspin\jquery.bootstrap-touchspin.min.css" />
+    <Content Include="Data\ErrorMessages.xml" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome\css\font-awesome.css" />
     <Content Include="fonts\font-awesome\css\font-awesome.min.css" />

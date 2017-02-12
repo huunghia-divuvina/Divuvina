@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RMessage>
+  <VNErrorType>
+    <DataAction>Lỗi thao tác dữ liệu</DataAction>
+    <AssignValueForControl>Lỗi khởi tạo giá trị Control</AssignValueForControl>
+    <InvalidDataOfControl>Lỗi dữ liệu Control không hợp lệ</InvalidDataOfControl>
+    <WindowSystem>Lỗi thao tác lưu trữ trên hệ thống Window</WindowSystem>
+    <WorkOutDatabase>Lỗi thao tác tính toán dữ liệu</WorkOutDatabase>
+    <Infomation>Thông tin</Infomation>
+    <Permission>Phân quyền</Permission>
+  </VNErrorType>
+  <ErrorMessages>
+    <DataActions>
+      <GetData>Tìm kiếm dữ liệu không thành công.</GetData>
+      <InsertData>Thêm dữ liệu không thành công.</InsertData>
+      <DeleteData>Xoá dữ liệu không thành công.</DeleteData>
+      <UpdateData>Cập nhật dữ liệu không thành công.</UpdateData>
+      <DatabaseActions>Thao tác cơ sở dữ liệu không thành công.</DatabaseActions>
+      <ShowData>Hiển thị dữ liệu không thành công.</ShowData>
+      <ConvertData>Chuyển đổi kiểu dữ liệu không thành công.</ConvertData>
+      <InvalidData>Dữ liệu không hợp lệ.</InvalidData>
+      <ConnectDatabase>Kết nối dữ liệu không thành công.</ConnectDatabase>
+    </DataActions>
+    <Controls>
+      <InitDefaultValue>Khởi tạo giá trị mặc định không thành công.</InitDefaultValue>
+      <AssignValue>Gán giá trị không thành công.</AssignValue>
+      <GetValue>Lấy giá trị không thành công.</GetValue>
+      <ShowDataToGrid>Hiển thị dữ liệu lên lưới không thành công.</ShowDataToGrid>
+    </Controls>
+    <Permissions>
+      <InvalidPermission>Bạn không được cấp quyền để thao tác chức năng này.</InvalidPermission>
+    </Permissions>
+  </ErrorMessages>
+</RMessage>

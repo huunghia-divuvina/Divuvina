@@ -13,5 +13,6 @@ function SettingDatepicker(divId) {
 
 /*=== Cập nhật ngày cho Datepicker._____________________________________*/
 function SetDateForDatepicker(idDatepicker, dateObj) {
-    $('#'+ idDatepicker).val(convertDateToString(dateObj));
+    if (dateObj != null || dateObj != '')
+        $('#'+ idDatepicker).val(convertDateToString(dateObj));
 }

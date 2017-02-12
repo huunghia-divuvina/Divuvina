@@ -1,5 +1,6 @@
 ﻿var tableXeChuaSapLich = null;
 var tableXeChoSapLich = null;
+var listThongTinXeChuaSapLich = null;
 //===================================================
 function KhoiTaoDuLieuComboBox() {
     //Load dữ liệu Danh Mục Hãng sảng xuất xe
@@ -46,64 +47,56 @@ function KhoiTaoDuLieuComboBox() {
 //===================================================
 function GetThongTinXeChuaSapLich() {
     //---------------------------------------------------
-    var listThongTinXeChuaSapLich = null;
-    //---------------------------------------------------
-    var HangSanXuatXeKey = '0';
-    var LoaiXeKey = '0';
-    var BangSoXe = '';
-    var SoSan = '';
-    var NgayCapPhep = null;
-    if ($('#HangSanXuatXeKey').val() != null && $('#HangSanXuatXeKey').val() != '') HangSanXuatXeKey = $('#HangSanXuatXeKey').val();
-    if ($('#LoaiXeKey').val() != null && $('#LoaiXeKey').val() != '') LoaiXeKey = $('#LoaiXeKey').val();
-    if ($('#BangSoXe').val() != null && $('#BangSoXe').val() != '') BangSoXe = $('#BangSoXe').val();
-    if ($('#SoSan').val() != null && $('#SoSan').val() != '') SoSan = $('#SoSan').val();
-    if ($('#NgayCapPhep').val() != null && $('#NgayCapPhep').val() != '') HangSanXuatXeKey = $('#NgayCapPhep').val();
-    else NgayCapPhep = "1900-01-01";
-    
-    //---------------------------------------------------
     $.ajax({
         type: "POST",
-        url: '/QuanLyXe/GetThongTinXeChuaSapLich',
-        contentType: "application/json; charset=utf-8",
         dataType: "JSON",
-        data: "{ \"HangSanXuatXeKey\" : \"" + HangSanXuatXeKey
-                        + "\",\"LoaiXeKey\" : \"" + LoaiXeKey
-                        + "\",\"BangSoXe\" : \"" + BangSoXe
-                        + "\",\"SoSan\" : \"" + SoSan
-                        + "\",\"NgayCapPhep\" : \"" + NgayCapPhep
-                        + "\" }",
+        url: '/QuanLyXe/GetThongTinXeChuaSapLich',
+        //=> Không mở đoạn code này. Vì mở đoạn code này sẽ không truyền được toàn bộ dữ liệu từ Form lên Controller
+        //Phần gắng thuộc tính từ model đến selector control không truyền được.
+        //contentType: "application/json; charset=utf-8", 
+        data: $('#formTimXeSapLich').serialize(),
+        async: true,
+        processData: false,
         cache: false,
-        success: function (data) {
-            listThongTinXeChuaSapLich = data;
+        success: function (result) {
+            var listThongTinXeChuaSapLich = result;
+            return listThongTinXeChuaSapLich;
+        },
+        //error: function (xhr, exception) {
+        //    if (xhr.status != 0) alert('error');
+        //}
+        error: function (xhr, ajaxOptions, thrownError) {
+            //alert(xhr.status);
+            //alert(xhr.responseText);
+            //alert(thrownError);
+            ShowMessageFailure("Tìm danh sách xe chưa sắp lịch không thành công.");
         }
     });
 
-    return listThongTinXeChuaSapLich;
+    //---------------------------------------------------
+    //$.post('/QuanLyXe/GetThongTinXeChuaSapLich', { model: $('#formTimXeSapLich').serialize() }, function (response) {
+    //    var listThongTinXeChuaSapLich = response;
+    //    return listThongTinXeChuaSapLich;
+    //});
+
+    //return listThongTinXeChuaSapLich;
 }
 
+//===================================================
+
 //---------------------------------------------------
-var dataList = [
-{ 'XeKey': 1, 'BangSoXe': 'Hristo Stoichkov', 'SoSan': 'Plovdiv, Bulgaria', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg' },
-{ 'XeKey': 2, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg' },
-{ 'XeKey': 3, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': false, 'CoTivi': true, 'CoCameraHanhTrinh': false, 'GhiChu': 'sdfdsg' },
-];
+//var dataList = [
+//{ 'XeKey': 1, 'BangSoXe': 'Hristo Stoichkov', 'SoSan': 'Plovdiv, Bulgaria', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg' },
+//{ 'XeKey': 2, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg' },
+//{ 'XeKey': 3, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': false, 'CoTivi': true, 'CoCameraHanhTrinh': false, 'GhiChu': 'sdfdsg' },
+//];
 
 //===================================================
 function CauHinhBangDuLieuXeChuaSapLich()
 {
     var tableName = '#tableXeChuaSapLich';
     //---------------------------------------------------
-    //var HangSanXuatXeKey = '0';
-    //var LoaiXeKey = '0';
-    //var BangSoXe = '';
-    //var SoSan = '';
-    //var NgayCapPhep = null;
-    //if ($('#HangSanXuatXeKey').val() != null && $('#HangSanXuatXeKey').val() != '') HangSanXuatXeKey = $('#HangSanXuatXeKey').val();
-    //if ($('#LoaiXeKey').val() != null && $('#LoaiXeKey').val() != '') LoaiXeKey = $('#LoaiXeKey').val();
-    //if ($('#BangSoXe').val() != null && $('#BangSoXe').val() != '') BangSoXe = $('#BangSoXe').val();
-    //if ($('#SoSan').val() != null && $('#SoSan').val() != '') SoSan = $('#SoSan').val();
-    //if ($('#NgayCapPhep').val() != null && $('#NgayCapPhep').val() != '') HangSanXuatXeKey = $('#NgayCapPhep').val();
-    
+    //var listThongTinXeChuaSapLich = GetThongTinXeChuaSapLich();
     //---------------------------------------------------
     tableXeChuaSapLich = $(tableName).DataTable({
         
@@ -119,8 +112,8 @@ function CauHinhBangDuLieuXeChuaSapLich()
         //                    + "\" }",
         //    dataSrc: ''
         //}
-        //data: dataList//GetThongTinXeChuaSapLich()
-        //,
+        data: listThongTinXeChuaSapLich
+        ,
         columns: [
             {
                 //Index Column.
@@ -346,21 +339,36 @@ function CauHinhBangDuLieuXeChoSapLich() {
 //===================================================
 
 //===================================================
+$("#btTimThongTinXe").on('click', function (e) {
+    e.preventDefault();
+    listThongTinXeChuaSapLich = GetThongTinXeChuaSapLich();
+});
+
+function onHangSanXuatXeChange()
+{
+    $('#KeyHangSanXuatXe').val($('#HangSanXuatXeKey').val());
+}
+
+function onLoaiXeChange() {
+    $('#KeyLoaiXe').val($('#LoaiXeKey').val());
+}
+//===================================================
 jQuery(function ($) {
 
     //_______________________________________________
     KhoiTaoDuLieuComboBox();
     
     //_______________________________________________
-    SetDateForDatepicker('NgayCapPhep', new Date());
+    SettingDatepicker('divFrmGrpNgayCapPhep');
+    //SetDateForDatepicker('NgayCapPhep', null);
 
     //_______________________________________________
-    //GetThongTinXeChuaSapLich();
-    CauHinhBangDuLieuXeChuaSapLich();
-    CauHinhBangDuLieuXeChoSapLich();
+    //CauHinhBangDuLieuXeChuaSapLich();
+    //CauHinhBangDuLieuXeChoSapLich();
+
     //CauHinhBangDuLieuXeChuaSapLich('#tableXeChuaSapLich');
     //CauHinhBangDuLieuXeChuaSapLich('#tableXeChoSapLich');
-    tableXeChuaSapLich.data = dataList;
-    tableXeChoSapLich.data = dataList;
+    //tableXeChuaSapLich.data = dataList;
+    //tableXeChoSapLich.data = dataList;
 
 });//EndFunction$

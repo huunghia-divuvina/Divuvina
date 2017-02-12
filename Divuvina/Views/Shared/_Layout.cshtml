@@ -8,25 +8,25 @@
 
     <title>INSPINIA | @ViewBag.Title</title>
 
-    <!-- Include Bootstrap CSS -->
+    @* Include Bootstrap CSS*@ 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <!-- Optional Bootstrap theme -->
+    @* Optional Bootstrap theme*@ 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-    <!-- Add local styles, mostly for plugins css file -->
+    @* Add local styles, mostly for plugins css file*@ 
     @if (IsSectionDefined("Styles"))
         {@RenderSection("Styles", required: false)}
      
-    <!-- Add jQuery Style direct - used for jQGrid plugin -->
+    @* Add jQuery Style direct - used for jQGrid plugin*@ 
     <link href="@Url.Content("~/Scripts/plugins/jquery-ui/jquery-ui.css")" rel="stylesheet" type="text/css" />
 
-    <!-- Primary Inspinia style -->     
+    @* Primary Inspinia style*@      
     @Styles.Render("~/Content/css")
     @Styles.Render("~/font-awesome/css")
 
 
-    <!--Styles áp dụng cho mỗi trang-->
+    @* Styles áp dụng cho mỗi trang*@
     @Styles.Render("~/plugins/awesomeCheckboxStyles")
     @Styles.Render("~/plugins/clockpickerStyles")
     @Styles.Render("~/plugins/dateRangeStyles")
@@ -56,83 +56,60 @@
 </head>
 <body>
 
-    <!-- Skin configuration box -->
-    <!-- @Html.Partial("_SkinConfig") -->
+    @* Skin configuration box*@ 
+    @* @Html.Partial("_SkinConfig")*@ 
 
-    <!-- Wrapper-->
-    <!-- PageClass give you ability to specify custom style for specific view based on action -->
+    @* Wrapper*@
+    @* PageClass give you ability to specify custom style for specific view based on action*@ 
     <div id="wrapper" class="@Html.PageClass()">
 
-        <!-- Navigation -->
+        @* Navigation*@ 
         @Html.Partial("_Navigation")
 
-        <!-- Page wraper -->
+        @* Page wraper *@
         <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
 
-            <!-- Top Navbar -->
+            @* Top Navbar *@
             @Html.Partial("_TopNavbar")
 
-            <!-- Main view  -->
+            @* Main view  *@
             @RenderBody()
 
-            <!-- Footer -->
+            @* Footer *@
             @Html.Partial("_Footer")
 
         </div>
-        <!-- End page wrapper-->
+        @* End page wrapper*@
 
-        <!-- Right Sidebar -->
+        @* Right Sidebar *@
         @Html.Partial("_RightSidebar")
 
     </div>
-    <!-- End wrapper-->
+    @* End wrapper*@
 
-    <!-- Section for main scripts render -->
+    @* Section for main scripts render *@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/plugins/slimScroll")
     @Scripts.Render("~/bundles/inspinia")
 
-    <!-- Skin config script - only for demo purpose-->
+    @* Skin config script - only for demo purpose*@
     @Scripts.Render("~/bundles/skinConfig")
 
-    <!-- Handler for local scripts -->
+    @* Handler for local scripts *@
     @RenderSection("scripts", required: false)
 
-    <!-- Handler for local scripts -->
+    @* Handler for local scripts *@
     @Scripts.Render("~/plugins/wizardSteps")
     @Scripts.Render("~/plugins/iCheck")
-    <!-- Jquery Validate -->
+    @* Jquery Validate *@
     @Scripts.Render("~/plugins/validate")
 
-    <!-- Hàm dùng Validation Form -->
+    @* Hàm dùng Validation Form *@
     @Scripts.Render("~/plugins/nghuuphuoc-bootstrapvalidator-v0.5.2")
-    <!-- Hàm dùng chung tự viết -->
+    @* Hàm dùng chung tự viết *@
     @Scripts.Render("~/Public/HamDungChung")
 
-
-    <script type="text/javascript">
-        //function ShowMessage(response) {
-        //    toastr.options = {
-        //        closeButton: true
-        //        , timeOut: 7000
-        //    };
-        //    if (response.Result == true)
-        //        toastr.success(response.Message, response.Title);
-        //    else
-        //        toastr.error(response.Message, response.Title);
-        //}
-
-        //function formatDateToString(inDate, inFormat) {
-        //    if (!isNullOrUndefined(inDate) && inDate != '')
-        //        return moment.utc(inDate, 'x').format(inFormat);
-        //    else return '';
-        //}
-
-        //function isNullOrUndefined(value) {
-        //    return (typeof (value) === 'undefined' || value === null);
-        //}
-    </script>
 
     <div class="modal inmodal" id="waitModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
