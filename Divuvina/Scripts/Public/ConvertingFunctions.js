@@ -1,9 +1,4 @@
-﻿function formatDateToString(inDate, inFormat) {
-    if (!isNullOrUndefined(inDate) && inDate != '')
-        return moment.utc(inDate, 'x').format(inFormat);
-    else return '';
-}//EndFunction
-
+﻿
 /*=== Xóa những ký tự không phải số ra khỏi chuỗi._____________________________________*/
 function removeNonDigits(value) {
     return value.replace(/\D/g, "");
@@ -70,6 +65,12 @@ function convertStringWithCommasToNumber(stringNumber, typeVietNam) {
 }
 
 /*=== Chuyển định dạng ngày tháng năm._____________________________________*/
+function formatDateToString(inDate, inFormat) {
+    if (!isNullOrUndefined(inDate) && inDate != '')
+        return moment.utc(inDate, 'x').format(inFormat);
+    else return '';
+}//EndFunction
+
 function getLocaleDateString() {
 
     var formats = {
@@ -292,5 +293,10 @@ function getLocaleDateString() {
 function CreateStringNumberHavingTwoDigits(number) { return number < 10 ? "0" + number : number; }
 
 function convertDateToString(dateobj) {
-    return CreateStringNumberHavingTwoDigits(dateobj.getDate()) + "/" + CreateStringNumberHavingTwoDigits(dateobj.getMonth() + 1) + "/" + dateobj.getFullYear();
+    var newDate = null;
+    if (isNullOrUndefined(dateobj) || dateobj == '') {
+        newDate = new Date();
+    }
+    else newDate = new Date(dateobj);
+    return CreateStringNumberHavingTwoDigits(newDate.getDate()) + "/" + CreateStringNumberHavingTwoDigits(newDate.getMonth() + 1) + "/" + newDate.getFullYear();
 }

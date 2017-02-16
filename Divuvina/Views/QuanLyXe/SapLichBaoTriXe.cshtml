@@ -19,7 +19,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Tìm kiếm xe để sắp lịch bảo trì</h5>
+                        <h5><i class="glyphicon glyphicon-search"></i> Tìm kiếm xe để sắp lịch bảo trì</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -61,39 +61,42 @@
                                 </div>
                             </div>
                             <div class="form-group border-bottom-dot-line">
-                                @*<label class="col-sm-2 control-label no-padding-right">Ngày cấp giấy xe:</label>*@
-                                <div class="col-sm-2 no-padding-right">
-                                    <div class="checkbox checkbox-primary">
-                                        <input type="checkbox" id="ckNgayCapPhep" name="ckNgayCapPhep" class="form-control">
-                                        <label for="ckNgayCapPhep"><b>Ngày cấp giấy xe:</b></label>
-                                    </div>
+                                <label class="col-sm-2 control-label no-padding-right">Ngày cấp giấy xe:</label>
+                                @*<div class="col-sm-2 checkbox checkbox-primary form-inline">
+                                    <span>
+                                        <b>Ngày cấp giấy xe xe </b>
+                                        <input type="checkbox" id="ckTimTheoNgayCapPhep" name="ckTimTheoNgayCapPhep" class="form-control">
+                                        <label for="ckNgayCapPhep"></label>
+                                    </span>
+                                    <input type="hidden" id="TimTheoNgayCapPhep" name="ThongTinTimKiemSapLichBaoTri.TimTheoNgayCapPhep" value="@(Model.ThongTinTimKiemSapLichBaoTri.TimTheoNgayCapPhep)" />
                                 </div>
-                                <div class="col-sm-9" id="divFrmGrpNgayCapPhep">
+                                <div class="col-sm-10" id="divFrmGrpNgayCapPhep">
                                     <div class="input-group date">
                                         <span class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </span>
-                                        <input type="text" data-mask="99/99/9999" id="NgayCapPhep" name="ThongTinTimKiemSapLichBaoTri.NgayCapPhep" class="form-control" value="@((Model.ThongTinTimKiemSapLichBaoTri.NgayCapPhep == null) ? "" : Convert.ToDateTime(Model.ThongTinTimKiemSapLichBaoTri.NgayCapPhep).ToString("dd-MM-yyyy"))">
+                                        <input type="text" data-mask="99/99/9999" id="NgayCapPhep" name="ThongTinTimKiemSapLichBaoTri.NgayCapPhep" class="form-control" value="@((Model.ThongTinTimKiemSapLichBaoTri.NgayCapPhep == null) ? "" : Convert.ToDateTime(Model.ThongTinTimKiemSapLichBaoTri.NgayCapPhep).ToString("dd/MM/yyyy"))">
                                         <div class="help-block with-errors"></div>
-                                        <span />
                                     </div>
-                                </div>
-                                @*<div class="col-sm-10 form-group">
-                                    <div class="checkbox checkbox-primary">
-                                        <input type="checkbox" id="ckNgayCapPhep" name="ckNgayCapPhep" class="form-control">
-                                        <label for="CoWifi"><b></b></label>
-                                    </div>
+                                </div>*@
+                                <div class="col-sm-10 input-group" style="padding:4px;">
+                                    <span class="input-group-addon checkbox checkbox-primary" style="border:0px;">
+                                        <input type="checkbox" id="ckTimTheoNgayCapPhep" name="ckTimTheoNgayCapPhep" class="form-control">
+                                        <label for="ckNgayCapPhep"></label>
+                                    </span>
+                                    <input type="hidden" id="TimTheoNgayCapPhep" name="ThongTinTimKiemSapLichBaoTri.TimTheoNgayCapPhep" value="@(Model.ThongTinTimKiemSapLichBaoTri.TimTheoNgayCapPhep)" />
                                     <div id="divFrmGrpNgayCapPhep">
                                         <div class="input-group date">
                                             <span class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </span>
-                                            <input type="text" data-mask="99/99/9999" id="NgayCapPhep" name="ThongTinTimKiemSapLichBaoTri.NgayCapPhep" class="form-control" value="@((Model.ThongTinTimKiemSapLichBaoTri.NgayCapPhep == null) ? "" : Convert.ToDateTime(Model.ThongTinTimKiemSapLichBaoTri.NgayCapPhep).ToString("dd-MM-yyyy"))">
+                                            <input type="text" data-mask="99/99/9999" id="NgayCapPhep" name="ThongTinTimKiemSapLichBaoTri.NgayCapPhep" class="form-control" value="@((Model.ThongTinTimKiemSapLichBaoTri.NgayCapPhep == null) ? "" : Convert.ToDateTime(Model.ThongTinTimKiemSapLichBaoTri.NgayCapPhep).ToString("dd/MM/yyyy"))">
                                             <div class="help-block with-errors"></div>
-                                            <span />
                                         </div>
                                     </div>
-                                </div>*@
+                                </div>
+                                <div class="help-block with-errors"></div>
+                                <span />
                             </div>
                             <div class="form-group border-bottom-dot-line">
                                 <div class="col-sm-2 col-md-offset-2">
@@ -117,62 +120,64 @@
                                 </div>
                             </div>*@
                         </form>
-                        @*<div class="form-group border-bottom-dot-line">
-                            <div class="col-sm-6">
-                                <div class="table-responsive">
-                                    <table id="tableXeChuaSapLich" class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th></th>
-                                                <th>Bảng số xe</th>
-                                                <th>Số sàn</th>
-                                                <th>Loại xe</th>
-                                                <th>Hãng sản xuất</th>
-                                                <th>Ngày cấp phép</th>
-                                                <th>Màu</th>
-                                                <th>Có Wifi</th>
-                                                <th>Có Tivi</th>
-                                                <th>Có Camera hành trình</th>
-                                                <th>Ghi chú xe</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-sm-1">
-                                <button type="button" class="btn btn-w-m btn-success" id="btChuyenSapLich" onclick="onChuyenSapLichClick()"><i class="glyphicon glyphicon-forward" aria-hidden="true"></i></button>
-                                <span />
-                                <button type="button" class="btn btn-w-m btn-primary" id="btHuySapLich" onclick="onHuySapLichClick()"><i class="glyphicon glyphicon-backward" aria-hidden="true"></i></button>
-                                <span />
-                                <button type="button" class="btn btn-w-m btn-danger" id="btLuu" onclick="onLuuClick()"><i class="fa fa-floppy-o" aria-hidden="true"> Sắp lịch</i></button>
-                                <span />
-                            </div>
-                            <div class="col-sm-5">
-                                <div class="table-responsive">
-                                    <table id="tableXeChoSapLich" class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th></th>
-                                                <th>Bảng số xe</th>
-                                                <th>Số sàn</th>
-                                                <th>Loại xe</th>
-                                                <th>Hãng sản xuất</th>
-                                                <th>Ngày cấp phép</th>
-                                                <th>Màu</th>
-                                                <th>Có Wifi</th>
-                                                <th>Có Tivi</th>
-                                                <th>Có Camera hành trình</th>
-                                                <th>Ghi chú xe</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>*@
+                        <div class="form-group border-bottom-dot-line">
+        <div class="col-sm-6">
+            <div class="table-responsive">
+                <table id="tableXeChuaSapLich" class="table table-striped table-bordered table-hover table-checkable order-column dataTable no-footer table-condensed">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Bảng số xe</th>
+                            <th>Số sàn</th>
+                            <th>Ngày cấp phép</th>
+                            <th>Màu</th>
+                            <th>Có Wifi</th>
+                            <th>Có Tivi</th>
+                            <th>Có Camera hành trình</th>
+                            <th>Ghi chú xe</th>
+                            <th>Loại xe</th>
+                            <th>Hãng sản xuất</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <button type="button" class="btn btn-w-m btn-success" id="btChuyenSapLich" onclick="onChuyenSapLichClick()"><i class="glyphicon glyphicon-forward" aria-hidden="true"></i></button>
+            <span />
+            <button type="button" class="btn btn-w-m btn-primary" id="btHuySapLich" onclick="onHuySapLichClick()"><i class="glyphicon glyphicon-backward" aria-hidden="true"></i></button>
+            <span />
+            <button type="button" class="btn btn-w-m btn-danger" id="btLuu" onclick="onLuuClick()"><i class="fa fa-floppy-o" aria-hidden="true"> Sắp lịch</i></button>
+            <span />
+        </div>
+        <div class="col-sm-5">
+            <div class="table-responsive">
+                <table id="tableXeChoSapLich" class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Bảng số xe</th>
+                            <th>Số sàn</th>
+                            <th>Ngày cấp phép</th>
+                            <th>Màu</th>
+                            <th>Có Wifi</th>
+                            <th>Có Tivi</th>
+                            <th>Có Camera hành trình</th>
+                            <th>Ghi chú xe</th>
+                            <th>Loại xe</th>
+                            <th>Hãng sản xuất</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
                     </div>
                 </div>
@@ -183,7 +188,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Danh sách xe đã sắp lịch</h5>
+                    <h5 style="color:blue;"><i class="glyphicon glyphicon-th-list"></i> <b>Danh sách xe đã sắp lịch</b></h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>

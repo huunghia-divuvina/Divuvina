@@ -7,7 +7,9 @@ function SettingDatepicker(divId) {
         keyboardNavigation: false,
         forceParse: false,
         calendarWeeks: true,
-        autoclose: true
+        autoclose: true,
+        todayHighlight: true
+        ,format: 'dd/mm/yyyy'
     });
 }
 

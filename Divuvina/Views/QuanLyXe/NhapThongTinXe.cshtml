@@ -175,7 +175,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </span>
-                                            <input type="text" data-mask="99/99/9999" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayBatDauKhauHao).ToString("dd-MM-yyyy")" class="form-control" required>
+                                            <input type="text" data-mask="99/99/9999" id="NgayBatDauKhauHao" name="NgayBatDauKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayBatDauKhauHao).ToString("dd/MM/yyyy")" class="form-control" required>
                                             <div class="help-block with-errors"></div>
                                             <span />
                                         </div>
@@ -188,7 +188,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </span>
-                                            <input type="text" data-mask="99/99/9999" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayKetThucKhauHao).ToString("dd-MM-yyyy")" class="form-control" required>
+                                            <input type="text" data-mask="99/99/9999" id="NgayKetThucKhauHao" name="NgayKetThucKhauHao" value="@DefaultValueWhenNull.ConvertDatetime(Model.NgayKetThucKhauHao).ToString("dd/MM/yyyy")" class="form-control" required>
                                             <div class="help-block with-errors"></div>
                                             <span />
                                         </div>
@@ -222,7 +222,7 @@
         <div class="col-sm-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>Danh sách xe</h5>
+                    <h5 style="color:blue;"><i class="glyphicon glyphicon-th-list"></i> <b>Danh sách xe</b></h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -232,7 +232,7 @@
 
                 <div class="ibox-content">
                     <div class="table-responsive">
-                        <table id="tableThongTinXe" class="table table-striped table-bordered table-hover">
+                        <table id="tableThongTinXe" class="table table-striped table-bordered table-hover table-condensed">
                             <thead>
                                 @*<tr>
                                     <th rowspan="2" style="text-align:center"></th>

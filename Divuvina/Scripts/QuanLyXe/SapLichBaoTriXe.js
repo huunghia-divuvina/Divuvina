@@ -1,6 +1,8 @@
 ﻿var tableXeChuaSapLich = null;
 var tableXeChoSapLich = null;
 var listThongTinXeChuaSapLich = null;
+var listThongTinXeChoSapLich = null;
+
 //===================================================
 function KhoiTaoDuLieuComboBox() {
     //Load dữ liệu Danh Mục Hãng sảng xuất xe
@@ -46,25 +48,36 @@ function KhoiTaoDuLieuComboBox() {
 
 //===================================================
 function GetThongTinXeChuaSapLich() {
-    //---------------------------------------------------
     $.ajax({
         type: "POST",
         dataType: "JSON",
         url: '/QuanLyXe/GetThongTinXeChuaSapLich',
+        //---------------------------
         //=> Không mở đoạn code này. Vì mở đoạn code này sẽ không truyền được toàn bộ dữ liệu từ Form lên Controller
         //Phần gắng thuộc tính từ model đến selector control không truyền được.
         //contentType: "application/json; charset=utf-8", 
+        //---------------------------
         data: $('#formTimXeSapLich').serialize(),
         async: true,
         processData: false,
         cache: false,
         success: function (result) {
-            var listThongTinXeChuaSapLich = result;
-            return listThongTinXeChuaSapLich;
+            //---------------------------
+            //listThongTinXeChuaSapLich = result;
+            if (listThongTinXeChoSapLich == null) KhoiTaoDuLieuComboBox();
+            if (result != null && result.ListXeChuaSapLich != null) listThongTinXeChuaSapLich = result.ListXeChuaSapLich;
+            //return listThongTinXeChuaSapLich;
+            //---------------------------
+            tableXeChuaSapLich.data = listThongTinXeChuaSapLich;
+            tableXeChuaSapLich.ajax.reload();
+            //tableXeChuaSapLich.fnClearTable();
+            //tableXeChuaSapLich.fnAddData(listThongTinXeChuaSapLich);
         },
+        //---------------------------
         //error: function (xhr, exception) {
         //    if (xhr.status != 0) alert('error');
         //}
+        //---------------------------
         error: function (xhr, ajaxOptions, thrownError) {
             //alert(xhr.status);
             //alert(xhr.responseText);
@@ -73,46 +86,42 @@ function GetThongTinXeChuaSapLich() {
         }
     });
 
-    //---------------------------------------------------
-    //$.post('/QuanLyXe/GetThongTinXeChuaSapLich', { model: $('#formTimXeSapLich').serialize() }, function (response) {
-    //    var listThongTinXeChuaSapLich = response;
-    //    return listThongTinXeChuaSapLich;
-    //});
-
-    //return listThongTinXeChuaSapLich;
 }
 
 //===================================================
 
 //---------------------------------------------------
 //var dataList = [
-//{ 'XeKey': 1, 'BangSoXe': 'Hristo Stoichkov', 'SoSan': 'Plovdiv, Bulgaria', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg' },
-//{ 'XeKey': 2, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg' },
-//{ 'XeKey': 3, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': false, 'CoTivi': true, 'CoCameraHanhTrinh': false, 'GhiChu': 'sdfdsg' },
+//{ 'XeKey': 1, 'BangSoXe': 'Hristo Stoichkov', 'SoSan': 'Plovdiv, Bulgaria', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg', 'Mau':'Xanh' },
+//{ 'XeKey': 2, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg', 'Mau': 'Xanh' },
+//{ 'XeKey': 3, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': false, 'CoTivi': true, 'CoCameraHanhTrinh': false, 'GhiChu': 'sdfdsg', 'Mau': 'Xanh' },
 //];
 
 //===================================================
+function KhoiTaoCauTrucDuLieuBang() {
+    //if (listThongTinXeChuaSapLich == null) {
+    //    listThongTinXeChuaSapLich = [{
+    //        'XeKey': -1, 'BangSoXe': '', 'SoSan': '', 'NgayCapPhep': '', 'TenLoaiXe': '', 'TenHangSanXuatXe': '', 'CoWifi': false, 'CoTivi': false, 'CoCameraHanhTrinh': false, 'GhiChu': '', 'Mau': ''
+    //    }];
+    //}
+    //if (listThongTinXeChoSapLich == null) {
+    //    listThongTinXeChoSapLich = [{
+    //        'XeKey': -1, 'BangSoXe': '', 'SoSan': '', 'NgayCapPhep': '', 'TenLoaiXe': '', 'TenHangSanXuatXe': '', 'CoWifi': false, 'CoTivi': false, 'CoCameraHanhTrinh': false, 'GhiChu': '', 'Mau': ''
+    //    }];
+    //}
+
+}
+//===================================================
 function CauHinhBangDuLieuXeChuaSapLich()
 {
+
     var tableName = '#tableXeChuaSapLich';
     //---------------------------------------------------
     //var listThongTinXeChuaSapLich = GetThongTinXeChuaSapLich();
     //---------------------------------------------------
     tableXeChuaSapLich = $(tableName).DataTable({
-        
-        //ajax: {
-        //    url: '/QuanLyXe/GetThongTinXeChuaSapLich',
-        //    contentType: "application/json; charset=utf-8",
-        //    dataType: "JSON",
-        //    data: "{ \"HangSanXuatXeKey\" : \"" + HangSanXuatXeKey
-        //                    + "\",\"LoaiXeKey\" : \"" + LoaiXeKey
-        //                    + "\",\"BangSoXe\" : \"" + BangSoXe
-        //                    + "\",\"SoSan\" : \"" + SoSan
-        //                    + "\",\"NgayCapPhep\" : \"" + NgayCapPhep
-        //                    + "\" }",
-        //    dataSrc: ''
-        //}
         data: listThongTinXeChuaSapLich
+        //data: dataList
         ,
         columns: [
             {
@@ -140,7 +149,7 @@ function CauHinhBangDuLieuXeChuaSapLich()
                     return '';
                 }//EndRender
             }
-            //, { data: 'Mau' }
+            , { data: 'Mau', visible: false }
             , {
                 data: 'CoWifi'
                 , render: function (data, type, full, meta) {
@@ -221,20 +230,8 @@ function CauHinhBangDuLieuXeChoSapLich() {
     //---------------------------------------------------
     tableXeChoSapLich = $(tableName).DataTable({
 
-        //ajax: {
-        //    url: '/QuanLyXe/GetThongTinXeChuaSapLich',
-        //    contentType: "application/json; charset=utf-8",
-        //    dataType: "JSON",
-        //    data: "{ \"HangSanXuatXeKey\" : \"" + HangSanXuatXeKey
-        //                    + "\",\"LoaiXeKey\" : \"" + LoaiXeKey
-        //                    + "\",\"BangSoXe\" : \"" + BangSoXe
-        //                    + "\",\"SoSan\" : \"" + SoSan
-        //                    + "\",\"NgayCapPhep\" : \"" + NgayCapPhep
-        //                    + "\" }",
-        //    dataSrc: ''
-        //}
-        //data: dataList//GetThongTinXeChuaSapLich()
-        //,
+        data: listThongTinXeChoSapLich
+        ,
         columns: [
             {
                 //Index Column.
@@ -341,20 +338,26 @@ function CauHinhBangDuLieuXeChoSapLich() {
 //===================================================
 $("#btTimThongTinXe").on('click', function (e) {
     e.preventDefault();
-    listThongTinXeChuaSapLich = GetThongTinXeChuaSapLich();
+    //listThongTinXeChuaSapLich = GetThongTinXeChuaSapLich();
+    GetThongTinXeChuaSapLich();
 });
 
-function onHangSanXuatXeChange()
-{
-    $('#KeyHangSanXuatXe').val($('#HangSanXuatXeKey').val());
-}
+$("#ckTimTheoNgayCapPhep").on('click', function (e) {
+    //e.preventDefault();
 
-function onLoaiXeChange() {
-    $('#KeyLoaiXe').val($('#LoaiXeKey').val());
-}
+    if (this.checked) {
+        //$("#NgayCapPhep").attr("disable", true);
+        $("#TimTheoNgayCapPhep").val(true);
+    }
+    else {
+        //$("#NgayCapPhep").attr("disable", false);
+        $("#TimTheoNgayCapPhep").val(false);
+    }
+});
 //===================================================
 jQuery(function ($) {
 
+    $('#ckNgayCapPhep').attr("checked", true);
     //_______________________________________________
     KhoiTaoDuLieuComboBox();
     
@@ -363,8 +366,9 @@ jQuery(function ($) {
     //SetDateForDatepicker('NgayCapPhep', null);
 
     //_______________________________________________
-    //CauHinhBangDuLieuXeChuaSapLich();
-    //CauHinhBangDuLieuXeChoSapLich();
+    KhoiTaoCauTrucDuLieuBang();
+    CauHinhBangDuLieuXeChuaSapLich();
+    CauHinhBangDuLieuXeChoSapLich();
 
     //CauHinhBangDuLieuXeChuaSapLich('#tableXeChuaSapLich');
     //CauHinhBangDuLieuXeChuaSapLich('#tableXeChoSapLich');

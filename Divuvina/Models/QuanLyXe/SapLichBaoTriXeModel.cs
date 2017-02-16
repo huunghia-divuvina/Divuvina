@@ -42,6 +42,7 @@ namespace Divuvina.Models.QuanLyXe
         [DataType(DataType.Date), DisplayFormat(DataFormatString = "(0:dd/MM/yyyy HH:mm)",ApplyFormatInEditMode =true)]
         public DateTime? NgayCapPhep { get; set; }
 
+        public bool TimTheoNgayCapPhep { get; set; }
         //[StringLength(50)]
         //public string Mau { get; set; }
 

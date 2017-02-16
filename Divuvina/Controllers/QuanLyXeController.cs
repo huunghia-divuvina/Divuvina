@@ -217,9 +217,10 @@ namespace Divuvina.Controllers
             _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.BangSoXe = string.Empty;
             _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.HangSanXuatXeKey = 0;
             _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.LoaiXeKey = 0;
-            _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.NgayCapPhep = null;//DateTime.Today;
+            _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.NgayCapPhep = DateTime.Today;
             _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.SoSan = string.Empty;
             _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.XeKey = 0;
+            _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.TimTheoNgayCapPhep = true;
             ViewBag.Title = "Sắp lịch bảo trì xe";
             return View(_SapLichBaoTriXeModel);
         }
@@ -230,7 +231,7 @@ namespace Divuvina.Controllers
             var message = new RMessage { ErrorMessage = "Tìm thông tin xe chưa sắp lịch sửa chữa không thành công.", Result = false };
             try
             {
-                if (ModelState.IsValid && model != null && model.ThongTinTimKiemSapLichBaoTri != null)
+                if (model != null && model.ThongTinTimKiemSapLichBaoTri != null)//ModelState.IsValid && 
                 {
                     var thongTinTimKiemSapLichBaoTri = model.ThongTinTimKiemSapLichBaoTri;
                     #region Cách 1: Bị hạn chế khi truyền tham số phải chuyển sang kiểu string.
@@ -244,12 +245,16 @@ namespace Divuvina.Controllers
                     //model.ListXeChuaSapLich = _db.Database.SqlQuery<Models.sp_LayThongTinXeChuaSapLich_Result>(storeParam).ToList();
                     #endregion Cách 1: Bị hạn chế khi truyền tham số phải chuyển sang kiểu string.
                     string store = "[dbo].[sp_LayThongTinXeChuaSapLich] @HangSanXuatXeKey, @LoaiXeKey, @BangSoXe, @SoSan, @NgayCapPhep";
+
+                    var ngayCapPhep = new SqlParameter { ParameterName = "NgayCapPhep", SqlDbType = SqlDbType.DateTime, Value = thongTinTimKiemSapLichBaoTri.NgayCapPhep };
+                    if(!thongTinTimKiemSapLichBaoTri.TimTheoNgayCapPhep) ngayCapPhep = new SqlParameter { ParameterName = "NgayCapPhep", SqlDbType = SqlDbType.DateTime, Value = DBNull.Value };
+
                     var sqlParams = new SqlParameter[] {
                         new SqlParameter { ParameterName = "HangSanXuatXeKey", SqlDbType = SqlDbType.Int, Value = thongTinTimKiemSapLichBaoTri.HangSanXuatXeKey },
                         new SqlParameter { ParameterName = "LoaiXeKey", SqlDbType = SqlDbType.Int, Value = thongTinTimKiemSapLichBaoTri.LoaiXeKey },
                         new SqlParameter { ParameterName = "BangSoXe", SqlDbType = SqlDbType.VarChar, Value = (thongTinTimKiemSapLichBaoTri.BangSoXe == null ? string.Empty : thongTinTimKiemSapLichBaoTri.BangSoXe) },
                         new SqlParameter { ParameterName = "SoSan", SqlDbType = SqlDbType.VarChar, Value = (thongTinTimKiemSapLichBaoTri.SoSan == null ? string.Empty : thongTinTimKiemSapLichBaoTri.SoSan)},
-                        new SqlParameter { ParameterName = "NgayCapPhep", SqlDbType = SqlDbType.DateTime, Value = (thongTinTimKiemSapLichBaoTri.NgayCapPhep < new DateTime(1900,01,01) ? new DateTime(1900,01,01) :  thongTinTimKiemSapLichBaoTri.NgayCapPhep) }
+                        ngayCapPhep
                     };
                     model.ListXeChuaSapLich = _db.Database.SqlQuery<Models.sp_LayThongTinXeChuaSapLich_Result>(store, sqlParams).ToList();
                     return Json(model, JsonRequestBehavior.AllowGet);
