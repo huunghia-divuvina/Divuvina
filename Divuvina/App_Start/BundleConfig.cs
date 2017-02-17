@@ -429,6 +429,11 @@ namespace Divuvina
 
             #region Divuvina.
 
+            // Metronic
+            bundles.Add(new StyleBundle("~/metronic").Include(
+                      "~/Content/plugins/metronic/components.min.css"));
+
+            // nghuuphuoc
             bundles.Add(new StyleBundle("~/nghuuphuoc-bootstrapvalidator-v0.5.2").Include(
                       "~/Content/plugins/nghuuphuoc-bootstrapvalidator-v0.5.2/bootstrapValidator.css"));
 

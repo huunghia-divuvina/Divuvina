@@ -332,6 +332,16 @@
     <Content Include="Content\plugins\jsTree\throbber.gif" />
     <Content Include="Content\plugins\ladda\ladda-themeless.min.css" />
     <Content Include="Content\plugins\ladda\ladda.min.css" />
+    <Content Include="Content\plugins\metronic\components-md.css" />
+    <Content Include="Content\plugins\metronic\components-md.min.css" />
+    <Content Include="Content\plugins\metronic\components-rounded.css" />
+    <Content Include="Content\plugins\metronic\components-rounded.min.css" />
+    <Content Include="Content\plugins\metronic\components.css" />
+    <Content Include="Content\plugins\metronic\components.min.css" />
+    <Content Include="Content\plugins\metronic\plugins-md.css" />
+    <Content Include="Content\plugins\metronic\plugins-md.min.css" />
+    <Content Include="Content\plugins\metronic\plugins.css" />
+    <Content Include="Content\plugins\metronic\plugins.min.css" />
     <Content Include="Content\plugins\morris\morris-0.4.3.min.css" />
     <Content Include="Content\plugins\nghuuphuoc-bootstrapvalidator-v0.5.2\bootstrapValidator.css" />
     <Content Include="Content\plugins\nouslider\jquery.nouislider.css" />

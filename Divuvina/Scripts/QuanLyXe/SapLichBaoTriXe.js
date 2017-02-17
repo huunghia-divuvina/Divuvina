@@ -63,15 +63,10 @@ function GetThongTinXeChuaSapLich() {
         cache: false,
         success: function (result) {
             //---------------------------
-            //listThongTinXeChuaSapLich = result;
-            if (listThongTinXeChoSapLich == null) KhoiTaoDuLieuComboBox();
+            //if (listThongTinXeChoSapLich == null) KhoiTaoDuLieuComboBox();
             if (result != null && result.ListXeChuaSapLich != null) listThongTinXeChuaSapLich = result.ListXeChuaSapLich;
-            //return listThongTinXeChuaSapLich;
+            return listThongTinXeChuaSapLich;
             //---------------------------
-            tableXeChuaSapLich.data = listThongTinXeChuaSapLich;
-            tableXeChuaSapLich.ajax.reload();
-            //tableXeChuaSapLich.fnClearTable();
-            //tableXeChuaSapLich.fnAddData(listThongTinXeChuaSapLich);
         },
         //---------------------------
         //error: function (xhr, exception) {
@@ -91,11 +86,11 @@ function GetThongTinXeChuaSapLich() {
 //===================================================
 
 //---------------------------------------------------
-//var dataList = [
-//{ 'XeKey': 1, 'BangSoXe': 'Hristo Stoichkov', 'SoSan': 'Plovdiv, Bulgaria', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg', 'Mau':'Xanh' },
-//{ 'XeKey': 2, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg', 'Mau': 'Xanh' },
-//{ 'XeKey': 3, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': false, 'CoTivi': true, 'CoCameraHanhTrinh': false, 'GhiChu': 'sdfdsg', 'Mau': 'Xanh' },
-//];
+var dataList = [
+{ 'XeKey': 1, 'BangSoXe': 'Hristo Stoichkov', 'SoSan': 'Plovdiv, Bulgaria', 'NgayCapPhep': '20-2-2017', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg', 'Mau':'Xanh' },
+{ 'XeKey': 2, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg', 'Mau': 'Xanh' },
+{ 'XeKey': 3, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': false, 'CoTivi': true, 'CoCameraHanhTrinh': false, 'GhiChu': 'sdfdsg', 'Mau': 'Xanh' },
+];
 
 //===================================================
 function KhoiTaoCauTrucDuLieuBang() {
@@ -120,9 +115,13 @@ function CauHinhBangDuLieuXeChuaSapLich()
     //var listThongTinXeChuaSapLich = GetThongTinXeChuaSapLich();
     //---------------------------------------------------
     tableXeChuaSapLich = $(tableName).DataTable({
-        data: listThongTinXeChuaSapLich
-        //data: dataList
-        ,
+        //data: listThongTinXeChuaSapLich
+        //data: dataList,
+        //ajax: {
+        //    url: '/QuanLyXe/GetThongTinXeChuaSapLich',
+        //    dataSrc: $('#formTimXeSapLich').serialize()
+        //}
+        //,
         columns: [
             {
                 //Index Column.
@@ -338,8 +337,15 @@ function CauHinhBangDuLieuXeChoSapLich() {
 //===================================================
 $("#btTimThongTinXe").on('click', function (e) {
     e.preventDefault();
-    //listThongTinXeChuaSapLich = GetThongTinXeChuaSapLich();
+   
+    //tableXeChuaSapLich.clear().draw();
+    //tableXeChuaSapLich.rows.add(dataList);
     GetThongTinXeChuaSapLich();
+
+    //dataList.clear();
+
+    tableXeChuaSapLich.rows.add(listThongTinXeChuaSapLich);
+    tableXeChuaSapLich.columns.adjust().draw();
 });
 
 $("#ckTimTheoNgayCapPhep").on('click', function (e) {

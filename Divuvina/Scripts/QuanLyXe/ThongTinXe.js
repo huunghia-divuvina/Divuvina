@@ -39,7 +39,6 @@ function LuuThongTinXe() {
     });//End ajax
 }//EndFunction
 
-
 //===================================================
 function KhoiTaoCheckBoxThietBiTheoXe()
 {

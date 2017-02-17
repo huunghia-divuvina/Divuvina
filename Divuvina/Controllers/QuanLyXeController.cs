@@ -67,7 +67,7 @@ namespace Divuvina.Controllers
             var message = new RMessage { ErrorMessage = "Lưu thông tin xe không thành công.", Result = false };
             try
             {
-                if (ModelState.IsValid)
+                //if (ModelState.IsValid)
                 {
                     //Kiểm tra thông tin đầu vào.
                     var keyHangSanXuatXe = Request.Form["KeyHangSanXuatXe"];
@@ -115,7 +115,7 @@ namespace Divuvina.Controllers
                     new ThongTinXeVaKhauHaoBll().LuuThongTinXeVaKhauHao(thongTinXeVaKhauHaoModel);
                     return Json(new { Result = true, Message = Message.SuccessDataAction, Title = TitleMessageBox.CompleteTitle });
                 }
-                else { return Json(new { Result = false, Message = ".", Title = TitleMessageBox.ErrorTitle }); }
+                //else { return Json(new { Result = false, Message = ".", Title = TitleMessageBox.ErrorTitle }); }
             }
             catch (Exception) { return Json(new { Result = false, Title = TitleMessageBox.FailureTitle, Message = Message.FailureDataAction }, JsonRequestBehavior.AllowGet); }
         }
