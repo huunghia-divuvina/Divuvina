@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbSp.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbSp.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <Function Name="sp_LayThongTinXeChuaSapLich" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="HangSanXuatXeKey" Type="int" Mode="In" />
           <Parameter Name="LoaiXeKey" Type="int" Mode="In" />
@@ -13,12 +13,19 @@
           <Parameter Name="NgayCapPhep" Type="datetime" Mode="In" />
         </Function>
         <Function Name="sp_LayThongTinXeDaSapLich" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_LuuThongTinSapLichBaoTriXe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ListXeKeyXML" Type="xml" Mode="In" />
+          <Parameter Name="NoiSuaChuaXeKey" Type="int" Mode="In" />
+          <Parameter Name="NgaySapLich" Type="datetime" Mode="In" />
+          <Parameter Name="NhanVienSapLichKey" Type="int" Mode="In" />
+          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+          <Parameter Name="ListXeKeyFailed" Type="varchar" Mode="InOut" />
+        </Function>
         <Function Name="spTest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="key" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="dbSpStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbSp" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -32,7 +39,15 @@
           </FunctionImport>
           <FunctionImport Name="sp_LayThongTinXeDaSapLich" ReturnType="Collection(dbSp.sp_LayThongTinXeDaSapLich_Result)" />
           <FunctionImport Name="spTest" ReturnType="Collection(Int32)">
-            <Parameter Name="key" Mode="In" Type="Int32" />
+          <Parameter Name="key" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_LuuThongTinSapLichBaoTriXe">
+            <Parameter Name="ListXeKeyXML" Mode="In" Type="String" />
+            <Parameter Name="NoiSuaChuaXeKey" Mode="In" Type="Int32" />
+            <Parameter Name="NgaySapLich" Mode="In" Type="DateTime" />
+            <Parameter Name="NhanVienSapLichKey" Mode="In" Type="Int32" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+            <Parameter Name="ListXeKeyFailed" Mode="InOut" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_LayThongTinXeChuaSapLich_Result">
@@ -106,6 +121,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spTest" FunctionName="dbSp.Store.spTest" />
+          <FunctionImportMapping FunctionImportName="sp_LuuThongTinSapLichBaoTriXe" FunctionName="dbSp.Store.sp_LuuThongTinSapLichBaoTriXe" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

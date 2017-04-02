@@ -10,6 +10,7 @@ using System.Data.Entity.Core.Objects;
 using System.Data;
 using System.Data.SqlClient;
 using Divuvina.Business.Exceptions;
+using System.Xml;
 
 namespace Divuvina.Controllers
 {
@@ -248,35 +249,7 @@ namespace Divuvina.Controllers
             var message = new RMessage { ErrorMessage = "Tìm thông tin xe chưa sắp lịch sửa chữa không thành công.", Result = false };
             try
             {
-                if (model != null && model.ThongTinTimKiemSapLichBaoTri != null)//ModelState.IsValid && 
-                {
-                    var thongTinTimKiemSapLichBaoTri = model.ThongTinTimKiemSapLichBaoTri;
-                    #region Cách 1: Bị hạn chế khi truyền tham số phải chuyển sang kiểu string.
-                    //string storeParam = String.Format("[dbo].[sp_LayThongTinXeChuaSapLich] @HangSanXuatXeKey = {0}, @LoaiXeKey = {1}, @BangSoXe = N'{2}', @SoSan = N'{3}', @NgayCapPhep = {4}",
-                    //    thongTinTimKiemSapLichBaoTri.HangSanXuatXeKey.ToString(),
-                    //    thongTinTimKiemSapLichBaoTri.LoaiXeKey.ToString(),
-                    //    thongTinTimKiemSapLichBaoTri.BangSoXe,
-                    //    thongTinTimKiemSapLichBaoTri.SoSan,
-                    //    thongTinTimKiemSapLichBaoTri.NgayCapPhep);
-                    //thongTinTimKiemSapLichBaoTri.NgayCapPhep.ToString("yyyy/MM/dd"));
-                    //model.ListXeChuaSapLich = _db.Database.SqlQuery<Models.sp_LayThongTinXeChuaSapLich_Result>(storeParam).ToList();
-                    #endregion Cách 1: Bị hạn chế khi truyền tham số phải chuyển sang kiểu string.
-                    string store = "[dbo].[sp_LayThongTinXeChuaSapLich] @HangSanXuatXeKey, @LoaiXeKey, @BangSoXe, @SoSan, @NgayCapPhep";
-
-                    var ngayCapPhep = new SqlParameter { ParameterName = "NgayCapPhep", SqlDbType = SqlDbType.DateTime, Value = thongTinTimKiemSapLichBaoTri.NgayCapPhep };
-                    if(!thongTinTimKiemSapLichBaoTri.TimTheoNgayCapPhep) ngayCapPhep = new SqlParameter { ParameterName = "NgayCapPhep", SqlDbType = SqlDbType.DateTime, Value = DBNull.Value };
-
-                    var sqlParams = new SqlParameter[] {
-                        new SqlParameter { ParameterName = "HangSanXuatXeKey", SqlDbType = SqlDbType.Int, Value = thongTinTimKiemSapLichBaoTri.HangSanXuatXeKey },
-                        new SqlParameter { ParameterName = "LoaiXeKey", SqlDbType = SqlDbType.Int, Value = thongTinTimKiemSapLichBaoTri.LoaiXeKey },
-                        new SqlParameter { ParameterName = "BangSoXe", SqlDbType = SqlDbType.VarChar, Value = (thongTinTimKiemSapLichBaoTri.BangSoXe == null ? string.Empty : thongTinTimKiemSapLichBaoTri.BangSoXe) },
-                        new SqlParameter { ParameterName = "SoSan", SqlDbType = SqlDbType.VarChar, Value = (thongTinTimKiemSapLichBaoTri.SoSan == null ? string.Empty : thongTinTimKiemSapLichBaoTri.SoSan)},
-                        ngayCapPhep
-                    };
-                    var listXeChuaSapLich = _db.Database.SqlQuery<Models.sp_LayThongTinXeChuaSapLich_Result>(store, sqlParams).ToList();
-                    return Json(listXeChuaSapLich, JsonRequestBehavior.AllowGet);
-                }
-                return Json(message, JsonRequestBehavior.AllowGet);
+                return Json(new SapLichBaoTriXeBll().GetThongTinXeChuaSapLich(model), JsonRequestBehavior.AllowGet);
             }
             catch (BusinessException ex)
             {
@@ -294,21 +267,37 @@ namespace Divuvina.Controllers
             , Models.sp_LayThongTinXeChuaSapLich_Result[] listThongTinXeChuaSapLich
             , Models.sp_LayThongTinXeChuaSapLich_Result[] listThongTinXeChoSapLich)
         {
-            var message = new RMessage { ErrorMessage = "Lưu thông tin sắp lịch sửa chữa bảo trì xe không thành công.", Result = false };
+            var message = new RMessage { ErrorMessage = "Lưu thông tin sắp lịch sửa chữa bảo trì xe thành công.", Result = true };
             try
             {
-                //if (model != null && ModelState.IsValid)//ModelState.IsValid && 
+                // Tạo XML danh sách xe chờ sắp lịch.
+                //---------------------------
+                var docListXeSapLich = new XmlDocument();
+
+                var DanhSachXe = docListXeSapLich.CreateElement("HoaDonHienThi");
+                docListXeSapLich.AppendChild(DanhSachXe);
+                foreach (var xeChoSapLich in listThongTinXeChoSapLich)
                 {
-                    //if(model.ListXeChuaSapLich != null && model.ListXeChuaSapLich.Count > 0)
-                    //{
 
-                    //}
+                    var row = docListXeSapLich.CreateElement("Row");
+                    DanhSachXe.AppendChild(row);
 
-                    //if(model.ListXeChoSapLich != null && model.ListXeChoSapLich.Count > 0)
-                    //{
+                    var xeKey = docListXeSapLich.CreateElement("XeKey");
+                    xeKey.InnerText = xeChoSapLich.XeKey.ToString();
+                    row.AppendChild(xeKey);
 
-                    //}
                 }
+                //---------------------------
+                string listXeKeyFailed = string.Empty;
+                var nhanVienSapLichKey = 0;
+                var resultSapLichBaoTriXe = new SapLichBaoTriXeBll().LuuThongTinSapLichBaoTriXe(docListXeSapLich.InnerXml, noiSuaChuaXeKey
+                    , ngaySapLich, nhanVienSapLichKey, ghiChu,ref listXeKeyFailed);
+                
+                if(!resultSapLichBaoTriXe)
+                {
+                    message = new RMessage { ErrorMessage = "Lưu thông tin sắp lịch sửa chữa bảo trì xe không thành công.", Result = false };
+                }
+
                 return Json(message, JsonRequestBehavior.AllowGet);
             }
             catch(BusinessException ex)

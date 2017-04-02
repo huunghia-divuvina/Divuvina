@@ -528,6 +528,7 @@ $("#btHuySapLich").on('click', function (e) {
 $("#btLuu").on('click', function (e) {
     e.preventDefault();
 
+    //---------------------------
     var noiSuaChuaXeKey = $("#NoiSuaChuaXeKey").val();
     if (noiSuaChuaXeKey == undefined || noiSuaChuaXeKey == null || noiSuaChuaXeKey <= 0)
     {
@@ -535,14 +536,13 @@ $("#btLuu").on('click', function (e) {
         document.getElementById("NoiSuaChuaXeKey").focus();
         return;
     }
-
+    //---------------------------
     var ngaySapLich = $("#NgaySapLich").val();
     if (ngaySapLich == undefined || ngaySapLich == null || ngaySapLich < new Date()) {
         ShowMessageFailure("Bạn chưa chọn ngày sắp lịch sửa chữa.");
         document.getElementById("NgaySapLich").focus();
         return;
     }
-
     //---------------------------
     var danhSachXeChuaSapLich = $("#tableXeChuaSapLich").DataTable().rows().data();
     var danhSachXeChoSapLich = $("#tableXeChoSapLich").DataTable().rows().data();
@@ -568,7 +568,7 @@ $("#btLuu").on('click', function (e) {
         type: 'POST',
         url: '/QuanLyXe/SaveThongTinSapLichBaoTri',
         async: false,
-        data: JSON.stringify({ 'model': $('#formTimXeSapLich').serialize(), 'listThongTinXeChuaSapLich': listThongTinXeChuaSapLich, 'listThongTinXeChoSapLich': listThongTinXeChoSapLich }),
+        //data: JSON.stringify({ 'model': $('#formTimXeSapLich').serialize(), 'listThongTinXeChuaSapLich': listThongTinXeChuaSapLich, 'listThongTinXeChoSapLich': listThongTinXeChoSapLich }),
         data: JSON.stringify({ 'noiSuaChuaXeKey': noiSuaChuaXeKey, 'ngaySapLich': ngaySapLich, 'ghiChu': '', 'listThongTinXeChuaSapLich': listThongTinXeChuaSapLich, 'listThongTinXeChoSapLich': listThongTinXeChoSapLich }),
         cache: false,
         success: function () {

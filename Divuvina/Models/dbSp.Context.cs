@@ -66,5 +66,30 @@ namespace Divuvina.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spTest", keyParameter);
         }
+    
+        public virtual int sp_LuuThongTinSapLichBaoTriXe(string listXeKeyXML, Nullable<int> noiSuaChuaXeKey, Nullable<System.DateTime> ngaySapLich, Nullable<int> nhanVienSapLichKey, string ghiChu, ObjectParameter listXeKeyFailed)
+        {
+            var listXeKeyXMLParameter = listXeKeyXML != null ?
+                new ObjectParameter("ListXeKeyXML", listXeKeyXML) :
+                new ObjectParameter("ListXeKeyXML", typeof(string));
+    
+            var noiSuaChuaXeKeyParameter = noiSuaChuaXeKey.HasValue ?
+                new ObjectParameter("NoiSuaChuaXeKey", noiSuaChuaXeKey) :
+                new ObjectParameter("NoiSuaChuaXeKey", typeof(int));
+    
+            var ngaySapLichParameter = ngaySapLich.HasValue ?
+                new ObjectParameter("NgaySapLich", ngaySapLich) :
+                new ObjectParameter("NgaySapLich", typeof(System.DateTime));
+    
+            var nhanVienSapLichKeyParameter = nhanVienSapLichKey.HasValue ?
+                new ObjectParameter("NhanVienSapLichKey", nhanVienSapLichKey) :
+                new ObjectParameter("NhanVienSapLichKey", typeof(int));
+    
+            var ghiChuParameter = ghiChu != null ?
+                new ObjectParameter("GhiChu", ghiChu) :
+                new ObjectParameter("GhiChu", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_LuuThongTinSapLichBaoTriXe", listXeKeyXMLParameter, noiSuaChuaXeKeyParameter, ngaySapLichParameter, nhanVienSapLichKeyParameter, ghiChuParameter, listXeKeyFailed);
+        }
     }
 }
