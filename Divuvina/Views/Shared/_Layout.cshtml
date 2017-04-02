@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>INSPINIA | @ViewBag.Title</title>
+    <title>SmartBus | @ViewBag.Title</title>
 
     @* Include Bootstrap CSS*@ 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    
     @* Add local styles, mostly for plugins css file*@ 
     @if (IsSectionDefined("Styles"))
         {@RenderSection("Styles", required: false)}
@@ -25,7 +26,6 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/font-awesome/css")
 
-
     @* Styles áp dụng cho mỗi trang*@
     @Styles.Render("~/plugins/awesomeCheckboxStyles")
     @Styles.Render("~/plugins/clockpickerStyles")
@@ -33,7 +33,7 @@
     @Styles.Render("~/plugins/switcheryStyles")
     @Styles.Render("~/plugins/jasnyBootstrapStyles")
     @Styles.Render("~/plugins/nouiSliderStyles")
-    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/datePickerStyles")
     @Styles.Render("~/plugins/imagecropperStyles")
     @Styles.Render("~/plugins/select2Styles")
     @Styles.Render("~/plugins/touchSpinStyles")
@@ -48,8 +48,6 @@
     @Styles.Render("~/Content/plugins/SmartWizard-master")
 
     @Styles.Render("~/Content/animate.css")
-
-    @Styles.Render("~/metronic")
 
     @Styles.Render("~/nghuuphuoc-bootstrapvalidator-v0.5.2")
 
@@ -107,10 +105,16 @@
     @* Jquery Validate *@
     @Scripts.Render("~/plugins/validate")
 
+    @* START SmartBus*@
+    @*---------------*@
     @* Hàm dùng Validation Form *@
     @Scripts.Render("~/plugins/nghuuphuoc-bootstrapvalidator-v0.5.2")
     @* Hàm dùng chung tự viết *@
     @Scripts.Render("~/Public/HamDungChung")
+    @*---------------*@
+    @* END SmartBus*@
+
+
 
 
     <div class="modal inmodal" id="waitModal" tabindex="-1" role="dialog" aria-hidden="true">

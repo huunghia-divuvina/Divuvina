@@ -1,0 +1,336 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>dataTable</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    @* Include Bootstrap CSS*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    @* Optional Bootstrap theme*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+    @*-- Optional Metronic theme--*@
+    @*-- Start Haint-Thiết kế layout theo Metronic--*@
+    @*<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all' rel='stylesheet' type='text/css' />*@
+    <link rel="shortcut icon" href="~/assets/icon/favicon.ico" />
+    @*-- End Haint-Thiết kế layout theo Metronic--*@
+
+    <!-- Add jQuery Style direct - used for jQGrid plugin -->
+    <link href="@Url.Content("~/Scripts/plugins/jquery-ui/jquery-ui.css")" rel="stylesheet" type="text/css" />
+
+    <!-- Primary Inspinia style -->
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/font-awesome/css")
+
+    <style>
+        .sorting_disabled
+        {
+        background-image:none !important;
+        }
+    </style>
+    
+
+    <!-- Section for main scripts render -->
+    @Scripts.Render("~/bundles/jquery")
+    @*<script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>*@
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/plugins/slimScroll")
+    @Scripts.Render("~/bundles/inspinia")
+
+    <!-- Skin config script - only for demo purpose-->
+    @Scripts.Render("~/bundles/skinConfig")
+
+
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    @*@Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")*@
+    <link href="../assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    @*<link href="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />*@
+    <!-- END PAGE LEVEL PLUGINS -->
+
+    @Styles.Render("~/plugins/select2Styles")
+
+    @Scripts.Render("~/plugins/datePicker")
+    @Scripts.Render("~/plugins/select2")
+
+    @* Jquery Validate *@
+    @Scripts.Render("~/assets/global/plugins/moment.min.js")
+    @Scripts.Render("~/plugins/validate")
+    @Scripts.Render("~/Public/HamDungChung")
+
+
+</head>
+<body>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <table class="table table-striped table-bordered table-hover table-checkable order-column" id="tableXeChuaSapLich">
+                <thead>
+                    <tr>
+                        @*<th></th>*@
+                        <th>
+                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                <input type="checkbox" class="group-checkable" />
+                                <span></span>
+                            </label>
+                        </th>
+                        <th></th>
+                        <th>Bảng số xe</th>
+                        <th>Số sàn</th>
+                        <th>Ngày cấp phép</th>
+                        <th>Màu</th>
+                        <th>Wifi</th>
+                        <th>Tivi</th>
+                        <th>Camera</th>
+                        <th>Ghi chú xe</th>
+                        <th>Loại xe</th>
+                        <th>Hãng sản xuất</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="../assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+</body>
+
+</html>
+
+    <script type="text/javascript">
+        var listThongTinXeChuaSapLich = [];
+        var listThongTinXeChoSapLich = [];
+
+        function InitBangXeChuaSapLich() {
+            var table = $('#tableXeChuaSapLich');
+
+            // begin first table
+            table.dataTable({
+
+                // Internationalisation. For more info refer to http://datatables.net/manual/i18n
+                language: {
+                    aria: {
+                        //"sortAscending": ": activate to sort column ascending",
+                        //"sortDescending": ": activate to sort column descending"
+                        sortAscending: ": kích hoạt để sắp xếp cột tăng dần",
+                        sortDescending: ": kích hoạt để sắp xếp cột giảm dần"
+                    },
+                    emptyTable: "Không có dữ liệu",
+                    info: "Đang hiển thị từ _START_ đến _END_ trong tổng _TOTAL_ dòng",
+                    infoEmpty: "Không có dữ liệu nào được tìm thấy",
+                    infoFiltered: "(Tìm kiếm từ _MAX_ tổng sổ dòng)",
+                    lengthMenu: "Hiển thị _MENU_ dòng",
+                    search: "Tìm kiếm",
+                    processing: "Đang xử lý...",
+                    zeroRecords: "Không có dữ liệu",
+                    paginate: {
+                        "previous": "Trước",
+                        "next": "Sau",
+                        "last": "Trang cuối",
+                        "first": "Trang đầu"
+                    }
+                },
+                bStateSave: true, // save datatable state(pagination, sort, etc) in cookie.
+                bProcessing: false,
+                lengthMenu: [
+                    [5, 15, 20, -1],
+                    [5, 15, 20, "All"] // change per page values here
+                ],
+                // set the initial value
+                pageLength: 5,
+                pagingType: "bootstrap_full_number",
+                //ordering: false,
+                //"columnDefs": [{  // set default column settings
+                //    'orderable': false,
+                //    'targets': [0]
+                //}, {
+                //    "searchable": false,
+                //    "targets": [0],
+                //    "render": '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"><input type="checkbox" class="group-checkable"/><span></span></label>'
+                //}],
+                columns: [
+                    //{
+                    //    //Index Column.
+                    //    data: null,
+                    //    searchable: false
+                    //    , orderable: false
+                    //    , targets: 0
+                    //},
+                    {
+                        orderable: false,
+                        targets: [0],
+                        data: null,
+                        defaultContent: '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"><input type="checkbox" class="group-checkable"/><span></span></label>'
+                    }
+                    , { data: 'XeKey', visible: false }
+                    , { data: 'BangSoXe', targets: [0] }
+                    , { data: 'SoSan' }
+                    , {
+                        data: 'NgayCapPhep'
+                        , className: 'center'
+                        , render: function (data, type, full, meta) {
+                            if (full != null && full.NgayCapPhep != null) {
+                                return formatDateToString(full.NgayCapPhep, 'DD/MM/YYYY');
+                            }
+                            return '';
+                        }//EndRender
+                    }
+                    , { data: 'Mau', visible: false }
+                    , {
+                        data: 'CoWifi'
+                        , render: function (data, type, full, meta) {
+                            if (full != null && full.CoWifi != null) {
+                                if (full.CoWifi) return "Có";
+                                return "Không";
+                            }
+                            return 'Không';
+                        }//EndRender
+                    }
+                    , {
+                        data: 'CoTivi'
+                        , render: function (data, type, full, meta) {
+                            if (full != null && full.CoTivi != null) {
+                                if (full.CoTivi) return "Có";
+                                return "Không";
+                            }
+                            return 'Không';
+                        }//EndRender 
+                    }
+                    , {
+                        data: 'CoCameraHanhTrinh'
+                        , render: function (data, type, full, meta) {
+                            if (full != null && full.CoCameraHanhTrinh != null) {
+                                if (full.CoCameraHanhTrinh) return "Có";
+                                return "Không";
+                            }
+                            return 'Không';
+                        }//EndRender 
+                    }
+                    , { data: 'GhiChu' }
+                    , { data: 'TenLoaiXe' }
+                    , { data: 'TenHangSanXuatXe' }
+
+                ],//EndColumns
+                order: [
+                    [0, "asc"]
+                ] // set first column as a default sort by asc
+            });
+
+            table.find('.group-checkable').change(function () {
+                var set = jQuery(this).attr("data-set");
+                var checked = jQuery(this).is(":checked");
+                jQuery(set).each(function () {
+                    if (checked) {
+                        $(this).prop("checked", true);
+                        $(this).parents('tr').addClass("active");
+                    } else {
+                        $(this).prop("checked", false);
+                        $(this).parents('tr').removeClass("active");
+                    }
+                });
+            });
+
+            table.on('change', 'tbody tr .checkboxes', function () {
+                $(this).parents('tr').toggleClass("active");
+            });
+
+            //Index columns.
+            //_______________________________________________
+            //table.on('order.dt search.dt', function () {
+            //    tableXeChuaSapLich.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+            //        cell.innerHTML = i + 1;
+            //    });
+            //}).draw();
+
+            //_______________________________________________
+            $('#tableXeChuaSapLich' + ' tbody').on('click', 'tr', function () {
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                }
+                else {
+                    tableXeChuaSapLich.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+            });
+
+
+        }
+
+        //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        function GetThongTinXeChuaSapLich() {
+            $.ajax({
+                type: "POST",
+                dataType: "JSON",
+                url: '/TestComponents/GetThongTinXeChuaSapLich',
+                //---------------------------
+                //=> Không mở đoạn code này. Vì mở đoạn code này sẽ không truyền được toàn bộ dữ liệu từ Form lên Controller
+                //Phần gắng thuộc tính từ model đến selector control không truyền được.
+                //contentType: "application/json; charset=utf-8", 
+                //---------------------------
+                //data: $('#formTimXeSapLich').serialize(),
+                async: true,
+                processData: false,
+                cache: false,
+                success: function (result) {
+                    //---------------------------
+                    if (listThongTinXeChuaSapLich != null) {
+                        listThongTinXeChuaSapLich = [];
+                        listThongTinXeChuaSapLich.length = 0;
+                    }
+                    if (result != null) {
+                        $.each(result, function (index, value) {
+                            listThongTinXeChuaSapLich.push(value);
+                        });
+                        //listThongTinXeChuaSapLich = result.ListXeChuaSapLich;
+                    }
+                    //return listThongTinXeChuaSapLich;
+                    //---------------------------
+                    //tableXeChuaSapLich.remove();
+                    //$.each(tableXeChuaSapLich.rows, function (index, value) { tableXeChuaSapLich.row(this).remove(); });
+                    tableXeChuaSapLich = $("#tableXeChuaSapLich").DataTable();
+                    //CauHinhBangDuLieuXeChuaSapLich();
+                    tableXeChuaSapLich.rows.add(listThongTinXeChuaSapLich);
+                    tableXeChuaSapLich.columns.adjust().draw();
+                },
+                //---------------------------
+                //error: function (xhr, exception) {
+                //    if (xhr.status != 0) alert('error');
+                //}
+                //---------------------------
+                error: function (xhr, ajaxOptions, thrownError) {
+                    //alert(xhr.status);
+                    //alert(xhr.responseText);
+                    //alert(thrownError);
+                    ShowMessageFailure("Tìm danh sách xe chưa sắp lịch không thành công.");
+                }
+            });
+
+        }//EndFunction
+
+
+        $(document).ready(function () {
+
+            InitBangXeChuaSapLich();
+            GetThongTinXeChuaSapLich();
+        });
+    </script>

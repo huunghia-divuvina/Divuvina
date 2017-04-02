@@ -10,9 +10,12 @@ namespace Divuvina.Models.QuanLyXe
     {
         public SapLichBaoTriXe ThongTinTimKiemSapLichBaoTri { get; set; }
 
-        public IList<Models.sp_LayThongTinXeChuaSapLich_Result> ListXeChuaSapLich { get; set; }
-        public IList<Models.sp_LayThongTinXeChuaSapLich_Result> ListXeChoSapLich { get; set; }
-        public IList<Models.sp_LayThongTinXeChuaSapLich_Result> ListXeDaSapLich { get; set; }
+        public int NoiSuaChuaXeKey { get; set; }
+        public DateTime NgaySapLich { get; set; }
+
+        //public IList<Models.sp_LayThongTinXeChuaSapLich_Result> ListXeChuaSapLich { get; set; }
+        //public IList<Models.sp_LayThongTinXeChuaSapLich_Result> ListXeChoSapLich { get; set; }
+        //public IList<Models.sp_LayThongTinXeChuaSapLich_Result> ListXeDaSapLich { get; set; }
 
         public SapLichBaoTriXeModel()
         {
@@ -26,12 +29,6 @@ namespace Divuvina.Models.QuanLyXe
         public int LoaiXeKey { get; set; }
         public int HangSanXuatXeKey { get; set; }
 
-        //[StringLength(100)]
-        //public string TenLoaiXe { get; set; }
-
-        //[StringLength(250)]
-        //public string TenHangSanXuatXe { get; set; }
-
         [StringLength(15)]
         public string BangSoXe { get; set; }
 
@@ -43,17 +40,5 @@ namespace Divuvina.Models.QuanLyXe
         public DateTime? NgayCapPhep { get; set; }
 
         public bool TimTheoNgayCapPhep { get; set; }
-        //[StringLength(50)]
-        //public string Mau { get; set; }
-
-        //public bool CoWifi { get; set; }
-
-        //public bool CoTivi { get; set; }
-
-        //public bool CoCameraHanhTrinh { get; set; }
-
-        //[StringLength(500)]
-        //public string GhiChu { get; set; }
-
     }//EndClass
 }//EndNamespace

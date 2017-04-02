@@ -33,13 +33,5 @@ namespace Divuvina
 
             
         }
-        //protected void Application_BeginRequest(object sender, EventArgs e)
-        //{
-        //    var globalizationSection = WebConfigurationManager.GetSection("globalization") as GlobalizationSection;
-        //    CultureInfo culture = new CultureInfo(globalizationSection.Culture);
-        //    CultureInfo uiCulture = new CultureInfo(globalizationSection.UICulture);
-        //    Thread.CurrentThread.CurrentCulture = culture;
-        //    Thread.CurrentThread.CurrentUICulture = uiCulture;
-        //}
     }
 }

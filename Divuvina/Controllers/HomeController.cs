@@ -15,5 +15,10 @@ namespace Divuvina.Controllers
 
             return View();
         }
+
+        public ActionResult IndexMetronic()
+        {
+            return View();
+        }
     }
 }

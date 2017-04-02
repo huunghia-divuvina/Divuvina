@@ -146,7 +146,7 @@ namespace Divuvina.Controllers
         {
             return View();
         }
-
+        
         public JsonResult LayDanhMucXe()
         {
             //SqlParameter param1 = new SqlParameter("@ThongTinXe", "");
@@ -210,7 +210,21 @@ namespace Divuvina.Controllers
         #endregion
 
         #region Sắp lịch bảo trì xe.
-        public ActionResult SapLichBaoTriXe()
+        //public ActionResult SapLichBaoTriXe()
+        //{
+        //    _SapLichBaoTriXeModel = new SapLichBaoTriXeModel();
+        //    _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri = new SapLichBaoTriXe();
+        //    _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.BangSoXe = string.Empty;
+        //    _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.HangSanXuatXeKey = 0;
+        //    _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.LoaiXeKey = 0;
+        //    _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.NgayCapPhep = DateTime.Today;
+        //    _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.SoSan = string.Empty;
+        //    _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.XeKey = 0;
+        //    _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.TimTheoNgayCapPhep = true;
+        //    ViewBag.Title = "Sắp lịch bảo trì xe";
+        //    return View(_SapLichBaoTriXeModel);
+        //}
+        public ActionResult SapLichBaoTriSuaChuaXe()
         {
             _SapLichBaoTriXeModel = new SapLichBaoTriXeModel();
             _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri = new SapLichBaoTriXe();
@@ -221,6 +235,9 @@ namespace Divuvina.Controllers
             _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.SoSan = string.Empty;
             _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.XeKey = 0;
             _SapLichBaoTriXeModel.ThongTinTimKiemSapLichBaoTri.TimTheoNgayCapPhep = true;
+
+            _SapLichBaoTriXeModel.NoiSuaChuaXeKey = 0;
+            _SapLichBaoTriXeModel.NgaySapLich = DateTime.Today;
             ViewBag.Title = "Sắp lịch bảo trì xe";
             return View(_SapLichBaoTriXeModel);
         }
@@ -256,8 +273,8 @@ namespace Divuvina.Controllers
                         new SqlParameter { ParameterName = "SoSan", SqlDbType = SqlDbType.VarChar, Value = (thongTinTimKiemSapLichBaoTri.SoSan == null ? string.Empty : thongTinTimKiemSapLichBaoTri.SoSan)},
                         ngayCapPhep
                     };
-                    model.ListXeChuaSapLich = _db.Database.SqlQuery<Models.sp_LayThongTinXeChuaSapLich_Result>(store, sqlParams).ToList();
-                    return Json(model, JsonRequestBehavior.AllowGet);
+                    var listXeChuaSapLich = _db.Database.SqlQuery<Models.sp_LayThongTinXeChuaSapLich_Result>(store, sqlParams).ToList();
+                    return Json(listXeChuaSapLich, JsonRequestBehavior.AllowGet);
                 }
                 return Json(message, JsonRequestBehavior.AllowGet);
             }
@@ -271,6 +288,44 @@ namespace Divuvina.Controllers
             }
         }//EndFunction
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        //public JsonResult SaveThongTinSapLichBaoTri(SapLichBaoTriXeModel model
+        public JsonResult SaveThongTinSapLichBaoTri(int noiSuaChuaXeKey, DateTime ngaySapLich, string ghiChu
+            , Models.sp_LayThongTinXeChuaSapLich_Result[] listThongTinXeChuaSapLich
+            , Models.sp_LayThongTinXeChuaSapLich_Result[] listThongTinXeChoSapLich)
+        {
+            var message = new RMessage { ErrorMessage = "Lưu thông tin sắp lịch sửa chữa bảo trì xe không thành công.", Result = false };
+            try
+            {
+                //if (model != null && ModelState.IsValid)//ModelState.IsValid && 
+                {
+                    //if(model.ListXeChuaSapLich != null && model.ListXeChuaSapLich.Count > 0)
+                    //{
+
+                    //}
+
+                    //if(model.ListXeChoSapLich != null && model.ListXeChoSapLich.Count > 0)
+                    //{
+
+                    //}
+                }
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+            catch(BusinessException ex)
+            {
+                message.Result = false;
+                message.MessageId = ex.getExceptionId();
+                message.SystemMessage = ex.ToString();
+                ViewData["RMessage"] = message;
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+        }//EndFunction
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public JsonResult LayNoiSuaChuaXeChoSelect()
+        {
+            return Json(new NoiSuaChuaXeBll().LayNoiSuaChuaXeChoSelect(), JsonRequestBehavior.AllowGet);
+        }
         #endregion Sắp lịch bảo trì xe.
     }//EndClass
 }//EndNamespaced

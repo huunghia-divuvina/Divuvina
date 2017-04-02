@@ -1,7 +1,20 @@
 ﻿var tableXeChuaSapLich = null;
 var tableXeChoSapLich = null;
-var listThongTinXeChuaSapLich = null;
-var listThongTinXeChoSapLich = null;
+//var listThongTinXeChuaSapLich = [
+//{ 'XeKey': -1, 'BangSoXe': 'x', 'SoSan': 'x', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'x', 'TenHangSanXuatXe': 'x', 'CoWifi': false, 'CoTivi': true, 'CoCameraHanhTrinh': false, 'GhiChu': 'x', 'Mau': 'x' }
+//];
+//var listThongTinXeChoSapLich = [
+//{ 'XeKey': -1, 'BangSoXe': 'x', 'SoSan': 'x', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'x', 'TenHangSanXuatXe': 'x', 'CoWifi': false, 'CoTivi': true, 'CoCameraHanhTrinh': false, 'GhiChu': 'x', 'Mau': 'x' }
+//];
+var listThongTinXeChuaSapLich = [];
+var listThongTinXeChoSapLich = [];
+//---------------------------------------------------
+//var dataList = [
+//{ 'XeKey': 1, 'BangSoXe': 'Hristo Stoichkov', 'SoSan': 'Plovdiv, Bulgaria', 'NgayCapPhep': '20-2-2017', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg', 'Mau': 'Xanh' },
+//{ 'XeKey': 2, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg', 'Mau': 'Xanh' },
+//{ 'XeKey': 3, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': false, 'CoTivi': true, 'CoCameraHanhTrinh': false, 'GhiChu': 'sdfdsg', 'Mau': 'Xanh' },
+//];
+
 
 //===================================================
 function KhoiTaoDuLieuComboBox() {
@@ -63,10 +76,23 @@ function GetThongTinXeChuaSapLich() {
         cache: false,
         success: function (result) {
             //---------------------------
-            //if (listThongTinXeChoSapLich == null) KhoiTaoDuLieuComboBox();
-            if (result != null && result.ListXeChuaSapLich != null) listThongTinXeChuaSapLich = result.ListXeChuaSapLich;
-            return listThongTinXeChuaSapLich;
+            if (listThongTinXeChuaSapLich != null) {
+                listThongTinXeChuaSapLich = [];
+                listThongTinXeChuaSapLich.length = 0;
+            }
+            if (result != null && result.ListXeChuaSapLich != null) {
+                $.each(result.ListXeChuaSapLich, function (index, value) {
+                    listThongTinXeChuaSapLich.push(value);
+                });
+                //listThongTinXeChuaSapLich = result.ListXeChuaSapLich;
+            }
+            //return listThongTinXeChuaSapLich;
             //---------------------------
+            //tableXeChuaSapLich.remove();
+            $.each(tableXeChuaSapLich.rows, function (index, value) { tableXeChuaSapLich.row(this).remove();});
+            //tableXeChuaSapLich = $("#tableXeChuaSapLich").DataTable();
+            tableXeChuaSapLich.rows.add(listThongTinXeChuaSapLich);
+            tableXeChuaSapLich.columns.adjust().draw();
         },
         //---------------------------
         //error: function (xhr, exception) {
@@ -84,13 +110,6 @@ function GetThongTinXeChuaSapLich() {
 }
 
 //===================================================
-
-//---------------------------------------------------
-var dataList = [
-{ 'XeKey': 1, 'BangSoXe': 'Hristo Stoichkov', 'SoSan': 'Plovdiv, Bulgaria', 'NgayCapPhep': '20-2-2017', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg', 'Mau':'Xanh' },
-{ 'XeKey': 2, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': true, 'CoTivi': false, 'CoCameraHanhTrinh': true, 'GhiChu': 'sdfdsg', 'Mau': 'Xanh' },
-{ 'XeKey': 3, 'BangSoXe': 'dsafsad', 'SoSan': 'dsafsaf', 'NgayCapPhep': '2017-01-20', 'TenLoaiXe': 'sdfdsaf', 'TenHangSanXuatXe': 'qerqwerewqr', 'CoWifi': false, 'CoTivi': true, 'CoCameraHanhTrinh': false, 'GhiChu': 'sdfdsg', 'Mau': 'Xanh' },
-];
 
 //===================================================
 function KhoiTaoCauTrucDuLieuBang() {
@@ -337,15 +356,24 @@ function CauHinhBangDuLieuXeChoSapLich() {
 //===================================================
 $("#btTimThongTinXe").on('click', function (e) {
     e.preventDefault();
-   
+    //if (listThongTinXeChuaSapLich != null) listThongTinXeChuaSapLich.splice(0, listThongTinXeChuaSapLich.length);
+
     //tableXeChuaSapLich.clear().draw();
     //tableXeChuaSapLich.rows.add(dataList);
+    //GetThongTinXeChuaSapLich();
+
+    //dataList.splice(0, dataList.length);
+    //if (listThongTinXeChuaSapLich != null && listThongTinXeChuaSapLich.length > 0)
+    //{
+    //    for(var i=0; i < listThongTinXeChuaSapLich.length; i++)
+    //    {
+    //        var item = listThongTinXeChuaSapLich[i];
+    //        dataList.push(item);
+    //    }
+    //}
+    //tableXeChuaSapLich.rows.add(dataList);
     GetThongTinXeChuaSapLich();
-
-    //dataList.clear();
-
-    tableXeChuaSapLich.rows.add(listThongTinXeChuaSapLich);
-    tableXeChuaSapLich.columns.adjust().draw();
+    
 });
 
 $("#ckTimTheoNgayCapPhep").on('click', function (e) {

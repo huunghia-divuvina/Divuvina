@@ -1,0 +1,335 @@
+﻿@using Divuvina.Models.QuanLyXe
+@using Divuvina.Public
+@model SapLichBaoTriXeModel
+@{
+    //ViewBag.Title = "SapLichBaoTriSuaChuaXe";
+    //Layout = "~/Views/Shared/_Layout_Metronic.cshtml";
+}
+@*-- BEGIN THEME PANEL --*@
+@*@Html.Partial("_Theme_Panel_Metronic")*@
+@*-- END THEME PANEL --*@
+@*==============================================*@
+@section Styles {
+
+@*-- BEGIN PAGE LEVEL PLUGINS--*@
+@*@Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")*@
+@Styles.Render("~/assets/global/plugins/datatables/datatables.min.css")
+@*@Styles.Render("~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css")*@
+@Styles.Render("~/plugins/select2Styles")
+}
+
+@*-- BEGIN PAGE BAR --*@
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="@Url.Action("IndexMetronic", "Home")">Home</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Sắp lịch bảo trì xe</span>
+        </li>
+    </ul>
+    <div class="page-toolbar">
+        @*<div id="dashboard-report-range" class="pull-right tooltips btn btn-sm" data-container="body" data-placement="bottom" data-original-title="Change dashboard date range">
+            <i class="icon-calendar"></i>&nbsp;
+            <span class="thin uppercase hidden-xs"></span>&nbsp;
+            <i class="fa fa-angle-down"></i>
+        </div>*@
+        <span><i class="icon-calendar"></i>&nbsp;<label>@DateTime.Today.ToString("dd/MM/yyyy")</label></span>
+    </div>
+</div>
+@*-- END PAGE BAR --*@
+@*-- BEGIN PAGE TITLE--*@
+@*<div class="col-md-12 col-sm-12">
+    <div class="input-group">
+        <h4><a href="@Url.Action("IndexMetronic", "Home")"><b>Home</b></a> > Quản lý xe > Sắp lịch bảo trì xe</h4>
+    </div>
+</div>*@
+@*<h3 class="page-title">*@
+
+    @*Sắp lịch bảo trì xe*@
+    @*<small>dashboard & statistics</small>*@
+@*</h3>*@
+@*-- END PAGE TITLE--*@
+@*-- END PAGE HEADER--*@
+<div class="clearfix"></div>
+<div><span>&nbsp;</span></div>
+<div class="row">
+    @*-- BEGIN SEARCH INFO--*@
+    <div class="col-md-12 col-sm-12">
+        <div class="portlet box green">
+            @* Begin TITLE *@
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-pagelines"></i>
+                    Tìm kiếm xe để sắp lịch bảo trì
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse" data-original-title title=""></a>
+                </div>
+            </div>
+            @* End TITLE *@
+
+            @* Begin CONTENT *@
+            <div class="portlet-body">
+                <form class="form-horizontal form-bordered" id="formTimXeSapLich" role="form" autocomplete="off">
+                    <div class="form-body">
+                        <div class="form-group" id="divFrmGrpKeyHangSanXuatXe">
+                            <label class="col-sm-2 control-label no-padding-right">Hãng sản xuất xe:</label>
+                            <div class="col-sm-4">
+                                <div class="input-group select2-bootstrap-prepend" style="width:100%">
+                                    <select id="HangSanXuatXeKey" class="form-control select2-allow-clear" name="ThongTinTimKiemSapLichBaoTri.HangSanXuatXeKey" data-error-msg="Vui lòng chọn hãng sản xuất xe." value="@(Model.ThongTinTimKiemSapLichBaoTri.HangSanXuatXeKey)" autofocus>
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <label class="col-sm-2 control-label no-padding-right">Loại xe:</label>
+                            <div class="col-sm-4">
+                                <div class="input-group select2-bootstrap-prepend" style="width:100%">
+                                    <select class="form-control select2-allow-clear" id="LoaiXeKey" name="ThongTinTimKiemSapLichBaoTri.LoaiXeKey" data-error-msg="Vui lòng chọn loại xe." value="@(Model.ThongTinTimKiemSapLichBaoTri.LoaiXeKey)">
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="divFrmGrpBangSoXe">
+                            <label class="col-sm-2 control-label no-padding-right">Bảng số xe:</label>
+                            <div class="col-sm-4">
+                                <div class="input-icon right">
+                                    <i class="fa fa-th font-green"></i>
+                                    <input type="text" id="BangSoXe" name="ThongTinTimKiemSapLichBaoTri.BangSoXe" class="form-control" placeholder="Nhập bảng số xe" value="@(Model.ThongTinTimKiemSapLichBaoTri.BangSoXe)">
+                                </div>
+                            </div>
+                            <label class="col-sm-2 control-label no-padding-right">Số sàn:</label>
+                            <div class="col-sm-4">
+                                <div class="input-icon right">
+                                    <i class="fa fa-th font-green"></i>
+                                    <input type="text" id="SoSan" name="ThongTinTimKiemSapLichBaoTri.SoSan" class="form-control" placeholder="Nhập số sàn" value="@(Model.ThongTinTimKiemSapLichBaoTri.SoSan)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group border-bottom-dot-line" id="divTimTheoNgayCapPhep">
+                            <label class="col-sm-2 control-label no-padding-right">Ngày cấp giấy xe:</label>
+                            <div class="col-sm-4">
+                                <div class="input-group select2-bootstrap-prepend">
+                                    <span class="input-group-addon" style="background-color:darkseagreen">
+                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline" style="padding-right:0; margin-right:0;"><input id="ckNgayCapPhep" type="checkbox" class="mt-checkbox"/><span></span></label>
+                                    </span>
+                                    <div id="divNgayCapPhep" class="input-group date date-picker" style="width:100%">
+                                        <span class="input-group-btn">
+                                            <button class="btn default green" type="button">
+                                                <i class="fa fa-calendar"></i>
+                                            </button>
+                                        </span>
+                                        <input type="text" id="NgayCapPhep" name="ThongTinTimKiemSapLichBaoTri.NgayCapPhep" class="form-control" value="@((Model.ThongTinTimKiemSapLichBaoTri.NgayCapPhep == null) ? "" : Convert.ToDateTime(Model.ThongTinTimKiemSapLichBaoTri.NgayCapPhep).ToString("dd/MM/yyyy"))">
+                                    </div>
+                                </div>
+                            </div>
+                            <label class="col-sm-2 control-label no-padding-right"></label>
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-primary" id="btTimThongTinXe"><i class="glyphicon glyphicon-search" aria-hidden="true"></i> Tìm thông tin xe</button>
+                            </div>
+                        </div>
+
+                        @*<div class="form-group" id="divFrmGrpKeyHangSanXuatXe">
+                            <label class="col-sm-2 control-label no-padding-right">Hãng sản xuất xe:</label>
+                            <div class="col-sm-10">
+                                <div class="input-group select2-bootstrap-prepend" style="width:100%">
+                                    <select id="HangSanXuatXeKey" class="form-control select2-allow-clear" name="ThongTinTimKiemSapLichBaoTri.HangSanXuatXeKey" data-error-msg="Vui lòng chọn hãng sản xuất xe." value="@(Model.ThongTinTimKiemSapLichBaoTri.HangSanXuatXeKey)" autofocus>
+                                        <option></option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="divFrmGrpLoaiXeKey">
+                            <label class="col-sm-2 control-label no-padding-right">Loại xe:</label>
+                            <div class="col-sm-10">
+                                <div class="input-group select2-bootstrap-prepend" style="width:100%">
+                                    <select class="form-control select2-allow-clear" id="LoaiXeKey" name="ThongTinTimKiemSapLichBaoTri.LoaiXeKey" data-error-msg="Vui lòng chọn loại xe." value="@(Model.ThongTinTimKiemSapLichBaoTri.LoaiXeKey)">
+                                        <option></option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="divFrmGrpBangSoXe">
+                            <label class="col-sm-2 control-label no-padding-right">Bảng số xe:</label>
+                            <div class="col-sm-10">
+                                <div class="input-icon right">
+                                    <i class="fa fa-th font-green"></i>
+                                    <input type="text" id="BangSoXe" name="ThongTinTimKiemSapLichBaoTri.BangSoXe" class="form-control" placeholder="Nhập bảng số xe" value="@(Model.ThongTinTimKiemSapLichBaoTri.BangSoXe)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="divFrmGrpSoSan">
+                            <label class="col-sm-2 control-label no-padding-right">Số sàn:</label>
+                            <div class="col-sm-10">
+                                <div class="input-icon right">
+                                    <i class="fa fa-th font-green"></i>
+                                    <input type="text" id="SoSan" name="ThongTinTimKiemSapLichBaoTri.SoSan" class="form-control" placeholder="Nhập số sàn" value="@(Model.ThongTinTimKiemSapLichBaoTri.SoSan)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group border-bottom-dot-line" id="divTimTheoNgayCapPhep">
+                            <label class="col-sm-2 control-label no-padding-right">Ngày cấp giấy xe:</label>
+                            <div class="col-sm-10">
+                                <div class="input-group select2-bootstrap-prepend">
+                                    <span class="input-group-addon" style="background-color:darkseagreen">
+                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline" style="padding-right:0; margin-right:0;"><input id="ckNgayCapPhep" type="checkbox"/><span></span></label>
+                                    </span>
+                                    <div id="divNgayCapPhep" class="input-group date date-picker" style="width:100%">
+                                        <span class="input-group-btn">
+                                            <button class="btn default green" type="button">
+                                                <i class="fa fa-calendar"></i>
+                                            </button>
+                                        </span>
+                                        <input type="text" id="NgayCapPhep" name="ThongTinTimKiemSapLichBaoTri.NgayCapPhep" class="form-control" value="@((Model.ThongTinTimKiemSapLichBaoTri.NgayCapPhep == null) ? "" : Convert.ToDateTime(Model.ThongTinTimKiemSapLichBaoTri.NgayCapPhep).ToString("dd/MM/yyyy"))">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="divButtonTimThongTinXe">
+                            <label class="col-sm-2 control-label no-padding-right"></label>
+                            <div class="col-sm-10">
+                                <button type="button" class="btn btn-primary" id="btTimThongTinXe"><i class="glyphicon glyphicon-search" aria-hidden="true"></i> Tìm thông tin xe</button>
+                            </div>
+                            <div class="help-block with-errors"></div>
+                            <span />
+                        </div>
+
+                        <div class="form-group" id="divPhanDong">
+                            <div class="col-sm-12">&nbsp;</div>
+                        </div>*@
+                        @*-----------------------------------------------------*@
+                        <div class="hr-line-dashed has-success"></div>
+
+                        <div class="form-group" id="divFrmGrpNoiSuaChua">
+                            <label class="col-sm-2 control-label no-padding-right">Nơi sửa chữa:</label>
+                            <div class="col-sm-4">
+                                <div class="input-group select2-bootstrap-prepend" style="width:100%">
+                                    <select id="NoiSuaChuaXeKey" class="form-control select2-allow-clear" name="NoiSuaChuaXeKey" value="@(Model.NoiSuaChuaXeKey)" >
+                                        @*name="ThongTinTimKiemSapLichBaoTri.HangSanXuatXeKey" data-error-msg="Vui lòng chọn hãng sản xuất xe." value="@(Model.ThongTinTimKiemSapLichBaoTri.HangSanXuatXeKey)" autofocus>*@
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <label class="col-sm-2 control-label no-padding-right">Ngày sắp lịch:</label>
+                            <div class="col-sm-4 border-bottom-dot-line" id="divNgaySapLich">
+                                <div id="divNgayCapPhep" class="input-group date date-picker" style="width:100%">
+                                    <span class="input-group-btn">
+                                        <button class="btn default green" type="button">
+                                            <i class="fa fa-calendar"></i>
+                                        </button>
+                                    </span>
+                                    <input type="text" id="NgaySapLich" name="NgaySapLich" class="form-control" value="@((Model.NgaySapLich == null) ? "" : Convert.ToDateTime(Model.NgaySapLich).ToString("dd/MM/yyyy"))">
+                                </div>
+                            </div>
+                        </div>
+                        @*-----------------------------------------------------*@
+                        <div class="hr-line-dashed has-success"></div>
+                        <div class="form-group" id="divBangXeChua_Cho_SapLich">
+                            <div class="col-sm-5">
+                                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="tableXeChuaSapLich">
+                                    <thead>
+                                        <tr style="background-color:darkseagreen">
+                                            @*<th></th>*@
+                                            <th style="background-color:darkseagreen">
+                                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline" style="background-color:beige">
+                                                    <input type="checkbox" class="group-checkable" data-set="#tableXeChuaSapLich .checkboxes"/>
+                                                    <span></span>
+                                                </label>
+                                            </th>
+                                            <th>XeKey</th>
+                                            <th>Bảng số xe</th>
+                                            <th>Số sàn</th>
+                                            <th>Ngày cấp phép</th>
+                                            <th>Màu</th>
+                                            <th>Wifi</th>
+                                            <th>Tivi</th>
+                                            <th>Camera</th>
+                                            <th>Ghi chú xe</th>
+                                            <th>Loại xe</th>
+                                            <th>Hãng sản xuất</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <div class="col-sm-2" style="vertical-align:middle !important; align-content:center !important;">
+                                
+                                <span><button type="button" class="btn btn-w-m btn-success" id="btChuyenSapLich"><i class="glyphicon glyphicon-forward" aria-hidden="true"></i></button></span>
+                                
+                                <span><button type="button" class="btn btn-w-m btn-primary" id="btHuySapLich"><i class="glyphicon glyphicon-backward" aria-hidden="true"></i></button></span>
+                                
+                                <span><button type="button" class="btn btn-w-m btn-danger" id="btLuu"><i class="fa fa-floppy-o" aria-hidden="true"> Lưu</i></button></span>
+                            </div>
+                            <div class="col-sm-5">
+                                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="tableXeChoSapLich">
+                                    <thead>
+                                        <tr style="background-color:mediumturquoise">@*lightskyblue;*@
+                                            @*<th></th>*@
+                                            <th style="background-color:mediumturquoise">
+                                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                    <input type="checkbox" class="group-checkable" data-set="#tableXeChoSapLich .checkboxes"/>
+                                                    <span></span>
+                                                </label>
+                                            </th>
+                                            <th>XeKey</th>
+                                            <th>Bảng số xe</th>
+                                            <th>Số sàn</th>
+                                            <th>Ngày cấp phép</th>
+                                            <th>Màu</th>
+                                            <th>Wifi</th>
+                                            <th>Tivi</th>
+                                            <th>Camera</th>
+                                            <th>Ghi chú xe</th>
+                                            <th>Loại xe</th>
+                                            <th>Hãng sản xuất</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>@*End-divBangXeChua_Cho_SapLich*@
+                        
+                    </div>@*End-form-body*@
+                    
+
+                    
+                </form>
+            </div>
+            @* End CONTENT *@
+        </div>
+    </div>
+    @*-- END SEARCH INFO--*@
+</div>
+
+@*-- BEGIN QUICK SIDEBAR --*@
+@Html.Partial("_Quick_Sidebar_Metronic")
+@*-- END QUICK SIDEBAR --*@
+
+@*==============================================*@
+@section Scripts {
+    @*-- END PAGE LEVEL PLUGINS--*@
+    @Scripts.Render("~/assets/global/scripts/datatable.js")
+    @Scripts.Render("~/assets/global/plugins/datatables/datatables.min.js")
+    @Scripts.Render("~/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js")
+    @Scripts.Render("~/plugins/datePicker")
+    @Scripts.Render("~/plugins/select2")
+    @*--END PAGE LEVEL PLUGINS--*@
+
+    @*-- START PAGE SCRIPT--*@
+    <!--Render script for Page-->
+    @Scripts.Render("~/Scripts/QuanLyXe/SapLichBaoTriSuaChuaXe.js")
+
+
+    @*-- END PAGE SCRIPT--*@
+}
+@*==============================================*@
