@@ -274,7 +274,7 @@ namespace Divuvina.Controllers
                 //---------------------------
                 var docListXeSapLich = new XmlDocument();
 
-                var DanhSachXe = docListXeSapLich.CreateElement("HoaDonHienThi");
+                var DanhSachXe = docListXeSapLich.CreateElement("DanhSachXe");
                 docListXeSapLich.AppendChild(DanhSachXe);
                 foreach (var xeChoSapLich in listThongTinXeChoSapLich)
                 {
@@ -289,7 +289,7 @@ namespace Divuvina.Controllers
                 }
                 //---------------------------
                 string listXeKeyFailed = string.Empty;
-                var nhanVienSapLichKey = 0;
+                var nhanVienSapLichKey = 1;
                 var resultSapLichBaoTriXe = new SapLichBaoTriXeBll().LuuThongTinSapLichBaoTriXe(docListXeSapLich.InnerXml, noiSuaChuaXeKey
                     , ngaySapLich, nhanVienSapLichKey, ghiChu,ref listXeKeyFailed);
                 

@@ -115,7 +115,12 @@ namespace Divuvina.Business.QuanLyXe
             #endregion Kiểm tra dữ liệu.
             try
             {
-                string store = "[dbo].[sp_LuuThongTinSapLichBaoTriXe] @ListXeKeyXML, @NoiSuaChuaXeKey, @NgaySapLich, @NhanVienSapLichKey, @GhiChu, @ListXeKeyFailed";
+                string store = "[dbo].[sp_LuuThongTinSapLichBaoTriXe] @ListXeKeyXML, @NoiSuaChuaXeKey, @NgaySapLich, @NhanVienSapLichKey, @GhiChu, @ListXeKeyFailed OUT";
+
+                var ParListXeKeyFailed = new SqlParameter();
+                ParListXeKeyFailed.ParameterName = "@ListXeKeyFailed";
+                ParListXeKeyFailed.Direction = ParameterDirection.Output;
+                ParListXeKeyFailed.SqlDbType = SqlDbType.VarChar;
 
                 var sqlParams = new SqlParameter[] {
                         new SqlParameter { ParameterName = "ListXeKeyXML", SqlDbType = SqlDbType.Xml, Value = listXeKeyXML },
@@ -123,10 +128,11 @@ namespace Divuvina.Business.QuanLyXe
                         new SqlParameter { ParameterName = "NgaySapLich", SqlDbType = SqlDbType.DateTime, Value = ngaySapLich },
                         new SqlParameter { ParameterName = "NhanVienSapLichKey", SqlDbType = SqlDbType.Int, Value = nhanVienSapLichKey},
                         new SqlParameter { ParameterName = "GhiChu", SqlDbType = SqlDbType.NVarChar, Value = ghiChu },
-                        new SqlParameter { ParameterName = "ListXeKeyFailed", Direction = ParameterDirection.Output, SqlDbType = SqlDbType.VarChar } ,
+                        ParListXeKeyFailed
                     };
-                var result = _db.Database.ExecuteSqlCommandAsync(store, sqlParams);
-                listXeKeyFailed = sqlParams[6].Value.ToString();
+                var result = _db.Database.ExecuteSqlCommand(store, sqlParams);
+                if (ParListXeKeyFailed.Value == null) return false;
+                listXeKeyFailed = ParListXeKeyFailed.Value.ToString();
                 return true;
             }
             catch(BusinessException ex)
