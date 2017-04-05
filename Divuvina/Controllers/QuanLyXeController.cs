@@ -290,7 +290,7 @@ namespace Divuvina.Controllers
                 //---------------------------
                 string listXeKeyFailed = string.Empty;
                 var nhanVienSapLichKey = 1;
-                var resultSapLichBaoTriXe = new SapLichBaoTriXeBll().LuuThongTinSapLichBaoTriXe(docListXeSapLich.InnerXml, noiSuaChuaXeKey
+                var resultSapLichBaoTriXe = new SapLichBaoTriXeBll().SaveThongTinSapLichBaoTriXe(docListXeSapLich.InnerXml, noiSuaChuaXeKey
                     , ngaySapLich, nhanVienSapLichKey, ghiChu,ref listXeKeyFailed);
                 
                 if(!resultSapLichBaoTriXe)
