@@ -7555,6 +7555,22 @@
     <Content Include="Views\Shared\_Theme_Panel_Metronic.cshtml" />
     <Content Include="Scripts\plugins\datepicker\bootstrap-datepicker.en.js" />
     <Content Include="Views\TestComponents\dataTable.cshtml" />
+    <Content Include="Views\DanhMucXepLichXe\DanhMucChiPhi - Copy.cshtml" />
+    <Content Include="Views\DanhMucDiaChi\DanhMucDuong - Copy.cshtml" />
+    <Content Include="Views\DanhMucDiaChi\DanhMucLoaiDiaChi - Copy.cshtml" />
+    <Content Include="Views\DanhMucDiaChi\DanhMucPhuongXa - Copy.cshtml" />
+    <Content Include="Views\DanhMucDiaChi\DanhMucQuanHuyen - Copy.cshtml" />
+    <Content Include="Views\DanhMucDiaChi\DanhMucQuocGia - Copy.cshtml" />
+    <Content Include="Views\DanhMucDiaChi\DanhMucTinhThanh - Copy.cshtml" />
+    <Content Include="Views\DanhMucXe\DanhMucLoaiXe - Copy.cshtml" />
+    <Content Include="Views\DanhMucXe\DanhMucNoiSuaChuaXe - Copy.cshtml" />
+    <Content Include="Views\DanhMucXe\DanhMucThietBiLinhKien - Copy.cshtml" />
+    <Content Include="Views\DanhMucXe\HangSanXuatXe - Copy.cshtml" />
+    <Content Include="Views\QuanLyNhanVien\DanhMucLoaiHopDong - Copy.cshtml" />
+    <Content Include="Views\QuanLyNhanVien\DanhMucLoaiTroCap - Copy.cshtml" />
+    <Content Include="Views\QuanLyNhanVien\DanhMucPhongBan - Copy.cshtml" />
+    <Content Include="Views\QuanLyNhanVien\DanhMucViTri - Copy.cshtml" />
+    <Content Include="Views\QuanLyXe\NhapThongTinXe - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

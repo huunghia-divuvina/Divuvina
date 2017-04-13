@@ -14,7 +14,8 @@ namespace Divuvina.Controllers
         #region HangSanXuatXe
         public ActionResult HangSanXuatXe()
         {
-            return View();
+            var hangSanXuatXe = new Models.HangSanXuatXe();
+            return View(hangSanXuatXe);
         }
 
         public JsonResult LayHangSanXuatXe()
@@ -72,7 +73,8 @@ namespace Divuvina.Controllers
         #region DanhMucLoaiXe
         public ActionResult DanhMucLoaiXe()
         {
-            return View();
+            var loaiXe = new Models.LoaiXe();
+            return View(loaiXe);
         }
 
         public JsonResult LayDanhMucLoaiXe()

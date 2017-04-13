@@ -38,8 +38,8 @@ function CauHinhBangDuLieu() {
         , order: [1, 'asc']
         , language: {
             lengthMenu: 'Hiển thị _MENU_ dòng mỗi trang'
-            , info: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
-            , infoEmpty: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
+            , info: '_START_ - _END_ (tổng _TOTAL_ dòng)'
+            , infoEmpty: 'Không có dữ liệu'
             , zeroRecords: "Xin lỗi không có dữ liệu hiển thị"
             , search: 'Tìm kiếm'
             , decimal: ","
@@ -111,8 +111,52 @@ function CauHinhBangDuLieu() {
     });//EndFunction
 }//EndFunction
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function KhoiTaoDuLieuComboBox() {
+
+    //$("#HangSanXuatXeKey").append("<option  value='0' disabled='disabled'>Chọn hãng sản xuất xe</option>");
+    //$('#HangSanXuatXeKey').val(0);
+    //===================================================
+    $.ajax({
+        url: '/DanhMucXe/LayHangSanXuatXeChoSelect',
+        dataType: "JSON",
+        success: function (response) {
+            $("#HangSanXuatXeKey").empty();
+            $('#HangSanXuatXeKey').append("<option  value='0' disabled='disabled' selected='selected'>Chọn hãng sản xuất xe</option>");
+            if (response != null) {
+                $.each(response, function (index, OptionItem) {
+                    $('#HangSanXuatXeKey').append("<option  value=" + OptionItem.id + " >" + OptionItem.text + "</option>");
+                });
+            }
+            $("#HangSanXuatXeKey").val(null).trigger("change");
+            $('#HangSanXuatXeKey').val(0);
+        },
+        failure: function (msg) {
+        }
+    });//EndLoadDataForLoaiGheSelector
+
+    //===================================================
+    $.ajax({
+        url: '/DanhMucXe/LayDanhMucLoaiGhe',
+        dataType: "JSON",
+        success: function (response) {
+            $("#LoaiGheKey").empty();
+            $('#LoaiGheKey').append("<option  value='0' disabled='disabled' selected='selected'>Chọn loại ghế</option>");
+            if (response != null) {
+                $.each(response, function (index, OptionItem) {
+                    $('#LoaiGheKey').append("<option  value=" + OptionItem.id + " >" + OptionItem.text + "</option>");
+                });
+            }
+            $("#LoaiGheKey").val(null).trigger("change");
+            $('#LoaiGheKey').val(0);
+        },
+        failure: function (msg) {
+        }
+    });//EndLoadDataForLoaiGheSelector
+}//EndFunction
+
 //Load dữ liệu Danh Mục Hãng Sản Xuất Xe
-//===================================================
+//===================================================//Thay bằng hàm gộp chung ở trên khi sử dụng layout Metronic.
 function LayHangSanXuatXeChoSelect()
 {
     $.ajax({
@@ -135,7 +179,7 @@ function LayHangSanXuatXeChoSelect()
 }//EndFunction
 
 //Load dữ liệu Danh Mục Loai Ghế
-//===================================================
+//===================================================//Thay bằng hàm gộp chung ở trên khi sử dụng layout Metronic.
 function LayDanhMucLoaiGhe() {
     
     $.ajax({
@@ -172,9 +216,10 @@ jQuery(function ($) {
 
     CauHinhBangDuLieu();
 
-    LayHangSanXuatXeChoSelect();
+    //LayHangSanXuatXeChoSelect();
+    //LayDanhMucLoaiGhe();
 
-    LayDanhMucLoaiGhe();
+    KhoiTaoDuLieuComboBox();
 });//EndFunction$
 
 //===================================================

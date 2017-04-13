@@ -5,7 +5,7 @@
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-10">
+    <div class="col-md-12 col-sm-12">
         <h2>Quốc Gia</h2>
     </div>
 </div>
@@ -14,74 +14,69 @@
     <form class="form-horizontal m-t-md" id="formData" role="form">
         @Html.HiddenFor(model => model.QuocGiaKey, new { @id = "Key" })
         <div class="row">
-            <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Phần nhập liệu</h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                        </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="form-group border-bottom-dot-line">
+                    <label class="col-sm-2 control-label">Tên quốc gia:</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(r => r.TenCoDau, new { @class = "form-control", @placeholder = "Nhập tên quốc gia", @id = "TenCoDau" })
+                        <span />
                     </div>
-                    <div class="ibox-content">
-                        <div class="form-group border-bottom-dot-line">
-                            <label class="col-sm-2 control-label">Tên quốc gia:</label>
-                            <div class="col-sm-4">
-                                @Html.TextBoxFor(r => r.TenCoDau, new { @class = "form-control", @placeholder = "Nhập tên quốc gia", @id = "TenCoDau" })
-                                <span />
-                            </div>
-                            <label class="col-sm-2 control-label">Tên không dấu:</label>
-                            <div class="col-sm-4">
-                                @Html.TextBoxFor(r => r.TenKhongDau, new { @class = "form-control", @placeholder = "Nhập tên không dấu", @id = "TenKhongDau" })
-                                <span />
-                            </div>
-                        </div>
-                        <div class="form-group border-bottom-dot-line">
-                            <label class="col-sm-2 control-label">Code:</label>
-                            <div class="col-sm-10">
-                                @Html.TextBoxFor(r => r.CountryCode, new { @class = "form-control", @placeholder = "Nhập mã quốc gia." })
-                                <span />
-                            </div>
-                            @*<label class="col-sm-2 control-label">Mở rộng:</label>
-                            <div class="col-sm-4">
-                                @Html.TextBoxFor(r => r.Culture, new { @class = "form-control", @placeholder = "Nhập văn hóa" })
-                                <span />
-                            </div>*@
-                        </div>
-                        <div class="form-group border-bottom-dot-line">
-                            <label class="col-sm-2 control-label">Ghi chú:</label>
-                            <div class="col-sm-10">
-                                @Html.TextAreaFor(r => r.GhiChu, new { @class = "form-control", @rows = 3, @placeholder = "Nhập ghi chú" })
-                                <span />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-2 col-md-offset-2">
-                                <button type="button" class="btn btn-w-m btn-primary" id="btNew" onclick="onNewClick()"><i class="fa fa-file" aria-hidden="true"></i> Tạo mới</button>
-                                <span />
-                            </div>
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-w-m btn-danger" id="btSave" onclick="onSaveClick()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</button>
-                                <span />
-                            </div>
-                        </div>
+                    <label class="col-sm-2 control-label">Tên không dấu:</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(r => r.TenKhongDau, new { @class = "form-control", @placeholder = "Nhập tên không dấu", @id = "TenKhongDau" })
+                        <span />
+                    </div>
+                </div>
+                <div class="form-group border-bottom-dot-line">
+                    <label class="col-sm-2 control-label">Code:</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(r => r.CountryCode, new { @class = "form-control", @placeholder = "Nhập mã quốc gia." })
+                        <span />
+                    </div>
+                    @*<label class="col-sm-2 control-label">Mở rộng:</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(r => r.Culture, new { @class = "form-control", @placeholder = "Nhập văn hóa" })
+                        <span />
+                    </div>*@
+                </div>
+                <div class="form-group border-bottom-dot-line">
+                    <label class="col-sm-2 control-label">Ghi chú:</label>
+                    <div class="col-sm-10">
+                        @Html.TextAreaFor(r => r.GhiChu, new { @class = "form-control", @rows = 3, @placeholder = "Nhập ghi chú" })
+                        <span />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2 col-md-offset-2">
+                        <button type="button" class="btn btn-w-m btn-primary" id="btNew" onclick="onNewClick()"><i class="fa fa-file" aria-hidden="true"></i> Tạo mới</button>
+                        <span />
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-w-m btn-danger" id="btSave" onclick="onSaveClick()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</button>
+                        <span />
                     </div>
                 </div>
             </div>
-        </div>
+        </div>@*End Row*@
+
         <div class="row">
-            <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Phần hiển thị</h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
+            @*-- BEGIN SEARCH INFO--*@
+            <div class="col-md-12 col-sm-12">
+                <div class="portlet box green">
+                    @* Begin TITLE *@
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-pagelines"></i>
+                            Danh mục quốc gia
+                        </div>
+                        <div class="tools">
+                            <a href="javascript:;" class="collapse" data-original-title title=""></a>
                         </div>
                     </div>
-                    <div class="ibox-content">
+                    @* End TITLE *@
+
+                    @* Begin CONTENT *@
+                    <div class="portlet-body">
                         <div class="table-responsive">
                             <table id="dtSource" class="table table-striped table-bordered table-hover">
                                 <thead>
@@ -101,9 +96,12 @@
                             </table>
                         </div>
                     </div>
+                    @* End CONTENT *@
                 </div>
             </div>
-        </div>
+            @*-- END SEARCH INFO--*@
+        </div>@*End Row*@
+        
     </form>
 </div>
 

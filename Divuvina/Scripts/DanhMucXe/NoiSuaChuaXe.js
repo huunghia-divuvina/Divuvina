@@ -31,8 +31,8 @@ function CauHinhBangDuLieu() {
                 , order: [1, 'asc']
                 , language: {
                     lengthMenu: 'Hiển thị _MENU_ dòng mỗi trang'
-                    , info: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
-                    , infoEmpty: 'Hiển thị dòng _START_ đến dòng _END_ trên tổng số _TOTAL_ dòng'
+                    , info: '_START_ - _END_ (tổng _TOTAL_ dòng)'
+                    , infoEmpty: 'Không có dữ liệu'
                     , zeroRecords: "Xin lỗi không có dữ liệu hiển thị"
                     , search: 'Tìm kiếm'
                     , decimal: ","

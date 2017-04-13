@@ -47,22 +47,6 @@ namespace Divuvina
             #endregion END THEME LAYOUT STYLES
 
             //---------------------------SCRIPTS
-            #region BEGIN CORE PLUGINS SCRIPTS
-            // SlimScroll
-            bundles.Add(new ScriptBundle("~/plugins/slimScroll").Include(
-                      "~/Scripts/plugins/slimscroll/jquery.slimscroll.min.js"));
-
-            // Peity
-            bundles.Add(new ScriptBundle("~/plugins/peity").Include(
-                      "~/Scripts/plugins/peity/jquery.peity.min.js"));
-
-            // Video responsible
-            bundles.Add(new ScriptBundle("~/plugins/videoResponsible").Include(
-                      "~/Scripts/plugins/video/responsible-video.js"));
-
-            #endregion END CORE PLUGINS SCRIPTS
-
-            //---------------------------SCRIPTS
             #region BEGIN GLOBAL MANDATORY SCRIPTS
             // jQuery
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -70,10 +54,6 @@ namespace Divuvina
             // jQueryUI 
             bundles.Add(new StyleBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/plugins/jquery-ui/jquery-ui.min.js"));
-            // validate 
-            bundles.Add(new ScriptBundle("~/plugins/validate").Include(
-                      "~/Scripts/plugins/validate/jquery.validate.min.js"));
-
             #endregion END GLOBAL MANDATORY SCRIPTS
 
             //---------------------------SCRIPTS
@@ -89,16 +69,36 @@ namespace Divuvina
             // Inspinia skin config script
             bundles.Add(new ScriptBundle("~/bundles/skinConfig").Include(
                       "~/Scripts/app/skin.config.min.js"));
-            // Morriss chart
-            bundles.Add(new ScriptBundle("~/plugins/morris").Include(
-                      "~/Scripts/plugins/morris/raphael-2.1.0.min.js",
-                      "~/Scripts/plugins/morris/morris.js"));
 
             #endregion END THEME GLOBAL SCRIPTS
 
             //---------------------------SCRIPTS
             #region BEGIN THEME LAYOUT SCRIPTS
             #endregion END THEME LAYOUT SCRIPTS
+
+            //---------------------------SCRIPTS
+            #region BEGIN CORE PLUGINS SCRIPTS
+            // SlimScroll
+            bundles.Add(new ScriptBundle("~/plugins/slimScroll").Include(
+                      "~/Scripts/plugins/slimscroll/jquery.slimscroll.min.js"));
+
+            // Peity
+            bundles.Add(new ScriptBundle("~/plugins/peity").Include(
+                      "~/Scripts/plugins/peity/jquery.peity.min.js"));
+
+            // Video responsible
+            bundles.Add(new ScriptBundle("~/plugins/videoResponsible").Include(
+                      "~/Scripts/plugins/video/responsible-video.js"));
+
+            // validate 
+            bundles.Add(new ScriptBundle("~/plugins/validate").Include(
+                      "~/Scripts/plugins/validate/jquery.validate.min.js"));
+
+            // Morriss chart
+            bundles.Add(new ScriptBundle("~/plugins/morris").Include(
+                      "~/Scripts/plugins/morris/raphael-2.1.0.min.js",
+                      "~/Scripts/plugins/morris/morris.js"));
+            #endregion END CORE PLUGINS SCRIPTS
 
             //---------------------------STYLES & SCRIPTS
             #region BEGIN PAGE LEVEL 
@@ -500,30 +500,44 @@ namespace Divuvina
 
             //---------------------------SCRIPTS
             #region BEGIN CORE PLUGINS
-            bundles.Add(new ScriptBundle("~/Metronic/global/plugins").Include(
-                //"~/Metronic/global/plugins/jquery.min.js",
-                //"~/Metronic/global/plugins/bootstrap/js/bootstrap.min.js",
-                "~/Metronic/global/plugins/js.cookie.min.js",
-                "~/Metronic/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js",
-                "~/Metronic/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js",
-                "~/Metronic/global/plugins/jquery.blockui.min.js",
-                "~/Metronic/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"
+
+            bundles.Add(new ScriptBundle("~/assest/apps/scripts").Include(
+                "~/assest/apps/scripts/calendar.js",
+                "~/assest/apps/scripts/calendar.min.js",
+                "~/assest/apps/scripts/inbox.js",
+                "~/assest/apps/scripts/inbox.min.js",
+                "~/assest/apps/scripts/todo.js",
+                "~/assest/apps/scripts/todo.min.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/assest/global/plugins").Include(
+                //"~/assest/global/plugins/jquery.min.js",
+                //"~/assest/global/plugins/bootstrap/js/bootstrap.min.js",
+                "~/assest/global/plugins/js.cookie.min.js",
+                "~/assest/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js",
+                "~/assest/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js",
+                "~/assest/global/plugins/jquery.blockui.min.js",
+                "~/assest/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"
                 ));
 
             #endregion END CORE PLUGINS
 
             //---------------------------SCRIPTS
             #region BEGIN THEME GLOBAL SCRIPTS
-            bundles.Add(new ScriptBundle("~/Metronic/global/scripts").Include(
-                "~/Metronic/global/scripts/app.min.js"
+            bundles.Add(new ScriptBundle("~/assest/global/scripts").Include(
+                "~/assest/global/scripts/app.js",
+                "~/assest/global/scripts/app.min.js",
+                "~/assest/global/scripts/datatable.js",
+                "~/assest/global/scripts/datatable.min.js"
                 ));
             #endregion END THEME GLOBAL SCRIPTS
 
             //---------------------------SCRIPTS
             #region BEGIN PAGE LEVEL SCRIPTS
             //-=-=-=-=-=-=-=-=-=-=-=-=-=-----------------------------------
-            bundles.Add(new ScriptBundle("~/Metronic/pages/scripts").Include(
-                "~/Metronic/pages/scripts/dashboard.min.js"
+            bundles.Add(new ScriptBundle("~/assest/pages/scripts").Include(
+                "~/assest/pages/scripts/dashboard.js",
+                "~/assest/pages/scripts/dashboard.min.js"
                 ));
             //-=-=-=-=-=-=-=-=-=-=-=-=-=-----------------------------------
             
@@ -531,10 +545,10 @@ namespace Divuvina
 
             //---------------------------SCRIPTS
             #region BEGIN THEME LAYOUT SCRIPTS
-            bundles.Add(new ScriptBundle("~/Metronic/layouts/layout/scripts").Include(
-                "~/Metronic/layouts/layout/scripts/layout.min.js",
-                "~/Metronic/layouts/layout/scripts/demo.min.js",
-                "~/Metronic/layouts/layout/scripts/quick-sidebar.min.js"
+            bundles.Add(new ScriptBundle("~/assest/layouts/layout/scripts").Include(
+                "~/assest/layouts/layout/scripts/layout.min.js",
+                "~/assest/layouts/layout/scripts/demo.min.js",
+                "~/assest/layouts/layout/scripts/quick-sidebar.min.js"
                 ));
             #endregion END THEME LAYOUT SCRIPTS
 
