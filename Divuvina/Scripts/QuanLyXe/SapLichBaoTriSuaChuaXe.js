@@ -571,8 +571,15 @@ $("#btLuu").on('click', function (e) {
         //data: JSON.stringify({ 'model': $('#formTimXeSapLich').serialize(), 'listThongTinXeChuaSapLich': listThongTinXeChuaSapLich, 'listThongTinXeChoSapLich': listThongTinXeChoSapLich }),
         data: JSON.stringify({ 'noiSuaChuaXeKey': noiSuaChuaXeKey, 'ngaySapLich': ngaySapLich, 'ghiChu': '', 'listThongTinXeChuaSapLich': listThongTinXeChuaSapLich, 'listThongTinXeChoSapLich': listThongTinXeChoSapLich }),
         cache: false,
-        success: function () {
-            ShowMessage("Bạn chưa chọn ngày sắp lịch sửa chữa.", "Sắp lịch bảo trì sửa chữa xe", "success");
+        success: function (data) {
+            if (data.Result == true) {
+                //---------------------------
+                tableXeChoSapLich = $("#tableXeChoSapLich").DataTable();
+                tableXeChoSapLich.clear().draw();
+
+                ShowMessage(data.ErrorMessage, "Sắp lịch bảo trì sửa chữa xe", "success");
+            }
+            else ShowMessageFailure(data.ErrorMessag);
         },
         failure: function (response) {
             ShowMessageFailure("Bạn chưa chọn ngày sắp lịch sửa chữa.");

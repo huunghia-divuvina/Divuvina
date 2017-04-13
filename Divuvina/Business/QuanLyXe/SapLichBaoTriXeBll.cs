@@ -87,7 +87,7 @@ namespace Divuvina.Business.QuanLyXe
             return _db.Database.SqlQuery<Models.sp_LayThongTinXeDaSapLich_Result>(store).ToList();
         }
 
-        public bool LuuThongTinSapLichBaoTriXe(string listXeKeyXML, int noiSuaChuaXeKey, DateTime ngaySapLich
+        public bool SaveThongTinSapLichBaoTriXe(string listXeKeyXML, int noiSuaChuaXeKey, DateTime ngaySapLich
             , int nhanVienSapLichKey, string ghiChu, ref string listXeKeyFailed)
         {
             listXeKeyFailed = string.Empty;
@@ -115,22 +115,49 @@ namespace Divuvina.Business.QuanLyXe
             #endregion Kiểm tra dữ liệu.
             try
             {
-                string store = "[dbo].[sp_LuuThongTinSapLichBaoTriXe] @ListXeKeyXML, @NoiSuaChuaXeKey, @NgaySapLich, @NhanVienSapLichKey, @GhiChu, @ListXeKeyFailed OUT";
+                //string store = "[dbo].[sp_LuuThongTinSapLichBaoTriXe] @ListXeKeyXML, @NoiSuaChuaXeKey, @NgaySapLich, @NhanVienSapLichKey, @GhiChu, @ListXeKeyFailed OUT";
+
+                //var ParListXeKeyFailed = new SqlParameter();
+                //ParListXeKeyFailed.ParameterName = "@ListXeKeyFailed";
+                //ParListXeKeyFailed.Direction = ParameterDirection.Output;
+                //ParListXeKeyFailed.SqlDbType = SqlDbType.VarChar;
+
+                //var sqlParams = new SqlParameter[] {
+                //        new SqlParameter { ParameterName = "ListXeKeyXML", SqlDbType = SqlDbType.Xml, Value = listXeKeyXML },
+                //        new SqlParameter { ParameterName = "NoiSuaChuaXeKey", SqlDbType = SqlDbType.Int, Value = noiSuaChuaXeKey },
+                //        new SqlParameter { ParameterName = "NgaySapLich", SqlDbType = SqlDbType.DateTime, Value = ngaySapLich },
+                //        new SqlParameter { ParameterName = "NhanVienSapLichKey", SqlDbType = SqlDbType.Int, Value = nhanVienSapLichKey},
+                //        new SqlParameter { ParameterName = "GhiChu", SqlDbType = SqlDbType.NVarChar, Value = ghiChu },
+                //        ParListXeKeyFailed
+                //    };
+                //var result = _db.Database.ExecuteSqlCommand(store, sqlParams);
+                //if (ParListXeKeyFailed.Value == null) return false;
+                //listXeKeyFailed = ParListXeKeyFailed.Value.ToString();
+                //string store = "[dbo].[sp_LuuThongTinSapLichBaoTriXe] @ListXeKeyXML, @NoiSuaChuaXeKey, @NgaySapLich, @NhanVienSapLichKey, @GhiChu, @ListXeKeyFailed";
+
+                //var sqlParams = new SqlParameter[] {
+                //        new SqlParameter { ParameterName = "ListXeKeyXML", SqlDbType = SqlDbType.Xml, Value = listXeKeyXML },
+                //        new SqlParameter { ParameterName = "NoiSuaChuaXeKey", SqlDbType = SqlDbType.Int, Value = noiSuaChuaXeKey },
+                //        new SqlParameter { ParameterName = "NgaySapLich", SqlDbType = SqlDbType.DateTime, Value = ngaySapLich },
+                //        new SqlParameter { ParameterName = "NhanVienSapLichKey", SqlDbType = SqlDbType.Int, Value = nhanVienSapLichKey},
+                //        new SqlParameter { ParameterName = "GhiChu", SqlDbType = SqlDbType.NVarChar, Value = ghiChu },
+                //        new SqlParameter { ParameterName = "ListXeKeyFailed", Direction = ParameterDirection.Output, SqlDbType = SqlDbType.VarChar } ,
+                //    };
+                //var result = _db.Database.ExecuteSqlCommandAsync(store, sqlParams);
 
                 var ParListXeKeyFailed = new SqlParameter();
                 ParListXeKeyFailed.ParameterName = "@ListXeKeyFailed";
                 ParListXeKeyFailed.Direction = ParameterDirection.Output;
                 ParListXeKeyFailed.SqlDbType = SqlDbType.VarChar;
+                ParListXeKeyFailed.Size = 4000;
 
-                var sqlParams = new SqlParameter[] {
-                        new SqlParameter { ParameterName = "ListXeKeyXML", SqlDbType = SqlDbType.Xml, Value = listXeKeyXML },
+                var result = _db.Database.ExecuteSqlCommand("sp_LuuThongTinSapLichBaoTriXe @ListXeKeyXML, @NoiSuaChuaXeKey, @NgaySapLich, @NhanVienSapLichKey, @GhiChu, @ListXeKeyFailed OUT"
+                    , new SqlParameter { ParameterName = "ListXeKeyXML", SqlDbType = SqlDbType.Xml, Value = listXeKeyXML },
                         new SqlParameter { ParameterName = "NoiSuaChuaXeKey", SqlDbType = SqlDbType.Int, Value = noiSuaChuaXeKey },
                         new SqlParameter { ParameterName = "NgaySapLich", SqlDbType = SqlDbType.DateTime, Value = ngaySapLich },
-                        new SqlParameter { ParameterName = "NhanVienSapLichKey", SqlDbType = SqlDbType.Int, Value = nhanVienSapLichKey},
+                        new SqlParameter { ParameterName = "NhanVienSapLichKey", SqlDbType = SqlDbType.Int, Value = nhanVienSapLichKey },
                         new SqlParameter { ParameterName = "GhiChu", SqlDbType = SqlDbType.NVarChar, Value = ghiChu },
-                        ParListXeKeyFailed
-                    };
-                var result = _db.Database.ExecuteSqlCommand(store, sqlParams);
+                        ParListXeKeyFailed);
                 if (ParListXeKeyFailed.Value == null) return false;
                 listXeKeyFailed = ParListXeKeyFailed.Value.ToString();
                 return true;
