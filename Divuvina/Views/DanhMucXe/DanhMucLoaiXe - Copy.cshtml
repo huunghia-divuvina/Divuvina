@@ -1,0 +1,172 @@
+﻿@model Divuvina.Models.LoaiXe
+
+@{
+    ViewBag.Title = "DanhMucLoaiXe";
+}
+
+<div class="row border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Danh mục loại xe</h2>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <form class="form-horizontal m-t-md" id="formData" role="form">
+        @Html.HiddenFor(model => model.LoaiXeKey, new { @id = "Key" })
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Phần nhập liệu</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="form-group border-bottom-dot-line" id="pIn">
+                            <label class="col-sm-2 control-label no-padding-right">Hãng sản xuất:</label>
+                            <div class="col-sm-4">
+                                <select class="chosen-select" style="width:100%;" id="HangSanXuatXeKey"></select>
+                                <span />
+                            </div>
+                            <label class="col-sm-2 control-label no-padding-right">Tên loại xe:</label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(r => r.Ten, new { @class = "form-control", @placeholder = "Nhập tên loại xe", @autofocus = true })
+                                <span />
+                            </div>
+                        </div>
+
+                        <div class="form-group border-bottom-dot-line">
+                            <label class="col-sm-2 control-label no-padding-right">Mô tả:</label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(r => r.MoTa, new { @class = "form-control", @placeholder = "Nhập mô tả loại xe" })
+                                <span />
+                            </div>
+                            <label class="col-sm-2 control-label no-padding-right">Model:</label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(r => r.Model, new { @class = "form-control", @placeholder = "Nhập Model xe" })
+                                <span />
+                            </div>
+                        </div>
+
+                        <div class="form-group border-bottom-dot-line">
+                            <label class="col-sm-2 control-label no-padding-right">Máy chạy xăng:</label>
+                            <div class="col-sm-4">
+                                <div class="radio radio-primary radioInline">
+                                    @Html.RadioButtonFor(r => r.MayChayXang, "MayChayXang", new { @Name = "LoaiDongCo", @checked = true })
+                                    <label for="MayChayXang"></label>
+                                </div>
+                            </div>
+                            <label class="col-sm-2 control-label no-padding-right">Máy chạy dầu:</label>
+                            <div class="col-sm-4">
+                                <div class="radio radio-success radioInline">
+                                    @Html.RadioButtonFor(r => r.MayChayDau, "MayChayDau", new { @Name = "LoaiDongCo" })
+                                    <label for="MayChayDau"></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group border-bottom-dot-line">
+                            <label class="col-sm-2 control-label no-padding-right">Tổng số ghế:</label>
+                            <div class="col-sm-4">
+                                <input class="touchspin3" id="SoGhe" name="SoGhe" type="text" required>
+                                <span />
+                            </div>
+                            <label class="col-sm-2 control-label no-padding-right">Loại ghế:</label>
+                            <div class="col-sm-4">
+                                <select class="chosen-select" style="width:100%;" id="LoaiGheKey"></select>
+                                <span />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label no-padding-right">Ghi chú:</label>
+                            <div class="col-sm-10">
+                                @Html.TextAreaFor(r => r.GhiChu, new { @class = "form-control", @rows = 3, @placeholder = "Nhập ghi chú" })
+                                <span />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2 col-md-offset-2">
+                                <button type="button" class="btn btn-w-m btn-primary" id="btNew" onclick="onNewClick()"><i class="fa fa-file" aria-hidden="true"></i> Tạo mới</button>
+                                <span />
+                            </div>
+
+                            <div class="col-sm-2">
+                                <button type="button" class="btn btn-w-m btn-danger" id="btSave" onclick="onSaveClick()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</button>
+                                <span />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Phần hiển thị</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="table-responsive">
+                            <table id="dtSource" width="100%" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="30px"></th>
+                                        <th width="1px"></th>
+                                        <th>Tên loại xe</th>
+                                        <th>Mô tả</th>
+                                        <th>Hãng sản xuất</th>
+                                        <th>Model</th>
+                                        <th>Máy chạy dầu</th>
+                                        <th>Máy chạy xăng</th>
+                                        <th>Số ghế</th>
+                                        <th>Loại ghế</th>
+                                        <th>Ghi chú</th>
+                                        <th width="30px">Sửa</th>
+                                        <th width="30px">Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/jeditable")
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/plugins/toastr")
+
+    <!--Render script for Page-->
+    @Scripts.Render("~/Scripts/DanhMucXe/LoaiXe.js")
+
+}
+
