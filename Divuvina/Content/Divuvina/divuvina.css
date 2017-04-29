@@ -158,6 +158,14 @@
 .valign-central{
     vertical-align:central !important;
 }
+.valign-center{
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    /*min-height: 100vh;*/ /* These two lines are counted as one :-)       */
+
+    display: flex;
+    align-items: center;
+    vertical-align:middle !important;
+}
 .valign-inherit{
     vertical-align:inherit !important;
 }
@@ -188,6 +196,15 @@
 .valign-use-script{
     vertical-align:use-script !important;
 }
+
+.parent-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;s
+  margin: 0 auto;
+}
 /*______End Vertical Align Text ______*/
 
 /*______ @ ______*/
@@ -213,19 +230,19 @@ span.required {
 /*______End ______*/
 
 /*______ @table ______*/
-tr.selected {
-    background-color: greenyellow !important;
+/*tr.selected {
+    background-color: greenyellow !important;*/
     /*background-color: #0089b6 !important;
     color: white !important;*/
-}
+/*}
 .ColumnCenterClassName {
     text-align: center;
 }
 thead tr th{
     background-color: #5ce1f4 !important;
-    text-align: center !important;
+    text-align: center !important;*/
     /*color: white;*/
-}
+/*}*/
 
 /*______End Table______*/
 

@@ -471,31 +471,30 @@ namespace Divuvina
             //---------------------------
             #region BEGIN GLOBAL MANDATORY STYLES
             //Using Bootstrap
-            //bundles.Add(new StyleBundle("~/Metronic/global/plugins/font-awesome/css").Include(
-            //          "~/Metronic/global/plugins/font-awesome/css/font-awesome.min.css"));
-            bundles.Add(new StyleBundle("~/Metronic/global/plugins/simple-line-icons").Include(
-                      "~/Metronic/global/plugins/simple-line-icons/simple-line-icons.min.css"));
+            //bundles.Add(new StyleBundle("~/assest/global/plugins/font-awesome/css").Include(
+            //          "~/assest/global/plugins/font-awesome/css/font-awesome.min.css"));
+            bundles.Add(new StyleBundle("~/assest/global/plugins/simple-line-icons").Include(
+                      "~/assest/global/plugins/simple-line-icons/simple-line-icons.min.css"));
             //Using Bootstrap
-            //bundles.Add(new StyleBundle("~/Metronic/global/plugins/bootstrap/css").Include(
-            //                      "~/Metronic/global/plugins/bootstrap/css/bootstrap.min.css"));
-            bundles.Add(new StyleBundle("~/Metronic/global/plugins/bootstrap-switch/css").Include(
-                                  "~/Metronic/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css"));
-
+            //bundles.Add(new StyleBundle("~/assest/global/plugins/bootstrap/css").Include(
+            //                      "~/assest/global/plugins/bootstrap/css/bootstrap.min.css"));
+            bundles.Add(new StyleBundle("~/assest/global/plugins/bootstrap-switch/css").Include(
+                                  "~/assest/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css"));
             #endregion END GLOBAL MANDATORY STYLES
 
             //---------------------------
             #region BEGIN THEME GLOBAL STYLES
-            bundles.Add(new StyleBundle("~/Metronic/global/css").Include(
-                      "~/Metronic/global/css/components.min.css",
-                      "~/Metronic/global/css/plugins.min.css"));
+            bundles.Add(new StyleBundle("~/assest/global/css").Include(
+                      "~/assest/global/css/components.min.css",
+                      "~/assest/global/css/plugins.min.css"));
             #endregion END THEME GLOBAL STYLES
 
             //---------------------------
             #region BEGIN THEME LAYOUT STYLES
-            bundles.Add(new StyleBundle("~/Metronic/layouts/layout/css").Include(
-                    "~/Metronic/layouts/layout/css/layout.min.css",
-                    "~/Metronic/layouts/layout/css/themes/darkblue.min.css",
-                    "~/Metronic/layouts/layout/css/custom.min.css"));
+            bundles.Add(new StyleBundle("~/assest/layouts/layout/css").Include(
+                    "~/assest/layouts/layout/css/layout.min.css",
+                    "~/assest/layouts/layout/css/themes/darkblue.min.css",
+                    "~/assest/layouts/layout/css/custom.min.css"));
             #endregion END THEME LAYOUT STYLES
 
             //---------------------------SCRIPTS

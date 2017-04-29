@@ -25,6 +25,7 @@ namespace Divuvina.Models
         public bool CoCameraHanhTrinh { get; set; }
         public string GhiChu { get; set; }
         public Nullable<System.DateTime> NgaySapLich { get; set; }
+        public string NhanVienSapLich { get; set; }
         public Nullable<System.DateTime> NgayThucHien { get; set; }
     }
 }

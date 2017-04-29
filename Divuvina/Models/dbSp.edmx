@@ -37,7 +37,6 @@
             <Parameter Name="SoSan" Mode="In" Type="String" />
             <Parameter Name="NgayCapPhep" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="sp_LayThongTinXeDaSapLich" ReturnType="Collection(dbSp.sp_LayThongTinXeDaSapLich_Result)" />
           <FunctionImport Name="spTest" ReturnType="Collection(Int32)">
           <Parameter Name="key" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -49,6 +48,7 @@
             <Parameter Name="GhiChu" Mode="In" Type="String" />
             <Parameter Name="ListXeKeyFailed" Mode="InOut" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_LayThongTinXeDaSapLich" ReturnType="Collection(dbSp.sp_LayThongTinXeDaSapLich_Result)" />
         </EntityContainer>
         <ComplexType Name="sp_LayThongTinXeChuaSapLich_Result">
           <Property Type="Int32" Name="XeKey" Nullable="false" />
@@ -76,6 +76,7 @@
           <Property Type="Boolean" Name="CoCameraHanhTrinh" Nullable="false" />
           <Property Type="String" Name="GhiChu" Nullable="false" MaxLength="500" />
           <Property Type="DateTime" Name="NgaySapLich" Nullable="true" />
+          <Property Type="String" Name="NhanVienSapLich" Nullable="true" MaxLength="101" />
           <Property Type="DateTime" Name="NgayThucHien" Nullable="true" />
         </ComplexType>
       </Schema>
@@ -101,6 +102,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spTest" FunctionName="dbSp.Store.spTest" />
+          <FunctionImportMapping FunctionImportName="sp_LuuThongTinSapLichBaoTriXe" FunctionName="dbSp.Store.sp_LuuThongTinSapLichBaoTriXe" />
           <FunctionImportMapping FunctionImportName="sp_LayThongTinXeDaSapLich" FunctionName="dbSp.Store.sp_LayThongTinXeDaSapLich">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dbSp.sp_LayThongTinXeDaSapLich_Result">
@@ -116,12 +119,11 @@
                 <ScalarProperty Name="CoCameraHanhTrinh" ColumnName="CoCameraHanhTrinh" />
                 <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
                 <ScalarProperty Name="NgaySapLich" ColumnName="NgaySapLich" />
+                <ScalarProperty Name="NhanVienSapLich" ColumnName="NhanVienSapLich" />
                 <ScalarProperty Name="NgayThucHien" ColumnName="NgayThucHien" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spTest" FunctionName="dbSp.Store.spTest" />
-          <FunctionImportMapping FunctionImportName="sp_LuuThongTinSapLichBaoTriXe" FunctionName="dbSp.Store.sp_LuuThongTinSapLichBaoTriXe" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

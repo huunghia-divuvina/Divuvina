@@ -2,6 +2,7 @@
 //===================================================
 var tableXeChuaSapLich = null;
 var tableXeChoSapLich = null;
+var tableXeDaSapLichBaoTriSuaChua = null;
 
 var listThongTinXeChuaSapLich = [];
 var listThongTinXeChoSapLich = [];
@@ -374,6 +375,169 @@ function InitBangXeChoSapLich() {
         }
     });
 }//EndFunction
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function InitBangXeDaSapLich() {
+    var tableName = '#tableXeDaSapLichBaoTriSuaChua';
+    var table = $(tableName);
+    //_______________________________________________
+    table.dataTable({
+        language: {
+            aria: {
+                //"sortAscending": ": activate to sort column ascending",
+                //"sortDescending": ": activate to sort column descending"
+                sortAscending: ": kích hoạt để sắp xếp cột tăng dần",
+                sortDescending: ": kích hoạt để sắp xếp cột giảm dần"
+            },
+            emptyTable: "Không có dữ liệu",
+            //info: "Từ dòng _START_ đến _END_ trong tổng _TOTAL_ dòng",
+            //info: "_START_ - _END_ (tổng _TOTAL_ dòng)",
+            info: "",
+            //infoEmpty: "Không có dữ liệu nào được tìm thấy",
+            infoEmpty: "",
+            infoFiltered: "(Tìm kiếm từ _MAX_ tổng sổ dòng)",
+            lengthMenu: "Hiển thị _MENU_",
+            search: "Tìm kiếm",
+            processing: "Đang xử lý...",
+            zeroRecords: "Không có dữ liệu",
+            paginate: {
+                "previous": "Trước",
+                "next": "Sau",
+                "last": "Trang cuối",
+                "first": "Trang đầu"
+            }
+        },
+        bStateSave: true, // save datatable state(pagination, sort, etc) in cookie.
+        bProcessing: false,
+        bFilter: false, // Show/hide search.
+        bLengthChange: true, // Show/hide Entries dropdown.
+        lengthMenu: [
+            [5, 15, 20, -1],
+            [5, 15, 20, "All"] // change per page values here
+        ],
+        // set the initial value
+        scrollY: 300,
+        paging: false,
+        //pageLength: 5,
+        //pagingType: "bootstrap_full_number",
+        //ordering: false,
+        columns: [
+            {
+                //Index Column.
+                data: null,
+                searchable: false
+                , orderable: false
+                , targets: 0
+            }
+            //{
+            //    orderable: false,
+            //    targets: [0],
+            //    data: null,
+            //    defaultContent: '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"><input type="checkbox" class="checkboxes"/><span></span></label>'
+            //}
+            , { data: 'XeKey', visible: false }
+            , { data: 'BangSoXe' }
+            , { data: 'SoSan' }
+            , { data: 'TenLoaiXe' }
+            , { data: 'TenHangSanXuatXe' }
+            , {
+                data: 'NgayCapPhep'
+                , className: 'center'
+                , render: function (data, type, full, meta) {
+                    if (full != null && full.NgayCapPhep != null) {
+                        return formatDateToString(full.NgayCapPhep, 'DD/MM/YYYY');
+                    }
+                    return '';
+                }//EndRender
+            }
+            , { data: 'Mau', visible: false }
+            , {
+                data: 'CoWifi'
+                , visible: false
+                , render: function (data, type, full, meta) {
+                    if (full != null && full.CoWifi != null) {
+                        if (full.CoWifi) return "Có";
+                        return "Không";
+                    }
+                    return 'Không';
+                }//EndRender
+            }
+            , {
+                data: 'CoTivi'
+                , visible: false
+                , render: function (data, type, full, meta) {
+                    if (full != null && full.CoTivi != null) {
+                        if (full.CoTivi) return "Có";
+                        return "Không";
+                    }
+                    return 'Không';
+                }//EndRender 
+            }
+            , {
+                data: 'CoCameraHanhTrinh'
+                , visible: false
+                , render: function (data, type, full, meta) {
+                    if (full != null && full.CoCameraHanhTrinh != null) {
+                        if (full.CoCameraHanhTrinh) return "Có";
+                        return "Không";
+                    }
+                    return 'Không';
+                }//EndRender 
+            }
+            , { data: 'GhiChu', visible: true }
+            , {
+                data: 'NgaySapLich'
+                , className: 'center'
+                , render: function (data, type, full, meta) {
+                    if (full != null && full.NgaySapLich != null) {
+                        return formatDateToString(full.NgaySapLich, 'DD/MM/YYYY');
+                    }
+                    return '';
+                }//EndRender
+            }
+            , { data: 'NhanVienSapLich', visible: true }
+
+        ],//EndColumns
+        order: [
+            [1, "asc"]
+        ] // set first column as a default sort by asc
+    });
+    //_______________________________________________
+    //table.find('.group-checkable').change(function () {
+    //    var set = jQuery(this).attr("data-set");
+    //    var checked = jQuery(this).is(":checked");
+    //    jQuery(set).each(function () {
+    //        if (checked) {
+    //            $(this).prop("checked", true);
+    //            $(this).parents('tr').addClass("active");
+    //        } else {
+    //            $(this).prop("checked", false);
+    //            $(this).parents('tr').removeClass("active");
+    //        }
+    //    });
+    //});
+    //_______________________________________________
+    //table.on('change', 'tbody tr .checkboxes', function () {
+    //    $(this).parents('tr').toggleClass("active");
+    //});
+
+    //Index columns.
+    //_______________________________________________
+    table.on('order.dt search.dt', function () {
+        tableXeChuaSapLich.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+            cell.innerHTML = i + 1;
+        });
+    }).draw();
+    //_______________________________________________
+    $(tableName + ' tbody').on('click', 'tr', function () {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        }
+        else {
+            tableXeChuaSapLich.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    });
+}//EndFunction
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 function GetThongTinXeChuaSapLich() {
@@ -402,10 +566,48 @@ function GetThongTinXeChuaSapLich() {
                 });
             }
             //---------------------------
-            tableXeChuaSapLich = $("#tableXeChuaSapLich").DataTable();
-            tableXeChuaSapLich.clear().draw();
-            tableXeChuaSapLich.rows.add(listThongTinXeChuaSapLich);
-            tableXeChuaSapLich.columns.adjust().draw();
+            tableXeChuaSapLich = $("#tableXeChuaSapLich").dataTable();
+            tableXeChuaSapLich.api().clear().draw();
+            tableXeChuaSapLich.api().rows.add(listThongTinXeChuaSapLich);
+            tableXeChuaSapLich.api().columns.adjust().draw();
+        },
+        //---------------------------
+        //error: function (xhr, exception) {
+        //    if (xhr.status != 0) alert('error');
+        //}
+        //---------------------------
+        error: function (xhr, ajaxOptions, thrownError) {
+            //alert(xhr.status);
+            //alert(xhr.responseText);
+            //alert(thrownError);
+            ShowMessageFailure("Tìm danh sách xe chưa sắp lịch không thành công.");
+        }
+    });
+
+}//EndFunction
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+function GetThongTinXeDaSapLich() {
+    $.ajax({
+        type: "GET",
+        dataType: "JSON",
+        url: '/QuanLyXe/GetThongTinXeDaSapLich',
+        //---------------------------
+        //=> Không mở đoạn code này. Vì mở đoạn code này sẽ không truyền được toàn bộ dữ liệu từ Form lên Controller
+        //Phần gắng thuộc tính từ model đến selector control không truyền được.
+        //contentType: "application/json; charset=utf-8", 
+        //---------------------------
+        //data: $('#formTimXeSapLich').serialize(),
+        async: true,
+        processData: false,
+        cache: false,
+        success: function (ListXeDaSapLich) {
+            if (ListXeDaSapLich != null) {
+                //---------------------------
+                tableXeDaSapLichBaoTriSuaChua = $("#tableXeDaSapLichBaoTriSuaChua").dataTable();
+                tableXeDaSapLichBaoTriSuaChua.api().clear().draw();
+                tableXeDaSapLichBaoTriSuaChua.api().rows.add(ListXeDaSapLich);
+                tableXeDaSapLichBaoTriSuaChua.api().columns.adjust().draw();
+            }
         },
         //---------------------------
         //error: function (xhr, exception) {
@@ -444,8 +646,8 @@ $("#btTimThongTinXe").on('click', function (e) {
 });
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 $("#btChuyenSapLich").on('click', function (e) {
-    tableXeChuaSapLich = $("#tableXeChuaSapLich").DataTable();
-    listThongTinXeChuaSapLich = tableXeChuaSapLich.rows().data();
+    tableXeChuaSapLich = $("#tableXeChuaSapLich").dataTable();
+    listThongTinXeChuaSapLich = tableXeChuaSapLich.api().rows().data();
     
     //Cach 1
     //---------------------------
@@ -461,7 +663,7 @@ $("#btChuyenSapLich").on('click', function (e) {
     //Cach 2
     //---------------------------
     if (listThongTinXeChoSapLich == null) listThongTinXeChoSapLich = [];
-    tableXeChuaSapLich.rows().every(function (rowIdx, tableLoop, rowLoop) {
+    tableXeChuaSapLich.api().rows().every(function (rowIdx, tableLoop, rowLoop) {
         var thongTinChoSapLich = JSON.stringify(this.data());
         var node = $(this.row(rowIdx).node());
         if (node.hasClass("active")) {
@@ -478,25 +680,25 @@ $("#btChuyenSapLich").on('click', function (e) {
     });
 
     //---------------------------
-    tableXeChoSapLich = $("#tableXeChoSapLich").DataTable();
-    tableXeChoSapLich.clear().draw();
-    tableXeChoSapLich.rows.add(listThongTinXeChoSapLich);
-    tableXeChoSapLich.columns.adjust().draw();
+    tableXeChoSapLich = $("#tableXeChoSapLich").dataTable();
+    tableXeChoSapLich.api().clear().draw();
+    tableXeChoSapLich.api().rows.add(listThongTinXeChoSapLich);
+    tableXeChoSapLich.api().columns.adjust().draw();
 
     //---------------------------
-    tableXeChuaSapLich = $("#tableXeChuaSapLich").DataTable();
-    tableXeChuaSapLich.clear().draw();
-    tableXeChuaSapLich.rows.add(listThongTinXeChuaSapLich);
-    tableXeChuaSapLich.columns.adjust().draw();
+    tableXeChuaSapLich = $("#tableXeChuaSapLich").dataTable();
+    tableXeChuaSapLich.api().clear().draw();
+    tableXeChuaSapLich.api().rows.add(listThongTinXeChuaSapLich);
+    tableXeChuaSapLich.api().columns.adjust().draw();
 });
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 $("#btHuySapLich").on('click', function (e) {
-    tableXeChoSapLich = $("#tableXeChoSapLich").DataTable();
-    listThongTinXeChoSapLich = tableXeChoSapLich.rows().data();
+    tableXeChoSapLich = $("#tableXeChoSapLich").dataTable();
+    listThongTinXeChoSapLich = tableXeChoSapLich.api().rows().data();
 
     //---------------------------
     if (listThongTinXeChuaSapLich == null) listThongTinXeChuaSapLich = [];
-    tableXeChoSapLich.rows().every(function (rowIdx, tableLoop, rowLoop) {
+    tableXeChoSapLich.api().rows().every(function (rowIdx, tableLoop, rowLoop) {
         var thongTinChuaSapLich = JSON.stringify(this.data());
         var node = $(this.row(rowIdx).node());
         if (node.hasClass("active")) {
@@ -513,16 +715,16 @@ $("#btHuySapLich").on('click', function (e) {
     });
 
     //---------------------------
-    tableXeChoSapLich = $("#tableXeChoSapLich").DataTable();
-    tableXeChoSapLich.clear().draw();
-    tableXeChoSapLich.rows.add(listThongTinXeChoSapLich);
-    tableXeChoSapLich.columns.adjust().draw();
+    tableXeChoSapLich = $("#tableXeChoSapLich").dataTable();
+    tableXeChoSapLich.api().clear().draw();
+    tableXeChoSapLich.api().rows.add(listThongTinXeChoSapLich);
+    tableXeChoSapLich.api().columns.adjust().draw();
 
     //---------------------------
-    tableXeChuaSapLich = $("#tableXeChuaSapLich").DataTable();
-    tableXeChuaSapLich.clear().draw();
-    tableXeChuaSapLich.rows.add(listThongTinXeChuaSapLich);
-    tableXeChuaSapLich.columns.adjust().draw();
+    tableXeChuaSapLich = $("#tableXeChuaSapLich").dataTable();
+    tableXeChuaSapLich.api().clear().draw();
+    tableXeChuaSapLich.api().rows.add(listThongTinXeChuaSapLich);
+    tableXeChuaSapLich.api().columns.adjust().draw();
 });
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 $("#btLuu").on('click', function (e) {
@@ -574,8 +776,8 @@ $("#btLuu").on('click', function (e) {
         success: function (data) {
             if (data.Result == true) {
                 //---------------------------
-                tableXeChoSapLich = $("#tableXeChoSapLich").DataTable();
-                tableXeChoSapLich.clear().draw();
+                tableXeChoSapLich = $("#tableXeChoSapLich").dataTable();
+                tableXeChoSapLich.api().clear().draw();
 
                 ShowMessage(data.ErrorMessage, "Sắp lịch bảo trì sửa chữa xe", "success");
             }
@@ -608,7 +810,8 @@ jQuery(function ($) {
     InitBangXeChoSapLich();
     GetThongTinXeChuaSapLich();
     //----------------------------
-
+    InitBangXeDaSapLich();
+    GetThongTinXeDaSapLich();
 
 });//EndFunction$
 

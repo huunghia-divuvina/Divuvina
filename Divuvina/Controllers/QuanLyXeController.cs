@@ -261,8 +261,25 @@ namespace Divuvina.Controllers
             }
         }//EndFunction
 
+        [AcceptVerbs(HttpVerbs.Get)]
+        public JsonResult GetThongTinXeDaSapLich()
+        {
+            var message = new RMessage { ErrorMessage = "Lấy thông tin xe đã sắp lịch bảo trì sửa chữa không thành công.", Result = false };
+            try
+            {
+                return Json(new SapLichBaoTriXeBll().GetThongTinXeDaSapLich(), JsonRequestBehavior.AllowGet);
+            }
+            catch (BusinessException ex)
+            {
+                message.Result = false;
+                message.MessageId = ex.getExceptionId();
+                message.SystemMessage = ex.ToString();
+                ViewData["RMessage"] = message;
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+        }//EndFunction
+
         [AcceptVerbs(HttpVerbs.Post)]
-        //public JsonResult SaveThongTinSapLichBaoTri(SapLichBaoTriXeModel model
         public JsonResult SaveThongTinSapLichBaoTri(int noiSuaChuaXeKey, DateTime ngaySapLich, string ghiChu
             , Models.sp_LayThongTinXeChuaSapLich_Result[] listThongTinXeChuaSapLich
             , Models.sp_LayThongTinXeChuaSapLich_Result[] listThongTinXeChoSapLich)

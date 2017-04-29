@@ -53,11 +53,6 @@ namespace Divuvina.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_LayThongTinXeChuaSapLich_Result>("sp_LayThongTinXeChuaSapLich", hangSanXuatXeKeyParameter, loaiXeKeyParameter, bangSoXeParameter, soSanParameter, ngayCapPhepParameter);
         }
     
-        public virtual ObjectResult<sp_LayThongTinXeDaSapLich_Result> sp_LayThongTinXeDaSapLich()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_LayThongTinXeDaSapLich_Result>("sp_LayThongTinXeDaSapLich");
-        }
-    
         public virtual ObjectResult<Nullable<int>> spTest(Nullable<int> key)
         {
             var keyParameter = key.HasValue ?
@@ -90,6 +85,11 @@ namespace Divuvina.Models
                 new ObjectParameter("GhiChu", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_LuuThongTinSapLichBaoTriXe", listXeKeyXMLParameter, noiSuaChuaXeKeyParameter, ngaySapLichParameter, nhanVienSapLichKeyParameter, ghiChuParameter, listXeKeyFailed);
+        }
+    
+        public virtual ObjectResult<sp_LayThongTinXeDaSapLich_Result> sp_LayThongTinXeDaSapLich()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_LayThongTinXeDaSapLich_Result>("sp_LayThongTinXeDaSapLich");
         }
     }
 }
