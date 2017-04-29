@@ -1,0 +1,222 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="vi">
+@*-- BEGIN HEAD --*@
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Divuvina | SmartBus</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    @* Include Bootstrap CSS*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    @* Optional Bootstrap theme*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    @*-- Optional Metronic theme--*@
+    
+    @* START METRONIC STYLES *@
+    @*----------------------------------------------*@
+    @* BEGIN GLOBAL MANDATORY STYLES *@
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all' rel='stylesheet' type='text/css' />
+    @Styles.Render("~/font-awesome/css")
+    <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    @* END GLOBAL MANDATORY STYLES *@
+    <!--  -->
+    @* BEGIN PAGE LEVEL PLUGINS *@
+    @*<link href="../assets/global/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css" />*@
+    <link href="../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/plugins/toastrStyles")
+    @* END PAGE LEVEL PLUGINS *@
+    <!--  -->
+    @* BEGIN THEME GLOBAL STYLES *@
+    <link href="@Url.Content("~/Scripts/plugins/jquery-ui/jquery-ui.css")" rel="stylesheet" type="text/css" />
+    @* END THEME GLOBAL STYLES *@
+    <!--  -->
+    @* BEGIN THEME LAYOUT STYLES *@
+    <link href="../assets/global/css/components.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="../assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/layouts/layout/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color" />
+    @*<link href="../assets/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />*@
+    <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
+    @* END THEME LAYOUT STYLES *@
+    <!--  -->
+    @**@
+    @**@
+    <!--  -->
+
+    @* END METRONIC STYLES *@
+    @*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*@
+    @* Add local styles, mostly for plugins css file*@
+    @*----------------------------------------------*@
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+
+    @*----------------------------------------------*@
+    <link rel="shortcut icon" href="~/assets/icon/favicon.ico" />
+    <!--  -->
+    @* END METRONIC SCRIPT*@
+    @*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*@
+</head>
+@*-- END HEAD --*@
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+    @* HEADER*@
+    @Html.Partial("_Header_Metronic")
+
+    @*-- BEGIN CONTAINER--*@
+    <div class="page-container"> 
+        @* SIDEBAR*@
+        @Html.Partial("_Navigation_Metronic")
+
+        @*-- BEGIN CONTENT --*@
+        <div class="page-content-wrapper">
+            @*-- BEGIN CONTENT BODY --*@
+            <div class="page-content">
+                @*-- BEGIN PAGE HEADER--*@
+                @*-- BEGIN THEME PANEL --*@
+                @*@Html.Partial("_Quick_Sidebar_Metronic")*@
+                @*-- END THEME PANEL --*@
+
+                @* Main view  *@
+                @RenderBody()
+
+            </div>
+            @*-- END CONTENT BODY --*@
+        </div>
+        @*-- END CONTENT --*@
+        @*-- BEGIN QUICK SIDEBAR --*@
+        
+        @*-- END QUICK SIDEBAR --*@
+    </div>
+    @*-- END CONTAINER--*@
+
+    @* FOOTER*@
+    @Html.Partial("_Footer_Metronic")
+
+</body>
+    @* START Bootstrap*@
+    @*----------------------------------------------*@
+    @* Section for main scripts render *@
+    @Scripts.Render("~/bundles/inspinia")
+    @Scripts.Render("~/plugins/slimScroll")
+    @Scripts.Render("~/plugins/validate")
+    @Scripts.Render("~/plugins/morris")
+    @**@
+    <!--  -->
+    @* Skin config script - only for demo purpose *@
+    @Scripts.Render("~/bundles/skinConfig")
+    @**@
+    <!--  -->
+    @**@
+    @**@
+    <!--  -->
+
+    @* END Bootstrap *@
+    @*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*@
+
+
+    @*-- START Metronic--*@
+    @*----------------------------------------------*@
+    @* BEGIN CORE PLUGINS *@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("../assets/global/plugins/jquery-migrate.min.js")
+    @*-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip --*@
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("../assets/global/plugins/jquery-ui/jquery-ui.min.js")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("../assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js")
+    @Scripts.Render("../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js")
+    @Scripts.Render("../assets/global/plugins/jquery.blockui.min.js")
+    @Scripts.Render("../assets/global/plugins/js.cookie.min.js")
+    @Scripts.Render("../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js")
+    @* END CORE PLUGINS *@
+    <!--  -->
+    @* BEGIN PAGE LEVEL PLUGINS *@
+    @Scripts.Render("../assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js")
+    @Scripts.Render("../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js")
+    @Scripts.Render("../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js")
+    @Scripts.Render("../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js")
+    @Scripts.Render("../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js")
+    @Scripts.Render("../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js")
+    @Scripts.Render("../assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js")
+    @Scripts.Render("../assets/global/plugins/flot/jquery.flot.min.js")
+    @Scripts.Render("../assets/global/plugins/flot/jquery.flot.resize.min.js")
+    @Scripts.Render("../assets/global/plugins/flot/jquery.flot.categories.min.js")
+    @Scripts.Render("../assets/global/plugins/jquery.pulsate.min.js")
+    @Scripts.Render("../assets/global/plugins/bootstrap-daterangepicker/moment.min.js")
+    @Scripts.Render("../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js")
+    @*-- IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support --*@
+    @Scripts.Render("../assets/global/plugins/fullcalendar/fullcalendar/fullcalendar.min.js")
+    @Scripts.Render("../assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js")
+    @Scripts.Render("../assets/global/plugins/jquery.sparkline.min.js")
+    @*@Scripts.Render("../assets/global/plugins/gritter/js/jquery.gritter.js")*@
+    @Scripts.Render("../assets/global/plugins/morris/morris.min.js")
+    @Scripts.Render("~/plugins/toastr")
+    @* END PAGE LEVEL PLUGINS *@
+    <!--  -->
+    @* BEGIN THEME GLOBAL SCRIPTS *@
+    @Scripts.Render("~/assest/global/scripts")
+    @Scripts.Render("~/assest/apps/scripts")
+    @* END THEME GLOBAL SCRIPTS *@
+    <!--  -->
+    @* BEGIN PAGE LEVEL SCRIPTS *@
+    @Scripts.Render("../assets/global/plugins/moment.min.js")
+    @Scripts.Render("~/assest/pages/scripts")
+    @* END PAGE LEVEL SCRIPTS *@
+    <!--  -->
+    @**@
+    @**@
+    <!--  -->
+
+    @* END METRONIC *@
+    @*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*@
+
+
+    @* Jquery Validate *@
+    @Scripts.Render("~/plugins/validate")
+
+    @* START SmartBus *@
+    @*----------------------------------------------*@
+    @* Hàm dùng Validation Form *@
+    @*@Scripts.Render("~/plugins/nghuuphuoc-bootstrapvalidator-v0.5.2")*@
+    @* Hàm dùng chung tự viết *@
+    @Scripts.Render("~/Public/HamDungChung")
+    @*---------------*@
+    @* END SmartBus *@
+    @*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*@
+
+    <!-- Handler for local scripts -->
+    @*----------------------------------------------*@
+    @* Handler for local scripts *@
+    @if (IsSectionDefined("Scripts"))
+    {@RenderSection("Scripts", required: false)}
+
+    <!--  -->
+    @* BEGIN THEME LAYOUT SCRIPTS *@
+    @Scripts.Render("../assets/layouts/layout/scripts/layout.js")
+    @Scripts.Render("../assets/layouts/layout/scripts/layout.min.js")
+    @Scripts.Render("../assets/layouts/layout/scripts/demo.min.js")
+    @Scripts.Render("../assets/layouts/global/scripts/quick-sidebar.js")
+    @Scripts.Render("../assets/layouts/global/scripts/quick-sidebar.min.js")
+    @Scripts.Render("../assets/pages/scripts/task.js")
+    @Scripts.Render("../assets/pages/scripts/task.min.js")
+
+    @* END THEME LAYOUT SCRIPTS *@
+
+
+</html>
